@@ -1,0 +1,134 @@
+@font-face {
+    font-family: "flaticon_agency";
+    src: url("../fonts/flaticon_agency245f.ttf?0d77276390ae7362b4080c2ac87b872a") format("truetype"),
+url("../fonts/flaticon_agency245f.woff?0d77276390ae7362b4080c2ac87b872a") format("woff"),
+url("../fonts/flaticon_agency245f.woff2?0d77276390ae7362b4080c2ac87b872a") format("woff2"),
+url("../fonts/flaticon_agency245f.eot?0d77276390ae7362b4080c2ac87b872a#iefix") format("embedded-opentype"),
+url("../fonts/flaticon_agency245f.svg?0d77276390ae7362b4080c2ac87b872a#flaticon_agency") format("svg");
+}
+
+i[class^="flaticon-agency-"]:before, i[class*=" flaticon-agency-"]:before {
+    font-family: flaticon_agency !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-agency-discuss:before {
+    content: "\f101";
+}
+.flaticon-agency-color-sample:before {
+    content: "\f102";
+}
+.flaticon-agency-front-end:before {
+    content: "\f103";
+}
+.flaticon-agency-online-shopping:before {
+    content: "\f104";
+}
+.flaticon-agency-repair:before {
+    content: "\f105";
+}
+.flaticon-agency-instructor:before {
+    content: "\f106";
+}
+.flaticon-agency-search-engine:before {
+    content: "\f107";
+}
+.flaticon-agency-trophy:before {
+    content: "\f108";
+}
+.flaticon-agency-medal:before {
+    content: "\f109";
+}
+.flaticon-agency-satisfaction:before {
+    content: "\f10a";
+}
+.flaticon-agency-design:before {
+    content: "\f10b";
+}
+.flaticon-agency-user-interface:before {
+    content: "\f10c";
+}
+.flaticon-agency-campaign:before {
+    content: "\f10d";
+}
+.flaticon-agency-reputation:before {
+    content: "\f10e";
+}
+.flaticon-agency-coffee:before {
+    content: "\f10f";
+}
+.flaticon-agency-social-campaign:before {
+    content: "\f110";
+}
+.flaticon-agency-advertising:before {
+    content: "\f111";
+}
+.flaticon-agency-quotes:before {
+    content: "\f112";
+}
+.flaticon-agency-concept:before {
+    content: "\f113";
+}
+.flaticon-agency-programmer:before {
+    content: "\f114";
+}
+.flaticon-agency-access:before {
+    content: "\f115";
+}
+.flaticon-agency-verification:before {
+    content: "\f116";
+}
+.flaticon-agency-phone-call:before {
+    content: "\f117";
+}
+.flaticon-agency-open-envelope:before {
+    content: "\f118";
+}
+.flaticon-agency-phone-ringing:before {
+    content: "\f119";
+}
+.flaticon-agency-help:before {
+    content: "\f11a";
+}
+.flaticon-agency-brain:before {
+    content: "\f11b";
+}
+.flaticon-agency-lamp:before {
+    content: "\f11c";
+}
+.flaticon-agency-design-1:before {
+    content: "\f11d";
+}
+.flaticon-agency-web:before {
+    content: "\f11e";
+}
+.flaticon-agency-android:before {
+    content: "\f11f";
+}
+.flaticon-agency-web-design:before {
+    content: "\f120";
+}
+.flaticon-agency-brain-1:before {
+    content: "\f121";
+}
+.flaticon-agency-television:before {
+    content: "\f122";
+}
+.flaticon-agency-lamp-1:before {
+    content: "\f123";
+}
+.flaticon-agency-android-logo:before {
+    content: "\f124";
+}
+.flaticon-agency-web-1:before {
+    content: "\f125";
+}
+.flaticon-agency-design-2:before {
+    content: "\f126";
+}

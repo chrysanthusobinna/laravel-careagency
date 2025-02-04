@@ -1,0 +1,197 @@
+:root {
+  --dark-color1: #2d2b3e;
+  --dark-color2: #292738;
+  --dark-color3: #2b242b;
+  --dark-color4: #212529;
+}
+
+body,
+.main-header.header-style-three .header-lower .main-box,
+.sticky-header.fixed-header,
+.page-wrapper,
+.about-section-one .experience,
+.about-section-one .content-column .info-box:hover,
+.news-block .content-box,
+.contact-form,
+.accordion-box .block,
+.accordion-box .block .acc-btn,
+.accordion-box .block.active-block,
+.accordion-box .block .acc-content.current,
+.accordion-box .block .acc-btn.active,
+.project-block .content-box .title,
+.subscribe-form .form-group input[type=text],
+.subscribe-form .form-group input[type=email],
+.banner-two-carousel .owl-nav .owl-next,
+.banner-two-carousel .owl-nav .owl-prev,
+.service-block-two .inner-box .content-box {
+  background-color: var(--dark-color1);
+}
+
+.header-top .inner-container,
+.about-section-one .content-column .info-box,
+.services-section:before,
+.testimonial-block .inner-box:before,
+.why-choose-us-one,
+.counter-block .inner,
+.team-block-two .info-box,
+.news-section,
+.feature-block .content-box {
+  background-color: var(--dark-color2);
+}
+
+.process-block .icon-box .icon:after,
+.pricing-block.style-two .inner-box,
+.service-block .inner-box,
+.testimonial-block .inner-box,
+.default-navs .owl-next, .default-navs .owl-prev,
+.faqs-section.style-two::before,
+.why-choose-us-two .content-column .info-box,
+.contact-section-two .form-column .contact-form,
+.contact-section-two .info-column .inner-column:before {
+  background-color: var(--dark-color3);
+}
+
+.skills .skill-item .skill-bar .bar-inner {
+  background-color: var(--dark-color4);
+}
+
+.counter-block .counter-title,
+.project-block .content-box .cat-list,
+.blockquote-style-one {
+  background-color: #000;
+  color: #fff;
+}
+
+.about-section-six .image-column .image-box:before {
+  background-color: var(--bg-theme-color2);
+}
+
+.main-menu .navigation > li.current > a,
+.header-style-two .info-btn-two small,
+.main-header.header-style-three .main-menu .navigation > li > a,
+.main-header.header-style-three .main-menu .navigation > li.dropdown > a,
+.main-header.header-style-three .ui-btn,
+.about-block-one .title,
+.about-block-one:hover .icon,
+.about-section-one .experience strong,
+.about-section-one .content-column .info-box .title,
+.service-block .content-box .read-more:hover,
+.testimonial-block .name,
+.why-choose-us-one .info-column .info .title,
+.why-choose-us-one .content-column .feature-box .title,
+.counter-block .count-box .count-text,
+.team-block-two .info-box .name a,
+.news-block .content-box .read-more,
+.news-block .content-box .read-more:hover,
+.skills .skill-item .skill-header .skill-title,
+.why-choose-us-two .content-column .info-box .title,
+.contact-section-two .info-column .info-box .title {
+  color: #fff;
+}
+
+.header-style-two .info-btn-two,
+.about-section-two .list-style-three li,
+.about-section-three .content-column .list-style-home3 li {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.service-block .inner-box {
+  border-color: var(--dark-color1);
+}
+
+.about-block-one,
+.about-section-one .image-column .image-2 img,
+.testimonial-block .image-box .image img,
+.about-section-two .image-column .image-2,
+.contact-section-two .info-column .info-box {
+  border-color: #282a2e;
+}
+
+.clients-section.alternate,
+.pricing-block.style-two .price-box {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.fun-fact-section .upper-box .numbers:after,
+.fun-fact-section .upper-box .numbers:before,
+.about-section-three .image-column .image-2 {
+  border-color: #5a4e4e;
+}
+
+b, strong,
+.services-section .bottom-box .text,
+.title a,
+.sec-title h2,
+.sticky-header .main-menu .navigation > li.current > a,
+.accordion-box .block .acc-btn,
+.contact-form h2,
+.service-block-two .inner-box .content-box .title {
+  color: #fff;
+}
+
+.about-section .content-column .info-box:hover .title {
+  color: var(--dark-color1);
+}
+
+.clients-section.style-two,
+.faq-block {
+  border-color: #505050;
+}
+
+.feature-block .content {
+  border-color: #404040;
+}
+
+.border-color,
+.accordion-box .block,
+.accordion-box .block.active-block {
+  border-color: #404040;
+}
+
+.header-style-two {
+  background-color: unset;
+}
+
+.about-section-one,
+.services-section:before,
+.bg-pattern-5,
+.projects-section,
+.why-choose-us-one:before,
+.team-section,
+.counter-block .inner,
+.about-section-four:before {
+  background-image: unset;
+}
+
+.opacity {
+  opacity: 0.15;
+}
+
+.contact-section:before {
+  opacity: 0.1;
+}
+
+.faqs-section-two:after {
+  opacity: 0.5;
+}
+
+.why-choose-us-two:before,
+.about-section-three:before {
+  opacity: 0.21;
+}
+
+.clients-carousel .slide-item img {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+.clients-section .slide-item a:hover {
+  background-color: inherit;
+}
+
+.contact-form .form-group textarea {
+  background-color: #0a090f;
+}
+.contact-form .form-group input:not([type=submit]) {
+  background-color: #0a090f;
+}

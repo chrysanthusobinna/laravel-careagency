@@ -1,0 +1,323 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../fonts/flaticon-set-oldkare3407.ttf?0046ebf691089aeb2b45627d29fd450d") format("truetype"),
+  url("../fonts/flaticon-set-oldkare3407.woff?0046ebf691089aeb2b45627d29fd450d") format("woff"),
+  url("../fonts/flaticon-set-oldkare3407.woff2?0046ebf691089aeb2b45627d29fd450d") format("woff2"),
+  url("../fonts/flaticon-set-oldkare3407.eot?0046ebf691089aeb2b45627d29fd450d#iefix") format("embedded-opentype"),
+  url("../fonts/flaticon-set-oldkare3407.svg?0046ebf691089aeb2b45627d29fd450d#flaticon") format("svg");
+  }
+
+  i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+  [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-style: normal;
+  }
+
+.flaticon-oldkare-walking-stick:before {
+    content: "\f101";
+}
+.flaticon-oldkare-cash:before {
+    content: "\f102";
+}
+.flaticon-oldkare-cane:before {
+    content: "\f103";
+}
+.flaticon-oldkare-calculator:before {
+    content: "\f104";
+}
+.flaticon-oldkare-birthday:before {
+    content: "\f105";
+}
+.flaticon-oldkare-bingo:before {
+    content: "\f106";
+}
+.flaticon-oldkare-bench:before {
+    content: "\f107";
+}
+.flaticon-oldkare-chair:before {
+    content: "\f108";
+}
+.flaticon-oldkare-chat:before {
+    content: "\f109";
+}
+.flaticon-oldkare-checkers:before {
+    content: "\f10a";
+}
+.flaticon-oldkare-golfing:before {
+    content: "\f10b";
+}
+.flaticon-oldkare-gardening:before {
+    content: "\f10c";
+}
+.flaticon-oldkare-financial-advisor:before {
+    content: "\f10d";
+}
+.flaticon-oldkare-eyeglasses:before {
+    content: "\f10e";
+}
+.flaticon-oldkare-emergency:before {
+    content: "\f10f";
+}
+.flaticon-oldkare-elderly:before {
+    content: "\f110";
+}
+.flaticon-oldkare-economy:before {
+    content: "\f111";
+}
+.flaticon-oldkare-diaper:before {
+    content: "\f112";
+}
+.flaticon-oldkare-denture:before {
+    content: "\f113";
+}
+.flaticon-oldkare-swing:before {
+    content: "\f114";
+}
+.flaticon-oldkare-clipboard:before {
+    content: "\f115";
+}
+.flaticon-oldkare-playing-cards:before {
+    content: "\f116";
+}
+.flaticon-oldkare-old-man:before {
+    content: "\f117";
+}
+.flaticon-oldkare-house:before {
+    content: "\f118";
+}
+.flaticon-oldkare-grandma:before {
+    content: "\f119";
+}
+.flaticon-oldkare-sunny:before {
+    content: "\f11a";
+}
+.flaticon-oldkare-pipe:before {
+    content: "\f11b";
+}
+.flaticon-oldkare-medication:before {
+    content: "\f11c";
+}
+.flaticon-oldkare-hospital-bed:before {
+    content: "\f11d";
+}
+.flaticon-oldkare-needle-thread:before {
+    content: "\f11e";
+}
+.flaticon-oldkare-medical-report:before {
+    content: "\f11f";
+}
+.flaticon-oldkare-pills:before {
+    content: "\f120";
+}
+.flaticon-oldkare-slippers:before {
+    content: "\f121";
+}
+.flaticon-oldkare-shield:before {
+    content: "\f122";
+}
+.flaticon-oldkare-park:before {
+    content: "\f123";
+}
+.flaticon-oldkare-luggage:before {
+    content: "\f124";
+}
+.flaticon-oldkare-hello:before {
+    content: "\f125";
+}
+.flaticon-oldkare-heart-beats:before {
+    content: "\f126";
+}
+.flaticon-oldkare-love:before {
+    content: "\f127";
+}
+.flaticon-oldkare-optometry:before {
+    content: "\f128";
+}
+.flaticon-oldkare-scooter:before {
+    content: "\f129";
+}
+.flaticon-oldkare-rocking-chair:before {
+    content: "\f12a";
+}
+.flaticon-oldkare-online-banking:before {
+    content: "\f12b";
+}
+.flaticon-oldkare-letter:before {
+    content: "\f12c";
+}
+.flaticon-oldkare-health-insurance:before {
+    content: "\f12d";
+}
+.flaticon-oldkare-headache:before {
+    content: "\f12e";
+}
+.flaticon-oldkare-invalid:before {
+    content: "\f12f";
+}
+.flaticon-oldkare-old-woman:before {
+    content: "\f130";
+}
+.flaticon-oldkare-reading:before {
+    content: "\f131";
+}
+.flaticon-oldkare-retirement-home:before {
+    content: "\f132";
+}
+.flaticon-oldkare-domino:before {
+    content: "\f133";
+}
+.flaticon-oldkare-savings:before {
+    content: "\f134";
+}
+.flaticon-oldkare-home:before {
+    content: "\f135";
+}
+.flaticon-oldkare-newspaper:before {
+    content: "\f136";
+}
+.flaticon-oldkare-knitting:before {
+    content: "\f137";
+}
+.flaticon-oldkare-shower:before {
+    content: "\f138";
+}
+.flaticon-oldkare-elevator:before {
+    content: "\f139";
+}
+.flaticon-oldkare-electrocardiogram:before {
+    content: "\f13a";
+}
+.flaticon-oldkare-denture-1:before {
+    content: "\f13b";
+}
+.flaticon-oldkare-nurse:before {
+    content: "\f13c";
+}
+.flaticon-oldkare-book:before {
+    content: "\f13d";
+}
+.flaticon-oldkare-shower-1:before {
+    content: "\f13e";
+}
+.flaticon-oldkare-bed:before {
+    content: "\f13f";
+}
+.flaticon-oldkare-stair:before {
+    content: "\f140";
+}
+.flaticon-oldkare-painting:before {
+    content: "\f141";
+}
+.flaticon-oldkare-walking-stick-1:before {
+    content: "\f142";
+}
+.flaticon-oldkare-old-woman-1:before {
+    content: "\f143";
+}
+.flaticon-oldkare-medicine-cabinet:before {
+    content: "\f144";
+}
+.flaticon-oldkare-chess-pieces:before {
+    content: "\f145";
+}
+.flaticon-oldkare-hospital:before {
+    content: "\f146";
+}
+.flaticon-oldkare-old-woman-2:before {
+    content: "\f147";
+}
+.flaticon-oldkare-medicine:before {
+    content: "\f148";
+}
+.flaticon-oldkare-hearing-aid:before {
+    content: "\f149";
+}
+.flaticon-oldkare-vase:before {
+    content: "\f14a";
+}
+.flaticon-oldkare-gardening-1:before {
+    content: "\f14b";
+}
+.flaticon-oldkare-toilet:before {
+    content: "\f14c";
+}
+.flaticon-oldkare-nurse-1:before {
+    content: "\f14d";
+}
+.flaticon-oldkare-old-man-1:before {
+    content: "\f14e";
+}
+.flaticon-oldkare-sofa:before {
+    content: "\f14f";
+}
+.flaticon-oldkare-pills-1:before {
+    content: "\f150";
+}
+.flaticon-oldkare-bookshelf:before {
+    content: "\f151";
+}
+.flaticon-oldkare-sphygmomanometer:before {
+    content: "\f152";
+}
+.flaticon-oldkare-glasses:before {
+    content: "\f153";
+}
+.flaticon-oldkare-diapers:before {
+    content: "\f154";
+}
+.flaticon-oldkare-walker:before {
+    content: "\f155";
+}
+.flaticon-oldkare-old-man-2:before {
+    content: "\f156";
+}
+.flaticon-oldkare-old-woman-3:before {
+    content: "\f157";
+}
+.flaticon-oldkare-old-people:before {
+    content: "\f158";
+}
+.flaticon-oldkare-wheelchair:before {
+    content: "\f159";
+}
+.flaticon-oldkare-emergency-call:before {
+    content: "\f15a";
+}
+.flaticon-oldkare-old-man-3:before {
+    content: "\f15b";
+}
+.flaticon-oldkare-picture:before {
+    content: "\f15c";
+}
+.flaticon-oldkare-tv:before {
+    content: "\f15d";
+}
+.flaticon-oldkare-scooter-1:before {
+    content: "\f15e";
+}
+.flaticon-oldkare-retirement-home-1:before {
+    content: "\f15f";
+}
+.flaticon-oldkare-rocking-chair-1:before {
+    content: "\f160";
+}
+.flaticon-oldkare-healthcare:before {
+    content: "\f161";
+}
+.flaticon-oldkare-radio:before {
+    content: "\f162";
+}
+.flaticon-oldkare-slippers-1:before {
+    content: "\f163";
+}
