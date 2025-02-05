@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(images/background/page-title.jpg);">
+    <section class="page-title" style="background-image: url(/mainsite-assets/images/background/page-title.jpg);">
         <div class="auto-container">
             <div class="title-outer text-center">
                 <h2 class="title">Service User Terms and Conditions</h2>

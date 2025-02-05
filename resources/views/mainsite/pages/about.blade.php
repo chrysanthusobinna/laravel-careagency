@@ -7,7 +7,7 @@
 @section('content')
 
 <!-- Start main-content -->
-<section class="page-title" style="background-image: url(images/background/page-title.jpg);">
+<section class="page-title" style="background-image: url(/mainsite-assets/images/background/page-title.jpg);">
     <div class="auto-container">
         <div class="title-outer text-center">
             <h1 class="title">About Us</h1>
@@ -42,8 +42,8 @@
             <!-- Image Column -->
             <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column">
-                    <figure class="image-1 overlay-anim wow fadeInUp"><img src="images/resource/about3-1.jpg" alt=""></figure>
-                    <figure class="image-2 overlay-anim wow fadeInRight"><img src="images/resource/about3-2.jpg" alt=""></figure>
+                    <figure class="image-1 overlay-anim wow fadeInUp"><img src="/mainsite-assets/images/resource/about3-1.jpg" alt=""></figure>
+                    <figure class="image-2 overlay-anim wow fadeInRight"><img src="/mainsite-assets/images/resource/about3-2.jpg" alt=""></figure>
                 </div>
             </div>
         </div>

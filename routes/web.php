@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MainSite\HomeController;
 use App\Http\Controllers\MainSite\AboutController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\MainSite\CareerController;
 use App\Http\Controllers\MainSite\ContactController;
 use App\Http\Controllers\MainSite\FindCarerController;
@@ -23,3 +24,10 @@ Route::get('/terms-condition-carer', [TermsConditionsController::class, 'carerTe
 Route::get('/terms-condition-service-user', [TermsConditionsController::class, 'serviceUserTerms'])->name('mainsite.terms.serviceuser');
 
 
+Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
+ 
+// Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// });

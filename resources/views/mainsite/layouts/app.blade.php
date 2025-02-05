@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <title>@yield('title')</title>
 <!-- Stylesheets -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-<link href="/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-<link href="/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+<link href="/mainsite-assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/mainsite-assets/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+<link href="/mainsite-assets/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+<link href="/mainsite-assets/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
 
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/responsive.css" rel="stylesheet">
+<link href="/mainsite-assets/css/style.css" rel="stylesheet">
+<link href="/mainsite-assets/css/responsive.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 <link rel="icon" href="/images/favicon.png" type="image/x-icon">
@@ -18,8 +18,8 @@
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!--[if lt IE 9]><script src="/js/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="/js/respond.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/mainsite-assets/js/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/mainsite-assets/js/respond.js"></script><![endif]-->
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 				<!-- Main box -->
 				<div class="main-box">
 					<div class="logo-box">
-						<div class="logo"><a href="/index-2.html"><img src="/images/logo.png" alt="" title="Insumo"></a></div>
+						<div class="logo"><a href="/index-2.html"><img src="/mainsite-assets/images/logo.png" alt="" title="Insumo"></a></div>
 					</div>
 
 					<!--Nav Box-->
@@ -93,7 +93,7 @@
 			<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
 			<nav class="menu-box">
 				<div class="upper-box">
-					<div class="nav-logo"><a href="/index-2.html"><img src="/images/logo.png" alt="" title=""></a></div>
+					<div class="nav-logo"><a href="/index-2.html"><img src="/mainsite-assets/images/logo.png" alt="" title=""></a></div>
 					<div class="close-btn"><i class="icon fa fa-times"></i></div>
 				</div>
 
@@ -159,7 +159,7 @@
 				<div class="inner-container">
 					<!--Logo-->
 					<div class="logo">
-						<a href="/index-2.html" title=""><img src="/images/logo-2.png" alt="" title=""></a>
+						<a href="/index-2.html" title=""><img src="/mainsite-assets/images/logo-2.png" alt="" title=""></a>
 					</div>
 
 					<!--Right Col-->
@@ -195,7 +195,7 @@
                         <!-- Logo -->
                         <div class="contact-info logo-box col-lg-4 wow fadeInUp text-center">
                             <div class="logo">
-                                <a href="{{ route('mainsite.home') }}"><img src="images/logo.png" alt="Company Logo"></a>
+                                <a href="{{ route('mainsite.home') }}"><img src="/mainsite-assets/images/logo.png" alt="Company Logo"></a>
                             </div>
                         </div>
                         <!-- Email Info -->
@@ -306,24 +306,22 @@
 
     <!-- Scroll To Top -->
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-    
-    <script data-cfasync="false" src="/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    
-    <script src="/js/jquery.js"></script> 
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.fancybox.js"></script>
-    <script src="/js/wow.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script src="/js/appear.js"></script>
-    <script src="/js/knob.js"></script>
-    <script src="/js/gsap.min.js"></script>
-    <script src="/js/ScrollTrigger.min.js"></script>
-    <script src="/js/SplitText.min.js"></script>
-    <script src="/js/splitType.js"></script>
-    <script src="/js/select2.min.js"></script>
-    <script src="/js/owl.js"></script>
-    <script src="/js/script.js"></script>
+        
+    <script src="/mainsite-assets/js/jquery.js"></script> 
+    <script src="/mainsite-assets/js/popper.min.js"></script>
+    <script src="/mainsite-assets/js/bootstrap.min.js"></script>
+    <script src="/mainsite-assets/js/jquery.fancybox.js"></script>
+    <script src="/mainsite-assets/js/wow.js"></script>
+    <script src="/mainsite-assets/js/jquery-ui.js"></script>
+    <script src="/mainsite-assets/js/appear.js"></script>
+    <script src="/mainsite-assets/js/knob.js"></script>
+    <script src="/mainsite-assets/js/gsap.min.js"></script>
+    <script src="/mainsite-assets/js/ScrollTrigger.min.js"></script>
+    <script src="/mainsite-assets/js/SplitText.min.js"></script>
+    <script src="/mainsite-assets/js/splitType.js"></script>
+    <script src="/mainsite-assets/js/select2.min.js"></script>
+    <script src="/mainsite-assets/js/owl.js"></script>
+    <script src="/mainsite-assets/js/script.js"></script>
      
      </body>
     

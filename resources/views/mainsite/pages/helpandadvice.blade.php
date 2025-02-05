@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(images/background/page-title.jpg);">
+    <section class="page-title" style="background-image: url(/mainsite-assets/images/background/page-title.jpg);">
         <div class="auto-container">
             <div class="title-outer text-center">
                 <h1 class="title">Help and Advice</h1>
@@ -25,7 +25,7 @@
             <div class="row align-items-center">
                 <!-- Image Column -->
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="images/get-help.jpg" alt="Help and Advice" class="img-fluid rounded shadow">
+                    <img src="/mainsite-assets/images/get-help.jpg" alt="Help and Advice" class="img-fluid rounded shadow">
                 </div>
                 <!-- Content Column -->
                 <div class="col-lg-6">

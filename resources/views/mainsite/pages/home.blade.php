@@ -11,7 +11,7 @@
     <div class="banner-two-carousel owl-carousel owl-theme default-navs">
         <!-- Slide Item -->
         <div class="slide-item">
-            <div class="bg-image" style="background-image: url(images/main-slider/1.jpg);"></div>
+            <div class="bg-image" style="background-image: url(/mainsite-assets/images/main-slider/1.jpg);"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <span class="sub-title animate-1">Welcome to CarePass</span>
@@ -26,7 +26,7 @@
 
         <!-- Slide Item -->
         <div class="slide-item">
-            <div class="bg-image" style="background-image: url(images/main-slider/2.jpg);"></div>
+            <div class="bg-image" style="background-image: url(/mainsite-assets/images/main-slider/2.jpg);"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <span class="sub-title animate-1">Your Trusted Care Partner</span>
@@ -80,10 +80,10 @@
             <!-- Image Column -->
             <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column wow fadeInLeft">
-                    <figure class="image-1 overlay-anim wow fadeInUp"><img src="/images/resource/about1-1.jpg" alt="Caregiver assisting senior with tablet"></figure>
-                    <figure class="image-2 overlay-anim wow fadeInRight"><img src="/images/resource/about1-2.jpg" alt="Senior couple enjoying outdoor activity"></figure>
+                    <figure class="image-1 overlay-anim wow fadeInUp"><img  src="/mainsite-assets/images/resource/about1-1.jpg" alt="Caregiver assisting senior with tablet"></figure>
+                    <figure class="image-2 overlay-anim wow fadeInRight"><img  src="/mainsite-assets/images/resource/about1-2.jpg" alt="Senior couple enjoying outdoor activity"></figure>
                     <div class="experience bounce-y">
-                        <img src="/images/healthcare.png" alt="Carepass badge" class="icon">
+                        <img  src="/mainsite-assets/images/healthcare.png" alt="Carepass badge" class="icon">
                         <strong>Join us</strong> Today!
                     </div>
                 </div>
@@ -106,7 +106,7 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-1.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-1.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-chat"></i></div>
                     </div>
                     <div class="content-box">
@@ -120,7 +120,7 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-2.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-2.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-healthcare"></i></div>
                     </div>
                     <div class="content-box">
@@ -134,7 +134,7 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-3.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-3.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-gardening"></i></div>
                     </div>
                     <div class="content-box">
@@ -181,7 +181,7 @@
             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image-box">
-                        <figure class="image"><img src="/images/resource/image-3.jpg" alt="CarePass Mobile App"></figure>
+                        <figure class="image"><img  src="/mainsite-assets/images/resource/image-3.jpg" alt="CarePass Mobile App"></figure>
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
                     <div class="row">
                         <div class="image-column col-lg-6 col-md-6 col-sm-12">
                             <div class="image-box">
-                                <figure class="image overlay-anim"><img src="/images/resource/why-us-1.jpg" alt=""></figure>
+                                <figure class="image overlay-anim"><img  src="/mainsite-assets/images/resource/why-us-1.jpg" alt=""></figure>
                             </div>
                         </div>
                         <div class="info-column col-lg-6 col-md-6 col-sm-12">
@@ -250,7 +250,7 @@
 
 <!-- Call To Action Three -->
 <section class="call-to-action-three">
-    <div class="bg-image" style="background-image: url(images/background/8.jpg)"></div>
+    <div class="bg-image" style="background-image: url(/mainsite-assets/images/background/8.jpg)"></div>
     <div class="bg-shape"></div>
     <div class="auto-container">
         <div class="row">
@@ -298,7 +298,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/images/user-testimony.png" alt="Alex Martin"></figure>
+                                    <figure class="image"><img  src="/mainsite-assets/images/user-testimony.png" alt="Alex Martin"></figure>
                                     <div class="info-box">
                                         <h4 class="name">Alex Martin</h4>
                                         <span class="designation">Son of Client</span>
@@ -313,7 +313,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/images/user-testimony.png" alt="Kevin Martin"></figure>
+                                    <figure class="image"><img  src="/mainsite-assets/images/user-testimony.png" alt="Kevin Martin"></figure>
                                     <div class="info-box">
                                         <h4 class="name">Kevin Martin</h4>
                                         <span class="designation">Husband of Client</span>
@@ -328,7 +328,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/images/user-testimony.png" alt="Sarah Albert"></figure>
+                                    <figure class="image"><img  src="/mainsite-assets/images/user-testimony.png" alt="Sarah Albert"></figure>
                                     <div class="info-box">
                                         <h4 class="name">Sarah Albert</h4>
                                         <span class="designation">Daughter of Client</span>
@@ -343,7 +343,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/images/user-testimony.png" alt="Mark Hardson"></figure>
+                                    <figure class="image"><img  src="/mainsite-assets/images/user-testimony.png" alt="Mark Hardson"></figure>
                                     <div class="info-box">
                                         <h4 class="name">Mark Hardson</h4>
                                         <span class="designation">Family Member</span>
@@ -500,7 +500,7 @@
 
 				 <!-- Form Column -->
 				<div class="form-column col-lg-6 col-md-12 col-sm-12">
-					<div class="form-bg" style="background-image: url(images/background/3.jpg)"></div>
+					<div class="form-bg" style="background-image: url(/mainsite-assets/images/background/3.jpg)"></div>
                     <div class="inner-column text-center">
                         <div class="sec-title light">
                             <h2 class="title text-split">Your Questions, Answered.<br />Answered</h2>
