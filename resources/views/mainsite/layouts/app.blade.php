@@ -74,10 +74,10 @@
  
 						</div>
 
-						<a href="/tel:+92(8800)9806" class="info-btn">
-							<i class="icon fa fa-phone"></i>
-							<small>Call Anytime</small>+ 88 ( 9800 ) 6802-00
-						</a>
+                        <button class="btn btn-danger">
+                            <i class="fa fa-user-alt"></i> LOGIN
+                        </button>
+                        
 
 						<!-- Mobile Nav toggler -->
 						<div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
@@ -245,7 +245,7 @@
                                             <li><a href="{{ route('mainsite.contact') }}">Contact</a></li>
                                             <li><a href="{{ route('mainsite.career') }}">Careers</a></li>
                                             <li><a href="{{ route('mainsite.findcarer') }}">Find a Carer</a></li>
-  /li>
+  
                                         </ul>
                                     </div>
                                 </div>
@@ -262,7 +262,7 @@
                                     <li><a href="{{ route('mainsite.helpandadvice') }}">Help & Advice</a></li>
                                     <li><a href="{{ route('mainsite.terms.carer') }}">Carer Terms</a></li>
                                     <li><a href="{{ route('mainsite.terms.serviceuser') }}">Service User Terms</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="{{ route('mainsite.privacy') }}">Privacy Policy</a></li>
                                     <li><a href="#">Login</a></li>
                                 </ul>
                             </div>

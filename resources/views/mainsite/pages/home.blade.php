@@ -6,528 +6,360 @@
 
 
 
-	<!-- Banner Section Two-->
-	<section class="banner-section">
-		<div class="banner-two-carousel owl-carousel owl-theme default-navs">
-			<!-- Slide Item -->
-			<div class="slide-item">
-				<div class="bg-image" style="background-image: url(images/main-slider/1.jpg);"></div>
-				<div class="auto-container">
-					<div class="content-box">
-						<span class="sub-title animate-1">Welcome to Oldcare Center</span>
-						<h1 class="title animate-1"> We Make an Elderly <br class="d-none d-lg-block" /> Person Happy</h1>
-						<div class="btn-box animate-2">
-							<a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Read More</span></a>
-						</div>
-						<div class="banner-text animate-3">Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et simply free text dolore magna</div>
-					</div>
-				</div>
-			</div>
+<!-- Banner Section Two-->
+<section class="banner-section">
+    <div class="banner-two-carousel owl-carousel owl-theme default-navs">
+        <!-- Slide Item -->
+        <div class="slide-item">
+            <div class="bg-image" style="background-image: url(images/main-slider/1.jpg);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <span class="sub-title animate-1">Welcome to CarePass</span>
+                    <h1 class="title animate-1">Connecting Families with Trusted Carers</h1>
+                    <div class="btn-box animate-2">
+                        <a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Learn More</span></a>
+                    </div>
+                    <div class="banner-text animate-3">Providing reliable, self-employed carers to support your loved ones with high-quality, compassionate care at home.</div>
+                </div>
+            </div>
+        </div>
 
-			<!-- Slide Item -->
-			<div class="slide-item">
-				<div class="bg-image" style="background-image: url(images/main-slider/2.jpg);"></div>
-				<div class="auto-container">
-					<div class="content-box">
-						<span class="sub-title animate-1">We’re the best insurance provider</span>
-						<h1 class="title animate-1"> We Make an Elderly <br class="d-none d-lg-block" /> Person Happy</h1>
-						<div class="btn-box animate-2">
-							<a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Read More</span></a>
-						</div>
-						<div class="banner-text animate-3">Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et simply free text dolore magna</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--END Banner Section Two -->
+        <!-- Slide Item -->
+        <div class="slide-item">
+            <div class="bg-image" style="background-image: url(images/main-slider/2.jpg);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <span class="sub-title animate-1">Your Trusted Care Partner</span>
+                    <h1 class="title animate-1">Live-in Care Tailored to Your Needs</h1>
+                    <div class="btn-box animate-2">
+                        <a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Discover Services</span></a>
+                    </div>
+                    <div class="banner-text animate-3">We match families with dedicated, self-employed carers, ensuring personalized care that promotes independence and well-being.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--END Banner Section Two -->
 
-	<!-- About Section -->
-	<section class="about-section-one">
-		<div class="auto-container">
-			<div class="row">
-				<div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight" data-wow-delay="600ms">
-					<div class="inner-column">
-						<div class="sec-title">
-							<span class="sub-title">ABOUT US</span>
-							<h2 class="text-split">We make a difference in senior lives</h2>
-							<div class="text">There are many variations of passages of available but the majority have suffered alteration in some form, by injected hum randomised words which don't slightly but the majority have suffered</div>
-						</div>
-						<div class="content-box">
-							<div class="info-box">
-								<h5 class="title">Free Medical Checkup</h5>
-								<a href="/#" class="read-more">More <i class="fa fa-long-arrow-alt-right"></i></a>
-							</div>
-							<div class="about-block-one">
-								<i class="icon flaticon-oldkare-old-man"></i>
-								<h5 class="title">Expert Nursing Staff</h5>
-								<div class="text">There are many variations of passages of Lorem Ipsum available.</div>
-							</div>
-							<div class="about-block-one">
-								<i class="icon flaticon-oldkare-invalid"></i>
-								<h5 class="title">Medical Social Services</h5>
-								<div class="text">There are many variations of passages of Lorem Ipsum available..</div>
-							</div>
-						</div>
-						<div class="btm-box">
-							<a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Discover more</span></a>
-						</div>
-					</div>
-				</div>
 
-				<!-- Image Column -->
-				<div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
-					<div class="inner-column wow fadeInLeft">
-						<figure class="image-1 overlay-anim wow fadeInUp"><img src="/images/resource/about1-1.jpg" alt=""></figure>
-						<figure class="image-2 overlay-anim wow fadeInRight"><img src="/images/resource/about1-2.jpg" alt=""></figure>
-						<div class="experience bounce-y">
-							<img src="/images/resource/about1-3.jpg" alt="" class="icon">
-							<strong>15+</strong> Nursing Staff
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--Emd About Section -->
 
-	<!-- Services Section -->
-	<section class="services-section">
-		<div class="auto-container">
-			<div class="sec-title text-center">
-				<span class="sub-title">Services we’re offering</span>
-				<h2 class="text-split">High quality products and services<br /> that we stand behind</h2>
-			</div>
-			<div class="row">
-				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-1.jpg" alt=""></a></figure>
-							<div class="icon-box"><i class="icon flaticon-oldkare-chat"></i></div>
-						</div>
-						<div class="content-box">
-							<h5 class="title"><a href="/page-service-details.html">Medical Checkup</a></h5>
-							<div class="text">consetetur sadipscing elitr the sed arer diam nonumy eirmod tempor</div>
-							<a href="/page-service-details.html" class="read-more">read More <i class="fa fa-long-arrow-alt-right"></i></a>
-						</div>
-					</div>
-				</div>
-				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-2.jpg" alt=""></a></figure>
-							<div class="icon-box"><i class="icon flaticon-oldkare-healthcare"></i></div>
-						</div>
-						<div class="content-box">
-							<h5 class="title"><a href="/page-service-details.html">Senior Citizen</a></h5>
-							<div class="text">consetetur sadipscing elitr the sed arer diam nonumy eirmod tempor</div>
-							<a href="/page-service-details.html" class="read-more">read More <i class="fa fa-long-arrow-alt-right"></i></a>
-						</div>
-					</div>
-				</div>
-				<!-- Service Block -->
-				<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-3.jpg" alt=""></a></figure>
-							<div class="icon-box"><i class="icon flaticon-oldkare-gardening"></i></div>
-						</div>
-						<div class="content-box">
-							<h5 class="title"><a href="/page-service-details.html">Health & Medical Care</a></h5>
-							<div class="text">consetetur sadipscing elitr the sed arer diam nonumy eirmod tempor</div>
-							<a href="/page-service-details.html" class="read-more">read More <i class="fa fa-long-arrow-alt-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center mt-40 wow fadeInUp">
-				<div class="col-lg-8">
-					<div class="bottom-text d-sm-flex align-items-center justify-content-between">
-						<p class="mb-3 mb-sm-0">Find The Main Senior Care Service<span class="color3 ps-2">Send a request now</span></p>
-						<a href="/page-contact.html" class="theme-btn btn-style-two small"><span class="btn-title">Discover More</span></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Services Section-->
 
-	<!-- Offer Section -->
-	<section class="offer-section">
-		<div class="auto-container">
-			<div class="row">
-				<!-- Content Column -->
-				<div class="content-column col-lg-6 col-md-12">
-					<div class="inner-column">
-						<div class="sec-title light">
-							<span class="sub-title">WHO WE ARE</span>
-							<h2 class="text-split">We believe we can save more lives</h2>
-							<div class="text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu convenient scheduling, account fugiat pariatur</div>
-						</div>
-						<div class="info-box">
-							<i class="icon flaticon-oldkare-birthday"></i>
-							<h5 class="title">We’re doing the right thing.<br class="d-none d-sm-block" /> The right way</h5>
-						</div>
-						<ul class="list-style-two">
-							<li><i class="fas fa-circle-right"></i> Personalized Care Service</li>
-							<li><i class="fas fa-circle-right"></i> Complete Medical Suppy</li>
-							<li><i class="fas fa-circle-right"></i> Daily Physical Medical Checkup</li>
-						</ul>
-					</div>
-				</div>
-				<!-- Content Column -->
-				<div class="image-column col-lg-6 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<div class="image-box">
-							<figure class="image"><img src="/images/resource/image-3.jpg" alt=""></figure>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Offer Section -->
+<!-- About Section -->
+<section class="about-section-one">
+    <div class="auto-container">
+        <div class="row">
+            <div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight" data-wow-delay="600ms">
+                <div class="inner-column">
+                    <div class="sec-title">
+                        <h2 class="text-split">Compassionate care for independent living</h2>
+                        <div class="text">At Carepass, we empower seniors to maintain their independence while receiving personalized support. Our holistic approach combines human connection with smart care solutions, ensuring safety and dignity in every interaction.</div>
+                    </div>
+                    <div class="content-box">
+                        <div class="info-box">
+                            <h5 class="title">24/7 Safety Monitoring</h5>
+                            <a href="/#" class="read-more">Learn More <i class="fa fa-long-arrow-alt-right"></i></a>
+                        </div>
+                        <div class="about-block-one">
+                            <i class="icon flaticon-oldkare-old-man"></i>
+                            <h5 class="title">Daily Living Support</h5>
+                            <div class="text">Personalized assistance with meals, hygiene, and mobility</div>
+                        </div>
+                        <div class="about-block-one">
+                            <i class="icon flaticon-oldkare-invalid"></i>
+                            <h5 class="title">Companionship First</h5>
+                            <div class="text">Meaningful social interaction and mental engagement</div>
+                        </div>
+                    </div>
+                    <div class="btm-box">
+                        <a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Explore Services</span></a>
+                    </div>
+                </div>
+            </div>
 
-	<!-- Testimonial Section -->
-	<section class="testimonial-section">
-		<div class="bg bg-pattern-5"></div>
-		<div class="auto-container">
-			<div class="row">
-				<div class="title-column col-xl-5 col-lg-4 col-md-12">
-					<div class="sec-title mb-40">
-						<span class="sub-title">TESTIMONIALS</span>
-						<h2 class="text-split">What our customers have to say</h2>
-					</div>
-					<div class="info-box mb-4 mb-lg-0">
-						<i class="icon flaticon-oldkare-love"></i>
-						<div class="text">We’re trusted by more then<br /> 2350 satisfied & happy customers</div>
-					</div>
-				</div>
-				<div class="testimonial-column col-xl-7 col-lg-8 col-md-12">
-					<div class="carousel-outer">
-						<div class="testimonial-carousel owl-carousel owl-theme default-navs">
-							<!-- Testimonial Block -->
-							<div class="testimonial-block">
-								<div class="inner-box">
-									<div class="image-box">
-										<figure class="image"><img src="/images/resource/testi-1.jpg" alt=""></figure>
-										<div class="info-box">
-											<h4 class="name">Alex Martin</h4>
-											<span class="designation">Founder</span>
-										</div>
-										<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-									</div>
-									<div class="text">Fames dapibus vulputate porttitor luctus habitasse mattis viverra penatibus ornare, mauris cubilia aenean tempor lacus varius sodales at quam maecenas sapien</div>
-								</div>
-							</div>
+            <!-- Image Column -->
+            <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <figure class="image-1 overlay-anim wow fadeInUp"><img src="/images/resource/about1-1.jpg" alt="Caregiver assisting senior with tablet"></figure>
+                    <figure class="image-2 overlay-anim wow fadeInRight"><img src="/images/resource/about1-2.jpg" alt="Senior couple enjoying outdoor activity"></figure>
+                    <div class="experience bounce-y">
+                        <img src="/images/healthcare.png" alt="Carepass badge" class="icon">
+                        <strong>Join us</strong> Today!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Section -->
 
-							<!-- Testimonial Block -->
-							<div class="testimonial-block">
-								<div class="inner-box">
-									<div class="image-box">
-										<figure class="image"><img src="/images/resource/testi-2.jpg" alt=""></figure>
-										<div class="info-box">
-											<h4 class="name">Kevin Martin</h4>
-											<span class="designation">CO Founder</span>
-										</div>
-										<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-									</div>
-									<div class="text">Fames dapibus vulputate porttitor luctus habitasse mattis viverra penatibus ornare, mauris cubilia aenean tempor lacus varius sodales at quam maecenas sapien</div>
-								</div>
-							</div>
 
-							<!-- Testimonial Block -->
-							<div class="testimonial-block">
-								<div class="inner-box">
-									<div class="image-box">
-										<figure class="image"><img src="/images/resource/testi-3.jpg" alt=""></figure>
-										<div class="info-box">
-											<h4 class="name">Sarah Albert</h4>
-											<span class="designation">Worker</span>
-										</div>
-										<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-									</div>
-									<div class="text">Fames dapibus vulputate porttitor luctus habitasse mattis viverra penatibus ornare, mauris cubilia aenean tempor lacus varius sodales at quam maecenas sapien</div>
-								</div>
-							</div>
+<!-- Services Section -->
+<section class="services-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <span class="sub-title">Our Services</span>
+            <h2 class="text-split">Comprehensive Care Solutions<br /> Tailored to Your Needs</h2>
+        </div>
+        <div class="row">
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-1.jpg" alt=""></a></figure>
+                        <div class="icon-box"><i class="icon flaticon-oldkare-chat"></i></div>
+                    </div>
+                    <div class="content-box">
+                        <h5 class="title"><a href="/page-service-details.html">Live-in Care</a></h5>
+                        <div class="text">Personalized 24/7 support in the comfort of your home, ensuring continuous assistance and companionship.</div>
+                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-2.jpg" alt=""></a></figure>
+                        <div class="icon-box"><i class="icon flaticon-oldkare-healthcare"></i></div>
+                    </div>
+                    <div class="content-box">
+                        <h5 class="title"><a href="/page-service-details.html">Respite Care</a></h5>
+                        <div class="text">Temporary relief for primary caregivers through short-term care solutions, allowing for rest and rejuvenation.</div>
+                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="/page-service-details.html"><img src="/images/resource/service-3.jpg" alt=""></a></figure>
+                        <div class="icon-box"><i class="icon flaticon-oldkare-gardening"></i></div>
+                    </div>
+                    <div class="content-box">
+                        <h5 class="title"><a href="/page-service-details.html">Visiting Care</a></h5>
+                        <div class="text">Flexible hourly visits tailored to your schedule, assisting with daily tasks and personal care needs.</div>
+                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-40 wow fadeInUp">
+            <div class="col-lg-8">
+                <div class="bottom-text d-sm-flex align-items-center justify-content-between">
+                    <p class="mb-3 mb-sm-0">Discover the ideal care service for your needs<span class="color3 ps-2">Join us today</span></p>
+                    <a href="/page-contact.html" class="theme-btn btn-style-two small"><span class="btn-title">Learn More</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Services Section -->
 
-							<!-- Testimonial Block -->
-							<div class="testimonial-block">
-								<div class="inner-box">
-									<div class="image-box">
-										<figure class="image"><img src="/images/resource/testi-1.jpg" alt=""></figure>
-										<div class="info-box">
-											<h4 class="name">Mark hardson</h4>
-											<span class="designation">Manager</span>
-										</div>
-										<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-									</div>
-									<div class="text">Fames dapibus vulputate porttitor luctus habitasse mattis viverra penatibus ornare, mauris cubilia aenean tempor lacus varius sodales at quam maecenas sapien</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Testimonial Section -->
 
-	<!-- Projects section-->
-	<section class="projects-section">
-		<div class="auto-container">
-			<div class="row align-items-center">
-				<div class="col-lg-6 col-xl-5">
-					<div class="sec-title">
-						<span class="sub-title">OUR SOLUTIONS</span>
-						<h2 class="text-split">Our beautiful portfolio cases gallery</h2>
-					</div>
-				</div>
-				<div class="col-lg-6 col-xl-6 offset-xl-1">
-					<div class="sec-title">
-						<div class="text">There are many variations of passages of available but the majority have suffered alteration in some form, by injected hum randomised words which don't slightly but the majority have suffered</div>
-					</div>
-				</div>
-			</div>
+<!-- Offer Section -->
+<section class="offer-section">
+    <div class="auto-container">
+        <div class="row align-items-center">
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12">
+                <div class="inner-column">
+                    <div class="sec-title light">
+                        <span class="sub-title">Excellence in Care</span>
+                        <h2 class="text-split">Seamlessly Connecting Families with Dedicated Carers</h2>
+                    </div>
+                    <!-- Mobile App Download Buttons -->
+                    <div class="btn-box mt-4">
+                        <a href="#" style="width:100%" class="mb-3 theme-btn btn-style-one btn-block"><i class="fab fa-apple"></i> &nbsp; Download for iOS</a>
+                         
+                        <a href="#" style="width:100%"  class="theme-btn btn-style-one btn-block"><i class="fab fa-android"></i> &nbsp; Download for Android</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <div class="image-box">
+                        <figure class="image"><img src="/images/resource/image-3.jpg" alt="CarePass Mobile App"></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Offer Section -->
 
-			<div class="carousel-outer">
-				<div class="projects-carousel owl-carousel owl-theme">
-					<!-- Project Block-->
-					<div class="project-block">
-						<div class="inner-box">
-							<div class="image-box">
-								<div class="image"> <img src="/images/resource/project-1.jpg" class="img-fullwidth" alt=""></div>
-							</div>
-							<div class="content-box"> <a href="/page-project-details.html" class="theme-btn read-more"><i class="lnr-icon-arrow-right1"></i></a>
-								<h4 class="title"><a href="/page-project-details.html">Senior Citizen Care</a></h4>
-								<ul class="cat-list">
-									<li>Elderly Nutrition</li>
-								</ul>
-							</div>
-						</div>
-					</div>
 
-					<!-- Project Block-->
-					<div class="project-block">
-						<div class="inner-box">
-							<div class="image-box">
-								<div class="image"> <img src="/images/resource/project-2.jpg" class="img-fullwidth" alt=""></div>
-							</div>
-							<div class="content-box"> <a href="/page-project-details.html" class="theme-btn read-more"><i class="lnr-icon-arrow-right1"></i></a>
-								<h4 class="title"><a href="/page-project-details.html">Residential Care</a></h4>
-								<ul class="cat-list">
-									<li>Senior Citizen</li>
-								</ul>
-							</div>
-						</div>
-					</div>
 
-					<!-- Project Block-->
-					<div class="project-block">
-						<div class="inner-box">
-							<div class="image-box">
-								<div class="image"> <img src="/images/resource/project-3.jpg" class="img-fullwidth" alt=""></div>
-							</div>
-							<div class="content-box"> <a href="/page-project-details.html" class="theme-btn read-more"><i class="lnr-icon-arrow-right1"></i></a>
-								<h4 class="title"><a href="/page-project-details.html">Medical Checkup</a></h4>
-								<ul class="cat-list">
-									<li>Provide Home</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+ 
+<!-- Why Choose Us -->
+<section class="why-choose-us-one">
+    <div class="auto-container">
+        <div class="outer-box">
+            <div class="row">
+                <!-- Content Column -->
+                <div class="content-column col-xl-6 col-lg-7 wow fadeInRight" data-wow-delay="600ms">
+                    <div class="inner-column" style="padding: 80px 10%;">
+                        <div class="sec-title">
+                            <span class="sub-title">WHY CHOOSE US</span>
+                            <h2 class="text-split">Connecting Families with Trusted Carers</h2>
+                            <div class="text">At CarePass, we bridge the gap between families and dedicated, self-employed live-in carers, ensuring personalized and compassionate care for your loved ones.</div>
+                        </div>
+        
+                        <a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Explore Now</span></a>
+                    </div>
+                </div>
+                <!-- Image Column -->
+                <div class="col-xl-6 col-lg-5 wow fadeInLeft" data-wow-delay="600ms">
+                    <div class="row">
+                        <div class="image-column col-lg-6 col-md-6 col-sm-12">
+                            <div class="image-box">
+                                <figure class="image overlay-anim"><img src="/images/resource/why-us-1.jpg" alt=""></figure>
+                            </div>
+                        </div>
+                        <div class="info-column col-lg-6 col-md-6 col-sm-12">
+                            <div class="inner-column">
+                                <div class="info">
+                                    <h6 class="title">Affordable <br />Rates</h6>
+                                    <div class="text">We offer competitive pricing with no hidden fees, ensuring value for your investment in quality care.</div>
+                                </div>
 
-					<!-- Project Block-->
-					<div class="project-block">
-						<div class="inner-box">
-							<div class="image-box">
-								<div class="image"> <img src="/images/resource/project-4.jpg" class="img-fullwidth" alt=""></div>
-							</div>
-							<div class="content-box"> <a href="/page-project-details.html" class="theme-btn read-more"><i class="lnr-icon-arrow-right1"></i></a>
-								<h4 class="title"><a href="/page-project-details.html">Personalized Care</a></h4>
-								<ul class="cat-list">
-									<li>Quality Food</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Projects Section -->
+                                <div class="info">
+                                    <h6 class="title">Comprehensive <br />Support</h6>
+                                    <div class="text">Our team provides ongoing assistance to both families and carers, fostering a supportive and responsive environment.</div>
+                                </div>
+                            </div>
 
-	<!-- Why Choose US One -->
-	<section class="why-choose-us-one">
-		<div class="auto-container">
-			<div class="outer-box">
-				<div class="row">
-					<div class="content-column col-xl-6 col-lg-7 wow fadeInRight" data-wow-delay="600ms">
-						<div class="inner-column">
-							<div class="sec-title">
-								<span class="sub-title">WHY CHOOSE US</span>
-								<h2 class="text-split">A place where you <br class="d-none d-lg-block" />would love to live <br class="d-none d-lg-block" />again through</h2>
-								<div class="text">Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et simply free text dolore magna aliqua lonm andhn</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6 col-md-6">
-									<div class="feature-box">
-										<i class="icon flaticon-oldkare-elderly"></i>
-										<h6 class="title">Safety & <br />Security</h6>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6">
-									<div class="feature-box">
-										<i class="icon flaticon-oldkare-birthday"></i>
-										<h6 class="title">Medication <br /> Management</h6>
-									</div>
-								</div>
-							</div>
-							<a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Explore Now</span></a>
-						</div>
-					</div>
-					<!-- Image Column -->
-					<div class="col-xl-6 col-lg-5 wow fadeInLeft" data-wow-delay="600ms">
-						<div class="row">
-							<div class="image-column col-lg-6 col-md-6 col-sm-12">
-								<div class="image-box">
-									<figure class="image overlay-anim"><img src="/images/resource/why-us-1.jpg" alt=""></figure>
-								</div>
-							</div>
-							<div class="info-column col-lg-6 col-md-6 col-sm-12">
-								<div class="inner-column">
-									<div class="info">
-										<h6 class="title">Resort <br />Style Living</h6>
-										<div class="text">The wise man therefore always holds in these matters this.</div>
-									</div>
+                            <div class="info-box">
+                                <i class="icon flaticon-oldkare-health-insurance"></i>
+                                <h6 class="title">24/7 Availability</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Why Choose Us -->
 
-									<div class="info">
-										<h6 class="title">Safety <br />& Security Guaranty</h6>
-										<div class="text">The wise man therefore always holds in these matters this.</div>
-									</div>
-								</div>
 
-								<div class="info-box">
-									<i class="icon flaticon-oldkare-health-insurance"></i>
-									<h6 class="title">24/7 Nursing</h6>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--Emd Why Choose US Two -->
-
-	<!-- Fun Fact Section -->
-	<section class="fun-fact-section">
-		<div class="bg bg-image" style="background-image: url(images/background/1.jpg)"></div>
-		<div class="auto-container">
-			<div class="row align-items-start justify-content-between">
-				<div class="col-lg-8">
-					<div class="sec-title light">
-						<h2 class="title text-split">Hundreds of customers <br />trust oiur company</h2>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="btn-box text-lg-end">
-						<a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Getting Start</span></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Fun Fact Section -->
 
  
 
-	<!-- Call To Action Three -->
-	<section class="call-to-action-three">
-		<div class="bg-image" style="background-image: url(images/background/8.jpg)"></div>
-		<div class="bg-shape"></div>
-		<div class="auto-container">
-			<div class="row">
-				<div class="title-column col-lg-6 col-md-12">
-					<div class="inner-column">
-						<div class="sec-title light">
-							<h2 class="text-split">Passion can Make a <br />Top-Performing Company</h2>
-						</div>
-					</div>
-				</div>
+<!-- Call To Action Three -->
+<section class="call-to-action-three">
+    <div class="bg-image" style="background-image: url(images/background/8.jpg)"></div>
+    <div class="bg-shape"></div>
+    <div class="auto-container">
+        <div class="row">
+            <div class="title-column col-lg-6 col-md-12">
+                <div class="inner-column">
+                    <div class="sec-title light">
+                        <h2 class="text-split">Dedication and Quality <br />Drive Our Success</h2>
+                    </div>
+                </div>
+            </div>
 
-				<div class="btn-column col-lg-6 col-md-12">
-					<div class="inner-column">
-						<a href="/page-contact.html" class="theme-btn btn-style-one"><span class="btn-title">Lets Get Started</span></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--End Call To Action Three -->
+            <div class="btn-column col-lg-6 col-md-12">
+                <div class="inner-column">
+                    <a href="/page-contact.html" class="theme-btn btn-style-one"><span class="btn-title">Let's Get Started</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Call To Action Three -->
 
-	<!-- News Section -->
-	<section class="news-section section-space">
-		<div class="auto-container">
-			<div class="sec-title text-center">
-				<span class="sub-title">News & Articles</span>
-				<h2 class="text-split">Latest news & articles from <br/> the blog.</h2>
-			</div>
 
-			<div class="row">
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/news-details.html"><img src="/images/resource/news1-1.jpg" alt=""></a></figure>
-						</div>
-						<div class="content-box">
-							<span class="date">July 7, 2024</span>
-							<span class="post-info"><i class="fa fa-user-circle"></i> by Admin</span>
-							<h4 class="title"><a href="/news-details.html">Creating a Safe Home Environment for Seniors</a></h4>
-							<div class="text">Creating a Safe Home Environment for Seniors This service is</div>
-							<a href="/news-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read More</a>
-						</div>
-					</div>
-				</div>
 
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/news-details.html"><img src="/images/resource/news1-2.jpg" alt=""></a></figure>
-						</div>
-						<div class="content-box">
-							<span class="date">July 7, 2024</span>
-							<span class="post-info"><i class="fa fa-user-circle"></i> by Admin</span>
-							<h4 class="title"><a href="/news-details.html">Tips for Managing Medications for Seniors</a></h4>
-							<div class="text">Creating a Safe Home Environment for Seniors This service is</div>
-							<a href="/news-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read More</a>
-						</div>
-					</div>
-				</div>
+ 
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="bg bg-pattern-5"></div>
+    <div class="auto-container">
+        <div class="row">
+            <div class="title-column col-xl-5 col-lg-4 col-md-12">
+                <div class="sec-title mb-40">
+                    <span class="sub-title">WHAT OUR CLIENTS SAY</span>
+                    <h2 class="text-split">Trusted by families, loved by seniors</h2>
+                </div>
+                <div class="info-box mb-4 mb-lg-0">
+                    <i class="icon flaticon-oldkare-love"></i>
+                    <div class="text">Hear directly from families and seniors who have experienced the Carepass difference. Their stories inspire us every day.</div>
+                </div>
+            </div>
+            
+            <div class="testimonial-column col-xl-7 col-lg-8 col-md-12">
+                <div class="carousel-outer">
+                    <div class="testimonial-carousel owl-carousel owl-theme default-navs">
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/images/user-testimony.png" alt="Alex Martin"></figure>
+                                    <div class="info-box">
+                                        <h4 class="name">Alex Martin</h4>
+                                        <span class="designation">Son of Client</span>
+                                    </div>
+                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                </div>
+                                <div class="text">"Carepass has been a blessing for my dad. The caregivers are not only skilled but also genuinely caring. It’s such a relief knowing he’s in good hands."</div>
+                            </div>
+                        </div>
 
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
-					<div class="inner-box">
-						<div class="image-box">
-							<figure class="image"><a href="/news-details.html"><img src="/images/resource/news1-3.jpg" alt=""></a></figure>
-						</div>
-						<div class="content-box">
-							<span class="date">July 7, 2024</span>
-							<span class="post-info"><i class="fa fa-user-circle"></i> by Admin</span>
-							<h4 class="title"><a href="/news-details.html">The Importance of Companionship in Care</a></h4>
-							<div class="text">Creating a Safe Home Environment for Seniors This service is</div>
-							<a href="/news-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read More</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--End News Section -->
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/images/user-testimony.png" alt="Kevin Martin"></figure>
+                                    <div class="info-box">
+                                        <h4 class="name">Kevin Martin</h4>
+                                        <span class="designation">Husband of Client</span>
+                                    </div>
+                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                </div>
+                                <div class="text">"The team at Carepass has made such a difference in my wife’s life. They treat her with respect and kindness, and she looks forward to their visits every day."</div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/images/user-testimony.png" alt="Sarah Albert"></figure>
+                                    <div class="info-box">
+                                        <h4 class="name">Sarah Albert</h4>
+                                        <span class="designation">Daughter of Client</span>
+                                    </div>
+                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                </div>
+                                <div class="text">"I can’t thank Carepass enough for the support they’ve given my mom. They’ve helped her regain her independence while ensuring her safety."</div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/images/user-testimony.png" alt="Mark Hardson"></figure>
+                                    <div class="info-box">
+                                        <h4 class="name">Mark Hardson</h4>
+                                        <span class="designation">Family Member</span>
+                                    </div>
+                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                </div>
+                                <div class="text">"Carepass has been a game-changer for our family. Their professionalism and compassion have made all the difference in my grandmother’s care."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Testimonial Section -->
 
 	<!-- FAQ Section -->
 	<section class="faqs-section style-two">
@@ -541,87 +373,140 @@
 							<h2 class="text-split">Frequently asked questions</h2>
 						</div>
 
-						<ul class="accordion-box wow fadeInRight">
-							<!--Block-->
-							<li class="accordion block">
-								<div class="acc-btn">How can I manage my breathlessness?
-									<div class="icon fa fa-angle-right"></div>
-								</div>
-								<div class="acc-content">
-									<div class="content">
-										<div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable</div>
-									</div>
-								</div>
-							</li>
-							<!--Block-->
-							<li class="accordion block active-block">
-								<div class="acc-btn active">Safety & Security Guaranty
-									<div class="icon fa fa-angle-right"></div>
-								</div>
-								<div class="acc-content current">
-									<div class="content">
-										<div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable</div>
-									</div>
-								</div>
-							</li>
-							<!--Block-->
-							<li class="accordion block">
-								<div class="acc-btn">I am worried about a loved one
-									<div class="icon fa fa-angle-right"></div>
-								</div>
-								<div class="acc-content">
-									<div class="content">
-										<div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable</div>
-									</div>
-								</div>
-							</li>
-							<!--Block-->
-							<li class="accordion block">
-								<div class="acc-btn">How can i find my solutions?
-									<div class="icon fa fa-angle-right"></div>
-								</div>
-								<div class="acc-content">
-									<div class="content">
-										<div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable</div>
-									</div>
-								</div>
-							</li>
-						</ul>
+                        <ul class="accordion-box wow fadeInRight">
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">What is live-in care?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">Live-in care allows individuals to receive professional, round-the-clock assistance in their own homes. A dedicated caregiver lives with the service user, offering personalized support while maintaining their independence and comfort.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">How does CarePass match me with a carer?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">CarePass uses a detailed assessment process to understand your specific needs, preferences, and lifestyle. Based on this information, we match you with vetted, self-employed carers who align with your requirements.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">Why choose live-in care over a care home?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">Live-in care provides personalized, one-on-one attention in the comfort of your home, allowing you to maintain routines, stay close to loved ones, and receive a higher level of individual support compared to residential care homes.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">What services do live-in carers provide?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">Live-in carers assist with personal care, medication management, meal preparation, mobility support, housekeeping, companionship, and more—tailored to your individual needs.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">How soon can live-in care be arranged?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">CarePass can arrange live-in care within 24 to 48 hours, depending on your needs and the availability of a suitable caregiver.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">Can I change my carer if I’m not satisfied?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">Yes, if you're not satisfied with your assigned caregiver, CarePass will work with you to find a more suitable match.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">What makes CarePass different from other care providers?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">CarePass offers a flexible and affordable care model, connecting families with self-employed carers who provide high-quality, personalized care. Unlike traditional agencies, we focus on empowering families with more choice and control.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">What is the cost of live-in care through CarePass?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">CarePass offers a cost-effective alternative to traditional care homes, typically 35% cheaper than managed care services. Pricing varies based on care needs, location, and duration of care.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">Is live-in care suitable for individuals with dementia?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">Yes, live-in care is an excellent choice for individuals with dementia, offering a stable and familiar environment, which can help reduce confusion and anxiety.</div>
+                                    </div>
+                                </div>
+                            </li>
+                
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">How do I get started with CarePass?
+                                    <div class="icon fa fa-angle-right"></div>
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text">You can register and complete an eligibility request form on our website or mobile app. Once approved, you can review available caregivers and send a care booking request.</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                
 					</div>
 				</div>
 
 				 <!-- Form Column -->
 				<div class="form-column col-lg-6 col-md-12 col-sm-12">
 					<div class="form-bg" style="background-image: url(images/background/3.jpg)"></div>
-					<div class="inner-column">
-						<!-- Contact Form -->
-						<div class="contact-form wow fadeInLeft">
-							<span class="sub-title">SUBMIT INQUIRY</span>
-							<h2>Contact us</h2>
-							<!--Contact Form-->
-							<form method="post" action="https://html.kodesolution.com/2024/carer-html/get" id="contact-form">
-								<div class="row">
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="full_name" placeholder="Your Name" required>
-									</div>
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="Email" placeholder="Email Address" required>
-									</div>
-									<div class="form-group col-lg-12">
-										<input type="text" name="Phone" placeholder="Your Phone" required>
-									</div>
-									<div class="form-group col-lg-12">
-										<textarea name="message" placeholder="Write a Message" required></textarea>
-									</div>
-									<div class="form-group col-lg-12">
-										<button class="theme-btn btn-style-two" type="submit" name="submit-form"><span class="btn-title">Send a message</span></button>
-									</div>
-								</div>
-							</form>
-						</div>
-						<!--End Contact Form -->
-
-					</div>
+                    <div class="inner-column text-center">
+                        <div class="sec-title light">
+                            <h2 class="title text-split">Your Questions, Answered.<br />Answered</h2>
+                        </div>
+                    </div>
+                    
 				</div>
 			</div>
 		</div>
