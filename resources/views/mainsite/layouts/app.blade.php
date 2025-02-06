@@ -38,7 +38,7 @@
 				<!-- Main box -->
 				<div class="main-box">
 					<div class="logo-box">
-						<div class="logo"><a href="/index-2.html"><img src="/mainsite-assets/images/logo.png" alt="" title="Insumo"></a></div>
+						<div class="logo"><a href="{{ route('mainsite.home') }}"><img src="/mainsite-assets/images/logo.png" alt="" title="Insumo"></a></div>
 					</div>
 
 					<!--Nav Box-->
@@ -74,7 +74,7 @@
  
 						</div>
 
-                        <button class="btn btn-danger">
+                        <button class="btn btn-danger" onclick="window.location.href='{{ route('mainsite.login') }}'">
                             <i class="fa fa-user-alt"></i> LOGIN
                         </button>
                         
@@ -93,73 +93,24 @@
 			<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
 			<nav class="menu-box">
 				<div class="upper-box">
-					<div class="nav-logo"><a href="/index-2.html"><img src="/mainsite-assets/images/logo.png" alt="" title=""></a></div>
-					<div class="close-btn"><i class="icon fa fa-times"></i></div>
+ 					<div class="close-btn"><i class="icon fa fa-times"></i></div>
 				</div>
 
 				<ul class="navigation clearfix">
 					<!--Keep This Empty / Menu will come through Javascript-->
 				</ul>
-				<ul class="contact-list-one">
-					<li>
-						<!-- Contact Info Box -->
-						<div class="contact-info-box">
-							<i class="icon lnr-icon-phone-handset"></i>
-							<span class="title">Call Now</span>
-							<a href="/tel:+92880098670">+92 (8800) - 98670</a>
-						</div>
-					</li>
-					<li>
-						<!-- Contact Info Box -->
-						<div class="contact-info-box">
-							<span class="icon lnr-icon-envelope1"></span>
-							<span class="title">Send Email</span>
-							<a href="/https://html.kodesolution.com/cdn-cgi/l/email-protection#761e131a063615191b0617180f5815191b"><span class="__cf_email__" data-cfemail="6e060b021e2e0d01031e0f0017400d0103">[email&#160;protected]</span></a>
-						</div>
-					</li>
-					<li>
-						<!-- Contact Info Box -->
-						<div class="contact-info-box">
-							<span class="icon lnr-icon-clock"></span>
-							<span class="title">Send Email</span>
-							Mon - Sat 8:00 - 6:30, Sunday - CLOSED
-						</div>
-					</li>
-				</ul>
-
-
-				<ul class="social-links">
-					<li><a href="/#"><i class="fa fa-x"></i></a></li>
-					<li><a href="/#"><i class="fab fa-facebook-f"></i></a></li>
-					<li><a href="/#"><i class="fab fa-pinterest"></i></a></li>
-					<li><a href="/#"><i class="fab fa-instagram"></i></a></li>
-				</ul>
+ 
 			</nav>
 		</div><!-- End Mobile Menu -->
 
-		<!-- Header Search -->
-		<div class="search-popup">
-			<span class="search-back-drop"></span>
-			<button class="close-search"><span class="fa fa-times"></span></button>
-
-			<div class="search-inner">
-				<form method="post" action="https://html.kodesolution.com/2024/carer-html/blog-showcase.html">
-					<div class="form-group">
-						<input type="search" name="search-field" value="" placeholder="Search..." required="">
-						<button type="submit"><i class="fa fa-search"></i></button>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- End Header Search -->
-
+ 
 		<!-- Sticky Header  -->
 		<div class="sticky-header">
 			<div class="auto-container">
 				<div class="inner-container">
 					<!--Logo-->
 					<div class="logo">
-						<a href="/index-2.html" title=""><img src="/mainsite-assets/images/logo-2.png" alt="" title=""></a>
+						<a href="{{ route('mainsite.home') }}" title=""><img src="/mainsite-assets/images/logo-2.png" alt="" title=""></a>
 					</div>
 
 					<!--Right Col-->
@@ -182,7 +133,6 @@
 	</header>
 	<!--End Main Header -->
 
-
     @yield('content')
 
     	<!-- Main Footer -->
@@ -201,18 +151,18 @@
                         <!-- Email Info -->
                         <div class="contact-info col-lg-4 wow fadeInRight">
                             <div class="inner-box">
-                                <h4 class="title">Send Email</h4>
+                                <h4 class="title">Email</h4>
                                 <div class="text">
-                                    <a href="mailto:info@carepass.com">info@carepass.com</a>
+                                    <a href="mailto:{{ $companyContact['email_1'] ?? "" }}">{{ $companyContact['email_1'] ?? "" }}</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Phone Info -->
                         <div class="contact-info col-lg-4 wow fadeInLeft" data-wow-delay="600ms">
                             <div class="inner-box">
-                                <h4 class="title">Call Now</h4>
+                                <h4 class="title">Call</h4>
                                 <div class="text">
-                                    <a href="tel:+924680668800">+92 (4680) 66-8800</a>
+                                    <a href="tel:{{ $companyContact['phone_1'] ?? "NULL" }}">{{ $companyContact['phone_1'] ?? "NULL" }}</a>
                                 </div>
                             </div>
                         </div>
@@ -272,13 +222,24 @@
                         <!-- Contact Column -->
                         <div class="footer-column col-xl-3 col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget contacts-widget">
-                                <h6 class="widget-title">Contact</h6>
-                                <div class="text">60 Road, Broklyn Golden Street, New York, USA</div>
+                                <h6 class="widget-title">Address</h6>
+                                <div class="text">{{ $companyContact['address_1'] ?? "NULL" }}</div>
                                 <ul class="social-icon-two">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-x"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                 
+                                        @if($companyContact['facebook'])
+                                            <li><a href="{{ $companyContact['facebook'] }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                                        @endif
+                                        @if($companyContact['instagram'])
+                                            <li><a href="{{ $companyContact['instagram'] }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        @endif
+                                        @if($companyContact['linkedin'])
+                                            <li><a href="{{ $companyContact['linkedin'] }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                        @endif
+                                        @if($companyContact['youtube'])
+                                            <li><a href="{{ $companyContact['youtube'] }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                        @endif
+                                   
+                                    
                                 </ul>
                             </div>
                         </div>

@@ -12,7 +12,7 @@
         <div class="title-outer text-center">
             <h1 class="title">About Us</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index-2.html">Home</a></li>
+                <li><a href="{{ route('mainsite.home') }}">Home</a></li>
                 <li>About Us</li>
             </ul>
         </div>

@@ -11,7 +11,7 @@
 			<div class="title-outer text-center">
 				<h1 class="title">Find a Carer</h1>
 				<ul class="page-breadcrumb">
-					<li><a href="index-2.html">Home</a></li>
+					<li><a href="{{ route('mainsite.home') }}">Home</a></li>
 					<li>Find a Carer</li>
 				</ul>
 			</div>
@@ -20,10 +20,10 @@
 	<!-- end main-content -->
 
 
-
 <!-- Find a Carer Section -->
 <section class="team-section pt-0">
     <div class="auto-container">
+
         <!-- Content Row -->
         <div class="row">
             <!-- Text Content Column -->
@@ -42,57 +42,74 @@
             <!-- Registration Form Column -->
             <div class="col-lg-6 col-md-12 col-sm-12 mt-5">
                 <div class="form-bg" style="background-image: url('images/background/3.jpg');"></div>
+                
+                @include('partials._messages')
+
                 <div class="inner-column">
                     <!-- Registration Form -->
                     <div class="contact-form wow fadeInLeft">
                         <h2>Register with Carepass</h2>
-                        <form method="post" action="/register" id="registration-form">
+                        <form method="post" action="{{ route('mainsite.register.submit') }}" id="registration-form">
+                            @csrf
                             <div class="row">
-                                <!-- First Name (Full Width) -->
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <input type="text" name="first_name" placeholder="First Name" required>
-                                </div>
-                                <!-- Middle Name (Full Width) -->
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <input type="text" name="middle_name" placeholder="Middle Name">
-                                </div>
-                                <!-- Last Name (Full Width) -->
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <input type="text" name="last_name" placeholder="Last Name" required>
-                                </div>
-                                <!-- Email Address (Half Width) -->
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="email" name="email" placeholder="Email Address" required>
-                                </div>
-                                <!-- Phone Number (Half Width) -->
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="tel" name="phone_number" placeholder="Phone Number" required>
-                                </div>
-                                <!-- Address (Full Width) -->
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <input type="text" name="address" placeholder="Address" required>
-                                </div>
-                                <!-- City (Half Width) -->
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="text" name="city" placeholder="City" required>
-                                </div>
-                                <!-- Post Code (Half Width) -->
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="text" name="post_code" placeholder="Post Code" required>
-                                </div>
-                                <!-- County (Full Width) -->
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <input type="text" name="county" placeholder="County" required>
-                                </div>
-                                <!-- Submit Button -->
                                 <div class="form-group col-lg-12">
-                                    <button style="width:100%" class="theme-btn btn-style-two" type="submit" name="submit-form">
+                                    <label for="first_name" class="text-secondary">First Name</label>
+                                    <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name') }}" required>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="middle_name" class="text-secondary">Middle Name</label>
+                                    <input type="text" id="middle_name" name="middle_name" class="form-control" value="{{ old('middle_name') }}">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="last_name" class="text-secondary">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name" class="form-control" value="{{ old('last_name') }}" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="email" class="text-secondary">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="phone_number" class="text-secondary">Phone Number</label>
+                                    <input type="tel" id="phone_number" name="phone_number" class="form-control" value="{{ old('phone_number') }}" required>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="address" class="text-secondary">Address</label>
+                                    <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="city" class="text-secondary">City</label>
+                                    <input type="text" id="city" name="city" class="form-control" value="{{ old('city') }}" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="post_code" class="text-secondary">Post Code</label>
+                                    <input type="text" id="post_code" name="post_code" class="form-control" value="{{ old('post_code') }}" required>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="county" class="text-secondary">County</label>
+                                    <input type="text" id="county" name="county" class="form-control" value="{{ old('county') }}" required>
+                                </div>
+                                
+                                @include('partials._select_country')
+
+                                <!-- Password Fields -->
+                                <div class="form-group col-lg-6">
+                                    <label for="password" class="text-secondary">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="password_confirmation" class="text-secondary">Confirm Password</label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-lg-12">
+                                    <button style="width:100%" class="theme-btn btn-style-two btn-secondary" type="submit">
                                         <span class="btn-title">Register Now</span>
                                     </button>
                                 </div>
                             </div>
                         </form>
-                        
+
+                                                
                     </div>
                     <!--End Registration Form -->
                 </div>

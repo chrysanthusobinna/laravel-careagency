@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Traits\CompanyContactTrait;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class SetPasswordController extends Controller
 {
     use CompanyContactTrait;
+
     public function __construct()
     {
         $companyContact = $this->getCompanyContact();
@@ -18,8 +19,9 @@ class HomeController extends Controller
 
         ]);
     }
-    public function index()
-    {        
-        return view('mainsite.pages.home');
+
+    public function showSetPasswordForm()
+    {
+        return view('mainsite.pages.set-password');
     }
 }

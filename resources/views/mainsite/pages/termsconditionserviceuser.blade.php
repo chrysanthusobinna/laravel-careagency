@@ -125,9 +125,9 @@
                     <h4 class="mt-4">11. Contact Information</h4>
                     <p>If you have any questions or require clarification regarding these Terms and Conditions, please contact us at:</p>
                     <p>
-                        Email: <a href="mailto:support@carepass.com">support@carepass.com</a><br>
-                        Phone: <a href="tel:+441234567890">+44 1234 567 890</a><br>
-                        Address: Carepass Ltd, 123 Care Street, London, UK.
+                        Email: <a href="mailto:{{ $companyContact['email_1'] }}">{{ $companyContact['email_1'] }}</a><br>
+                        Phone: <a href="tel:{{ $companyContact['phone_1'] }}">{{ $companyContact['phone_1'] }}</a><br>
+                        
                     </p>
                 </div>
             </div>
