@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Traits\HandlesUserRegistration;
 use App\Http\Requests\RegisterUserRequest;
 
-class FindCarerController extends Controller
+class ServiceUsersRegisterController extends Controller
 {
     use CompanyContactTrait;
     use HandlesUserRegistration;
@@ -22,12 +22,12 @@ class FindCarerController extends Controller
 
         ]);
     }
-    public function index()
+    public function showRegisterForm()
     {
-        return view('mainsite.pages.findcarer');
+        return view('mainsite.pages.serviceusers-registration');
     }
 
-    public function register(RegisterUserRequest $request)
+    public function submitRegisterForm(RegisterUserRequest $request)
     {
         $role = 'service_user'; 
 

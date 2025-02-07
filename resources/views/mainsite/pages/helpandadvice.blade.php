@@ -37,9 +37,9 @@
                         Discover the benefits of our user-friendly platform:
                     </p>
                     <ul class="list-unstyled mb-4">
-                        <li><i class="fa fa-check-circle text-primary me-2"></i>Explore comprehensive caregiver profiles featuring introductory videos, verified references, and detailed skill sets.</li>
-                        <li><i class="fa fa-check-circle text-primary me-2"></i>Engage directly with potential carers to ensure the perfect match for your unique requirements.</li>
-                        <li><i class="fa fa-check-circle text-primary me-2"></i>Seamlessly manage your care arrangements with our intuitive online tools and resources.</li>
+                        <li><i class="fa fa-check-circle text-danger me-2"></i>Explore comprehensive caregiver profiles featuring introductory videos, verified references, and detailed skill sets.</li>
+                        <li><i class="fa fa-check-circle text-danger me-2"></i>Engage directly with potential carers to ensure the perfect match for your unique requirements.</li>
+                        <li><i class="fa fa-check-circle text-danger me-2"></i>Seamlessly manage your care arrangements with our intuitive online tools and resources.</li>
                     </ul>
                     <p class="mb-4">
                         In addition, we provide a rich collection of resources designed to empower you with knowledge about care options, funding assistance, and practical advice. Our goal is to support you in making informed decisions that lead to the highest quality of care and enhanced well-being.
@@ -48,8 +48,8 @@
                         Join the Carepass community today and experience peace of mind knowing that compassionate support is just a click away.
                     </p>
                     <div class="d-flex">
-                        <a href="{{ route('mainsite.contact') }}" class="btn-block btn btn-secondary me-3">Contact Us</a>
-                        <a href=" " class="btn-block btn btn-secondary">Visit Our Blog</a>
+                        <a href="{{ route('mainsite.contact') }}" class="btn-block btn btn-danger me-3">Contact Us</a>
+                        <a href=" " class="btn btn-outline-danger">Visit Our Blog</a>
                     </div>
                 </div>
             </div>

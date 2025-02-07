@@ -17,7 +17,7 @@
                     <span class="sub-title animate-1">Welcome to CarePass</span>
                     <h1 class="title animate-1">Connecting Families with Trusted Carers</h1>
                     <div class="btn-box animate-2">
-                        <a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Learn More</span></a>
+                        <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-one hover-light"><span class="btn-title">Learn More</span></a>
                     </div>
                     <div class="banner-text animate-3">Providing reliable, self-employed carers to support your loved ones with high-quality, compassionate care at home.</div>
                 </div>
@@ -32,7 +32,7 @@
                     <span class="sub-title animate-1">Your Trusted Care Partner</span>
                     <h1 class="title animate-1">Live-in Care Tailored to Your Needs</h1>
                     <div class="btn-box animate-2">
-                        <a href="/page-about.html" class="theme-btn btn-style-one hover-light"><span class="btn-title">Discover Services</span></a>
+                        <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-one hover-light"><span class="btn-title">Learn More</span></a>
                     </div>
                     <div class="banner-text animate-3">We match families with dedicated, self-employed carers, ensuring personalized care that promotes independence and well-being.</div>
                 </div>
@@ -56,10 +56,6 @@
                         <div class="text">At Carepass, we empower seniors to maintain their independence while receiving personalized support. Our holistic approach combines human connection with smart care solutions, ensuring safety and dignity in every interaction.</div>
                     </div>
                     <div class="content-box">
-                        <div class="info-box">
-                            <h5 class="title">24/7 Safety Monitoring</h5>
-                            <a href="/#" class="read-more">Learn More <i class="fa fa-long-arrow-alt-right"></i></a>
-                        </div>
                         <div class="about-block-one">
                             <i class="icon flaticon-oldkare-old-man"></i>
                             <h5 class="title">Daily Living Support</h5>
@@ -72,7 +68,7 @@
                         </div>
                     </div>
                     <div class="btm-box">
-                        <a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Explore Services</span></a>
+                        <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-two"><span class="btn-title">Explore Services</span></a>
                     </div>
                 </div>
             </div>
@@ -106,13 +102,13 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-1.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="{{ route('mainsite.about') }}"><img  src="/mainsite-assets/images/resource/service-1.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-chat"></i></div>
                     </div>
                     <div class="content-box">
-                        <h5 class="title"><a href="/page-service-details.html">Live-in Care</a></h5>
+                        <h5 class="title"><a href="{{ route('mainsite.about') }}">Live-in Care</a></h5>
                         <div class="text">Personalized 24/7 support in the comfort of your home, ensuring continuous assistance and companionship.</div>
-                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                        <a href="{{ route('mainsite.about') }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -120,13 +116,13 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-2.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="{{ route('mainsite.about') }}"><img  src="/mainsite-assets/images/resource/service-2.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-healthcare"></i></div>
                     </div>
                     <div class="content-box">
-                        <h5 class="title"><a href="/page-service-details.html">Respite Care</a></h5>
+                        <h5 class="title"><a href="{{ route('mainsite.about') }}">Respite Care</a></h5>
                         <div class="text">Temporary relief for primary caregivers through short-term care solutions, allowing for rest and rejuvenation.</div>
-                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                        <a href="{{ route('mainsite.about') }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -134,13 +130,13 @@
             <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="/page-service-details.html"><img  src="/mainsite-assets/images/resource/service-3.jpg" alt=""></a></figure>
+                        <figure class="image"><a href="{{ route('mainsite.about') }}"><img  src="/mainsite-assets/images/resource/service-3.jpg" alt=""></a></figure>
                         <div class="icon-box"><i class="icon flaticon-oldkare-gardening"></i></div>
                     </div>
                     <div class="content-box">
-                        <h5 class="title"><a href="/page-service-details.html">Visiting Care</a></h5>
+                        <h5 class="title"><a href="{{ route('mainsite.about') }}">Visiting Care</a></h5>
                         <div class="text">Flexible hourly visits tailored to your schedule, assisting with daily tasks and personal care needs.</div>
-                        <a href="/page-service-details.html" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                        <a href="{{ route('mainsite.about') }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -149,7 +145,7 @@
             <div class="col-lg-8">
                 <div class="bottom-text d-sm-flex align-items-center justify-content-between">
                     <p class="mb-3 mb-sm-0">Discover the ideal care service for your needs<span class="color3 ps-2">Join us today</span></p>
-                    <a href="/page-contact.html" class="theme-btn btn-style-two small"><span class="btn-title">Learn More</span></a>
+                    <a href="{{ route('mainsite.family') }}" class="theme-btn btn-style-two small"><span class="btn-title">Learn More</span></a>
                 </div>
             </div>
         </div>
@@ -207,7 +203,7 @@
                             <div class="text">At CarePass, we bridge the gap between families and dedicated, self-employed live-in carers, ensuring personalized and compassionate care for your loved ones.</div>
                         </div>
         
-                        <a href="/page-about.html" class="theme-btn btn-style-two"><span class="btn-title">Explore Now</span></a>
+                        <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-two"><span class="btn-title">Explore Now</span></a>
                     </div>
                 </div>
                 <!-- Image Column -->
@@ -264,7 +260,7 @@
 
             <div class="btn-column col-lg-6 col-md-12">
                 <div class="inner-column">
-                    <a href="/page-contact.html" class="theme-btn btn-style-one"><span class="btn-title">Let's Get Started</span></a>
+                    <a href="{{ route('mainsite.family') }}" class="theme-btn btn-style-one"><span class="btn-title">Carepass for Family</span></a>
                 </div>
             </div>
         </div>
@@ -361,157 +357,84 @@
 </section>
 <!-- End Testimonial Section -->
 
-	<!-- FAQ Section -->
-	<section class="faqs-section style-two">
-		<div class="auto-container">
-			<div class="row">
-				<!-- FAQ Column -->
-				<div class="faq-column col-lg-6 col-md-12 col-sm-12 order-2">
-					<div class="inner-column">
-						<div class="sec-title">
-							<span class="sub-title">Questions & answers</span>
-							<h2 class="text-split">Frequently asked questions</h2>
-						</div>
+ 
 
-                        <ul class="accordion-box wow fadeInRight">
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">What is live-in care?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">Live-in care allows individuals to receive professional, round-the-clock assistance in their own homes. A dedicated caregiver lives with the service user, offering personalized support while maintaining their independence and comfort.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">How does CarePass match me with a carer?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">CarePass uses a detailed assessment process to understand your specific needs, preferences, and lifestyle. Based on this information, we match you with vetted, self-employed carers who align with your requirements.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">Why choose live-in care over a care home?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">Live-in care provides personalized, one-on-one attention in the comfort of your home, allowing you to maintain routines, stay close to loved ones, and receive a higher level of individual support compared to residential care homes.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">What services do live-in carers provide?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">Live-in carers assist with personal care, medication management, meal preparation, mobility support, housekeeping, companionship, and more—tailored to your individual needs.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">How soon can live-in care be arranged?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">CarePass can arrange live-in care within 24 to 48 hours, depending on your needs and the availability of a suitable caregiver.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">Can I change my carer if I’m not satisfied?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">Yes, if you're not satisfied with your assigned caregiver, CarePass will work with you to find a more suitable match.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">What makes CarePass different from other care providers?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">CarePass offers a flexible and affordable care model, connecting families with self-employed carers who provide high-quality, personalized care. Unlike traditional agencies, we focus on empowering families with more choice and control.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">What is the cost of live-in care through CarePass?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">CarePass offers a cost-effective alternative to traditional care homes, typically 35% cheaper than managed care services. Pricing varies based on care needs, location, and duration of care.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">Is live-in care suitable for individuals with dementia?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">Yes, live-in care is an excellent choice for individuals with dementia, offering a stable and familiar environment, which can help reduce confusion and anxiety.</div>
-                                    </div>
-                                </div>
-                            </li>
-                
-                            <!--Block-->
-                            <li class="accordion block">
-                                <div class="acc-btn">How do I get started with CarePass?
-                                    <div class="icon fa fa-angle-right"></div>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="content">
-                                        <div class="text">You can register and complete an eligibility request form on our website or mobile app. Once approved, you can review available caregivers and send a care booking request.</div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                
-					</div>
-				</div>
 
-				 <!-- Form Column -->
-				<div class="form-column col-lg-6 col-md-12 col-sm-12">
-					<div class="form-bg" style="background-image: url(/mainsite-assets/images/background/3.jpg)"></div>
-                    <div class="inner-column text-center">
-                        <div class="sec-title light">
-                            <h2 class="title text-split">Your Questions, Answered.<br />Answered</h2>
+<section class="container my-5">
+    <div class="row align-items-center">
+        <!-- Image Column -->
+        <div class="col-md-6">
+            <div class="p-4 text-center">
+                <img src="/mainsite-assets/images/background/3.jpg" alt="CarePass FAQ" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+
+        <!-- FAQ Column -->
+        <div class="col-md-6">
+            <div class="p-4 bg-white rounded shadow-lg">
+                <h3 class="mb-3">Frequently Asked Questions</h3>
+                <ul class="accordion-box wow fadeInRight">
+                    <!--Block-->
+                    <li class="accordion block">
+                        <div class="acc-btn">What is CarePass and how does it work?
+                            <div class="icon fa fa-angle-right"></div>
                         </div>
-                    </div>
+                        <div class="acc-content">
+                            <div class="content">
+                                <div class="text">CarePass is a platform that connects families and individuals in need of care with self-employed carers across the UK. We make it easy to find, communicate with, and book qualified caregivers based on your unique needs.</div>
+                            </div>
+                        </div>
+                    </li>
                     
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--End FAQ Section -->
+                    <li class="accordion block">
+                        <div class="acc-btn">How does CarePass select carers?
+                            <div class="icon fa fa-angle-right"></div>
+                        </div>
+                        <div class="acc-content">
+                            <div class="content">
+                                <div class="text">All carers on CarePass go through a thorough vetting process, including background checks, qualifications verification, and experience assessments. We ensure that every carer meets the highest standards of professionalism and compassion.</div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="accordion block">
+                        <div class="acc-btn">Is CarePass a care agency?
+                            <div class="icon fa fa-angle-right"></div>
+                        </div>
+                        <div class="acc-content">
+                            <div class="content">
+                                <div class="text">No, CarePass is not a traditional care agency. We are an independent platform that connects families with self-employed carers, giving you more choice, flexibility, and control over your care arrangements.</div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="accordion block">
+                        <div class="acc-btn">How do I pay for care services on CarePass?
+                            <div class="icon fa fa-angle-right"></div>
+                        </div>
+                        <div class="acc-content">
+                            <div class="content">
+                                <div class="text">Payments on CarePass are secure and hassle-free. You can pay carers directly through our platform using secure payment methods, ensuring timely and transparent transactions without hidden fees.</div>
+                            </div>
+                        </div>
+                    </li>
 
+                    <li class="accordion block">
+                        <div class="acc-btn">What support does CarePass provide to users?
+                            <div class="icon fa fa-angle-right"></div>
+                        </div>
+                        <div class="acc-content">
+                            <div class="content">
+                                <div class="text">CarePass offers full support to both carers and families. Our team provides guidance on finding the right carer, managing care arrangements, and resolving any concerns, ensuring a smooth and stress-free experience.</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
     
 @endsection

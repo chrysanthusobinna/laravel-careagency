@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\MainSite;
 
-use Illuminate\Http\Request;
 use App\Traits\CompanyContactTrait;
 use App\Http\Controllers\Controller;
 
-class CareerController extends Controller
+class FamilyController extends Controller
 {
     use CompanyContactTrait;
+
     public function __construct()
     {
         $companyContact = $this->getCompanyContact();
@@ -18,8 +18,9 @@ class CareerController extends Controller
 
         ]);
     }
+    
     public function index()
-    {        
-        return view('mainsite.pages.career');
+    {
+        return view('mainsite.pages.family');
     }
 }

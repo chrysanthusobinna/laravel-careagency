@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Find a Carer')
+@section('title', 'Register')
 
 @section('header-class', 'header-style-one')
 
@@ -9,10 +9,10 @@
 	<section class="page-title" style="background-image: url(/mainsite-assets/images/background/page-title.jpg);">
 		<div class="auto-container">
 			<div class="title-outer text-center">
-				<h1 class="title">Find a Carer</h1>
+				<h1 class="title">Register</h1>
 				<ul class="page-breadcrumb">
 					<li><a href="{{ route('mainsite.home') }}">Home</a></li>
-					<li>Find a Carer</li>
+					<li>Register</li>
 				</ul>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 	<!-- end main-content -->
 
 
-<!-- Find a Carer Section -->
+<!-- Register Section -->
 <section class="team-section pt-0">
     <div class="auto-container">
 
@@ -33,22 +33,29 @@
                         <h2>Connecting You with Compassionate Carers</h2>
                     </div>
                     <div class="text">
-                        <p>At Carepass, we specialize in matching individuals seeking care with self-employed carers who meet their specific preferences and needs. Our platform ensures that you find the right support to maintain independence and quality of life in the comfort of your own home.</p>
+                        <p>At Carepass, we specialize in matching families seeking care with self-employed carers who meet their specific preferences and needs. Our platform ensures that you find the right support to maintain independence and quality of life in the comfort of your own home.</p>
                         <p>By understanding your unique requirements, we provide personalized carer profiles, allowing you to choose the best match for you or your loved one.</p>
+                    </div>
+            
+                    <!-- Buttons -->
+                    <div class="mt-4">
+                        <a href="{{ route('mainsite.family') }}" class="btn btn-danger me-2">Learn More</a>
+                        <a href="{{ route('mainsite.contact') }}" class="btn btn-outline-danger">Contact Us</a>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Registration Form Column -->
             <div class="col-lg-6 col-md-12 col-sm-12 mt-5">
                 <div class="form-bg" style="background-image: url('images/background/3.jpg');"></div>
-                
+
                 @include('partials._messages')
 
                 <div class="inner-column">
                     <!-- Registration Form -->
                     <div class="contact-form wow fadeInLeft">
-                        <h2>Register with Carepass</h2>
+                        <span class="sub-title">Register as an Individual or a Family in Need of Carers</span>
+                        <h2>Join Carepass Today</h2>
                         <form method="post" action="{{ route('mainsite.register.submit') }}" id="registration-form">
                             @csrf
                             <div class="row">

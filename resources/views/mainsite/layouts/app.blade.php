@@ -48,14 +48,25 @@
                                 <li class="{{ request()->routeIs('mainsite.home') ? 'current' : '' }}">
                                     <a href="{{ route('mainsite.home') }}">Home</a>
                                 </li>
-                                <li class="{{ request()->routeIs('mainsite.contact') ? 'current' : '' }}">
-                                    <a href="{{ route('mainsite.contact') }}">Contact</a>
+
+                                <li class="{{ request()->routeIs('mainsite.family') ? 'current' : '' }}">
+                                    <a href="{{ route('mainsite.family') }}">Family</a>
                                 </li>
+
+                                <li class="{{ request()->routeIs('mainsite.carers') ? 'current' : '' }}">
+                                    <a href="{{ route('mainsite.carers') }}">Carers</a>
+                                </li>
+
                                 <li class="{{ request()->routeIs('mainsite.about') ? 'current' : '' }}">
                                     <a href="{{ route('mainsite.about') }}">About</a>
                                 </li>
-                                <li class="{{ request()->routeIs('mainsite.findcarer') ? 'current' : '' }}">
-                                    <a href="{{ route('mainsite.findcarer') }}">Find a Carer</a>
+
+                                <li class="{{ request()->routeIs('mainsite.contact') ? 'current' : '' }}">
+                                    <a href="{{ route('mainsite.contact') }}">Contact</a>
+                                </li>
+
+                                <li class="{{ request()->routeIs('mainsite.register') ? 'current' : '' }}">
+                                    <a href="{{ route('mainsite.register') }}">Register</a>
                                 </li>
                                 <li class="{{ request()->routeIs('mainsite.helpandadvice') ? 'current' : '' }}">
                                     <a href="{{ route('mainsite.helpandadvice') }}">Help & Advice</a>
@@ -162,7 +173,7 @@
                             <div class="inner-box">
                                 <h4 class="title">Call</h4>
                                 <div class="text">
-                                    <a href="tel:{{ $companyContact['phone_1'] ?? "NULL" }}">{{ $companyContact['phone_1'] ?? "NULL" }}</a>
+                                    <a href="tel:{{ $companyContact['phone_1'] ?? "NULL" }}">{{ formatPhoneNumber($companyContact['phone_1']) ?? "NULL" }}</a>
                                 </div>
                             </div>
                         </div>
@@ -191,11 +202,12 @@
                                         <h6 class="widget-title">Explore</h6>
                                         <ul class="user-links">
                                             <li><a href="{{ route('mainsite.home') }}">Home</a></li>
+                                            <li><a href="{{ route('mainsite.family') }}">Family</a></li>
+                                            <li><a href="{{ route('mainsite.carers') }}">Carers</a></li>
                                             <li><a href="{{ route('mainsite.about') }}">About Us</a></li>
                                             <li><a href="{{ route('mainsite.contact') }}">Contact</a></li>
-                                            <li><a href="{{ route('mainsite.career') }}">Careers</a></li>
-                                            <li><a href="{{ route('mainsite.findcarer') }}">Find a Carer</a></li>
-  
+                                            <li><a href="{{ route('mainsite.register') }}">Register</a></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -208,12 +220,11 @@
                             <div class="footer-widget">
                                 <h6 class="widget-title">Quick Links</h6>
                                 <ul class="user-links">
-    
+                                    <li><a href="{{ route('mainsite.login') }}">Login</a></li>
                                     <li><a href="{{ route('mainsite.helpandadvice') }}">Help & Advice</a></li>
                                     <li><a href="{{ route('mainsite.terms.carer') }}">Carer Terms</a></li>
                                     <li><a href="{{ route('mainsite.terms.serviceuser') }}">Service User Terms</a></li>
                                     <li><a href="{{ route('mainsite.privacy') }}">Privacy Policy</a></li>
-                                    <li><a href="#">Login</a></li>
                                 </ul>
                             </div>
                         </div>
