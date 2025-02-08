@@ -96,8 +96,13 @@
                                     <input type="text" id="county" name="county" class="form-control" value="{{ old('county') }}" required>
                                 </div>
                                 
-                                @include('partials._select_country')
-
+                                <div class="form-group col-lg-12">
+                                    <label for="country" class="text-secondary">Country</label>
+                                    <select id="country" name="country" class="form-control" required>
+                                        @include('partials._select_country')
+                                    </select>
+                                </div>
+                            
                                 <!-- Password Fields -->
                                 <div class="form-group col-lg-6">
                                     <label for="password" class="text-secondary">Password</label>

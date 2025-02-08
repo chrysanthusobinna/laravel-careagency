@@ -7,36 +7,39 @@
     <meta name="description" content="Mofi admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Mofi admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="/admin-assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/admin-assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/dashboard-assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/dashboard-assets/images/favicon.png" type="image/x-icon">
     <title>Layout Light | Mofi - Premium Admin Template By Pixelstrap</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/font-awesome.css">
     <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/icofont.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/icofont.css">
     <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/themify.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/themify.css">
     <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/flag-icon.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/flag-icon.css">
     <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/feather-icon.css">
     <!-- Plugins css start-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/slick.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/animate.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/prism.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/prism.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/vendors/bootstrap.css">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/style.css">
-    <link id="color" rel="stylesheet" href="/admin-assets/css/color-1.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/style.css">
+    <link id="color" rel="stylesheet" href="/dashboard-assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="/admin-assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/responsive.css">
+
+    @stack('styles')
+
   </head>
   <body> 
     <div class="loader-wrapper"> 
@@ -54,7 +57,7 @@
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <div class="page-header row">
         <div class="header-logo-wrapper col-auto">
-          <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" src="/admin-assets/images/logo/logo.png" alt=""/><img class="img-fluid for-dark" src="/admin-assets/images/logo/logo_light.png" alt=""/></a></div>
+          <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" src="/dashboard-assets/images/logo/logo.png" alt=""/><img class="img-fluid for-dark" src="/dashboard-assets/images/logo/logo_light.png" alt=""/></a></div>
         </div>
         <div class="col-4 col-xl-4 page-title">
           <h4 class="f-w-700">Layout Light</h4>
@@ -81,10 +84,10 @@
               </div>
             </form>
             <div class="header-logo-wrapper col-auto p-0">
-              <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="/admin-assets/images/logo/logo.png" alt=""></a></div>
+              <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="/dashboard-assets/images/logo/logo.png" alt=""></a></div>
               <div class="toggle-sidebar">
                 <svg class="stroke-icon sidebar-toggle status_toggle middle">
-                  <use href="/admin-assets/svg/icon-sprite.svg#toggle-icon"></use>
+                  <use href="/dashboard-assets/svg/icon-sprite.svg#toggle-icon"></use>
                 </svg>
               </div>
             </div>
@@ -92,14 +95,14 @@
               <ul class="nav-menus">
                 <li>                         <span class="header-search">
                     <svg>
-                      <use href="/admin-assets/svg/icon-sprite.svg#search"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#search"></use>
                     </svg></span></li>
                 <li>
                   <div class="form-group w-100">
                     <div class="Typeahead Typeahead--twitterUsers">
                       <div class="u-posRelative d-flex align-items-center">
                         <svg class="search-bg svg-color"> 
-                          <use href="/admin-assets/svg/icon-sprite.svg#search"></use>
+                          <use href="/dashboard-assets/svg/icon-sprite.svg#search"></use>
                         </svg>
                         <input class="demo-input py-0 Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Mofi .." name="q" title="">
                       </div>
@@ -108,12 +111,12 @@
                 </li>
                 <li class="fullscreen-body">                       <span>
                     <svg id="maximize-screen">
-                      <use href="/admin-assets/svg/icon-sprite.svg#full-screen"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#full-screen"></use>
                     </svg></span></li>
                 <li class="onhover-dropdown">
                   <div class="notification-box">
                     <svg>
-                      <use href="/admin-assets/svg/icon-sprite.svg#notification"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#notification"></use>
                     </svg><span class="badge rounded-pill badge-primary">4 </span>
                   </div>
                   <div class="onhover-show-div notification-dropdown">
@@ -122,8 +125,8 @@
                       <li class="toast default-show-toast align-items-center border-0 fade show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
                         <div class="d-flex justify-content-between">
                           <div class="toast-body d-flex p-0">
-                            <div class="flex-shrink-0 bg-light-primary"><img class="w-auto" src="/admin-assets/images/dashboard/icon/wallet.png" alt="Wallet"></div>
-                            <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                            <div class="flex-shrink-0 bg-light-primary"><img class="w-auto" src="/dashboard-assets/images/dashboard/icon/wallet.png" alt="Wallet"></div>
+                            <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                                 <h6 class="m-0">Daily offer added</h6></a>
                               <p class="m-0">User-only offer added</p>
                             </div>
@@ -134,8 +137,8 @@
                       <li class="toast default-show-toast align-items-center border-0 fade show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false"> 
                         <div class="d-flex justify-content-between">
                           <div class="toast-body d-flex p-0">
-                            <div class="flex-shrink-0 bg-light-info"><img class="w-auto" src="/admin-assets/images/dashboard/icon/shield-dne.png" alt="Shield-dne"></div>
-                            <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                            <div class="flex-shrink-0 bg-light-info"><img class="w-auto" src="/dashboard-assets/images/dashboard/icon/shield-dne.png" alt="Shield-dne"></div>
+                            <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                                 <h6 class="m-0">Product Review</h6></a>
                               <p class="m-0">Changed to a workflow</p>
                             </div>
@@ -146,8 +149,8 @@
                       <li class="toast default-show-toast align-items-center border-0 fade show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">  
                         <div class="d-flex justify-content-between">
                           <div class="toast-body d-flex p-0">
-                            <div class="flex-shrink-0 bg-light-warning"><img class="w-auto" src="/admin-assets/images/dashboard/icon/graph.png" alt="Graph"></div>
-                            <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                            <div class="flex-shrink-0 bg-light-warning"><img class="w-auto" src="/dashboard-assets/images/dashboard/icon/graph.png" alt="Graph"></div>
+                            <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                                 <h6 class="m-0">Return Products</h6></a>
                               <p class="m-0">52 items were returned</p>
                             </div>
@@ -158,8 +161,8 @@
                       <li class="toast default-show-toast align-items-center border-0 fade show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false"> 
                         <div class="d-flex justify-content-between"> 
                           <div class="toast-body d-flex p-0">
-                            <div class="flex-shrink-0 bg-light-tertiary"><img class="w-auto" src="/admin-assets/images/dashboard/icon/ticket-star.png" alt="Ticket-star"></div>
-                            <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                            <div class="flex-shrink-0 bg-light-tertiary"><img class="w-auto" src="/dashboard-assets/images/dashboard/icon/ticket-star.png" alt="Ticket-star"></div>
+                            <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                                 <h6 class="m-0">Recently Paid</h6></a>
                               <p class="m-0">Card payment of $343   </p>
                             </div>
@@ -172,7 +175,7 @@
                 </li>
                 <li class="onhover-dropdown">
                   <svg>
-                    <use href="/admin-assets/svg/icon-sprite.svg#header-bookmark"></use>
+                    <use href="/dashboard-assets/svg/icon-sprite.svg#header-bookmark"></use>
                   </svg>
                   <div class="onhover-show-div bookmark-flip">
                     <div class="flip-card">
@@ -219,55 +222,55 @@
                 <li>
                   <div class="mode">
                     <svg>
-                      <use href="/admin-assets/svg/icon-sprite.svg#moon"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#moon"></use>
                     </svg>
                   </div>
                 </li>
                 <li class="onhover-dropdown">
                   <div class="notification-box">
                     <svg>
-                      <use href="/admin-assets/svg/icon-sprite.svg#header-message"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#header-message"></use>
                     </svg><span class="badge rounded-pill badge-info">3 </span>
                   </div>
                   <div class="onhover-show-div notification-dropdown">
                     <h5 class="f-18 f-w-600 mb-0 dropdown-title">Messages             </h5>
                     <ul class="messages">
                       <li class="d-flex b-light1-primary gap-2"> 
-                        <div class="flex-shrink-0"><img src="/admin-assets/images/dashboard-2/user/1.png" alt="Graph"></div>
-                        <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                        <div class="flex-shrink-0"><img src="/dashboard-assets/images/dashboard-2/user/1.png" alt="Graph"></div>
+                        <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                             <h6 class="font-primary f-w-600">Hackett Yessenia</h6></a>
                           <p>Hello Miss...&#128522;</p>
                         </div><span>2 hours</span>
                       </li>
                       <li class="d-flex b-light1-secondary gap-2"> 
-                        <div class="flex-shrink-0"><img src="/admin-assets/images/dashboard-2/user/2.png" alt="Graph"></div>
-                        <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                        <div class="flex-shrink-0"><img src="/dashboard-assets/images/dashboard-2/user/2.png" alt="Graph"></div>
+                        <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                             <h6 class="font-secondary f-w-600">schneider Adan</h6></a>
                           <p>Wishing You a Happy Birthday Dear..  🥳&#127882;</p>
                         </div><span>3 hours</span>
                       </li>
                       <li class="d-flex b-light1-success gap-2"> 
-                        <div class="flex-shrink-0"><img src="/admin-assets/images/dashboard-2/user/3.png" alt="Graph"></div>
-                        <div class="flex-grow-1"> <a href="/admin-assets/template/private-chat.html">
+                        <div class="flex-shrink-0"><img src="/dashboard-assets/images/dashboard-2/user/3.png" alt="Graph"></div>
+                        <div class="flex-grow-1"> <a href="/dashboard-assets/template/private-chat.html">
                             <h6 class="font-success f-w-600">Mahdi Gholizadeh</h6></a>
                           <p>Hello Dear!! This Theme Is Very beautiful</p>
                         </div><span>5 hours</span>
                       </li>
-                      <li class="bg-transparent"><a class="f-w-700 btn btn-primary w-100" href="/admin-assets/template/letter-box.html">View all</a></li>
+                      <li class="bg-transparent"><a class="f-w-700 btn btn-primary w-100" href="/dashboard-assets/template/letter-box.html">View all</a></li>
                     </ul>
                   </div>
                 </li>
                 <li class="cart-nav onhover-dropdown">
                   <div class="cart-box">
                     <svg>
-                      <use href="/admin-assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                      <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
                     </svg>
                   </div>
                   <div class="cart-dropdown onhover-show-div">
                     <h5 class="f-18 f-w-600 mb-0 dropdown-title">Cart</h5>
                     <ul>
                       <li>
-                        <div class="d-flex"><img class="img-fluid b-r-5 me-3 img-60" src="/admin-assets/images/other-images/cart-img.jpg" alt="">
+                        <div class="d-flex"><img class="img-fluid b-r-5 me-3 img-60" src="/dashboard-assets/images/other-images/cart-img.jpg" alt="">
                           <div class="flex-grow-1"><span class="f-w-600">Furniture Chair for Home</span>
                             <div class="qty-box">
                               <div class="input-group"><span class="input-group-prepend">
@@ -282,7 +285,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="d-flex"><img class="img-fluid b-r-5 me-3 img-60" src="/admin-assets/images/other-images/table-img.jpg" alt="">
+                        <div class="d-flex"><img class="img-fluid b-r-5 me-3 img-60" src="/dashboard-assets/images/other-images/table-img.jpg" alt="">
                           <div class="flex-grow-1"><span class="f-w-600">Furniture Table for Office</span>
                             <div class="qty-box">
                               <div class="input-group"><span class="input-group-prepend">
@@ -299,22 +302,22 @@
                       <li class="total">
                         <h6 class="mb-0">Order Total : <span class="f-w-600 f-right">$1000.00</span></h6>
                       </li>
-                      <li class="text-center"><a class="d-block view-cart f-w-700 btn btn-primary w-100" href="/admin-assets/template/cart.html">View Cart</a><a class="btn btn-primary view-checkout w-100 f-w-700" href="/admin-assets/template/checkout.html">Checkout</a></li>
+                      <li class="text-center"><a class="d-block view-cart f-w-700 btn btn-primary w-100" href="/dashboard-assets/template/cart.html">View Cart</a><a class="btn btn-primary view-checkout w-100 f-w-700" href="/dashboard-assets/template/checkout.html">Checkout</a></li>
                     </ul>
                   </div>
                 </li>
                 <li class="profile-nav onhover-dropdown px-0 py-0">
-                  <div class="d-flex profile-media align-items-center"><img class="img-30" src="/admin-assets/images/dashboard/profile.png" alt="">
+                  <div class="d-flex profile-media align-items-center"><img class="img-30" src="/dashboard-assets/images/dashboard/profile.png" alt="">
                     <div class="flex-grow-1"><span>Alen Miller</span>
                       <p class="mb-0 font-outfit">UI Designer<i class="fa fa-angle-down"></i></p>
                     </div>
                   </div>
                   <ul class="profile-dropdown onhover-show-div">
-                    <li><a href="/admin-assets/template/private-chat.html"><i data-feather="user"></i><span>Account </span></a></li>
-                    <li><a href="/admin-assets/template/letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                    <li><a href="/admin-assets/template/task.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                    <li><a href="/admin-assets/template/edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                    <li><a href="/admin-assets/template/login.html"><i data-feather="log-in"> </i><span>Log out</span></a></li>
+                    <li><a href="/dashboard-assets/template/private-chat.html"><i data-feather="user"></i><span>Account </span></a></li>
+                    <li><a href="/dashboard-assets/template/letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                    <li><a href="/dashboard-assets/template/task.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                    <li><a href="/dashboard-assets/template/edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
+                    <li><a href="/dashboard-assets/template/login.html"><i data-feather="log-in"> </i><span>Log out</span></a></li>
                   </ul>
                 </li>
               </ul>
@@ -336,7 +339,7 @@
       <div class="page-body-wrapper horizontal-menu">
 
         @include('admin.layouts.sidebar')
-        
+
         @yield('content')
 
 
@@ -349,7 +352,7 @@
                 <p class="mb-0 f-w-600">Copyright <span class="year-update"> </span> © Mofi theme by pixelstrap  </p>
                 <p class="mb-0 f-w-600">Hand crafted & made with
                   <svg class="footer-icon">
-                    <use href="/admin-assets/svg/icon-sprite.svg#footer-heart"> </use>
+                    <use href="/dashboard-assets/svg/icon-sprite.svg#footer-heart"> </use>
                   </svg>
                 </p>
               </div>
@@ -359,37 +362,40 @@
       </div>
     </div>
     <!-- latest jquery-->
-    <script src="/admin-assets/js/jquery.min.js"></script>
+    <script src="/dashboard-assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
-    <script src="/admin-assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/dashboard-assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <!-- feather icon js-->
-    <script src="/admin-assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="/admin-assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script src="/dashboard-assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/dashboard-assets/js/icons/feather-icon/feather-icon.js"></script>
     <!-- scrollbar js-->
-    <script src="/admin-assets/js/scrollbar/simplebar.js"></script>
-    <script src="/admin-assets/js/scrollbar/custom.js"></script>
+    <script src="/dashboard-assets/js/scrollbar/simplebar.js"></script>
+    <script src="/dashboard-assets/js/scrollbar/custom.js"></script>
     <!-- Sidebar jquery-->
-    <script src="/admin-assets/js/config.js"></script>
+    <script src="/dashboard-assets/js/config.js"></script>
     <!-- Plugins JS start-->
-    <script src="/admin-assets/js/sidebar-menu.js"></script>
-    <script src="/admin-assets/js/sidebar-pin.js"></script>
-    <script src="/admin-assets/js/slick/slick.min.js"></script>
-    <script src="/admin-assets/js/slick/slick.js"></script>
-    <script src="/admin-assets/js/header-slick.js"></script>
-    <script src="/admin-assets/js/prism/prism.min.js"></script>
-    <script src="/admin-assets/js/clipboard/clipboard.min.js"></script>
-    <script src="/admin-assets/js/custom-card/custom-card.js"></script>
+    <script src="/dashboard-assets/js/sidebar-menu.js"></script>
+    <script src="/dashboard-assets/js/sidebar-pin.js"></script>
+    <script src="/dashboard-assets/js/slick/slick.min.js"></script>
+    <script src="/dashboard-assets/js/slick/slick.js"></script>
+    <script src="/dashboard-assets/js/header-slick.js"></script>
+    <script src="/dashboard-assets/js/prism/prism.min.js"></script>
+    <script src="/dashboard-assets/js/clipboard/clipboard.min.js"></script>
+    <script src="/dashboard-assets/js/custom-card/custom-card.js"></script>
     <!-- calendar js-->
-    <script src="/admin-assets/js/typeahead/handlebars.js"></script>
-    <script src="/admin-assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="/admin-assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="/admin-assets/js/typeahead-search/handlebars.js"></script>
-    <script src="/admin-assets/js/typeahead-search/typeahead-custom.js"></script>
+    <script src="/dashboard-assets/js/typeahead/handlebars.js"></script>
+    <script src="/dashboard-assets/js/typeahead/typeahead.bundle.js"></script>
+    <script src="/dashboard-assets/js/typeahead/typeahead.custom.js"></script>
+    <script src="/dashboard-assets/js/typeahead-search/handlebars.js"></script>
+    <script src="/dashboard-assets/js/typeahead-search/typeahead-custom.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
-    <script src="/admin-assets/js/script.js"></script>
-    <script src="/admin-assets/js/script1.js"></script>
-    <script src="/admin-assets/js/theme-customizer/customizer.js"></script>
+    <script src="/dashboard-assets/js/script.js"></script>
+    <script src="/dashboard-assets/js/script1.js"></script>
+    <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
+
+    @stack('scripts')
+
   </body>
 </html>

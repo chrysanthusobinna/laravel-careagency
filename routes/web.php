@@ -12,6 +12,7 @@ use App\Http\Controllers\MainSite\LoginController;
 use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
 use App\Http\Controllers\MainSite\ContactController;
+use App\Http\Controllers\Admin\ServiceUsersController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
@@ -72,10 +73,13 @@ Route::middleware(CareGiverMiddleware::class)->group(function () {
 
 
 // ADMIN ROUTES
-Route::middleware(AdminMiddleware::class)->group(function () {
+Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
-	Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    
+	Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/service-users', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
+    Route::get('/service-users/create', [ServiceUsersController::class, 'create'])->name('admin.service-users.create');
+    Route::post('/service-users', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');   
 });
 
 

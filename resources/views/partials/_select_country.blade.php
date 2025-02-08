@@ -1,6 +1,4 @@
-<div class="form-group col-lg-12">
-    <label for="country" class="text-secondary">Country</label>
-    <select id="country" name="country" class="form-control" required>
+
         <option value="Afghanistan" {{ old('country') == 'Afghanistan' ? 'selected' : '' }}>Afghanistan</option>
         <option value="Albania" {{ old('country') == 'Albania' ? 'selected' : '' }}>Albania</option>
         <option value="Algeria" {{ old('country') == 'Algeria' ? 'selected' : '' }}>Algeria</option>
@@ -51,5 +49,3 @@
         <option value="United Kingdom" {{ old('country', 'United Kingdom') == 'United Kingdom' ? 'selected' : '' }}>United Kingdom</option>
         <option value="United States" {{ old('country') == 'United States' ? 'selected' : '' }}>United States</option>
         <option value="Zimbabwe" {{ old('country') == 'Zimbabwe' ? 'selected' : '' }}>Zimbabwe</option>
-    </select>
-</div>
