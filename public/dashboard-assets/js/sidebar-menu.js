@@ -337,8 +337,8 @@
 
   // page active
   if ($("#pageWrapper").hasClass("compact-wrapper")) {
-    $(".sidebar-wrapper nav").find("a").removeClass("active");
-    $(".sidebar-wrapper nav").find("li").removeClass("active");
+    //$(".sidebar-wrapper nav").find("a").removeClass("active");
+    //$(".sidebar-wrapper nav").find("li").removeClass("active");
 
     var current = window.location.pathname;
     $(".sidebar-wrapper nav ul li a").filter(function () {
@@ -423,7 +423,7 @@
 
   $(".left-header .link-section > div").on("click", function (e) {
     if ($(window).width() <= 1199) {
-      $(".left-header .link-section > div").removeClass("active");
+      //$(".left-header .link-section > div").removeClass("active");
       $(this).toggleClass("active");
       $(this).parent().children("ul").toggleClass("d-block").slideToggle();
     }

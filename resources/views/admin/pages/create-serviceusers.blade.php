@@ -102,3 +102,19 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+        var targetMenu = $(".sidebar-list:has(a span:contains('Service Users'))");  
+
+        if (targetMenu.length > 0) {
+            targetMenu.find(".sidebar-submenu").css("display", "block");  
+
+            // Ensure the arrow icon changes to down
+            targetMenu.find(".according-menu i").removeClass("fa-angle-right").addClass("fa-angle-down");
+        }
+    });
+
+    </script>
+@endpush

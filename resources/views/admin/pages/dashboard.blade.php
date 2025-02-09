@@ -202,3 +202,6 @@ height: 80px;
   
 @endsection  
 
+@push('scripts')
+ 
+@endpush

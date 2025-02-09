@@ -21,7 +21,7 @@
 
 
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.dashboard') }}" target="_blank">
+                    <li class="sidebar-list"><a  class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.dashboard') }}" >
                         <svg class="stroke-icon">
                           <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-home"></use>
                         </svg>
@@ -32,7 +32,7 @@
 
  
                         
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/dashboard-assets/template/index.html" target="_blank">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/dashboard-assets/template/index.html" >
                         <svg class="stroke-icon">
                             <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                           </svg>
@@ -48,24 +48,23 @@
 
 
                         
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                        <svg class="stroke-icon">
-                            <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
-                        </svg>
-                        <svg class="fill-icon">
-                            <use href="/dashboard-assets/svg/icon-sprite.svg#fill-user"></use>
-                        </svg><span>Service Users</span></a>
-                      <ul class="sidebar-submenu">
- 
-           
-                        <li><a href="{{ route('admin.service-users.create') }}">Add New</a></li>
-                        <li><a href="{{ route('admin.service-users.index') }}">View List</a></li>
-                        <li><a href="hide-on-scroll.html">Eligibility Request</a></li>
-                        <li><a href="hide-on-scroll.html">Care Booking Request</a></li>
-                        
-                      </ul>
+                    <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('admin.service-users.index') || request()->routeIs('admin.service-users.create') ? 'active' : '' }} sidebar-link sidebar-title" href="#">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-user"></use>
+                            </svg><span>Service Users</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a class="{{ request()->routeIs('admin.service-users.create') ? 'active' : '' }}" href="{{ route('admin.service-users.create') }}">Add New</a></li>
+                            <li><a class="{{ request()->routeIs('admin.service-users.index') ? 'active' : '' }}" href="{{ route('admin.service-users.index') }}">View List</a></li>
+                            <li><a href="hide-on-scroll.html">Eligibility Request</a></li>
+                            <li><a href="hide-on-scroll.html">Care Booking Request</a></li>
+                        </ul>
                     </li>
-
+                    
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                         <svg class="stroke-icon">
@@ -99,7 +98,7 @@
 
 
                     
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://support.pixelstrap.com/portal/en/signin" target="_blank">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://support.pixelstrap.com/portal/en/signin" >
                         <svg class="stroke-icon">
                             <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
                           </svg>
@@ -113,7 +112,7 @@
                     </li>
 
  
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" target="_blank">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" >
                         <svg class="stroke-icon">
                             <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                           </svg>
@@ -123,7 +122,7 @@
                         <span>Knowledge Base </span></a></li>
 
 
-                        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" target="_blank">
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" >
                             <svg class="stroke-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-icon feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
                               <svg class="fill-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
