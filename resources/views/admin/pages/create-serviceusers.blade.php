@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Dashboard')
+@section('title', 'Admin - Add New Service User')
 
 
 @push('styles')
@@ -85,6 +85,18 @@
 @endpush
 
 
+@section('page-header')
+    <h4 class="f-w-700">Add New Service User</h4>
+    <nav>
+        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Admin Panel</li>
+            <li class="breadcrumb-item f-w-400">Service users</li>
+            <li class="breadcrumb-item f-w-400 active">Add New</li>
+        </ol>
+    </nav>
+@endsection
+
 @section('content')
 <div class="page-body">
     <div class="container-fluid">
@@ -94,7 +106,7 @@
                     <form class="card" method="POST" action="{{ route('admin.service-users.store') }}">
                         @csrf
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Create Service User</h4>
+                            <h4 class="card-title mb-0">Add Service User</h4>
                         </div>
                         <div class="card-body">
                             @include('partials._dashboard_message')

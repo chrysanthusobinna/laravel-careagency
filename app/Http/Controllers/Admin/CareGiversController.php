@@ -4,16 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Traits\UserListTrait;
-use App\Http\Controllers\Controller;
 use App\Traits\UserViewTrait;
 use App\Traits\UserCreateTrait;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Traits\AuthUserViewSharedDataTrait;
 
 class CareGiversController extends Controller
 {
     use UserCreateTrait;
     use UserListTrait;
     use UserViewTrait;
+    use AuthUserViewSharedDataTrait;
+
+    public function __construct()
+    {
+        // Call the shareViewData method 
+        $this->shareViewData();
+    }
 
     public function index()
     {

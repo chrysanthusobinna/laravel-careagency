@@ -72,12 +72,18 @@
  
 @endpush
 
-@php
-$colorClasses = ['primary', 'secondary', 'success', 'danger', 'info'];
-@endphp
+@section('page-header')
+<h4 class="f-w-700">My Profile</h4>
+<nav>
+    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Admin Panel</li>
+        <li class="breadcrumb-item f-w-400 active">My Profile</li>
+    </ol>
+</nav>
+@endsection
 
 @php
-$initials = strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1));
 $randomColor = $colorClasses[array_rand($colorClasses)];
 @endphp
 
@@ -90,22 +96,22 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
     <div class="col-xl-4 d-flex">
         <div class="card flex-fill">
             <div class="card-header">
-                <h4 class="card-title mb-0">User Profile</h4>
+                <h4 class="card-title mb-0">My Profile</h4>
             </div>
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="profile-title">
                         <div class="d-flex">
-                            @if($user->profile_picture == 'default.png')
+                            @if($loggedInUser->profile_picture == 'default.png')
                                 <div class="letter-avatar">
-                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $initials }}</h6>
+                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $loggedInUser->initials }}</h6>
                                 </div>
                             @else
-                                <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}">
+                                <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $loggedInUser->profile_picture) }}">
                             @endif
                             <div class="flex-grow-1">
-                                <h4 class="mb-1">{{ $user->first_name }} {{ $user->last_name }}</h4>
-                                <p>{{ ucfirst($user->role) }}</p>
+                                <h4 class="mb-1">{{ $loggedInUser->first_name }} {{ $loggedInUser->last_name }}</h4>
+                                <p>{{ $loggedInUser->formatted_role }}</p>
                             </div>
                         </div>
                     </div>
@@ -114,10 +120,10 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>{{ $user->email }}</td>
+                                <td>{{ $loggedInUser->email }}</td>
                             </tr>
                             <tr>
-                                <td>{{ $user->phone_number }}</td>
+                                <td>{{ $loggedInUser->phone_number }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -130,7 +136,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
     <div class="col-xl-8 d-flex">
         <div class="card flex-fill">
             <div class="card-header">
-                <h4 class="card-title mb-0">User Details</h4>
+                <h4 class="card-title mb-0">Details</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -138,35 +144,31 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                         <tbody>
                             <tr>
                                 <th>First Name</th>
-                                <td>{{ $user->first_name }}</td>
+                                <td>{{ $loggedInUser->first_name }}</td>
                             </tr>
                             <tr>
                                 <th>Middle Name</th>
-                                <td>{{ $user->middle_name ?? 'N/A' }}</td>
+                                <td>{{ $loggedInUser->middle_name ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Last Name</th>
-                                <td>{{ $user->last_name }}</td>
+                                <td>{{ $loggedInUser->last_name }}</td>
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td>{{ $user->address }}</td>
+                                <td>{{ $loggedInUser->address }}</td>
                             </tr>
                             <tr>
                                 <th>City</th>
-                                <td>{{ $user->city }}</td>
+                                <td>{{ $loggedInUser->city }}</td>
                             </tr>
                             <tr>
                                 <th>Postal Code</th>
-                                <td>{{ $user->post_code }}</td>
+                                <td>{{ $loggedInUser->post_code }}</td>
                             </tr>
                             <tr>
                                 <th>Country</th>
-                                <td>{{ $user->country }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bio</th>
-                                <td>{{ $user->bio ?? 'No bio available' }}</td>
+                                <td>{{ $loggedInUser->country }}</td>
                             </tr>
                         </tbody>
                     </table>

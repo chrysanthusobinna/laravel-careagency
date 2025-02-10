@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Dashboard')
+@section('title', 'Admin - Eligibility Request')
 
 
 @push('styles')
@@ -84,6 +84,19 @@
         </script>
 @endpush
 
+
+
+@section('page-header')
+    <h4 class="f-w-700">Eligibility Request</h4>
+    <nav>
+        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Admin Panel</li>
+            <li class="breadcrumb-item f-w-400">Service Users</li>
+            <li class="breadcrumb-item f-w-400 active">Eligibility Request</li>
+        </ol>
+    </nav>
+@endsection
 
 
 @section('content')

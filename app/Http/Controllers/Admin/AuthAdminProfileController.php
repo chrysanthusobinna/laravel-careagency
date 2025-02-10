@@ -2,26 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Traits\UserViewTrait;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Traits\UserViewTrait;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Traits\AuthUserViewSharedDataTrait;
 
 class AuthAdminProfileController extends Controller
 {
     use UserViewTrait;
+    use AuthUserViewSharedDataTrait;
 
-    /**
-     * Show the profile of the authenticated admin user.
-     *
-     * @return \Illuminate\View\View
-     */
+    public function __construct()
+    {
+        // Call the shareViewData method 
+        $this->shareViewData();
+    }
+
+
+    // Show the profile of the authenticated admin user.
     public function show()
     {
-        $userId = Auth::id();  
-        $user = $this->getUserById($userId);  
+        // $userId = Auth::id();  
+        // $user = $this->getUserById($userId);  
 
-        return view('admin.pages.auth-admin-profile', compact('user'));
+        return view('admin.pages.auth-admin-profile');
     }
 }

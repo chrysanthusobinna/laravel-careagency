@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Dashboard')
+@section('title', 'Admin - Service users List')
 
 
 @push('styles')
@@ -112,6 +112,18 @@
 
 @endpush
 
+
+@section('page-header')
+    <h4 class="f-w-700">Service users List</h4>
+    <nav>
+        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Admin Panel</li>
+            <li class="breadcrumb-item f-w-400">Service users List</li>
+        </ol>
+    </nav>
+@endsection
+
 @section('content')
 <div class="page-body">
     <!-- Container-fluid starts-->
@@ -187,14 +199,6 @@
 
 
 
-
-
-
-
-
-
-
-
             
         </div>
 
@@ -226,12 +230,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $colorClasses = ['primary', 'secondary', 'success', 'danger', 'info'];
-                                        @endphp
+                        
                                         @foreach ($serviceUsers as $user)
                                             @php
-                                                $initials = strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1));
                                                 $randomColor = $colorClasses[array_rand($colorClasses)];
                                             @endphp
                                             <tr>
@@ -240,7 +241,7 @@
                                                         <div class="flex-shrink-0">
                                                             @if($user->profile_picture == 'default.png')
                                                                 <div class="letter-avatar">
-                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $initials }}</h6>
+                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
                                                                 </div>
                                                             @else
                                                                 <img src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
