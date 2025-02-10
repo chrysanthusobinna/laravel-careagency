@@ -18,6 +18,8 @@ use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
+use App\Http\Controllers\Admin\CareBookingRequestController;
+use App\Http\Controllers\Admin\EligibilityRequestController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
@@ -79,7 +81,14 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
     Route::get('/service-users', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
     Route::get('/service-users/create', [ServiceUsersController::class, 'create'])->name('admin.service-users.create');
-    Route::post('/service-users', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');   
+    Route::post('/service-users', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');  
+    Route::get('/service-users/{id}', [ServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
+
+    
+    Route::get('/eligibility-requests', [EligibilityRequestController::class, 'index'])->name('admin.eligibility-request'); 
+    Route::get('/care-booking-request', [CareBookingRequestController::class, 'index'])->name('admin.care-booking-request'); 
+
+
 });
 
 

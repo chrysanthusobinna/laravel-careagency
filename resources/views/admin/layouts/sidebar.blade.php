@@ -60,9 +60,11 @@
                         <ul class="sidebar-submenu">
                             <li><a class="{{ request()->routeIs('admin.service-users.create') ? 'active' : '' }}" href="{{ route('admin.service-users.create') }}">Add New</a></li>
                             <li><a class="{{ request()->routeIs('admin.service-users.index') ? 'active' : '' }}" href="{{ route('admin.service-users.index') }}">View List</a></li>
-                            <li><a href="hide-on-scroll.html">Eligibility Request</a></li>
-                            <li><a href="hide-on-scroll.html">Care Booking Request</a></li>
+                            <li><a class="{{ request()->routeIs('admin.eligibility-request') ? 'active' : '' }}" href="{{ route('admin.eligibility-request') }}">Eligibility Request</a></li>
+                            <li><a class="{{ request()->routeIs('admin.care-booking-request') ? 'active' : '' }}" href="{{ route('admin.care-booking-request') }}">Care Booking Request</a></li>
+
                         </ul>
+                        
                     </li>
                     
 

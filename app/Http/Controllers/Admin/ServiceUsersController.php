@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Traits\GetUsersTrait;
 use App\Http\Controllers\Controller;
+use App\Traits\HandlesUserRetrieval;
 use App\Traits\HandlesUserRegistration;
 use App\Http\Requests\RegisterUserRequest;
 
@@ -12,12 +13,22 @@ class ServiceUsersController extends Controller
 {
     use HandlesUserRegistration;
     use GetUsersTrait;
+    use HandlesUserRetrieval;
 
     public function index()
     {
-        $serviceUsers = $this->getUsersByRole('service_user');
+        $serviceUsersData = $this->getUsersByRole('service_user');
         
-        return view('admin.pages.list-serviceusers', compact('serviceUsers'));
+        $serviceUsers = $serviceUsersData['users'];
+        $activeCount = $serviceUsersData['active_count'];
+        
+        return view('admin.pages.list-serviceusers', compact('serviceUsers', 'activeCount'));
+    }
+    
+    public function show($id)
+    {
+        $user = $this->getUserById($id);
+        return view('admin.pages.view-user', compact('user'));
     }
 
     public function create()

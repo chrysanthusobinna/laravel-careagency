@@ -33,4 +33,21 @@ class RegisterUserRequest extends FormRequest
             'password' => 'required|string|min:8|confirmed', // Enforces strong password and confirmation
         ];
     }
+
+    /**
+     * Modify input data before validation.
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'first_name' => ucfirst(strtolower($this->first_name)),
+            'middle_name' => $this->middle_name ? ucfirst(strtolower($this->middle_name)) : null,
+            'last_name' => ucfirst(strtolower($this->last_name)),
+            'email' => strtolower($this->email),
+            'city' => ucfirst(strtolower($this->city)),
+            'country' => ucfirst(strtolower($this->country)),
+            'county' => ucfirst(strtolower($this->county)),
+            'post_code' => strtoupper($this->post_code),
+        ]);
+    }
 }

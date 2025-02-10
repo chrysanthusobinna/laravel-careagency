@@ -7,10 +7,10 @@ use App\Models\User;
 trait GetUsersTrait
 {
     /**
-     * Get all users based on role.
+     * Get all users based on role and status.
      *
      * @param string $role
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return array
      */
     public function getUsersByRole(string $role)
     {
@@ -20,6 +20,12 @@ trait GetUsersTrait
             abort(400, 'Invalid role provided.');
         }
 
-        return User::where('role', $role)->get();
+        $users = User::where('role', $role)->get();
+        $activeCount = User::where('role', $role)->where('status', 1)->count();
+
+        return [
+            'users' => $users,
+            'active_count' => $activeCount
+        ];
     }
 }

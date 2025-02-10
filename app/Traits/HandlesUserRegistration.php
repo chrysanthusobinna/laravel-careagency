@@ -31,6 +31,7 @@ trait HandlesUserRegistration
                 'post_code' => $data['post_code'],
                 'county' => $data['county'] ?? null,
                 'country' => $data['country'],
+                'profile_picture' => 'default.png',
                 'password' => Hash::make($data['password']),  
                 'role' => $role,
                 'status' => 1, // Default status active
