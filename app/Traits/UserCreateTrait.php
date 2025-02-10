@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Exception;
 
-trait HandlesUserRegistration
+trait UserCreateTrait
 {
     /**
      * Register a new user.

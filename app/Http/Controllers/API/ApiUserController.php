@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Traits\HandlesUserRegistration;
+use App\Traits\UserCreateTrait;
 use App\Http\Requests\RegisterUserRequest;
 use Illuminate\Validation\ValidationException;
 
 class ApiUserController extends Controller
 {
-    use HandlesUserRegistration;
+    use UserCreateTrait;
 
     /**
      * Store a newly created user.

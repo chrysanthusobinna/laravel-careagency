@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ServiceUsersController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
+use App\Http\Controllers\Admin\AuthAdminProfileController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
@@ -95,6 +96,8 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/eligibility-requests', [EligibilityRequestController::class, 'index'])->name('admin.eligibility-request'); 
     Route::get('/care-booking-request', [CareBookingRequestController::class, 'index'])->name('admin.care-booking-request'); 
 
+    Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');
+    
     Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('admin.knowledge-base');
 
 });

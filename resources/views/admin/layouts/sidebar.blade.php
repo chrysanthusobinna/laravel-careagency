@@ -99,18 +99,18 @@
 
 
                     
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://support.pixelstrap.com/portal/en/signin" >
-                        <svg class="stroke-icon">
-                            <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
-                          </svg>
-                          <svg class="fill-icon">
-                            <use href="/dashboard-assets/svg/icon-sprite.svg#fill-editors"></use>
-                          </svg>
-                        
-                        <span>My Profile</span></a>
-                    
-                    
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-editors"></use>
+                            </svg>
+                            <span>My Profile</span>
+                        </a>
                     </li>
+                    
 
  
                     <li class="sidebar-list"><a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}" >

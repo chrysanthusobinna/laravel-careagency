@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Traits\GetUsersTrait;
+use App\Traits\UserListTrait;
 use App\Http\Controllers\Controller;
-use App\Traits\HandlesUserRetrieval;
-use App\Traits\HandlesUserRegistration;
+use App\Traits\UserViewTrait;
+use App\Traits\UserCreateTrait;
 use App\Http\Requests\RegisterUserRequest;
 
 class ServiceUsersController extends Controller
 {
-    use HandlesUserRegistration;
-    use GetUsersTrait;
-    use HandlesUserRetrieval;
+    use UserCreateTrait;
+    use UserListTrait;
+    use UserViewTrait;
 
     public function index()
     {

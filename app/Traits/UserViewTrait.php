@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Models\User;
 
-trait HandlesUserRetrieval
+trait UserViewTrait
 {
     /**
      * Retrieve a user by ID.

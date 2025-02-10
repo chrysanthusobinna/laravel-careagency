@@ -5,13 +5,13 @@ namespace App\Http\Controllers\MainSite;
 use Illuminate\Http\Request;
 use App\Traits\CompanyContactTrait;
 use App\Http\Controllers\Controller;
-use App\Traits\HandlesUserRegistration;
+use App\Traits\UserCreateTrait;
 use App\Http\Requests\RegisterUserRequest;
 
 class ServiceUsersRegisterController extends Controller
 {
     use CompanyContactTrait;
-    use HandlesUserRegistration;
+    use UserCreateTrait;
 
     public function __construct()
     {

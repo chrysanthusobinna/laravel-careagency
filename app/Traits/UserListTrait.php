@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Models\User;
 
-trait GetUsersTrait
+trait UserListTrait
 {
     /**
      * Get all users based on role and status.
