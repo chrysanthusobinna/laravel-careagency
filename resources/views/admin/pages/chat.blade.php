@@ -72,8 +72,6 @@
 
 
 @section('content')
-
-
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid">
@@ -81,10 +79,10 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Dashboard</h4>
+                        <h4>Chat</h4>
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="text-warning">Dashboard is under development.</h5>
+                        <h5 class="text-warning">Chat is under development.</h5>
                     </div>
                 </div>
             </div>
@@ -92,9 +90,4 @@
     </div>
     <!-- Container-fluid Ends-->
 </div>
-
-
-  
-@endsection  
-
- 
+@endsection

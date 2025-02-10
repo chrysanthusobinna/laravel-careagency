@@ -32,7 +32,7 @@
 
  
                         
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/dashboard-assets/template/index.html" >
+                    <li class="sidebar-list"><a class="{{ request()->routeIs('admin.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.chat') }}" >
                         <svg class="stroke-icon">
                             <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                           </svg>
@@ -44,8 +44,7 @@
 
 
 
-
-
+     
 
                         
                     <li class="sidebar-list">
@@ -114,7 +113,7 @@
                     </li>
 
  
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" >
+                    <li class="sidebar-list"><a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}" >
                         <svg class="stroke-icon">
                             <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                           </svg>
@@ -124,7 +123,7 @@
                         <span>Knowledge Base </span></a></li>
 
 
-                        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="https://docs.pixelstrap.net/mofi/document/" >
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('logout') }}" >
                             <svg class="stroke-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-icon feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
                               <svg class="fill-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>

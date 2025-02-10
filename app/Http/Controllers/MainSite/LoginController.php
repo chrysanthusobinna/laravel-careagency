@@ -74,10 +74,4 @@ class LoginController extends Controller
         return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
     }
     
- 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('mainsite.login')->with('success', 'You have been logged out successfully.');
-    }
 }

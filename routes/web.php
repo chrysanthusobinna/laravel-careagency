@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\LogoutController;
 use App\Http\Middleware\CareGiverMiddleware;
+use App\Http\Controllers\Admin\ChatController;
 use App\Http\Middleware\AdminLevel2Middleware;
 use App\Http\Middleware\ServiceUserMiddleware;
 use App\Http\Controllers\MainSite\HomeController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
+use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
 use App\Http\Controllers\Admin\CareBookingRequestController;
 use App\Http\Controllers\Admin\EligibilityRequestController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
@@ -53,7 +56,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/carers-register', [CarersController::class, 'submitCarerRegister'])->name('mainsite.register.carer.submit');
 });
 
-
+//ALL USERS LOGOUT ROUTE
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 
@@ -79,6 +83,9 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
 	Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
+    Route::get('/chat', [ChatController::class, 'index'])->name('admin.chat');
+
+    
     Route::get('/service-users', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
     Route::get('/service-users/create', [ServiceUsersController::class, 'create'])->name('admin.service-users.create');
     Route::post('/service-users', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');  
@@ -88,6 +95,7 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/eligibility-requests', [EligibilityRequestController::class, 'index'])->name('admin.eligibility-request'); 
     Route::get('/care-booking-request', [CareBookingRequestController::class, 'index'])->name('admin.care-booking-request'); 
 
+    Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('admin.knowledge-base');
 
 });
 
