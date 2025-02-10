@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\ServiceUsers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
-class CareBookingRequestController extends Controller
+class ServiceUserKnowledgeBaseController extends Controller
 {
+    
     use AuthUserViewSharedDataTrait;
 
     public function __construct()
@@ -16,10 +17,10 @@ class CareBookingRequestController extends Controller
         $this->shareViewData();
     }
 
-    // Display the Care Booking Request page.
+    // Show the Knowledge Base page.
 
     public function index()
     {
-        return view('admin.pages.care-booking-request');
+        return view('serviceusers.pages.knowledge-base');
     }
 }

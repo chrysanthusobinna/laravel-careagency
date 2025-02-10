@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\ServiceUsers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
-class EligibilityRequestController extends Controller
+class ServiceUserChatController extends Controller
 {
     use AuthUserViewSharedDataTrait;
 
@@ -16,8 +16,10 @@ class EligibilityRequestController extends Controller
         $this->shareViewData();
     }
 
+    //Show the chat page.
+
     public function index()
     {
-        return view('admin.pages.eligibility-request');
+        return view('serviceusers.pages.chat');
     }
 }

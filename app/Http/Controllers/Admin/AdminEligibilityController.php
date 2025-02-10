@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
-class ChatController extends Controller
+class AdminEligibilityController extends Controller
 {
     use AuthUserViewSharedDataTrait;
 
@@ -16,10 +16,8 @@ class ChatController extends Controller
         $this->shareViewData();
     }
 
-    //Show the chat page.
-
     public function index()
     {
-        return view('admin.pages.chat');
+        return view('admin.pages.eligibility-request');
     }
 }

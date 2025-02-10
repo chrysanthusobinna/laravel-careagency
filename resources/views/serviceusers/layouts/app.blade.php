@@ -4,9 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mofi admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Mofi admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
     <link rel="icon" href="/dashboard-assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/dashboard-assets/images/favicon.png" type="image/x-icon">
     <title>@yield('title')</title>
@@ -33,7 +30,7 @@
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <div class="page-header row">
         <div class="header-logo-wrapper col-auto">
-          <div class="logo-wrapper"><a href="{{ route('admin.dashboard') }}"><img class="img-fluid for-light" src="/dashboard-assets/images/logo/logo.png" alt=""/><img class="img-fluid for-dark" src="/dashboard-assets/images/logo/logo_light.png" alt=""/></a></div>
+          <div class="logo-wrapper"><a href="{{ route('serviceuser.dashboard') }}"><img class="img-fluid for-light" src="/dashboard-assets/images/logo/logo.png" alt=""/><img class="img-fluid for-dark" src="/dashboard-assets/images/logo/logo_light.png" alt=""/></a></div>
         </div>
         <div class="col-4 col-xl-4 page-title">
             @yield('page-header')
@@ -43,7 +40,7 @@
           <div class="row">
  
             <div class="header-logo-wrapper col-auto p-0">
-              <div class="logo-wrapper"><a href="{{ route('admin.dashboard') }}"><img class="img-fluid" src="/dashboard-assets/images/logo/logo.png" alt=""></a></div>
+              <div class="logo-wrapper"><a href="{{ route('serviceuser.dashboard') }}"><img class="img-fluid" src="/dashboard-assets/images/logo/logo.png" alt=""></a></div>
               <div class="toggle-sidebar">
                 <svg class="stroke-icon sidebar-toggle status_toggle middle">
                   <use href="/dashboard-assets/svg/icon-sprite.svg#toggle-icon"></use>
@@ -65,7 +62,7 @@
                         <use href="/dashboard-assets/svg/icon-sprite.svg#notification"></use>
                       </svg><span class="badge rounded-pill badge-primary">0 </span>
                     </div>
-                    @include('admin.layouts.notification')
+                    @include('serviceusers.layouts.notification')
                   </li>
                                
                 
@@ -79,7 +76,7 @@
                 </li>
  
   
-                <li class="profile-nav onhover-dropdown px-0 py-0" onclick="window.location.href='{{ route('admin.auth-profile.show') }}'">
+                <li class="profile-nav onhover-dropdown px-0 py-0" onclick="window.location.href='{{ route('serviceuser.auth-profile.show') }}'">
                     <div class="d-flex profile-media align-items-center">
                         @if($loggedInUser->profile_picture == 'default.png')
                             <div class="letter-avatar">
@@ -108,7 +105,7 @@
       <!-- Page Body Start-->
       <div class="page-body-wrapper horizontal-menu">
 
-        @include('admin.layouts.sidebar')
+        @include('serviceusers.layouts.sidebar')
 
         @yield('content')
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
 
-class ServiceUsersController extends Controller
+class AdminServiceUsersController extends Controller
 {
     use UserCreateTrait;
     use UserListTrait;
