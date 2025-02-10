@@ -28,7 +28,7 @@ class ServiceUsersController extends Controller
     public function show($id)
     {
         $user = $this->getUserById($id);
-        return view('admin.pages.view-user', compact('user'));
+        return view('admin.pages.view-serviceuser', compact('user'));
     }
 
     public function create()

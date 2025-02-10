@@ -13,6 +13,8 @@ use App\Http\Controllers\MainSite\AboutController;
 use App\Http\Controllers\MainSite\LoginController;
 use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
+use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\CareGiversController;
 use App\Http\Controllers\MainSite\ContactController;
 use App\Http\Controllers\Admin\ServiceUsersController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -87,14 +89,33 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/chat', [ChatController::class, 'index'])->name('admin.chat');
 
     
-    Route::get('/service-users', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
+    Route::get('/service-users/list', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
     Route::get('/service-users/create', [ServiceUsersController::class, 'create'])->name('admin.service-users.create');
-    Route::post('/service-users', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');  
-    Route::get('/service-users/{id}', [ServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
+    Route::post('/service-users/store', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');  
+    Route::get('/service-users/show/{id}', [ServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
 
     
     Route::get('/eligibility-requests', [EligibilityRequestController::class, 'index'])->name('admin.eligibility-request'); 
     Route::get('/care-booking-request', [CareBookingRequestController::class, 'index'])->name('admin.care-booking-request'); 
+
+
+
+    Route::get('/care-givers/list', [CareGiversController::class, 'index'])->name('admin.caregivers.index');
+    Route::get('/care-givers/show/{id}', [CareGiversController::class, 'show'])->name('admin.caregivers.show');
+    Route::get('/care-givers/create', [CareGiversController::class, 'create'])->name('admin.caregivers.create');
+    Route::post('/care-givers/store', [CareGiversController::class, 'store'])->name('admin.caregivers.store');
+
+
+
+
+
+    Route::get('/admin-users/list', [AdminUsersController::class, 'index'])->name('adminusers.index');
+    Route::get('/admin-users/show/{id}', [AdminUsersController::class, 'show'])->name('adminusers.show');
+    Route::get('/admin-users/create', [AdminUsersController::class, 'create'])->name('adminusers.create');
+    Route::post('/admin-users/store', [AdminUsersController::class, 'store'])->name('adminusers.store');
+
+
+
 
     Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');
     
