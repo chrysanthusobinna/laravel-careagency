@@ -69,7 +69,19 @@
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         <!-- Plugin used-->
 
- 
+        <script>
+            $(document).ready(function () {
+            var targetMenu = $(".sidebar-list:has(a span:contains('Service Users'))");  
+    
+            if (targetMenu.length > 0) {
+                targetMenu.find(".sidebar-submenu").css("display", "block");  
+    
+                // Ensure the arrow icon changes to down
+                targetMenu.find(".according-menu i").removeClass("fa-angle-right").addClass("fa-angle-down");
+            }
+        });
+    
+        </script>
 @endpush
 
 @php
@@ -126,7 +138,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
         </div>
     </div>
 
-    <!-- User Details Form -->
+ 
     <div class="col-xl-8 d-flex">
         <div class="card flex-fill">
             <div class="card-header">
@@ -173,7 +185,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                 </div>
             </div>
             <div class="card-footer text-end">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Dashboard</a>
+                <a href="{{ route('admin.service-users.index') }}" class="btn btn-secondary">Back</a>
             </div>
         </div>
     </div>
