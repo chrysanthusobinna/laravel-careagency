@@ -4,9 +4,11 @@ namespace App\Http\Controllers\MainSite;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\ServiceUserActivation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Traits\MainsiteViewSharedDataTrait;
 
 class LoginController extends Controller
@@ -42,7 +44,22 @@ class LoginController extends Controller
             }
     
             if (!$user->email_verified_at) {
-                return redirect()->route('mainsite.verify-email')->with('error', 'Please verify your email before logging in.');
+                // Generate a new activation token
+                $activationToken = mt_rand(100000, 999999); // 6-digit token
+                $user->activation_token = $activationToken;
+                $user->save();
+    
+                // Store the email in session before redirecting to email verification page
+                session(['activation_email_address' => $user->email]);
+
+                // Send activation email
+                try {
+                    Mail::to($user->email)->send(new ServiceUserActivation($user, $activationToken));
+                } catch (\Exception $e) {
+                    \Log::error('Email sending failed: ' . $e->getMessage());
+                }
+    
+                return redirect()->route('mainsite.verify-email')->with('error', 'A new activation code has been sent to your email. Please verify your email before logging in.');
             }
     
             // Authenticate user only after all checks pass
@@ -69,5 +86,6 @@ class LoginController extends Controller
         // If authentication fails
         return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
     }
+    
     
 }

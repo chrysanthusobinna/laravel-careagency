@@ -25,7 +25,7 @@
         <div class="row">
             <!-- Contact Form Column -->
             <div class="col-xl-7 col-lg-6">
-                <iframe class="map w-100 h-100" src="https://maps.google.com/maps?q=123%20{{ config('app.name') }}%20Lane,%20Cityville,%20ST%2012345&output=embed"></iframe>
+                <iframe class="map w-100 h-100"  src="https://maps.google.com/maps?q={{ urlencode($companyContact['address_1'] ?? 'NULL') }}&output=embed"> </iframe>
             </div>
             <!-- Contact Information Column -->
             <div class="col-xl-5 col-lg-6">

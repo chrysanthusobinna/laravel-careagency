@@ -55,8 +55,20 @@ Route::middleware(['guest'])->group(function () {
  
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('mainsite.login');
     Route::post('/login', [LoginController::class, 'login'])->name('mainsite.login.submit');
+
+
+    // Show password reset routes
     Route::get('/set-password', [SetPasswordController::class, 'showSetPasswordForm'])->name('mainsite.set-password');
+    Route::post('/set-password', [SetPasswordController::class, 'sendResetLink'])->name('mainsite.password.send-link');
+    Route::get('/reset-password/{token}', [SetPasswordController::class, 'showResetForm'])->name('mainsite.reset-password');
+    Route::post('/reset-password', [SetPasswordController::class, 'resetPassword'])->name('mainsite.password.reset');
+
+
+
+    //Verify Email routes
     Route::get('/verify-email', [VerifyEmailController::class, 'showVerifyEmailForm'])->name('mainsite.verify-email');
+    Route::post('/verify-email', [VerifyEmailController::class, 'verifyEmail'])->name('mainsite.verify-email.submit');
+    Route::post('/resend-activation-token', [VerifyEmailController::class, 'resendActivationToken'])->name('mainsite.resend-activation-token');
 
     Route::get('/serviceuser-register', [ServiceUsersRegisterController::class, 'showRegisterForm'])->name('mainsite.register');
     Route::post('/serviceuser-register', [ServiceUsersRegisterController::class, 'submitRegisterForm'])->name('mainsite.register.submit');
