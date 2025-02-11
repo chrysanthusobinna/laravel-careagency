@@ -43,7 +43,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.chat') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
@@ -53,12 +53,12 @@
                             </svg>
                             <span>Chat</span>
                         </a>
-                    </li>
+                    </li> --}}
 
      
 
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.knowledge-base') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
@@ -68,7 +68,7 @@
                             </svg>
                             <span>Knowledge Base</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.auth-profile.show') }}">
