@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Dashboard')
+@section('title', 'Admin - Service User Profile')
 
 
 @push('styles')
@@ -84,12 +84,19 @@
         </script>
 @endpush
 
-@php
-$colorClasses = ['primary', 'secondary', 'success', 'danger', 'info'];
-@endphp
+@section('page-header')
+<h4 class="f-w-700">View Service User Profile</h4>
+<nav>
+    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Admin Panel</li>
+        <li class="breadcrumb-item f-w-400">Service User</li>
+        <li class="breadcrumb-item f-w-400 active">View Profile</li>
+    </ol>
+</nav>
+@endsection
 
 @php
-$initials = strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1));
 $randomColor = $colorClasses[array_rand($colorClasses)];
 @endphp
 
@@ -102,7 +109,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
     <div class="col-xl-4 d-flex">
         <div class="card flex-fill">
             <div class="card-header">
-                <h4 class="card-title mb-0">User Profile</h4>
+                <h4 class="card-title mb-0">Service User Profile</h4>
             </div>
             <div class="card-body">
                 <div class="row mb-2">
@@ -110,14 +117,14 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                         <div class="d-flex">
                             @if($user->profile_picture == 'default.png')
                                 <div class="letter-avatar">
-                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $initials }}</h6>
+                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
                                 </div>
                             @else
                                 <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}">
                             @endif
                             <div class="flex-grow-1">
                                 <h4 class="mb-1">{{ $user->first_name }} {{ $user->last_name }}</h4>
-                                <p>{{ ucfirst($user->role) }}</p>
+                                <p>{{ $user->formatted_role  }}</p>
                             </div>
                         </div>
                     </div>
@@ -175,10 +182,6 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                             <tr>
                                 <th>Country</th>
                                 <td>{{ $user->country }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bio</th>
-                                <td>{{ $user->bio ?? 'No bio available' }}</td>
                             </tr>
                         </tbody>
                     </table>

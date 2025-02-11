@@ -5,31 +5,37 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LogoutController;
 use App\Http\Middleware\CareGiverMiddleware;
-use App\Http\Controllers\Admin\ChatController;
 use App\Http\Middleware\AdminLevel2Middleware;
 use App\Http\Middleware\ServiceUserMiddleware;
 use App\Http\Controllers\MainSite\HomeController;
 use App\Http\Controllers\MainSite\AboutController;
 use App\Http\Controllers\MainSite\LoginController;
+use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
 use App\Http\Controllers\Admin\AdminUsersController;
-use App\Http\Controllers\Admin\CareGiversController;
 use App\Http\Controllers\MainSite\ContactController;
-use App\Http\Controllers\Admin\ServiceUsersController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
+use App\Http\Controllers\Admin\AdminCareGiversController;
+use App\Http\Controllers\Admin\AdminCareBookingController;
+use App\Http\Controllers\Admin\AdminEligibilityController;
 use App\Http\Controllers\Admin\AuthAdminProfileController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
+use App\Http\Controllers\Admin\AdminServiceUsersController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
-use App\Http\Controllers\Admin\CareBookingRequestController;
-use App\Http\Controllers\Admin\EligibilityRequestController;
+use App\Http\Controllers\CareGivers\AuthCareGiverController;
+use App\Http\Controllers\CareGivers\CareGiverChatController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
+use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
+use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
+use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
+use App\Http\Controllers\ServiceUsers\ServiceUserKnowledgeBaseController;
 
 // MAIN SITE ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('mainsite.home');
@@ -65,9 +71,12 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 //SERVICE USERS ROUTES
-Route::middleware(ServiceUserMiddleware::class)->group(function () {
+Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(function () {
 
-    Route::get('/serviceuser/dashboard', [ServiceUserDashboardController::class, 'index'])->name('serviceuser.dashboard');
+    Route::get('/dashboard', [ServiceUserDashboardController::class, 'index'])->name('serviceuser.dashboard');
+    Route::get('/chat', [ServiceUserChatController::class, 'index'])->name('serviceuser.chat');
+    Route::get('/knowledge-base', [ServiceUserKnowledgeBaseController::class, 'index'])->name('serviceuser.knowledge-base');
+    Route::get('/auth-profile', [AuthServiceUserController::class, 'show'])->name('serviceuser.auth-profile.show');
 
 });
 
@@ -76,6 +85,9 @@ Route::middleware(ServiceUserMiddleware::class)->group(function () {
 Route::middleware(CareGiverMiddleware::class)->group(function () {
 
     Route::get('/caregiver/dashboard', [CareGiverDashboardController::class, 'index'])->name('caregiver.dashboard');
+    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('caregiver.chat');
+    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('caregiver.knowledge-base');
+    Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('caregiver.auth-profile.show');
 
 });
 
@@ -86,24 +98,24 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
 	Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/chat', [ChatController::class, 'index'])->name('admin.chat');
+    Route::get('/chat', [AdminChatController::class, 'index'])->name('admin.chat');
 
     
-    Route::get('/service-users/list', [ServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
-    Route::get('/service-users/create', [ServiceUsersController::class, 'create'])->name('admin.service-users.create');
-    Route::post('/service-users/store', [ServiceUsersController::class, 'store'])->name('admin.service-users.store');  
-    Route::get('/service-users/show/{id}', [ServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
+    Route::get('/service-users/list', [AdminServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
+    Route::get('/service-users/create', [AdminServiceUsersController::class, 'create'])->name('admin.service-users.create');
+    Route::post('/service-users/store', [AdminServiceUsersController::class, 'store'])->name('admin.service-users.store');  
+    Route::get('/service-users/show/{id}', [AdminServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
 
     
-    Route::get('/eligibility-requests', [EligibilityRequestController::class, 'index'])->name('admin.eligibility-request'); 
-    Route::get('/care-booking-request', [CareBookingRequestController::class, 'index'])->name('admin.care-booking-request'); 
+    Route::get('/eligibility-requests', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request'); 
+    Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
 
 
 
-    Route::get('/care-givers/list', [CareGiversController::class, 'index'])->name('admin.caregivers.index');
-    Route::get('/care-givers/show/{id}', [CareGiversController::class, 'show'])->name('admin.caregivers.show');
-    Route::get('/care-givers/create', [CareGiversController::class, 'create'])->name('admin.caregivers.create');
-    Route::post('/care-givers/store', [CareGiversController::class, 'store'])->name('admin.caregivers.store');
+    Route::get('/care-givers/list', [AdminCareGiversController::class, 'index'])->name('admin.caregivers.index');
+    Route::get('/care-givers/show/{id}', [AdminCareGiversController::class, 'show'])->name('admin.caregivers.show');
+    Route::get('/care-givers/create', [AdminCareGiversController::class, 'create'])->name('admin.caregivers.create');
+    Route::post('/care-givers/store', [AdminCareGiversController::class, 'store'])->name('admin.caregivers.store');
 
 
 

@@ -65,9 +65,13 @@
                                     <a href="{{ route('mainsite.contact') }}">Contact</a>
                                 </li>
 
-                                <li class="{{ request()->routeIs('mainsite.register') ? 'current' : '' }}">
-                                    <a href="{{ route('mainsite.register') }}">Register</a>
-                                </li>
+                                @if (Auth::guest())
+                                    <li class="{{ request()->routeIs('mainsite.register') ? 'current' : '' }}">
+                                        <a href="{{ route('mainsite.register') }}">Register</a>
+                                    </li>
+                                @endif
+
+
                                 <li class="{{ request()->routeIs('mainsite.helpandadvice') ? 'current' : '' }}">
                                     <a href="{{ route('mainsite.helpandadvice') }}">Help & Advice</a>
                                 </li>
@@ -84,10 +88,17 @@
 						<div class="ui-btn-outer">
  
 						</div>
+                        @if (Auth::guest())
+                            <button class="btn btn-danger" onclick="window.location.href='{{ route('mainsite.login') }}'">
+                                <i class="fa fa-user-alt"></i> LOGIN
+                            </button>
+                        @else
+                            <button class="btn btn-danger" onclick="window.location.href='{{ $loggedInUser->dashboard_route }}'">
+                                <i class="fa fa-user-alt"></i> DASHBOARD
+                            </button>
+                        @endif
 
-                        <button class="btn btn-danger" onclick="window.location.href='{{ route('mainsite.login') }}'">
-                            <i class="fa fa-user-alt"></i> LOGIN
-                        </button>
+
                         
 
 						<!-- Mobile Nav toggler -->
@@ -206,7 +217,12 @@
                                             <li><a href="{{ route('mainsite.carers') }}">Carers</a></li>
                                             <li><a href="{{ route('mainsite.about') }}">About Us</a></li>
                                             <li><a href="{{ route('mainsite.contact') }}">Contact</a></li>
-                                            <li><a href="{{ route('mainsite.register') }}">Register</a></li>
+
+                                            @if (Auth::guest())
+                                                <li><a href="{{ route('mainsite.register') }}">Register</a></li>
+                                            @endif
+                                                                                   
+                                            
 
                                         </ul>
                                     </div>
@@ -220,7 +236,11 @@
                             <div class="footer-widget">
                                 <h6 class="widget-title">Quick Links</h6>
                                 <ul class="user-links">
-                                    <li><a href="{{ route('mainsite.login') }}">Login</a></li>
+                                    @if (Auth::guest())
+                                        <li><a href="{{ route('mainsite.login') }}">Login</a></li>
+                                    @else
+                                        <li><a href="{{ $loggedInUser->dashboard_route }}">Dashboard</a></li>
+                                    @endif
                                     <li><a href="{{ route('mainsite.helpandadvice') }}">Help & Advice</a></li>
                                     <li><a href="{{ route('mainsite.terms.carer') }}">Carer Terms</a></li>
                                     <li><a href="{{ route('mainsite.terms.serviceuser') }}">Service User Terms</a></li>

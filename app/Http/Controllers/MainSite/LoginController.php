@@ -4,24 +4,20 @@ namespace App\Http\Controllers\MainSite;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Traits\CompanyContactTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\MainsiteViewSharedDataTrait;
 
 class LoginController extends Controller
 {
-    use CompanyContactTrait;
+    use MainsiteViewSharedDataTrait;
 
     public function __construct()
     {
-        $companyContact = $this->getCompanyContact();
-
-        view()->share([
-            'companyContact' => $companyContact
-        ]);
+        // Call the shareViewData method 
+        $this->shareViewData();
     }
-
    
    //Show the login form.
  

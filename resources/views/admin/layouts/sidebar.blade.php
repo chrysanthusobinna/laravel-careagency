@@ -2,7 +2,7 @@
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
         <div class="logo-wrapper">
-            <a href="index.html">
+            <a href="{{ route('admin.dashboard') }}">
                 <img class="img-fluid" src="/dashboard-assets/images/logo/logo_light.png" alt="">
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="logo-icon-wrapper">
-            <a href="index.html">
+            <a href="{{ route('admin.dashboard') }}">
                 <img class="img-fluid" src="/dashboard-assets/images/logo/logo-icon.png" alt="">
             </a>
         </div>
@@ -84,9 +84,10 @@
                             <span>Care Givers</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a class="{{ request()->routeIs('adminusers.create') ? 'active' : '' }}" href="{{ route('adminusers.create') }}">Add New</a></li>
-                            <li><a class="{{ request()->routeIs('adminusers.index') ? 'active' : '' }}" href="{{ route('adminusers.index') }}">View List</a></li>
+                            <li><a class="{{ request()->routeIs('admin.caregivers.create') ? 'active' : '' }}" href="{{ route('admin.caregivers.create') }}">Add New</a></li>
+                            <li><a class="{{ request()->routeIs('admin.caregivers.index') ? 'active' : '' }}" href="{{ route('admin.caregivers.index') }}">View List</a></li>
                         </ul>
+                        
                     </li>
 
                     <li class="sidebar-list">
@@ -106,7 +107,7 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
+                        <a class="{{ request()->routeIs('admin.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
                             </svg>

@@ -1,27 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\MainSite;
-
-use Illuminate\Http\Request;
-use App\Traits\CompanyContactTrait;
-use App\Http\Controllers\Controller;
 use App\Traits\UserCreateTrait;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Traits\MainsiteViewSharedDataTrait;
 
 class ServiceUsersRegisterController extends Controller
 {
-    use CompanyContactTrait;
     use UserCreateTrait;
+    use MainsiteViewSharedDataTrait;
 
     public function __construct()
     {
-        $companyContact = $this->getCompanyContact();
-
-        view()->share([
-            'companyContact' => $companyContact
-
-        ]);
+        // Call the shareViewData method 
+        $this->shareViewData();
     }
+    
     public function showRegisterForm()
     {
         return view('mainsite.pages.serviceusers-registration');

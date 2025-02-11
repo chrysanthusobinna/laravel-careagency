@@ -1,22 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\MainSite;
-
-use Illuminate\Http\Request;
-use App\Traits\CompanyContactTrait;
 use App\Http\Controllers\Controller;
+use App\Traits\MainsiteViewSharedDataTrait;
 
 class HomeController extends Controller
 {
-    use CompanyContactTrait;
+    use MainsiteViewSharedDataTrait;
+
     public function __construct()
     {
-        $companyContact = $this->getCompanyContact();
-
-        view()->share([
-            'companyContact' => $companyContact
-
-        ]);
+        // Call the shareViewData method 
+        $this->shareViewData();
     }
     public function index()
     {        
