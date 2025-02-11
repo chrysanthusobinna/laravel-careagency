@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Verify Email')
+@section('title', config('app.name') . ' - Verify Email')
 
 @section('header-class', 'header-style-one')
 
@@ -28,7 +28,7 @@
             <div class="col-lg-6 col-md-12 col-sm-12 mt-5">
                 <div class="form-bg" style="background-image: url('/mainsite-assets/images/background/3.jpg');"></div>
                 @include('partials._messages')
-                
+
                 <div class="inner-column">
                     <div class="contact-form wow fadeInLeft">
                         <p>Please enter the verification code sent to your email.</p>

@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Contact')
+@section('title', config('app.name') . ' - Contact')
 
 @section('header-class', 'header-style-one')
 
@@ -19,20 +19,22 @@
 </section>
 <!-- end main-content -->
 
-<!--Contact Details Start-->
+<!-- Contact Details Start -->
 <section class="contact-details">
     <div class="container pb-70">
         <div class="row">
             <!-- Contact Form Column -->
             <div class="col-xl-7 col-lg-6">
- 
-                <iframe class="map w-100 h-100" src="https://maps.google.com/maps?q=123%20Carepass%20Lane,%20Cityville,%20ST%2012345&output=embed"></iframe>
+                <iframe class="map w-100 h-100" src="https://maps.google.com/maps?q=123%20{{ config('app.name') }}%20Lane,%20Cityville,%20ST%2012345&output=embed"></iframe>
             </div>
             <!-- Contact Information Column -->
             <div class="col-xl-5 col-lg-6">
                 <div class="contact-details__right">
                     <div class="sec-title">
-                        <div class="text">If you have any questions or need assistance, please reach out to us through any of the following methods:</div>
+                        <h2>Contact {{ config('app.name') }}</h2>
+                        <div class="text">
+                            If you have any questions or need assistance, please reach out to our team at {{ config('app.name') }} through any of the following methods:
+                        </div>
                     </div>
                     <ul class="list-unstyled contact-details__info">
                         <!-- Phone Numbers -->
@@ -50,7 +52,7 @@
                                 </p>
                             </div>
                         </li>
-    
+
                         <!-- Emails -->
                         <li class="d-flex align-items-center mb-3">
                             <div class="icon me-3">
@@ -66,7 +68,7 @@
                                 </p>
                             </div>
                         </li>
-    
+
                         <!-- Addresses -->
                         <li class="d-flex align-items-center">
                             <div class="icon me-3">
@@ -83,18 +85,12 @@
                             </div>
                         </li>
                     </ul>
-     
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--Contact Details End-->
+<!-- Contact Details End -->
 
-<!-- Map Section-->
-<section class="map-section py-0">
-    
-</section>
-<!--End Map Section-->
 
 @endsection

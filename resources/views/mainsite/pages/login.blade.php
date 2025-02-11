@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Login')
+@section('title', config('app.name') . ' - Login')
 
 @section('header-class', 'header-style-one')
 
@@ -49,9 +49,6 @@
                                     </button>
                                 </div>
                                 <div class="form-group col-lg-12 text-center">
-                                    <p class="mt-2">
-                                        Don't have an account? <a href="{{ route('mainsite.register') }}">Register here</a>
-                                    </p>
                                     <p>
                                         Forgot your password? <a href="{{ route('mainsite.set-password') }}">Reset here</a>
                                     </p>

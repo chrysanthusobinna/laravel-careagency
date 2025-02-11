@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Set Password')
+@section('title', config('app.name') . ' - Set Password')
 
 @section('header-class', 'header-style-one')
 

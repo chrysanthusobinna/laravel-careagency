@@ -1,7 +1,5 @@
 @extends('mainsite.layouts.app')
 
-@section('title', '')
-
 @section('content')
 
 
@@ -14,7 +12,7 @@
             <div class="bg-image" style="background-image: url(/mainsite-assets/images/main-slider/1.jpg);"></div>
             <div class="auto-container">
                 <div class="content-box">
-                    <span class="sub-title animate-1">Welcome to CarePass</span>
+                    <span class="sub-title animate-1">Welcome to {{ config('app.name') }}</span>
                     <h1 class="title animate-1">Connecting Families with Trusted Carers</h1>
                     <div class="btn-box animate-2">
                         <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-one hover-light"><span class="btn-title">Learn More</span></a>
@@ -53,7 +51,7 @@
                 <div class="inner-column">
                     <div class="sec-title">
                         <h2 class="text-split">Compassionate care for independent living</h2>
-                        <div class="text">At Carepass, we empower seniors to maintain their independence while receiving personalized support. Our holistic approach combines human connection with smart care solutions, ensuring safety and dignity in every interaction.</div>
+                        <div class="text">At {{ config('app.name') }}, we empower seniors to maintain their independence while receiving personalized support. Our holistic approach combines human connection with smart care solutions, ensuring safety and dignity in every interaction.</div>
                     </div>
                     <div class="content-box">
                         <div class="about-block-one">
@@ -79,7 +77,7 @@
                     <figure class="image-1 overlay-anim wow fadeInUp"><img  src="/mainsite-assets/images/resource/about1-1.jpg" alt="Caregiver assisting senior with tablet"></figure>
                     <figure class="image-2 overlay-anim wow fadeInRight"><img  src="/mainsite-assets/images/resource/about1-2.jpg" alt="Senior couple enjoying outdoor activity"></figure>
                     <div class="experience bounce-y">
-                        <img  src="/mainsite-assets/images/healthcare.png" alt="Carepass badge" class="icon">
+                        <img  src="/mainsite-assets/images/healthcare.png" alt="{{ config('app.name') }} badge" class="icon">
                         <strong>Join us</strong> Today!
                     </div>
                 </div>
@@ -177,7 +175,7 @@
             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image-box">
-                        <figure class="image"><img  src="/mainsite-assets/images/resource/image-3.jpg" alt="CarePass Mobile App"></figure>
+                        <figure class="image"><img  src="/mainsite-assets/images/resource/image-3.jpg" alt="{{ config('app.name') }} Mobile App"></figure>
                     </div>
                 </div>
             </div>
@@ -200,7 +198,7 @@
                         <div class="sec-title">
                             <span class="sub-title">WHY CHOOSE US</span>
                             <h2 class="text-split">Connecting Families with Trusted Carers</h2>
-                            <div class="text">At CarePass, we bridge the gap between families and dedicated, self-employed live-in carers, ensuring personalized and compassionate care for your loved ones.</div>
+                            <div class="text">At {{ config('app.name') }}, we bridge the gap between families and dedicated, self-employed live-in carers, ensuring personalized and compassionate care for your loved ones.</div>
                         </div>
         
                         <a href="{{ route('mainsite.about') }}" class="theme-btn btn-style-two"><span class="btn-title">Explore Now</span></a>
@@ -260,7 +258,7 @@
 
             <div class="btn-column col-lg-6 col-md-12">
                 <div class="inner-column">
-                    <a href="{{ route('mainsite.family') }}" class="theme-btn btn-style-one"><span class="btn-title">Carepass for Family</span></a>
+                    <a href="{{ route('mainsite.family') }}" class="theme-btn btn-style-one"><span class="btn-title">{{ config('app.name') }} for Family</span></a>
                 </div>
             </div>
         </div>
@@ -283,7 +281,7 @@
                 </div>
                 <div class="info-box mb-4 mb-lg-0">
                     <i class="icon flaticon-oldkare-love"></i>
-                    <div class="text">Hear directly from families and seniors who have experienced the Carepass difference. Their stories inspire us every day.</div>
+                    <div class="text">Hear directly from families and seniors who have experienced the {{ config('app.name') }} difference. Their stories inspire us every day.</div>
                 </div>
             </div>
             
@@ -301,7 +299,7 @@
                                     </div>
                                     <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                 </div>
-                                <div class="text">"Carepass has been a blessing for my dad. The caregivers are not only skilled but also genuinely caring. It’s such a relief knowing he’s in good hands."</div>
+                                <div class="text">"{{ config('app.name') }} has been a blessing for my dad. The caregivers are not only skilled but also genuinely caring. It’s such a relief knowing he’s in good hands."</div>
                             </div>
                         </div>
 
@@ -316,7 +314,7 @@
                                     </div>
                                     <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                 </div>
-                                <div class="text">"The team at Carepass has made such a difference in my wife’s life. They treat her with respect and kindness, and she looks forward to their visits every day."</div>
+                                <div class="text">"The team at {{ config('app.name') }} has made such a difference in my wife’s life. They treat her with respect and kindness, and she looks forward to their visits every day."</div>
                             </div>
                         </div>
 
@@ -331,7 +329,7 @@
                                     </div>
                                     <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                 </div>
-                                <div class="text">"I can’t thank Carepass enough for the support they’ve given my mom. They’ve helped her regain her independence while ensuring her safety."</div>
+                                <div class="text">"I can’t thank {{ config('app.name') }} enough for the support they’ve given my mom. They’ve helped her regain her independence while ensuring her safety."</div>
                             </div>
                         </div>
 
@@ -346,7 +344,7 @@
                                     </div>
                                     <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                 </div>
-                                <div class="text">"Carepass has been a game-changer for our family. Their professionalism and compassion have made all the difference in my grandmother’s care."</div>
+                                <div class="text">"{{ config('app.name') }} has been a game-changer for our family. Their professionalism and compassion have made all the difference in my grandmother’s care."</div>
                             </div>
                         </div>
                     </div>
@@ -365,7 +363,7 @@
         <!-- Image Column -->
         <div class="col-md-6">
             <div class="p-4 text-center">
-                <img src="/mainsite-assets/images/background/3.jpg" alt="CarePass FAQ" class="img-fluid rounded shadow-lg">
+                <img src="/mainsite-assets/images/background/3.jpg" alt="{{ config('app.name') }} FAQ" class="img-fluid rounded shadow-lg">
             </div>
         </div>
 
@@ -376,56 +374,56 @@
                 <ul class="accordion-box wow fadeInRight">
                     <!--Block-->
                     <li class="accordion block">
-                        <div class="acc-btn">What is CarePass and how does it work?
+                        <div class="acc-btn">What is {{ config('app.name') }} and how does it work?
                             <div class="icon fa fa-angle-right"></div>
                         </div>
                         <div class="acc-content">
                             <div class="content">
-                                <div class="text">CarePass is a platform that connects families and individuals in need of care with self-employed carers across the UK. We make it easy to find, communicate with, and book qualified caregivers based on your unique needs.</div>
+                                <div class="text">{{ config('app.name') }} is a platform that connects families and individuals in need of care with self-employed carers across the UK. We make it easy to find, communicate with, and book qualified caregivers based on your unique needs.</div>
                             </div>
                         </div>
                     </li>
                     
                     <li class="accordion block">
-                        <div class="acc-btn">How does CarePass select carers?
+                        <div class="acc-btn">How does {{ config('app.name') }} select carers?
                             <div class="icon fa fa-angle-right"></div>
                         </div>
                         <div class="acc-content">
                             <div class="content">
-                                <div class="text">All carers on CarePass go through a thorough vetting process, including background checks, qualifications verification, and experience assessments. We ensure that every carer meets the highest standards of professionalism and compassion.</div>
+                                <div class="text">All carers on {{ config('app.name') }} go through a thorough vetting process, including background checks, qualifications verification, and experience assessments. We ensure that every carer meets the highest standards of professionalism and compassion.</div>
                             </div>
                         </div>
                     </li>
                     
                     <li class="accordion block">
-                        <div class="acc-btn">Is CarePass a care agency?
+                        <div class="acc-btn">Is {{ config('app.name') }} a care agency?
                             <div class="icon fa fa-angle-right"></div>
                         </div>
                         <div class="acc-content">
                             <div class="content">
-                                <div class="text">No, CarePass is not a traditional care agency. We are an independent platform that connects families with self-employed carers, giving you more choice, flexibility, and control over your care arrangements.</div>
+                                <div class="text">No, {{ config('app.name') }} is not a traditional care agency. We are an independent platform that connects families with self-employed carers, giving you more choice, flexibility, and control over your care arrangements.</div>
                             </div>
                         </div>
                     </li>
                     
                     <li class="accordion block">
-                        <div class="acc-btn">How do I pay for care services on CarePass?
+                        <div class="acc-btn">How do I pay for care services on {{ config('app.name') }}?
                             <div class="icon fa fa-angle-right"></div>
                         </div>
                         <div class="acc-content">
                             <div class="content">
-                                <div class="text">Payments on CarePass are secure and hassle-free. You can pay carers directly through our platform using secure payment methods, ensuring timely and transparent transactions without hidden fees.</div>
+                                <div class="text">Payments on {{ config('app.name') }} are secure and hassle-free. You can pay carers directly through our platform using secure payment methods, ensuring timely and transparent transactions without hidden fees.</div>
                             </div>
                         </div>
                     </li>
 
                     <li class="accordion block">
-                        <div class="acc-btn">What support does CarePass provide to users?
+                        <div class="acc-btn">What support does {{ config('app.name') }} provide to users?
                             <div class="icon fa fa-angle-right"></div>
                         </div>
                         <div class="acc-content">
                             <div class="content">
-                                <div class="text">CarePass offers full support to both carers and families. Our team provides guidance on finding the right carer, managing care arrangements, and resolving any concerns, ensuring a smooth and stress-free experience.</div>
+                                <div class="text">{{ config('app.name') }} offers full support to both carers and families. Our team provides guidance on finding the right carer, managing care arrangements, and resolving any concerns, ensuring a smooth and stress-free experience.</div>
                             </div>
                         </div>
                     </li>

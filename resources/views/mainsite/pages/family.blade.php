@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Family')
+@section('title', config('app.name') . ' - Family')
 
 @section('header-class', 'header-style-one')
 
@@ -34,7 +34,7 @@
             
                     <div class="text">
                         <p>Helping families and self-employed carers across the UK.</p>
-                        <p>Carepass lets you arrange and manage care seamlessly. We provide a comprehensive system to capture and manage recipient details, keeping healthcare information up-to-date in one place to ensure safe and sufficient care delivery.</p>
+                        <p>{{ config('app.name') }} lets you arrange and manage care seamlessly. We provide a comprehensive system to capture and manage recipient details, keeping healthcare information up-to-date in one place to ensure safe and sufficient care delivery.</p>
                         <ul class="list-style-two">
                             <li><i class="fa fa-check"></i> Easily update details when things change</li>
                             <li><i class="fa fa-check"></i> Allow carers to fully understand care needs</li>
@@ -58,7 +58,7 @@
                     <div class="sec-title">
                         <h2>Review and Communicate with Carers</h2>
                     </div>
-                    <p>Review suitable carers interested in providing care for your loved one. Use our chat feature to communicate, review previous experience, and verify background checks conducted by Carepass. Connect directly with carers and our support team for assistance.</p>
+                    <p>Review suitable carers interested in providing care for your loved one. Use our chat feature to communicate, review previous experience, and verify background checks conducted by {{ config('app.name') }}. Connect directly with carers and our support team for assistance.</p>
                 </div>
             </div>
             <!-- Image Column -->
@@ -191,7 +191,7 @@
                 </li>
                 <!--Block-->
                 <li class="accordion block">
-                    <div class="acc-btn">How does Carepass handle emergencies?
+                    <div class="acc-btn">How does {{ config('app.name') }} handle emergencies?
                         <div class="icon fa fa-plus"></div>
                     </div>
                     <div class="acc-content" style="display: none;">
@@ -224,13 +224,13 @@
 
 <!-- Call to Action -->
 <section class="cta-section text-center py-5 bg-light">
-    <h2 class="fw-bold">Find the Right Care with CarePass</h2>
-    <p>Take the first step towards personalized and compassionate care. Join CarePass today and connect with dedicated carers ready to support your needs.</p>
+    <h2 class="fw-bold">Find the Right Care with {{ config('app.name') }}</h2>
+    <p>Take the first step towards personalized and compassionate care. Join {{ config('app.name') }} today and connect with dedicated carers ready to support your needs.</p>
     
     @if (Auth::guest())
         <a href="{{ route('mainsite.register') }}" class="theme-btn btn-style-one mb-3 mb-sm-0">Register Now</a>
     @endif
-    
+
 </section>
 
 @endsection
