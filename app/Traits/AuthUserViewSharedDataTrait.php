@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\UserHelper;
+use App\Helpers\CompanyContactHelper;
 
 trait AuthUserViewSharedDataTrait
 {
@@ -21,10 +22,15 @@ trait AuthUserViewSharedDataTrait
         // Define color classes array
         $colorClasses = ['primary', 'secondary', 'success', 'danger', 'info'];
 
+        // Company Contact
+        $companyContact = CompanyContactHelper::getCompanyContact();
+
+
         // Share data with all views
         view()->share([
             'loggedInUser' => $loggedInUser,
             'colorClasses' => $colorClasses, 
+            'companyContact' => $companyContact, 
         ]);
     }
 }

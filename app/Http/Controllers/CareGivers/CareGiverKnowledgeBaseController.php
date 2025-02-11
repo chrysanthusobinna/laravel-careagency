@@ -1,21 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\ServiceUsers;
+namespace App\Http\Controllers\CareGivers;
+
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
-class ServiceUserDashboardController extends Controller
+class CareGiverKnowledgeBaseController extends Controller
 {
+    
     use AuthUserViewSharedDataTrait;
 
     public function __construct()
     {
         // Call the shareViewData method 
         $this->shareViewData();
-    } 
-    
+    }
+
+    // Show the Knowledge Base page.
+
     public function index()
     {
-        return view('serviceusers.pages.dashboard');
+        return view('caregivers.pages.knowledge-base');
     }
 }

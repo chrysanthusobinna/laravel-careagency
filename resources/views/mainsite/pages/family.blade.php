@@ -226,7 +226,11 @@
 <section class="cta-section text-center py-5 bg-light">
     <h2 class="fw-bold">Find the Right Care with CarePass</h2>
     <p>Take the first step towards personalized and compassionate care. Join CarePass today and connect with dedicated carers ready to support your needs.</p>
-    <a href="{{ route('mainsite.register') }}" class="theme-btn btn-style-one mb-3 mb-sm-0">Register Now</a>
+    
+    @if (Auth::guest())
+        <a href="{{ route('mainsite.register') }}" class="theme-btn btn-style-one mb-3 mb-sm-0">Register Now</a>
+    @endif
+    
 </section>
 
 @endsection

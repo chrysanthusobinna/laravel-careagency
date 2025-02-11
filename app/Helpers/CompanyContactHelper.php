@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Traits;
+namespace App\Helpers;
 
 use App\Models\CompanyContact;
-use Illuminate\Support\Facades\Config;
 
-trait CompanyContactTrait
+class CompanyContactHelper
 {
-    public function getCompanyContact()
+    /**
+     * Get the company contact details with fallbacks to environment variables.
+     *
+     * @return array
+     */
+    public static function getCompanyContact(): array
     {
         $companyContact = CompanyContact::first();
 
@@ -31,7 +35,3 @@ trait CompanyContactTrait
         ];
     }
 }
-
-
-
- 

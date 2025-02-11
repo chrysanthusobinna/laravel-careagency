@@ -1,6 +1,6 @@
-@extends('serviceusers.layouts.app')
+@extends('caregivers.layouts.app')
 
-@section('title', 'Serviceuser - Dashboard')
+@section('title', 'Caregiver Dashboard - Chat')
 
 
 @push('styles')
@@ -70,20 +70,19 @@
         <!-- Plugin used-->
 @endpush
 
+
 @section('page-header')
-    <h4 class="f-w-700">Dashboard Overview</h4>
+    <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Service User</li>
-            <li class="breadcrumb-item f-w-400 active">Dashboard</li>
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Dashboard</li>
+            <li class="breadcrumb-item f-w-400 active">Chat</li>
         </ol>
     </nav>
 @endsection
 
 @section('content')
-
-
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid">
@@ -91,25 +90,10 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Welcome!</h4>
+                        <h4>Chat</h4>
                     </div>
                     <div class="card-body text-center">
-                        <p>
-                            If you have just registered, our staff will contact you as soon as possible either via 
-                            call or email to discuss how we can help you.
-                        </p>
-                        <p>
-                            You can also contact us via:
-                        </p>
-                        
-                        <strong>Phone:</strong>   <a href="tel:{{ $companyContact['phone_1'] ?? 'NULL' }}">  {{ formatPhoneNumber($companyContact['phone_1']) ?? 'NULL' }} </a>
-                        <br/>
-                        <strong>Email:</strong>   <a href="mailto:{{ $companyContact['email_1'] ?? '' }}">  {{ $companyContact['email_1'] ?? '' }} </a>
-                        <br/>
-                        <p class="mb-0 text-muted">
-                        For more information, visit our 
-                        <a href="{{ route('mainsite.home') }}" class="text-primary">main site</a>.
-                        </p>
+                        <h5 class="text-warning">Chat is under development.</h5>
                     </div>
                 </div>
             </div>
@@ -117,9 +101,4 @@
     </div>
     <!-- Container-fluid Ends-->
 </div>
-
-
-  
-@endsection  
-
- 
+@endsection

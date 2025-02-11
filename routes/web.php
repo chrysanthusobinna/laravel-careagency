@@ -26,11 +26,14 @@ use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
 use App\Http\Controllers\Admin\AdminServiceUsersController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
+use App\Http\Controllers\CareGivers\AuthCareGiverController;
+use App\Http\Controllers\CareGivers\CareGiverChatController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
 use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
 use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
+use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
 use App\Http\Controllers\ServiceUsers\ServiceUserKnowledgeBaseController;
 
@@ -82,6 +85,9 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
 Route::middleware(CareGiverMiddleware::class)->group(function () {
 
     Route::get('/caregiver/dashboard', [CareGiverDashboardController::class, 'index'])->name('caregiver.dashboard');
+    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('caregiver.chat');
+    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('caregiver.knowledge-base');
+    Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('caregiver.auth-profile.show');
 
 });
 

@@ -40,9 +40,14 @@
                             <a href="{{ route('mainsite.contact') }}" class="theme-btn btn-style-two">
                                 <span class="btn-title">Contact Us</span>
                             </a>
+
+
+                            @if (Auth::guest())
                             <a href="{{ route('mainsite.register') }}" class="theme-btn btn-style-one ms-3">
                                 <span class="btn-title">register</span>
                             </a>
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -112,7 +117,7 @@
 <!-- End About Section -->
 
 <!-- Service Section Four -->
-<section class="services-section">
+<section class="services-section mb-5">
     <div class="auto-container">
         <div class="row">
             <!-- Values (Left Column) -->

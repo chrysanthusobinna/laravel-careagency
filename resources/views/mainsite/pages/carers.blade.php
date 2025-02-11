@@ -179,7 +179,11 @@
 <section class="cta-section">
     <h2>Get Started Today</h2>
     <p>Join CarePass and start making a difference in the lives of those who need care.</p>
-    <a href="{{ route('mainsite.carers.register') }}" class="theme-btn btn-style-one mb-3 mb-sm-0">Apply Now</a>
+   
+    @if (Auth::guest())
+        <a href="{{ route('mainsite.carers.register') }}" class="theme-btn btn-style-one mb-3 mb-sm-0">Apply Now</a>
+    @endif
+
 </section>
 
 @endsection
