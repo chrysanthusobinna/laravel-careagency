@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Service User Terms and Conditions')
+@section('title', config('app.name') . ' - Service User Terms and Conditions')
 
 @section('header-class', 'header-style-one')
 
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">1. Introduction</h4>
-                    <p>Welcome to Carepass. These Terms and Conditions outline the rules and regulations for service users utilizing our platform to connect with self-employed carers. By accessing and using Carepass, you agree to comply with these terms. Please read them carefully.</p>
+                    <p>Welcome to {{ config('app.name') }}. These Terms and Conditions outline the rules and regulations for service users utilizing our platform to connect with self-employed carers. By accessing and using {{ config('app.name') }}, you agree to comply with these terms. Please read them carefully.</p>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">2. Eligibility Criteria</h4>
-                    <p>To use Carepass, you must:</p>
+                    <p>To use {{ config('app.name') }}, you must:</p>
                     <ul>
                         <li>Be at least 18 years old or have the consent of a legal guardian.</li>
                         <li>Provide accurate and complete information during the registration process.</li>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">3. Service Usage</h4>
-                    <p>When using Carepass, you agree to:</p>
+                    <p>When using {{ config('app.name') }}, you agree to:</p>
                     <ul>
                         <li>Use the platform solely for lawful purposes and in accordance with these terms.</li>
                         <li>Respect the privacy and confidentiality of carers and other service users.</li>
@@ -61,11 +61,11 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">4. Booking and Payment</h4>
-                    <p>When booking care services through Carepass, you agree to:</p>
+                    <p>When booking care services through {{ config('app.name') }}, you agree to:</p>
                     <ul>
                         <li>Accurately describe your care needs and preferences.</li>
                         <li>Make timely payments for services rendered as per the agreed terms.</li>
-                        <li>Adhere to the cancellation and refund policies outlined by Carepass.</li>
+                        <li>Adhere to the cancellation and refund policies outlined by {{ config('app.name') }}.</li>
                     </ul>
                     <p>Payments are processed securely through our payment gateway, and invoices will be provided for all transactions.</p>
                 </div>
@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">7. Termination of Service</h4>
-                    <p>We reserve the right to terminate or suspend your access to Carepass at any time, with or without notice, for any violation of these terms or any conduct that we deem harmful to our community.</p>
+                    <p>We reserve the right to terminate or suspend your access to {{ config('app.name') }} at any time, with or without notice, for any violation of these terms or any conduct that we deem harmful to our community.</p>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="mt-4">10. Acceptance of Terms</h4>
-                    <p>By using Carepass, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+                    <p>By using {{ config('app.name') }}, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Carers Registration')
+@section('title', config('app.name') . ' - Carers Registration')
 
 @section('header-class', 'header-style-one')
 
@@ -28,10 +28,10 @@
             <div class="col-lg-6 col-md-12 col-sm-12 mt-5">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <h2>Join CarePass as a Self-Employed Carer</h2>
+                        <h2>Join {{ config('app.name') }} as a Self-Employed Carer</h2>
                     </div>
                     <div class="text">
-                        <p>Welcome to CarePass! If you are a dedicated carer looking for flexible care opportunities, you're in the right place. Our platform connects self-employed carers with families across the UK, providing rewarding and meaningful care experiences.</p>
+                        <p>Welcome to {{ config('app.name') }}! If you are a dedicated carer looking for flexible care opportunities, you're in the right place. Our platform connects self-employed carers with families across the UK, providing rewarding and meaningful care experiences.</p>
                         <p>Register today to take the next step in your care career.</p>
                     </div>
                     <a href="{{ route('mainsite.carers') }}" class="theme-btn btn-style-one">

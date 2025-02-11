@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Help and Advice')
+@section('title', config('app.name') . ' - Help and Advice')
 
 @section('header-class', 'header-style-one')
 
@@ -31,7 +31,7 @@
                 <div class="col-lg-6">
                     <h2 class="mb-4">Your Trusted Partner in Care and Support</h2>
                     <p class="mb-4">
-                        At Carepass, we recognize that selecting the right caregiver is one of the most important decisions you can make for yourself or your loved ones. Our mission is to simplify this process by connecting you with compassionate, experienced carers who offer personalized support tailored to your specific needs. Whether you're looking for live-in care, visiting assistance, or specialized services, we're dedicated to guiding you every step of the way.
+                        At {{ config('app.name') }}, we recognize that selecting the right caregiver is one of the most important decisions you can make for yourself or your loved ones. Our mission is to simplify this process by connecting you with compassionate, experienced carers who offer personalized support tailored to your specific needs. Whether you're looking for live-in care, visiting assistance, or specialized services, we're dedicated to guiding you every step of the way.
                     </p>
                     <p class="mb-4">
                         Discover the benefits of our user-friendly platform:
@@ -45,7 +45,7 @@
                         In addition, we provide a rich collection of resources designed to empower you with knowledge about care options, funding assistance, and practical advice. Our goal is to support you in making informed decisions that lead to the highest quality of care and enhanced well-being.
                     </p>
                     <p class="mb-4">
-                        Join the Carepass community today and experience peace of mind knowing that compassionate support is just a click away.
+                        Join the {{ config('app.name') }} community today and experience peace of mind knowing that compassionate support is just a click away.
                     </p>
                     <div class="d-flex">
                         <a href="{{ route('mainsite.contact') }}" class="btn-block btn btn-danger me-3">Contact Us</a>

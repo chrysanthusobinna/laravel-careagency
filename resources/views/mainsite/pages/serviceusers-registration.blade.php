@@ -1,6 +1,6 @@
 @extends('mainsite.layouts.app')
 
-@section('title', 'Register')
+@section('title', config('app.name') . ' - Register')
 
 @section('header-class', 'header-style-one')
 
@@ -33,7 +33,7 @@
                         <h2>Connecting You with Compassionate Carers</h2>
                     </div>
                     <div class="text">
-                        <p>At Carepass, we specialize in matching families seeking care with self-employed carers who meet their specific preferences and needs. Our platform ensures that you find the right support to maintain independence and quality of life in the comfort of your own home.</p>
+                        <p>At {{ config('app.name') }}, we specialize in matching families seeking care with self-employed carers who meet their specific preferences and needs. Our platform ensures that you find the right support to maintain independence and quality of life in the comfort of your own home.</p>
                         <p>By understanding your unique requirements, we provide personalized carer profiles, allowing you to choose the best match for you or your loved one.</p>
                     </div>
             
@@ -55,7 +55,7 @@
                     <!-- Registration Form -->
                     <div class="contact-form wow fadeInLeft">
                         <span class="sub-title">Register as an Individual or a Family in Need of Carers</span>
-                        <h2>Join Carepass Today</h2>
+                        <h2>Join {{ config('app.name') }} Today</h2>
                         <form method="post" action="{{ route('mainsite.register.submit') }}" id="registration-form">
                             @csrf
                             <div class="row">

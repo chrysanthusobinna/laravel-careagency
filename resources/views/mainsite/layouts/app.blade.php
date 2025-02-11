@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>@yield('title')</title>
-<!-- Stylesheets -->
-<link href="/mainsite-assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/mainsite-assets/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-<link href="/mainsite-assets/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-<link href="/mainsite-assets/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+    <head>
+        <meta charset="utf-8">
+        
+        <!-- Dynamic Page Title -->
+        <title>@yield('title', config('app.name') . ' - Connecting People with Compassionate Carers')</title>
+    
+        <!-- Meta Description (Crucial for SEO) -->
+        <meta name="description" content="{{ config('app.name') }} connects families and individuals seeking care with compassionate self-employed carers.">
+        
+        <!-- SEO Keywords -->
+        <meta name="keywords" content="{{ config('app.name') }}, home care, elderly care, caregivers, service users, independent carers, respite care, live-in care, professional caregivers, personalized care, UK carers">
+        
+        <!-- Author -->
+        <meta name="author" content="{{ config('app.name') }} Team">
+        
+        <!-- Robots Meta (Index & Follow Pages for SEO) -->
+        <meta name="robots" content="index, follow">
+    
+        <!-- Open Graph (OG) Tags for Social Media Sharing -->
 
-<link href="/mainsite-assets/css/style.css" rel="stylesheet">
-<link href="/mainsite-assets/css/responsive.css" rel="stylesheet">
-
-<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-<link rel="icon" href="/images/favicon.png" type="image/x-icon">
-
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!--[if lt IE 9]><script src="/mainsite-assets/js/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="/mainsite-assets/js/respond.js"></script><![endif]-->
-</head>
+        <meta property="og:title" content="@yield('title', config('app.name') . ' - Find the right support.')">
+        <meta property="og:description" content="{{ config('app.name') }} helps families find independent caregivers for home care. Get personalized, reliable care from qualified carers.">
+        <meta property="og:image" content="{{ asset('/mainsite-assets/images/social-preview.jpg') }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:type" content="website">
+        
+        <!-- Twitter Card (Enhance Twitter Shares) -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="@yield('title', config('app.name') . ' - Find the right support.')">
+        <meta name="twitter:description" content="{{ config('app.name') }} connects families and individuals seeking care with trusted independent caregivers.">
+        <meta name="twitter:image" content="{{ asset('/mainsite-assets/images/social-preview.jpg') }}">
+    
+        <!-- Mobile Responsive Meta -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        
+        <!-- Stylesheets -->
+        <link href="/mainsite-assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/mainsite-assets/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css">
+        <link href="/mainsite-assets/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css">
+        <link href="/mainsite-assets/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css">
+        <link href="/mainsite-assets/css/style.css" rel="stylesheet">
+        <link href="/mainsite-assets/css/responsive.css" rel="stylesheet">
+    
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/mainsite-assets/images/favicon.png" type="image/x-icon">
+        <link rel="icon" href="/mainsite-assets/images/favicon.png" type="image/x-icon">
+    </head>    
 
 <body>
 
@@ -203,7 +230,7 @@
                                     <div class="footer-widget about-widget">
                                         <h6 class="widget-title">About</h6>
                                         <div class="text">
-                                            Carepass connects individuals in need of care with verified, self-employed carers who meet their unique requirements. We ensure all carers undergo thorough background checks before joining our platform.
+                                            {{ config('app.name') }} connects individuals in need of care with verified, self-employed carers who meet their unique requirements. We ensure all carers undergo thorough background checks before joining our platform.
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +312,7 @@
                 <div class="auto-container">
                     <div class="inner-container text-center">
                         <div class="copyright-text">
-                            <p>&copy; {{ date('Y') }} <a href="{{ route('mainsite.home') }}">Carepass</a>. All rights reserved.</p>
+                            <p>&copy; {{ date('Y') }} <a href="{{ route('mainsite.home') }}">{{ config('app.name') }}</a>. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
