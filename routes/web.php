@@ -64,6 +64,10 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/reset-password', [SetPasswordController::class, 'resetPassword'])->name('mainsite.password.reset');
 
 
+    // Password Change Routes
+    Route::get('/password/change', [SetPasswordController::class, 'showChangePasswordForm'])->name('password.change');
+    Route::post('/password/update', [SetPasswordController::class, 'updatePassword'])->name('password.update');
+
 
     //Verify Email routes
     Route::get('/verify-email', [VerifyEmailController::class, 'showVerifyEmailForm'])->name('mainsite.verify-email');
@@ -90,16 +94,22 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
     Route::get('/knowledge-base', [ServiceUserKnowledgeBaseController::class, 'index'])->name('serviceuser.knowledge-base');
     Route::get('/auth-profile', [AuthServiceUserController::class, 'show'])->name('serviceuser.auth-profile.show');
 
+    Route::get('/change-password', [AuthServiceUserController::class, 'showChangePasswordForm'])->name('serviceuser.change-password');
+    Route::post('/update-password', [AuthServiceUserController::class, 'updatePassword'])->name('serviceuser.update-password');
+
 });
 
 
 // CARE GIVERS ROUTES
-Route::middleware(CareGiverMiddleware::class)->group(function () {
+Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->group(function () {
 
-    Route::get('/caregiver/dashboard', [CareGiverDashboardController::class, 'index'])->name('caregiver.dashboard');
+    Route::get('/dashboard', [CareGiverDashboardController::class, 'index'])->name('caregiver.dashboard');
     Route::get('/chat', [CareGiverChatController::class, 'index'])->name('caregiver.chat');
     Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('caregiver.knowledge-base');
     Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('caregiver.auth-profile.show');
+    
+    Route::get('/change-password', [AuthCareGiverController::class, 'showChangePasswordForm'])->name('caregiver.change-password');
+    Route::post('/update-password', [AuthCareGiverController::class, 'updatePassword'])->name('caregiver.update-password');
 
 });
 
@@ -142,7 +152,9 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
 
     Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');
-    
+    Route::get('/change-password', [AuthAdminProfileController::class, 'showChangePasswordForm'])->name('admin.change-password');
+    Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('admin.update-password');
+
     Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('admin.knowledge-base');
 
 });

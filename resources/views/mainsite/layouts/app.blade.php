@@ -341,7 +341,9 @@
     <script src="/mainsite-assets/js/select2.min.js"></script>
     <script src="/mainsite-assets/js/owl.js"></script>
     <script src="/mainsite-assets/js/script.js"></script>
-     
+    
+    @stack('scripts')
+
      </body>
     
      </html>

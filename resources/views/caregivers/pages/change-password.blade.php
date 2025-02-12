@@ -1,6 +1,6 @@
-@extends('serviceusers.layouts.app')
+@extends('caregivers.layouts.app')
 
-@section('title', 'Serviceuser - Dashboard')
+@section('title', 'Caregiver Dashboard - Change Password')
 
 
 @push('styles')
@@ -68,59 +68,87 @@
         <script src="/dashboard-assets/js/script1.js"></script>
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         <!-- Plugin used-->
+
+        <script>
+            $(document).ready(function() {
+                $('.toggle-all-passwords').click(function() {
+                    let passwordFields = $('.password-field'); // Get all password fields
+                    let icon = $(this).find('i'); // Get the icon
+                    let isPasswordVisible = passwordFields.attr('type') === 'text';
+        
+                    // Toggle all password fields
+                    passwordFields.attr('type', isPasswordVisible ? 'password' : 'text');
+        
+                    // Change button text and icon based on visibility
+                    $(this).html(isPasswordVisible 
+                        ? '<i class="fa fa-eye"></i> Show Passwords' 
+                        : '<i class="fa fa-eye-slash"></i> Hide Passwords');
+                });
+            });
+        </script>
 @endpush
 
+
 @section('page-header')
-    <h4 class="f-w-700">Dashboard Overview</h4>
+    <h4 class="f-w-700">Change Password</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Service User</li>
-            <li class="breadcrumb-item f-w-400 active">Dashboard</li>
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Dashboard</li>
+            <li class="breadcrumb-item f-w-400 active">Change Password</li>
         </ol>
     </nav>
 @endsection
 
 @section('content')
-
-
 <div class="page-body">
-    <!-- Container-fluid starts-->
     <div class="container-fluid">
-        @include('partials._dashboard_message')
-        <div class="row starter-main">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Welcome!</h4>
-                    </div>
-                    <div class="card-body text-center">
-                        <p>
-                            If you have just registered, our staff will contact you as soon as possible either via 
-                            call or email to discuss how we can help you.
-                        </p>
-                        <p>
-                            You can also contact us via:
-                        </p>
-                        
-                        <strong>Phone:</strong>   <a href="tel:{{ $companyContact['phone_1'] ?? 'NULL' }}">  {{ formatPhoneNumber($companyContact['phone_1']) ?? 'NULL' }} </a>
-                        <br/>
-                        <strong>Email:</strong>   <a href="mailto:{{ $companyContact['email_1'] ?? '' }}">  {{ $companyContact['email_1'] ?? '' }} </a>
-                        <br/>
-                        <p class="mb-0 text-muted">
-                        For more information, visit our 
-                        <a href="{{ route('mainsite.home') }}" class="text-primary">main site</a>.
-                        </p>
-                    </div>
+        <div class="edit-profile">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    <form class="card" method="POST" action="{{ route('caregiver.update-password') }}">
+                        @csrf
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">Change Password</h4>
+                        </div>
+                        <div class="card-body">
+                            @include('partials._dashboard_message')
+                    
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Old Password</label>
+                                        <input class="form-control password-field" type="password" name="old_password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">New Password</label>
+                                        <input class="form-control password-field" type="password" name="new_password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm New Password</label>
+                                        <input class="form-control password-field" type="password" name="confirm_password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-outline-primary toggle-all-passwords btn-block" style="width:100%" type="button">
+                                        <i class="fa fa-eye"></i> Show Passwords
+                                    </button>
+                                </div>                                
+                            </div>
+                    
+                        </div>
+                        <div class="card-footer text-end">
+                            <button class="btn btn-primary" type="submit">Update Password</button>
+                        </div>
+                    </form>  
+                       
                 </div>
             </div>
         </div>
     </div>
-    <!-- Container-fluid Ends-->
 </div>
-
-
-  
-@endsection  
-
- 
+@endsection

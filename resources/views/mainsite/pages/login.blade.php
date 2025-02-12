@@ -4,6 +4,27 @@
 
 @section('header-class', 'header-style-one')
 
+@push('scripts')
+	<script>
+		$(document).ready(function() {
+			$('.toggle-all-passwords').click(function() {
+				let passwordFields = $('.password-field'); // Select all password fields
+				let icon = $(this).find('i'); // Select the icon
+				let isPasswordVisible = passwordFields.attr('type') === 'text';
+
+				// Toggle all password fields
+				passwordFields.attr('type', isPasswordVisible ? 'password' : 'text');
+
+				// Change button text and icon based on visibility
+				$(this).html(isPasswordVisible 
+					? '<i class="fa fa-eye"></i> Show Password' 
+					: '<i class="fa fa-eye-slash"></i> Hide Password');
+			});
+		});
+	</script>
+@endpush
+
+
 @section('content')
 <!-- Start main-content -->
 <section class="page-title" style="background-image: url(/mainsite-assets/images/background/page-title.jpg);">
@@ -41,13 +62,22 @@
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="password" class="text-secondary">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control" required>
+                                    <input type="password" id="password" name="password" class="form-control password-field" required>
                                 </div>
+                        
+                                <!-- Show/Hide Password Button -->
                                 <div class="form-group col-lg-12">
-                                    <button style="width:100%" class="theme-btn btn-style-two btn-secondary" type="submit">
+                                    <button class="btn btn-outline-secondary toggle-all-passwords btn-block" style="width:100%" type="button">
+                                        <i class="fa fa-eye"></i> Show Password
+                                    </button>
+                                </div>
+                        
+                                <div class="form-group col-lg-12">
+                                    <button style="width:100%" class="btn-sm theme-btn btn-style-two btn-secondary" type="submit">
                                         <span class="btn-title">Login</span>
                                     </button>
                                 </div>
+                        
                                 <div class="form-group col-lg-12 text-center">
                                     <p>
                                         Forgot your password? <a href="{{ route('mainsite.set-password') }}">Reset here</a>
@@ -55,6 +85,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
