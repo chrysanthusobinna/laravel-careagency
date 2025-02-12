@@ -122,12 +122,6 @@
                 <p class="mb-0 f-w-600">
                   <script>document.write(new Date().getFullYear());</script> &copy; {{ config('app.name') }}. All rights reserved.
                 </p>
-                <p class="mb-0 f-w-600">
-                  Made with 
-                  <svg class="footer-icon">
-                    <use href="/dashboard-assets/svg/icon-sprite.svg#footer-heart"></use>
-                  </svg>
-                </p>
               </div>
             </div>
           </div>
