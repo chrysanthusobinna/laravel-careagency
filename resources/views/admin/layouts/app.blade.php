@@ -114,21 +114,25 @@
 
 
 
-        <!-- footer start-->
+        <!-- Footer Start -->
         <footer class="footer">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12 footer-copyright d-flex flex-wrap align-items-center justify-content-between">
-                <p class="mb-0 f-w-600">Copyright <span class="year-update"> </span> © Mofi theme by pixelstrap  </p>
-                <p class="mb-0 f-w-600">Hand crafted & made with
+                <p class="mb-0 f-w-600">
+                  <script>document.write(new Date().getFullYear());</script> &copy; {{ config('app.name') }}. All rights reserved.
+                </p>
+                <p class="mb-0 f-w-600">
+                  Made with 
                   <svg class="footer-icon">
-                    <use href="/dashboard-assets/svg/icon-sprite.svg#footer-heart"> </use>
+                    <use href="/dashboard-assets/svg/icon-sprite.svg#footer-heart"></use>
                   </svg>
                 </p>
               </div>
             </div>
           </div>
         </footer>
+
       </div>
     </div>
 
