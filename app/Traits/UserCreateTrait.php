@@ -14,10 +14,11 @@ trait UserCreateTrait
      *
      * @param array $data
      * @param string $role
+     * @param int $password_change_required
      * @return User
      * @throws Exception
      */
-    public function createUser(array $data, string $role)
+    public function createUser(array $data, string $role, int $password_change_required = 0)
     {
         try {
             return User::create([
@@ -36,6 +37,7 @@ trait UserCreateTrait
                 'role' => $role,
                 'status' => 1, // Default status active
                 'activation_token' => Str::random(60),
+                'password_change_required' => $password_change_required, 
             ]);
         } catch (\Exception $e) {
             throw $e;

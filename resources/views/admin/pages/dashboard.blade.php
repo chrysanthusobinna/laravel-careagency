@@ -87,6 +87,9 @@
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid">
+
+        @include('partials._dashboard_message')
+        
         <div class="row starter-main">
             <div class="col-sm-12">
                 <div class="card">

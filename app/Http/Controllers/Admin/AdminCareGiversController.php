@@ -44,13 +44,15 @@ class AdminCareGiversController extends Controller
         return view('admin.pages.create-caregiver');
     }
 
-    public function store(RegisterUserRequest $request)
+    public function store(RegisterUserRequest $request) 
     {
         $role = 'care_giver';
-
+        $password_change_required = 1;
+    
         // Call trait method to create the user
-        $user = $this->createUser($request->validated(), $role);
-
+        $user = $this->createUser($request->validated(), $role, $password_change_required);
+    
         return redirect()->route('admin.caregivers.index')->with('success', 'Caregiver added successfully! They can check their email to verify their account.');
     }
+    
 }

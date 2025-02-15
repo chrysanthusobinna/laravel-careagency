@@ -43,7 +43,7 @@
                         </a>
                     </li>
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <a class="{{ request()->routeIs('admin.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.chat') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
@@ -53,7 +53,7 @@
                             </svg>
                             <span>Chat</span>
                         </a>
-                    </li> --}}
+                    </li>
 
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('admin.service-users.index') || request()->routeIs('admin.service-users.create') ? 'active' : '' }} sidebar-link sidebar-title" href="#">
@@ -68,12 +68,12 @@
                         <ul class="sidebar-submenu">
                             <li><a class="{{ request()->routeIs('admin.service-users.create') ? 'active' : '' }}" href="{{ route('admin.service-users.create') }}">Add New</a></li>
                             <li><a class="{{ request()->routeIs('admin.service-users.index') ? 'active' : '' }}" href="{{ route('admin.service-users.index') }}">View List</a></li>
-                            {{-- <li><a class="{{ request()->routeIs('admin.eligibility-request') ? 'active' : '' }}" href="{{ route('admin.eligibility-request') }}">Eligibility Request</a></li>
-                            <li><a class="{{ request()->routeIs('admin.care-booking-request') ? 'active' : '' }}" href="{{ route('admin.care-booking-request') }}">Care Booking Request</a></li> --}}
+                            <li><a class="{{ request()->routeIs('admin.eligibility-request') ? 'active' : '' }}" href="{{ route('admin.eligibility-request') }}">Eligibility Request</a></li>
+                            <li><a class="{{ request()->routeIs('admin.care-booking-request') ? 'active' : '' }}" href="{{ route('admin.care-booking-request') }}">Care Booking Request</a></li>
                         </ul>
                     </li>
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
@@ -87,9 +87,9 @@
                             <li><a class="{{ request()->routeIs('admin.caregivers.create') ? 'active' : '' }}" href="{{ route('admin.caregivers.create') }}">Add New</a></li>
                             <li><a class="{{ request()->routeIs('admin.caregivers.index') ? 'active' : '' }}" href="{{ route('admin.caregivers.index') }}">View List</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
@@ -103,7 +103,19 @@
                             <li><a class="{{ request()->routeIs('adminusers.create') ? 'active' : '' }}" href="{{ route('adminusers.create') }}">Add New</a></li>
                             <li><a class="{{ request()->routeIs('adminusers.index') ? 'active' : '' }}" href="{{ route('adminusers.index') }}">View List</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
+                            </svg>
+                            <span>Knowledge Base</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('admin.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
@@ -117,31 +129,28 @@
                         </a>
                     </li>
 
-                    {{-- <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}">
+                    <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('admin.change-password') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.change-password') }}">
                             <svg class="stroke-icon">
-                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-lock"></use>
                             </svg>
                             <svg class="fill-icon">
-                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-lock"></use>
                             </svg>
-                            <span>Knowledge Base</span>
+                            <span>Change Password</span>
                         </a>
-                    </li> --}}
+                    </li>
+                    
 
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('logout') }}">
-                            <svg class="stroke-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-icon feather feather-log-in">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                                <polyline points="10 17 15 12 10 7"></polyline>
-                                <line x1="15" y1="12" x2="3" y2="12"></line>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-logout"></use>
                             </svg>
                             <span>Logout</span>
                         </a>
                     </li>
+                    
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

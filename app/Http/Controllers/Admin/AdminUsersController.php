@@ -55,9 +55,10 @@ class AdminUsersController extends Controller
     public function store(RegisterUserRequest $request)
     {
         $role = 'admin_level_1';
+        $password_change_required = 1;
 
         // Call trait method to create the user
-        $user = $this->createUser($request->validated(), $role);
+        $user = $this->createUser($request->validated(), $role, $password_change_required);
 
         return redirect()->route('adminusers.index')->with('success', 'Admin user added successfully!');
     }

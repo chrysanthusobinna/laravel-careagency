@@ -48,9 +48,10 @@ class AdminServiceUsersController extends Controller
     {
 
         $role = 'service_user'; 
+        $password_change_required = 1;
 
         // Call trait method to create the user
-        $user = $this->createUser($request->validated(), $role);
+        $user = $this->createUser($request->validated(), $role, $password_change_required);
 
         return redirect()->route('admin.service-users.index')->with('success', 'Service user added successfully! Service users can check their email to verify their account.');
 

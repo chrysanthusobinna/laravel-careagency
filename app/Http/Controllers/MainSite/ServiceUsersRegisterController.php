@@ -29,9 +29,10 @@ class ServiceUsersRegisterController extends Controller
     public function submitRegisterForm(RegisterUserRequest $request)
     {
         $role = 'service_user'; 
-    
+        $password_change_required = 0;
+
         // Create user
-        $user = $this->createUser($request->validated(), $role);
+        $user = $this->createUser($request->validated(), $role, $password_change_required);
     
         // Generate 6-digit activation token
         $activationToken = mt_rand(100000, 999999);

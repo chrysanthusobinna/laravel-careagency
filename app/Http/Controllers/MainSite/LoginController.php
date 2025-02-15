@@ -22,11 +22,14 @@ class LoginController extends Controller
     }
    
    //Show the login form.
- 
-    public function showLoginForm()
-    {
-        return view('mainsite.pages.login');
-    }
+   public function showLoginForm()
+   {
+    session()->forget(['activation_email_address', 'activation_email_address', 'changepassword_user']);
+
+   
+       return view('mainsite.pages.login');
+   }
+   
  
     public function login(Request $request)
     {
@@ -61,6 +64,13 @@ class LoginController extends Controller
     
                 return redirect()->route('mainsite.verify-email')->with('error', 'A new activation code has been sent to your email. Please verify your email before logging in.');
             }
+
+            // Check if password change is required
+            if ($user->password_change_required) {
+                session(['changepassword_user' => $user->email]);
+                return redirect()->route('password.change')->with('warning', 'You must change your password before accessing your account.');
+            }
+
     
             // Authenticate user only after all checks pass
             Auth::login($user);

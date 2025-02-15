@@ -43,7 +43,7 @@
                         </a>
                     </li>
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.chat') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
@@ -53,12 +53,10 @@
                             </svg>
                             <span>Chat</span>
                         </a>
-                    </li> --}}
-
-     
+                    </li>
 
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.knowledge-base') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
@@ -68,7 +66,7 @@
                             </svg>
                             <span>Knowledge Base</span>
                         </a>
-                    </li> --}}
+                    </li>
 
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.auth-profile.show') }}">
@@ -82,19 +80,29 @@
                         </a>
                     </li>
 
+
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('logout') }}">
-                            <svg class="stroke-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-icon feather feather-log-in">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                                <polyline points="10 17 15 12 10 7"></polyline>
-                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                        <a class="{{ request()->routeIs('serviceuser.change-password') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.change-password') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-lock"></use>
                             </svg>
                             <svg class="fill-icon">
-                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-lock"></use>
+                            </svg>
+                            <span>Change Password</span>
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('logout') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-logout"></use>
                             </svg>
                             <span>Logout</span>
                         </a>
                     </li>
+                    
+                    
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
