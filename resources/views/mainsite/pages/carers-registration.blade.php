@@ -55,18 +55,46 @@
                         <form method="post" action="{{ route('mainsite.register.carer.submit') }}" id="carer-registration-form">
                             @csrf
                             <div class="row">
+                                <!-- Full Name -->
                                 <div class="form-group col-lg-12">
                                     <label for="name" class="text-secondary">Full Name</label>
                                     <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
                                 </div>
+                        
+                                <!-- Email Address -->
                                 <div class="form-group col-lg-12">
                                     <label for="email" class="text-secondary">Email Address</label>
                                     <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
                                 </div>
+                        
+                                <!-- Phone Number -->
                                 <div class="form-group col-lg-12">
                                     <label for="phone_number" class="text-secondary">Phone Number</label>
                                     <input type="tel" id="phone_number" name="phone_number" class="form-control" value="{{ old('phone_number') }}" required>
                                 </div>
+                        
+                                <!-- Honeypot Field (Invisible) -->
+                                <div class="form-group col-lg-12" style="display:none;">
+                                    @honeypot
+                                </div>
+                        
+                                <!-- reCAPTCHA Centered -->
+                                <div class="form-group col-lg-12 d-flex justify-content-center">
+                                    {!! NoCaptcha::display() !!}
+                                    {!! NoCaptcha::renderJs() !!}
+                                </div>
+                        
+                                <!-- Privacy & Terms Disclaimer -->
+                                <div class="form-group col-lg-12 text-center mb-3">
+                                    <small class="text-muted">
+                                        By clicking "Register Now", you agree to our 
+                                        <a href="{{ route('mainsite.privacy') }}"  class="text-secondary" style="text-decoration: underline;" target="_blank">Privacy Policy</a> 
+                                        and 
+                                        <a href="{{ route('mainsite.terms.carer') }}"  class="text-secondary" style="text-decoration: underline;" target="_blank">Terms & Conditions</a>.
+                                    </small>
+                                </div>
+                        
+                                <!-- Submit Button -->
                                 <div class="form-group col-lg-12">
                                     <button style="width:100%" class="theme-btn btn-style-two btn-secondary" type="submit">
                                         <span class="btn-title">Register Now</span>
@@ -74,6 +102,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                     <!-- End Registration Form -->
                 </div>

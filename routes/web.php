@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LogoutController;
+use App\Http\Middleware\BlockBotsMiddleware;
 use App\Http\Middleware\CareGiverMiddleware;
 use App\Http\Middleware\AdminLevel2Middleware;
 use App\Http\Middleware\ServiceUserMiddleware;
@@ -74,11 +76,16 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/verify-email', [VerifyEmailController::class, 'verifyEmail'])->name('mainsite.verify-email.submit');
     Route::post('/resend-activation-token', [VerifyEmailController::class, 'resendActivationToken'])->name('mainsite.resend-activation-token');
 
-    Route::get('/serviceuser-register', [ServiceUsersRegisterController::class, 'showRegisterForm'])->name('mainsite.register');
-    Route::post('/serviceuser-register', [ServiceUsersRegisterController::class, 'submitRegisterForm'])->name('mainsite.register.submit');
+    // Apply the BlockBotsMiddleware to registration
+    Route::middleware([BlockBotsMiddleware::class, ProtectAgainstSpam::class])->group(function () {
+        Route::get('/serviceuser-register', [ServiceUsersRegisterController::class, 'showRegisterForm'])->name('mainsite.register');
+        Route::post('/serviceuser-register', [ServiceUsersRegisterController::class, 'submitRegisterForm'])->name('mainsite.register.submit');
 
-    Route::get('/carers-register', [CarersController::class, 'showRegisterForm'])->name('mainsite.carers.register');
-    Route::post('/carers-register', [CarersController::class, 'submitCarerRegister'])->name('mainsite.register.carer.submit');
+
+        Route::get('/carers-register', [CarersController::class, 'showRegisterForm'])->name('mainsite.carers.register');
+        Route::post('/carers-register', [CarersController::class, 'submitCarerRegister'])->name('mainsite.register.carer.submit');
+    });
+
 });
 
 //ALL USERS LOGOUT ROUTE
