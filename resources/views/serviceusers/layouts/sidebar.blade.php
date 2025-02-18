@@ -55,7 +55,20 @@
                         </a>
                     </li>
 
-
+                    <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('serviceuser.eligibility.index', 'serviceuser.eligibility.self', 'serviceuser.eligibility.family') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.eligibility.index') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-check"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-check"></use>
+                            </svg>
+                            <span>Eligibility</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.knowledge-base') }}">
                             <svg class="stroke-icon">
