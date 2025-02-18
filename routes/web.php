@@ -9,6 +9,7 @@ use App\Http\Middleware\BlockBotsMiddleware;
 use App\Http\Middleware\CareGiverMiddleware;
 use App\Http\Middleware\AdminLevel2Middleware;
 use App\Http\Middleware\ServiceUserMiddleware;
+use App\Http\Controllers\EligibilityController;
 use App\Http\Controllers\MainSite\HomeController;
 use App\Http\Controllers\MainSite\AboutController;
 use App\Http\Controllers\MainSite\LoginController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\MainSite\ContactController;
+use App\Http\Controllers\EligibilityResponseController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
 use App\Http\Controllers\MainSite\VerifyEmailController;
@@ -37,6 +39,7 @@ use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
 use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
+use App\Http\Controllers\ServiceUsers\ServiceUserEligibilityController;
 use App\Http\Controllers\ServiceUsers\ServiceUserKnowledgeBaseController;
 
 // MAIN SITE ROUTES
@@ -103,6 +106,14 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
 
     Route::get('/change-password', [AuthServiceUserController::class, 'showChangePasswordForm'])->name('serviceuser.change-password');
     Route::post('/update-password', [AuthServiceUserController::class, 'updatePassword'])->name('serviceuser.update-password');
+
+
+    Route::get('/eligibility', [ServiceUserEligibilityController::class, 'index'])->name('serviceuser.eligibility.index');
+    Route::get('/eligibility/request/self', [ServiceUserEligibilityController::class, 'requestForSelf'])->name('serviceuser.eligibility.self');
+    Route::get('/eligibility/request/family', [ServiceUserEligibilityController::class, 'requestForFamily'])->name('serviceuser.eligibility.family');
+
+    Route::post('/eligibility-save', [ServiceUserEligibilityController::class, 'saveResponse'])->name('serviceuser.eligibility.save');
+
 
 });
 

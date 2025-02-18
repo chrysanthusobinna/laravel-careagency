@@ -44,4 +44,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'two_factor_auth' => 'boolean',
     ];
+
+
+
+    public function managedCareBeneficiaries()
+    {
+        // This user manages these care beneficiaries
+        return $this->hasMany(FamilyMember::class, 'family_member_id');
+    }
+
+    public function familyMembersManagingThisUser()
+    {
+        // This user is the care beneficiary
+        return $this->hasMany(FamilyMember::class, 'care_beneficiary_id');
+    }
+
+    public function eligibilityResponses()
+    {
+        return $this->hasMany(EligibilityResponse::class, 'user_id');
+    }
+
+    // service user eligbility
+    public function eligibility()
+    {
+        return $this->hasOne(ServiceUserEligibility::class, 'user_id');
+    }
+
+    
 }
