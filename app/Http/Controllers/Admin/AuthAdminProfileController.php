@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Traits\UserViewTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +12,6 @@ use App\Http\Requests\ChangePasswordRequest;
 
 class AuthAdminProfileController extends Controller
 {
-    use UserViewTrait;
     use AuthUserViewSharedDataTrait;
 
     public function __construct()
@@ -26,9 +24,6 @@ class AuthAdminProfileController extends Controller
     // Show the profile of the authenticated admin user.
     public function show()
     {
-        // $userId = Auth::id();  
-        // $user = $this->getUserById($userId);  
-
         return view('admin.pages.auth-admin-profile');
     }
 

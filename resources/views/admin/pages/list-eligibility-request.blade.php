@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Service users List')
+@section('title', 'Admin - Eligibility Request')
 
 
 @push('styles')
@@ -96,55 +96,47 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
-    <script>
-        $(document).ready(function () {
-        var targetMenu = $(".sidebar-list:has(a span:contains('Service Users'))");  
-
-        if (targetMenu.length > 0) {
-            targetMenu.find(".sidebar-submenu").css("display", "block");  
-
-            // Ensure the arrow icon changes to down
-            targetMenu.find(".according-menu i").removeClass("fa-angle-right").addClass("fa-angle-down");
-        }
-    });
-
-    </script>
-
+  
 @endpush
 
 
+
 @section('page-header')
-    <h4 class="f-w-700">Service users List</h4>
+    <h4 class="f-w-700">Eligibility Request</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400">Service users List</li>
+            <li class="breadcrumb-item f-w-400">Eligibility Request</li>
+            <li class="breadcrumb-item f-w-400 active">List</li>
         </ol>
     </nav>
 @endsection
+
 
 @section('content')
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid dashboard-3">
-
+ 
+ 
+    
         <div class="row">
             <div class="col-xl-4 col-sm-6">
                 <div class="card pb-5">
                     <div class="card-header card-no-border pb-0">
                         <div class="header-top daily-revenue-card">
-                            <h4>Total Service users</h4>
+                            <h4>Total Eligibility Requests</h4>
                         </div>
                     </div>
                     <div class="card-body pb-0 total-sells">
                         <div class="d-flex align-items-center gap-3">
                             <div class="flex-shrink-0">
-                                <i class="fa fa-user text-white"></i>
+                                <i class="fa fa-check text-white"></i>
                             </div>
                             <div class="flex-grow-1">
                                 <div class="d-flex align-items-center gap-2">
-                                    <h2>{{ $totalCount }}  </h2>
+                                    <h2>{{ $allEligibilityCount }}  </h2>
         
                                 </div>
                             </div>
@@ -156,34 +148,13 @@
                 <div class="card pb-5">
                     <div class="card-header card-no-border pb-0">
                         <div class="header-top daily-revenue-card">
-                            <h4>Active Service users</h4>
+                            <h4>Eligible Service Users</h4>
                         </div>
                     </div>
                     <div class="card-body pb-0 total-sells-2">
                         <div class="d-flex align-items-center gap-3">
                             <div class="flex-shrink-0">
-                                <i class="fa fa-user text-white"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="d-flex align-items-center gap-2">
-                                    <h2>{{ $activeCount }}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-sm-6">
-                <div class="card pb-5">
-                    <div class="card-header card-no-border pb-0">
-                        <div class="header-top daily-revenue-card">
-                            <h4>Eligble Service Users</h4>
-                        </div>
-                    </div>
-                    <div class="card-body pb-0 total-sells-3">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="flex-shrink-0">
-                                <i class="fa fa-user text-white"></i>
+                                <i class="fa fa-check text-white"></i>
                             </div>
                             <div class="flex-grow-1">
                                 <div class="d-flex align-items-center gap-2">
@@ -194,16 +165,38 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="card pb-5">
+                    <div class="card-header card-no-border pb-0">
+                        <div class="header-top daily-revenue-card">
+                            <h4>Pending Eligibility Requests</h4>
+                        </div>
+                    </div>
+                    <div class="card-body pb-0 total-sells-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-check text-white"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center gap-2">
+                                    <h2>{{ $pendingEligibilityCount }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>        
+
 
 
         @include('partials._dashboard_message')
 
         
-        @if($serviceUsers->isEmpty())
-            <div class="alert txt-primary border-warning alert-dismissible fade show" role="alert">
+        @if($eligibilityRequests->isEmpty())
+            <div class="alert txt-danger border-warning alert-dismissible fade show" role="alert">
                 <i data-feather="clock"></i>
-                <p class="text-danger">No service users found.</p>
+                <p class="text-danger">No Eligibility Requests Found.</p>
             </div>
         @else
             <div class="row">
@@ -211,7 +204,7 @@
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h4>Service Users</h4>
+                                <h4>Eligibility Requests</h4>
                             </div>
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
@@ -219,14 +212,14 @@
                                 <table class="table display" id="recent-orders" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Registered</th>
+                                            <th>Care Beneficiary </th>
+                                            <th>Status</th>
+                                            <th>Time Submitted</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                         
-                                        @foreach ($serviceUsers as $user)
+                                        @foreach ($eligibilityRequests as $request)
                                             @php
                                                 $randomColor = $colorClasses[array_rand($colorClasses)];
                                             @endphp
@@ -234,23 +227,29 @@
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
                                                         <div class="flex-shrink-0">
-                                                            @if($user->profile_picture == 'default.png')
+                                                            @if($request->user->profile_picture == 'default.png')
                                                                 <div class="letter-avatar">
-                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
+                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $request->user->initials }}</h6>
                                                                 </div>
                                                             @else
-                                                                <img src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                                                <img src="{{ asset('uploads/profile_pictures/' . $request->user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
                                                             @endif
                                                         </div>
                                                         <div class="flex-grow-1">
-                                                            <a href="{{ route('admin.service-users.show', $user->id) }}">
-                                                                <h6>{{ $user->first_name . " " . $user->last_name }}</h6>
+                                                            <a href="{{ route('admin.eligibility-request.show', $request->user_id) }}">
+                                                                <h6>{{ $request->user->first_name . " " . $request->user->last_name }}</h6>
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->created_at->diffForHumans() }}</td>
+                                                <td>
+                                                    <span class="badge 
+                                                        {{ $request->status == 'eligible' ? 'bg-success' : 
+                                                           ($request->status == 'not_eligible' ? 'bg-danger' : 'bg-warning') }}">
+                                                        {{ ucfirst($request->status) }}
+                                                    </span>
+                                                </td>                                               
+                                                <td>{{ $request->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

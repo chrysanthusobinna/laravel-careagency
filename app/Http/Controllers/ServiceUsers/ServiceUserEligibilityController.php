@@ -8,7 +8,7 @@ use App\Models\EligibilityQuestion;
 use App\Models\EligibilityResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ServiceUserEligibility;
+use App\Models\EligibilityRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
 
 class ServiceUserEligibilityController extends Controller
@@ -101,17 +101,19 @@ class ServiceUserEligibilityController extends Controller
            ->where('completed_by_user', $userId)
            ->count();
    
-       // If the user has completed all questions, create or update the eligibility record
-       if ($totalQuestions > 0 && $totalQuestions === $totalResponses) {
-           ServiceUserEligibility::updateOrCreate(
-               ['user_id' => $userId],
-               [
-                   'status' => 'pending',
-                   'note' => null,
-                   'eligibility_checked_by' => null
-               ]
-           );
-       }
+        // If the user has completed all questions, create or update the eligibility record
+        if ($totalQuestions > 0 && $totalQuestions === $totalResponses) {
+            EligibilityRequest::updateOrCreate(
+                ['user_id' => $userId],
+                [
+                    'status' => 'pending',
+                    'note' => null,
+                    'eligibility_checked_by' => null,
+                    'submitted_by' => $userId,  
+                ]
+            );
+        }
+
         
         return response()->json(['success' => true, 'message' => 'Response saved successfully.']);
     }
