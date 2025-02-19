@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Helpers\UserHelper;
 
 class User extends Authenticatable
 {
@@ -67,8 +68,18 @@ class User extends Authenticatable
     // service user eligbility
     public function eligibility()
     {
-        return $this->hasOne(ServiceUserEligibility::class, 'user_id');
+        return $this->hasOne(EligibilityRequest::class, 'user_id');
     }
 
-    
+     // Accessor for Initials
+     public function getInitialsAttribute()
+     {
+         return UserHelper::getInitials($this->first_name, $this->last_name);
+     }
+ 
+     // Accessor for Formatted Role
+     public function getFormattedRoleAttribute()
+     {
+         return UserHelper::formatUserRole($this->role);
+     }   
 }

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\UserListTrait;
-use App\Traits\UserViewTrait;
 use App\Traits\UserCreateTrait;
+use Illuminate\Validation\Rule;
+use App\Models\EligibilityRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterUserRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
-
+ 
 class AdminServiceUsersController extends Controller
 {
     use UserCreateTrait;
     use UserListTrait;
-    use UserViewTrait;
     use AuthUserViewSharedDataTrait;
 
     public function __construct()
@@ -25,19 +27,49 @@ class AdminServiceUsersController extends Controller
 
     public function index()
     {
+
         $serviceUsersData = $this->getUsersByRole('service_user');
-        
+
         $serviceUsers = $serviceUsersData['users'];
+
+        $totalCount = $serviceUsersData['total_count'];
         $activeCount = $serviceUsersData['active_count'];
-        
-        return view('admin.pages.list-serviceusers', compact('serviceUsers', 'activeCount'));
+        $eligibleCount = EligibilityRequest::where('status', 'eligible')->count();
+
+        return view('admin.pages.list-serviceusers', compact('serviceUsers','totalCount', 'activeCount', 'eligibleCount'));
     }
     
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $user = $this->getUserById($id);
+        // Validate user ID to ensure it's a valid service user
+        $validator = Validator::make(
+            ['id' => $id], // Data being validated
+            [
+                'id' => [
+                    'required',
+                    'exists:users,id',
+                    Rule::exists('users', 'id')->where(function ($query) {
+                        return $query->where('role', 'service_user');
+                    }),
+                ],
+            ],
+            [
+                'id.exists' => 'The selected user is either invalid or not a service user.',
+            ]
+        );
+    
+        // Handle validation failure
+        if ($validator->fails()) {
+            return redirect()->route('admin.service-users.index')
+                ->withErrors($validator)
+                ->with('error', 'The selected user is either invalid or not a service user.');
+        }
+    
+        // Fetch the user if validation passes
+        $user = User::findOrFail($id);
         return view('admin.pages.view-serviceuser', compact('user'));
     }
+    
 
     public function create()
     {

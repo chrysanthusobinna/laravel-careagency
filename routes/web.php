@@ -147,7 +147,13 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/service-users/show/{id}', [AdminServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
 
     
-    Route::get('/eligibility-requests', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request'); 
+    Route::get('/eligibility-requests/list', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request');     
+    Route::get('/eligibility-requests/show/{user_id}', [AdminEligibilityController::class, 'show'])->name('admin.eligibility-request.show');
+    
+    Route::post('/eligibility-requests/review/{user_id}', [AdminEligibilityController::class, 'submitReview'])->name('admin.eligibility-request.review');
+    Route::delete('/eligibility-requests/delete/{user_id}', [AdminEligibilityController::class, 'deleteEligibility'])->name('admin.eligibility-request.delete');
+
+
     Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
 
 

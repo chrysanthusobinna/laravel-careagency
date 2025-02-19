@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\UserListTrait;
-use App\Traits\UserViewTrait;
 use App\Traits\UserCreateTrait;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterUserRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
 
@@ -14,7 +16,6 @@ class AdminUsersController extends Controller
 {
     use UserCreateTrait;
     use UserListTrait;
-    use UserViewTrait;
     use AuthUserViewSharedDataTrait;
 
     public function __construct()
@@ -36,11 +37,36 @@ class AdminUsersController extends Controller
 
  
     // Show a specific admin user.
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $user = $this->getUserById($id);
+        $validator = Validator::make(
+            ['id' => $id], // Data being validated
+            [
+                'id' => [
+                    'required',
+                    'exists:users,id',
+                    Rule::exists('users', 'id')->where(function ($query) {
+                        return $query->whereIn('role', ['admin_level_1', 'admin_level_2']);
+                    }),
+                ],
+            ],
+            [
+                'id.exists' => 'The selected user is either invalid or does not have admin privileges.',
+            ]
+        );
+    
+        // Handle validation failure
+        if ($validator->fails()) {
+            return redirect()->route('admin.adminusers.index')
+                ->withErrors($validator)
+                ->with('error', 'The selected user is either invalid or does not have admin privileges.');
+        }
+    
+        // Fetch the user if validation passes
+        $user = User::findOrFail($id);
         return view('admin.pages.view-adminuser', compact('user'));
     }
+    
 
  
     // Show the form for creating a new admin user.
