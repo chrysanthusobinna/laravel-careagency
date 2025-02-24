@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\FamilyMember;
 use Illuminate\Http\Request;
 use App\Traits\UserListTrait;
 use Illuminate\Validation\Rule;
@@ -81,10 +82,18 @@ class AdminEligibilityController extends Controller
                 ->with('error', 'No eligibility request or responses found for this user.');
         }
 
-    
-        return view('admin.pages.view-eligibility-request-response', compact('eligibilityRequest', 'responses'));
+        // Check if the form was submitted by someone other than the service user
+        $familyMemberRelation = null;
+        if ($eligibilityRequest->submitted_by !== $eligibilityRequest->user_id) {
+            $familyMemberRelation = FamilyMember::where('family_member_id', $eligibilityRequest->submitted_by)
+                ->where('care_beneficiary_id', $user_id)
+                ->with('familyMember')
+                ->first();
+        }
+        
+        return view('admin.pages.view-eligibility-request-response', compact('eligibilityRequest', 'responses', 'familyMemberRelation'));
     }
-    
+
 
 
     public function submitReview(Request $request, $user_id)

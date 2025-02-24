@@ -53,17 +53,10 @@ class ServiceUsersRegisterController extends Controller
         $request->validate([
             'g-recaptcha-response' => 'required|captcha',
         ]);
-    
-        // Validate email domain (allow only trusted domains)
-        $allowedDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'nhs.uk'];
-        $emailDomain = substr(strrchr($request->email, "@"), 1);
-        if (!in_array($emailDomain, $allowedDomains)) {
-            Log::warning('Unapproved email domain registration attempt.', ['email' => $request->email, 'ip' => $ip]);
-            return redirect()->back()->withErrors(['email' => 'Email domain not allowed.']);
-        }
+ 
     
         // Create the user
-        $role = 'service_user';
+        $role = $request->input('role');
         $password_change_required = 0;
         $user = $this->createUser($request->validated(), $role, $password_change_required);
     

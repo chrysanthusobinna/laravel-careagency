@@ -85,6 +85,7 @@ class LoginController extends Controller
                     return redirect()->route('caregiver.dashboard')->with('success', 'Welcome to the Caregiver Dashboard!');
     
                 case 'service_user':
+				case 'family_member':
                     return redirect()->route('serviceuser.dashboard')->with('success', 'Welcome to your Service User Dashboard!');
     
                 default:

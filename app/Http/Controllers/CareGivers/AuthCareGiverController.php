@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateUserRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
 use App\Http\Requests\ChangePasswordRequest;
 
@@ -65,5 +66,21 @@ class AuthCareGiverController extends Controller
         return redirect()->route('caregiver.dashboard')->with('success', 'Your password has been updated successfully!');
     }
 
+    // SHOW EDIT PROFILE  
+    public function editProfile()
+    {
+        return view('caregivers.pages.edit-my-profile');
+    }
 
+    // UPDATE  PROFILE
+    public function updateProfile(UpdateUserRequest $request)
+    {
+        $authUserId = Auth::id(); 
+        $user = User::find($authUserId);
+
+        $user->update($request->validated());
+
+        return redirect()->route('caregiver.auth-profile.show')->with('success', 'Your profile has been updated successfully!');
+    
+    }
 }

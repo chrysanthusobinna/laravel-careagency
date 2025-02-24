@@ -88,38 +88,90 @@
 @endsection
 
 
+
 @section('content')
 <div class="page-body">
     <!-- Container-fluid starts-->
-    <div class="container-fluid">
-        <div class="row starter-main">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Eligibility Form</h4>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="progress mb-4">
-                            <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
-                        </div>
-                    
-<div class="container py-5 text-center">
-    <h3 class="fw-bold mb-4">Eligibility Request for a Family Member</h3>
-    <p class="lead">
-        This form allows you to complete an eligibility request on behalf of a family member.
-    </p>
+    <div class="container-fluid dashboard-3">
+   
+        @include('partials._dashboard_message')
 
-    <a href="{{ route('serviceuser.eligibility.index') }}" class="btn btn-outline-primary">
-        Back to Eligibility Page
-    </a>
-</div>
-                        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header card-no-border pb-0">
+                        <div class="header-top d-flex justify-content-between align-items-center">
+                            <h4>My Family Members</h4>
+                            <a href="{{ route('serviceuser.family-members.add') }}" class="btn btn-primary">Add Family Member</a>
+                        </div>
                     </div>
-                    
+                    <div class="card-body pt-0 recent-orders px-0">
+                        <div class="table-responsive theme-scrollbar">
+        
+                            @if($familyMembers->isEmpty())
+                            <div class="alert txt-primary border-warning alert-dismissible fade show m-3 p-3 d-flex align-items-center" role="alert">
+                                <i class="fa fa-exclamation-circle me-2 text-danger"></i>
+                                <span class="text-danger">You don't have any family members linked to your account.</span>
+                            </div>
+                            @else
+                            <div class="table-responsive theme-scrollbar p-3">
+                                <table class="table display mt-3" id="recent-orders" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Relationship</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($familyMembers as $member)
+                                            @php
+                                                $randomColor = $colorClasses[array_rand($colorClasses)];
+                                                $beneficiary = $member->careBeneficiary;
+                                            @endphp
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="flex-shrink-0">
+                                                            @if($beneficiary->profile_picture == 'default.png')
+                                                                <div class="letter-avatar">
+                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $beneficiary->initials }}</h6>
+                                                                </div>
+                                                            @else
+                                                                <img src="{{ asset('uploads/profile_pictures/' . $beneficiary->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                                            @endif
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <a href="{{ route('serviceuser.family-member.show', $beneficiary->id) }}">
+                                                                <h6>{{ ucwords($beneficiary->first_name . " " . $beneficiary->last_name) }}</h6>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $member->relationship_type }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('serviceuser.family.eligibility.show',$beneficiary->id) }}'">
+                                                        Eligibility
+                                                    </button>
+                                                    
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            @endif
+        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+
     </div>
     <!-- Container-fluid Ends-->
 </div>
 @endsection
+

@@ -9,7 +9,7 @@ class EligibilityResponse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'completed_by_user', 'question_id', 'answer','child_answer'];
+    protected $fillable = ['user_id', 'question_id', 'answer','child_answer'];
 
     public function question()
     {

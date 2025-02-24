@@ -92,95 +92,73 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
 <div class="page-body">
     <div class="container-fluid">
         <div class="edit-profile">
- <div class="row d-flex align-items-stretch">
-    <div class="col-xl-4 d-flex">
-        <div class="card flex-fill">
-            <div class="card-header">
-                <h4 class="card-title mb-0">My Profile</h4>
-            </div>
-            <div class="card-body">
-                <div class="row mb-2">
-                    <div class="profile-title">
-                        <div class="d-flex">
-                            @if($loggedInUser->profile_picture == 'default.png')
-                                <div class="letter-avatar">
-                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $loggedInUser->initials }}</h6>
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+
+                    @include('partials._dashboard_message')
+
+                    <div class="card w-100 border-top border-primary border-3">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="profile-title">
+                                    <div class="d-flex">
+                                        @if($loggedInUser->profile_picture == 'default.png')
+                                            <div class="letter-avatar">
+                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $loggedInUser->initials }}</h6>
+                                            </div>
+                                        @else
+                                            <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $loggedInUser->profile_picture) }}">
+                                        @endif
+                                        <div class="flex-grow-1">
+                                            <h4 class="mb-1">{{ $loggedInUser->first_name }} {{ $loggedInUser->last_name }}</h4>
+                                        </div>
+                                    </div>
                                 </div>
-                            @else
-                                <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $loggedInUser->profile_picture) }}">
-                            @endif
-                            <div class="flex-grow-1">
-                                <h4 class="mb-1">{{ $loggedInUser->first_name }} {{ $loggedInUser->last_name }}</h4>
-                                <p>{{ $loggedInUser->formatted_role }}</p>
                             </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>First Name</th>
+                                            <td>{{ ucwords($loggedInUser->first_name) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Middle Name</th>
+                                            <td>{{ ucwords($loggedInUser->middle_name) ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Last Name</th>
+                                            <td>{{ ucwords($loggedInUser->last_name) }}</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>Address</th>
+                                            <td>{{ $loggedInUser->address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>City</th>
+                                            <td>{{ $loggedInUser->city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Postal Code</th>
+                                            <td>{{ $loggedInUser->post_code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Country</th>
+                                            <td>{{ $loggedInUser->country }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="{{ route('serviceuser.dashboard') }}" class="btn btn-outline-secondary">Dashboard</a>
+                            <a href="{{ route('serviceuser.auth-profile.edit') }}" class="btn btn-secondary">Edit My Profile</a>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>{{ $loggedInUser->email }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ $loggedInUser->phone_number }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- User Details Form -->
-    <div class="col-xl-8 d-flex">
-        <div class="card flex-fill">
-            <div class="card-header">
-                <h4 class="card-title mb-0">Details</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <th>First Name</th>
-                                <td>{{ $loggedInUser->first_name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Middle Name</th>
-                                <td>{{ $loggedInUser->middle_name ?? 'N/A' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Last Name</th>
-                                <td>{{ $loggedInUser->last_name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Address</th>
-                                <td>{{ $loggedInUser->address }}</td>
-                            </tr>
-                            <tr>
-                                <th>City</th>
-                                <td>{{ $loggedInUser->city }}</td>
-                            </tr>
-                            <tr>
-                                <th>Postal Code</th>
-                                <td>{{ $loggedInUser->post_code }}</td>
-                            </tr>
-                            <tr>
-                                <th>Country</th>
-                                <td>{{ $loggedInUser->country }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card-footer text-end">
-                <a href="{{ route('serviceuser.dashboard') }}" class="btn btn-secondary">Dashboard</a>
-            </div>
-        </div>
-    </div>
-</div>
-
         </div>
     </div>
 </div>

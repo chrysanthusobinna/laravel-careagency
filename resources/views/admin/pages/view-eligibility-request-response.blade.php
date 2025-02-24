@@ -137,6 +137,13 @@
                             <td class="fw-bold">Submitted by:</td>
                             <td>
                                 <a href="{{ route('admin.service-users.show', $eligibilityRequest->submittedBy->id) }}" >
+                                    
+                                    @if($familyMemberRelation)
+                                        Family Member ({{ $familyMemberRelation->relationship_type  }})
+                                    @else
+                                        Self
+                                    @endif
+
                                     {{ $eligibilityRequest->submittedBy->first_name }} 
                                     {{ $eligibilityRequest->submittedBy->middle_name }} 
                                     {{ $eligibilityRequest->submittedBy->last_name }}

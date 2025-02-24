@@ -83,7 +83,7 @@
         <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
         <li class="breadcrumb-item f-w-400">Dashboard</li>
         <li class="breadcrumb-item f-w-400">Eligibility</li>
-        <li class="breadcrumb-item f-w-400 active">For Self</li>
+        <li class="breadcrumb-item f-w-400 active">Family</li>
     </ol>
 </nav>
 @endsection
@@ -114,52 +114,54 @@ use Illuminate\Support\Str;
                             
                                 @if($totalResponses === 0)
                                     <p class="lead">
-                                        We are about to collect some information to assess your eligibility for our care services. 
-                                        This data will help us tailor the best possible care plan for you. 
+                                        We are about to collect some information for {{ ucwords($care_beneficiary_user->first_name) }} to assess their eligibility for our care services. 
+                                        This data will help us tailor the best possible care plan for {{ ucwords($care_beneficiary_user->first_name) }}. 
                                         For more details on how we handle your data, 
                                         please visit our 
                                         <a href="{{ route('mainsite.privacy') }}" target="_blank">Privacy Policy</a>.
                                     </p>
+                                
                                     <button class="btn btn-outline-primary" onclick="startForm()">Start Eligibility Form</button>
                                 
-                                    @elseif($totalResponses > 0)
-                                        <p class="lead text-secondary fs-4">
-                                            Your Eligibility Request form has been partially completed, and previous responses have been saved.
-                                            You can continue answering the remaining questions or change any previously provided answers to proceed with booking care services.
-                                        </p>
-                                    
-                                        
-                                        <button class="btn btn-outline-primary" onclick="startForm()">Continue Eligibility Form</button>
-                                    @endif
-                                    
+                                @elseif($totalResponses > 0 )
+                                    <p class="lead text-secondary fs-4">
+                                        The Eligibility Request form for {{ ucwords($care_beneficiary_user->first_name) }} has been partially completed, and previous responses have been saved.
+                                        You can continue answering the remaining questions or change any previously provided answers to proceed with booking care services.
+                                    </p>
+                                
+                                    <button class="btn btn-outline-primary" onclick="startForm()">Continue Eligibility Form</button>
+                                @endif
+                            
                             @else 
                             
                                 @if($user_eligibility_status == 'eligible')
-                                    <p class="lead fs-4">
-                                        Congratulations! You are eligible for our care services. If you believe your eligibility status has changed and you need to redo the eligibility form, kindly 
-                                        <a href="{{ route('mainsite.contact') }}" class="fw-bold fs-4" target="_blank">contact us</a>.
-                                    </p>
+                                <p class="lead fs-4">
+                                    Congratulations! {{ ucwords($care_beneficiary_user->first_name) }} is eligible for our care services.
+                                    If you believe {{ ucwords($care_beneficiary_user->first_name) }}'s eligibility status has changed and needs to be reassessed, please 
+                                    <a href="{{ route('mainsite.contact') }}" class="fw-bold fs-4" target="_blank">contact us</a>.
+                                </p>
+                                
                                     <p class="lead fs-4">
                                         You can now start booking for care!
                                     </p>
                                     <a href=" " target="_blank" class="btn btn-primary mt-5">Book Care Now</a>
 
                                 @elseif($user_eligibility_status == 'not_eligible')
-                                <p class="lead text-danger fs-4">
-                                    Unfortunately, you are not eligible for our care services at this time. If you believe something is not right and you need to speak to us, kindly 
-                                    <a href="{{ route('mainsite.contact') }}" target="_blank" class="fw-bold fs-4">contact us</a>.
-                                </p>
-                                
+                                    <p class="lead text-danger fs-4">
+                                        Unfortunately, {{ ucwords($care_beneficiary_user->first_name) }} is not eligible for our care services at 
+                                        this time. If you believe there has been a mistake or have any questions, please 
+                                        <a href="{{ route('mainsite.contact') }}" target="_blank" class="fw-bold fs-4">contact us</a>.
+                                    </p>
+                            
                             
                                 @elseif($user_eligibility_status == 'pending')
-                                <p class="lead fs-4">
-                                    The eligibility form for your care services has been successfully completed.
-                                    Whether completed by you or a family member, please wait while we review the responses and provide feedback.
-                                    <br/>
-                                    <hr/>
-                                    <button class="btn btn-outline-primary" onclick="window.location.href='{{ route('serviceuser.dashboard') }}'">Dashboard</button>
-                                </p>
-                                
+                                    <p class="lead fs-4">
+                                        The Eligibility Request form for {{ ucwords($care_beneficiary_user->first_name) }} has been completed. 
+                                        Please wait while we review your responses and provide feedback.
+                                        <br/>
+                                        <hr/>
+                                        <button class="btn btn-outline-primary" onclick="window.location.href='{{ route('serviceuser.dashboard') }}'">Dashboard</button>
+                                    </p>
                                 
                                 @endif
                             
@@ -311,7 +313,7 @@ use Illuminate\Support\Str;
             let formData = form.find("input, textarea").serialize();
             const alertBox = $('#responseAlert');
 
-            $.post("{{ route('serviceuser.eligibility.save') }}", formData, function (response) {
+            $.post("{{ route('serviceuser.eligibility.family.save',$care_beneficiary_user->id) }}", formData, function (response) {
  
                 if (response.success) {
                     alertBox.addClass('d-none').text('Form saved successfully!');
