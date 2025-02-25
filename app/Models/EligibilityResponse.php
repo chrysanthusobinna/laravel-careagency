@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EligibilityResponse extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'question_id', 'answer','child_answer'];
+    protected $fillable = ['user_id', 'question_id', 'answer', 'child_answer'];
+
+    protected $dates = ['deleted_at'];
 
     public function question()
     {
@@ -25,5 +28,4 @@ class EligibilityResponse extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-   
 }

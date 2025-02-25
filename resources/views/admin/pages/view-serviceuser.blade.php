@@ -31,6 +31,9 @@
       <link id="color" rel="stylesheet" href="/dashboard-assets/css/color-1.css" media="screen">
       <!-- Responsive css-->
       <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/responsive.css">  
+
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
 @endpush
 
 
@@ -67,9 +70,17 @@
         <script src="/dashboard-assets/js/script.js"></script>
         <script src="/dashboard-assets/js/script1.js"></script>
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
+        
+        @if($user->role === 'family_member')
+            <script src="/dashboard-assets/js/add-care-beneficiary-to-family.js"></script>
+        @endif
+        
+        @if($user->role === 'service_user')
+            <script src="/dashboard-assets/js/add-family-for-care-beneficiary.js"></script>
+        @endif
         <!-- Plugin used-->
 
-        <script>
+        {{-- <script>
             $(document).ready(function () {
             var targetMenu = $(".sidebar-list:has(a span:contains('Service Users'))");  
     
@@ -81,7 +92,37 @@
             }
         });
     
-        </script>
+        </script> --}}
+
+
+
+        <script>
+        $(document).ready(function () {
+            // Unlink Modal
+            $("#unlinkModal").on("show.bs.modal", function (event) {
+                let button = $(event.relatedTarget); // Button that triggered the modal
+                let id = button.data("id"); // Extract info from data-id attribute
+
+                $("#unlink_id").val(id); // Set the ID in the hidden input field
+            });
+
+            // Update Modal
+            $("#updateModal").on("show.bs.modal", function (event) {
+                let button = $(event.relatedTarget);
+                let id = button.data("id");
+                let relationship = button.data("relationship");
+
+                $("#update_id").val(id);
+                $("#update_relationship").val(relationship).change(); // Set selected value
+            });
+        });
+
+
+
+ </script>
+
+    
+            
 @endpush
 
 @section('page-header')
@@ -101,8 +142,6 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
 
 
  
-
-
 
 @section('content')
 <div class="page-body">
@@ -171,15 +210,214 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <button class="btn btn-outline-secondary" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
-                            <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
 
-                        </div>
                     </div>
+
+                    @if($user->role === 'service_user')
+<!-- Family Members Managing This User -->
+<div class="card w-100 border-top border-info border-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5>Family Members Managing This User</h5>
+        <button class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#addFamilyMemberModal" 
+            data-searchServiceUserroute="{{ route('admin.family-members.search','family_member') }}">
+            Add Family Member
+        </button>
+    </div>
+    <div class="card-body">
+        @if($user->familyMembersManagingThisUser->isEmpty())
+
+        <div class="d-flex align-items-center gap-2 p-3 border rounded ">
+            <i class="fa fa-exclamation-circle text-warning fa-lg"></i>
+            <span>No family members linked to this Service user.</span>
+        </div>
+
+        @else
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Family Member</th>
+                        <th>Relationship</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($user->familyMembersManagingThisUser as $family)
+                        <tr>
+                            <td>{{ optional($family->familyMember)->first_name }} {{ optional($family->familyMember)->last_name }}</td>
+                            <td>{{ $family->relationship_type }}</td>
+                            <td>
+                                <button class="btn btn-outline-warning btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#updateModal"
+                                    data-id="{{ $family->id }}" 
+                                    data-relationship="{{ $family->relationship_type }}">
+                                    Update
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#unlinkModal"
+                                    data-id="{{ $family->id }}">
+                                    Unlink
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <button class="btn btn-outline-secondary" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
+        <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
+    </div>
+</div>
+@endif
+
+@if($user->role === 'family_member')
+
+<!-- Care Beneficiaries Managed by This User -->
+<div class="card w-100 border-top border-success border-3 mt-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5>Care Beneficiaries Managed by This User</h5>
+        <button class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#addFamilyMemberModal" 
+            data-searchServiceUserroute="{{ route('admin.family-members.search','service_user') }}">
+            Add Family Member
+        </button>
+    </div>
+    <div class="card-body">
+        @if($user->managedCareBeneficiaries->isEmpty())
+        <div class="d-flex align-items-center gap-2 p-3 border rounded ">
+            <i class="fa fa-exclamation-circle text-warning fa-lg"></i>
+            <span>This Service user is not managing any care beneficiaries.</span>
+        </div>
+    @else
+    
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Care Beneficiary</th>
+                        <th>Relationship</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($user->managedCareBeneficiaries as $beneficiary)
+                        <tr>
+                            <td>{{ optional($beneficiary->careBeneficiary)->first_name }} {{ optional($beneficiary->careBeneficiary)->last_name }}</td>
+                            <td>{{ $beneficiary->relationship_type }}</td>
+                            <td>
+                                <button class="btn btn-outline-warning btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#updateModal"
+                                    data-id="{{ $beneficiary->id }}" 
+                                    data-relationship="{{ $beneficiary->relationship_type }}">
+                                    Update
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#unlinkModal"
+                                    data-id="{{ $beneficiary->id }}">
+                                    Unlink
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <button class="btn btn-outline-secondary" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
+        <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
+    </div>
+</div>
+@endif
+
+
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- Unlink Modal -->
+<div class="modal fade" id="unlinkModal" tabindex="-1" aria-labelledby="unlinkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="unlinkModalLabel">Unlink Family Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('admin.family-members.unlink') }}">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="unlink_id">
+                    <p>Are you sure you want to unlink this family member?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Unlink</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update Relationship</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('admin.family-members.update') }}">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="update_id">
+                    <table class="table">
+                        <tr>
+                            <td><strong>Relationship Type</strong></td>
+                            <td>
+                                <select class="form-control" name="relationship_type" id="update_relationship" required>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Sibling">Sibling</option>
+                                    <option value="Child">Child</option>
+                                    <option value="Spouse">Spouse</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@include('admin.layouts.modal-add-family-for-care-beneficiary')
+@include('admin.layouts.modal-add-care-beneficiary-to-family')
+
+
+
     </div>
 </div>
 @endsection

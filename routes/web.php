@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\AuthAdminProfileController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
 use App\Http\Controllers\Admin\AdminServiceUsersController;
+use App\Http\Controllers\Admin\AdminFamilyMembersController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
 use App\Http\Controllers\CareGivers\AuthCareGiverController;
 use App\Http\Controllers\CareGivers\CareGiverChatController;
@@ -177,6 +178,15 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
 
 
+
+    Route::get('/family-members', [AdminFamilyMembersController::class, 'index'])->name('admin.family-members.index');
+    Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('admin.family-members.unlink');
+    Route::post('/family-members/update', [AdminFamilyMembersController::class, 'update'])->name('admin.family-members.update');
+
+    Route::get('/family-members/search/{role}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('admin.family-members.search');
+    Route::post('/family-members/add', [AdminFamilyMembersController::class, 'addFamilyMember'])->name('admin.family-members.add');
+
+    
 
     Route::get('/care-givers/list', [AdminCareGiversController::class, 'index'])->name('admin.caregivers.index');
     Route::get('/care-givers/show/{id}', [AdminCareGiversController::class, 'show'])->name('admin.caregivers.show');

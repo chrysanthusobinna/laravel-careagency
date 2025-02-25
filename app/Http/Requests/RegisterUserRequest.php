@@ -31,7 +31,7 @@ class RegisterUserRequest extends FormRequest
             'county' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:service_user,family_member', // Only allows service_user or family_member roles
+            'role' => 'required|in:service_user,family_member', 
         ];
     }
 

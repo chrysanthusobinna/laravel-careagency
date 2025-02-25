@@ -105,7 +105,7 @@ class AdminEligibilityController extends Controller
         $eligibilityRequest = EligibilityRequest::where('user_id', $user_id)->firstOrFail();
         $eligibilityRequest->update([
             'status' => $request->status,
-            'eligibility_checked_by' => Auth::id(), // Set the admin who reviewed it
+            'eligibility_checked_by' => Auth::id(),  
         ]);
 
         return redirect()->back()->with('success', 'Eligibility status updated successfully.');
@@ -113,10 +113,11 @@ class AdminEligibilityController extends Controller
 
     public function deleteEligibility($user_id)
     {
-        EligibilityResponse::where('user_id', $user_id)->delete();
-        EligibilityRequest::where('user_id', $user_id)->delete();
-
-        return redirect()->route('admin.eligibility-request')->with('success', 'Eligibility request and responses deleted.');
+        EligibilityResponse::where('user_id', $user_id)->delete(); 
+        EligibilityRequest::where('user_id', $user_id)->delete();  
+    
+        return redirect()->route('admin.eligibility-request')->with('success', 'Eligibility request and responses have been deleted.');
     }
+    
     
 }
