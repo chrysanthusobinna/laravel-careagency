@@ -41,20 +41,20 @@ class AdminEligibilityController extends Controller
 
     public function show(Request $request, $user_id)
     {
-        // Validate user ID to ensure it's a valid service user
+        // Validate user ID to ensure it's a valid care_beneficiary
         $validator = Validator::make(
-            ['user_id' => $user_id], // Data being validated
+            ['user_id' => $user_id], 
             [
                 'user_id' => [
                     'required',
                     'exists:users,id',
                     Rule::exists('users', 'id')->where(function ($query) {
-                        return $query->where('role', 'service_user');
+                        return $query->where('role', 'care_beneficiary');
                     }),
                 ],
             ],
             [
-                'user_id.exists' => 'The user is either invalid or not a service user.',
+                'user_id.exists' => 'The user is either invalid or not a Care Beneficiary.',
             ]
         );
     
@@ -62,7 +62,7 @@ class AdminEligibilityController extends Controller
         if ($validator->fails()) {
             return redirect()->route('admin.eligibility-request')
                 ->withErrors($validator)
-                ->with('error', 'The selected user is either invalid or not a service user.');
+                ->with('error', 'The selected user is either invalid or not a Care Beneficiary.');
         }
     
         // Fetch the eligibility request
@@ -82,7 +82,7 @@ class AdminEligibilityController extends Controller
                 ->with('error', 'No eligibility request or responses found for this user.');
         }
 
-        // Check if the form was submitted by someone other than the service user
+        // Check if the form was submitted by someone other than Care Beneficiary
         $familyMemberRelation = null;
         if ($eligibilityRequest->submitted_by !== $eligibilityRequest->user_id) {
             $familyMemberRelation = FamilyMember::where('family_member_id', $eligibilityRequest->submitted_by)

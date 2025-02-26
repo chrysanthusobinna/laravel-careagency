@@ -1,5 +1,5 @@
 
-@if($user->role === 'service_user')
+@if($user->role === 'care_beneficiary')
 <!-- Add Family Member Modal -->
 <div class="modal fade" id="addFamilyMemberModal" tabindex="-1" aria-labelledby="addFamilyMemberModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -62,7 +62,7 @@
                         </div>
 
                         <!-- Hidden Input to Store Selected User ID -->
-                        <input type="hidden" name="role" value="service_user">
+                        <input type="hidden" name="role" value="care_beneficiary">
                         <input type="hidden" name="family_member_id" id="selected_family_member_id">
                         <input type="hidden" name="care_beneficiary_id" value="{{ $user->id }}">
 

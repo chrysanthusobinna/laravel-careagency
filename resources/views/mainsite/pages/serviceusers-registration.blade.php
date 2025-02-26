@@ -120,7 +120,7 @@
                                 <div class="col-lg-12 rounded shadow-lg p-3 mb-4 bg-white">
                                     <label class="text-secondary mb-2">Are you registering to receive care for yourself or for a family member?</label>
                                     <div class="form-check form-check-inline custom-radio-container">
-                                        <input class="form-check-input custom-radio" type="radio" name="role" id="self" value="service_user" {{ old('role') == 'service_user' ? 'checked' : '' }} required>
+                                        <input class="form-check-input custom-radio" type="radio" name="role" id="self" value="care_beneficiary" {{ old('role') == 'care_beneficiary' ? 'checked' : '' }} required>
                                         <label class="form-check-label" for="self">I'm registering for myself</label>
                                     </div>
                                     <div class="form-check form-check-inline custom-radio-container">

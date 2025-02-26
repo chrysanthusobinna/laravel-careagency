@@ -58,7 +58,7 @@ class AdminFamilyMembersController extends Controller
 
     public function searchServiceUser(Request $request, $role)
     {
-        if (!in_array($role, ['service_user', 'family_member'])) {
+        if (!in_array($role, ['care_beneficiary', 'family_member'])) {
             return response()->json(['success' => false, 'message' => 'Invalid role provided.'], 400);
         }
     
@@ -113,7 +113,7 @@ class AdminFamilyMembersController extends Controller
     
             return response()->json([
                 'success' => false,
-                'message' => 'This family member is already linked to this service user.',
+                'message' => 'This family member is already linked to this Care Beneficiary.',
             ], 409); // 409 Conflict status
         }
     

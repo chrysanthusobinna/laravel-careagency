@@ -34,7 +34,7 @@ class ServiceUserFamilyMemberController extends Controller
     
         if ($user->role === 'family_member') {
             $familyMembers = FamilyMember::where('family_member_id', $user->id)->with('careBeneficiary')->get();
-        } elseif ($user->role === 'service_user') {
+        } elseif ($user->role === 'care_beneficiary') {
              $familyMembers = FamilyMember::where('care_beneficiary_id', $user->id)->with('familyMember')->get();
         }
     
@@ -63,7 +63,7 @@ class ServiceUserFamilyMemberController extends Controller
             return redirect()->route('serviceuser.dashboard')->with('error', 'You are not authorized to access this page.');
         }
     
-        $role = 'service_user';
+        $role = 'care_beneficiary';
         $password_change_required = 1;
     
         $user = $this->createUser($request->validated(), $role, $password_change_required);

@@ -114,7 +114,7 @@
                             <div class="table-responsive theme-scrollbar p-3">
 
                                 <div class="border shadow-sm p-3 rounded bg-white mb-4" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
-                                    @if(Auth::user()->role === 'service_user')
+                                    @if(Auth::user()->role === 'care_beneficiary')
                                         <p class="text-muted">
                                             Your profile can be managed by your family members. They can book care for you, complete eligibility request forms, and more. 
                                             If you want to restrict a family member from managing your profile or if you wish to add a family member, kindly contact us.
@@ -161,7 +161,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td> @if(Auth::user()->role === 'service_user') My  @endif{{ $member->relationship_type }}</td>
+                                                <td> @if(Auth::user()->role === 'care_beneficiary') My  @endif{{ $member->relationship_type }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

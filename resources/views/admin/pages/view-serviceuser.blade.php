@@ -75,7 +75,7 @@
             <script src="/dashboard-assets/js/add-care-beneficiary-to-family.js"></script>
         @endif
         
-        @if($user->role === 'service_user')
+        @if($user->role === 'care_beneficiary')
             <script src="/dashboard-assets/js/add-family-for-care-beneficiary.js"></script>
         @endif
         <!-- Plugin used-->
@@ -213,7 +213,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
 
                     </div>
 
-                    @if($user->role === 'service_user')
+                    @if($user->role === 'care_beneficiary')
 <!-- Family Members Managing This User -->
 <div class="card w-100 border-top border-info border-3">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -226,7 +226,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
         </button>
     </div>
     <div class="card-body">
-        @if($user->familyMembersManagingThisUser->isEmpty())
+        @if($user->familyMembersManagingCareBeneficiary->isEmpty())
 
         <div class="d-flex align-items-center gap-2 p-3 border rounded ">
             <i class="fa fa-exclamation-circle text-warning fa-lg"></i>
@@ -243,7 +243,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($user->familyMembersManagingThisUser as $family)
+                    @foreach($user->familyMembersManagingCareBeneficiary as $family)
                         <tr>
                             <td>{{ optional($family->familyMember)->first_name }} {{ optional($family->familyMember)->last_name }}</td>
                             <td>{{ $family->relationship_type }}</td>
@@ -285,7 +285,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
         <button class="btn btn-outline-secondary"
             data-bs-toggle="modal"
             data-bs-target="#addFamilyMemberModal" 
-            data-searchServiceUserroute="{{ route('admin.family-members.search','service_user') }}">
+            data-searchServiceUserroute="{{ route('admin.family-members.search','care_beneficiary') }}">
             Add Family Member
         </button>
     </div>

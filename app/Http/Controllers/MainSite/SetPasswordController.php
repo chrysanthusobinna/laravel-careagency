@@ -141,8 +141,9 @@ class SetPasswordController extends Controller
             case 'care_giver':
                 return redirect()->route('caregiver.dashboard')->with('success', 'Your password has been updated successfully!');
 
-            case 'service_user':
-                return redirect()->route('serviceuser.dashboard')->with('success', 'Your password has been updated successfully!');
+                case 'care_beneficiary':
+                case 'family_member':
+                    return redirect()->route('serviceuser.dashboard')->with('success', 'Your password has been updated successfully!');
 
             default:
                 Auth::logout();

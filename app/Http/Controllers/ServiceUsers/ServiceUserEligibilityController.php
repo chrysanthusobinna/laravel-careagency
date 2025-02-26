@@ -132,7 +132,7 @@ class ServiceUserEligibilityController extends Controller
         }
     
         // Get care beneficiary user details
-        $care_beneficiary_user = User::where('id', $userId)->where('role', 'service_user')->firstOrFail();
+        $care_beneficiary_user = User::where('id', $userId)->where('role', 'care_beneficiary')->firstOrFail();
         $user_eligibility_status = $care_beneficiary_user->eligibility?->status;
     
         $questions = EligibilityQuestion::all();
@@ -155,7 +155,7 @@ class ServiceUserEligibilityController extends Controller
             return redirect()->route('serviceuser.dashboard')->with('error', 'You are not authorized to access the page.');
         }
 
-        $care_beneficiary_user = User::where('id', $userId)->where('role', 'service_user')->firstOrFail();
+        $care_beneficiary_user = User::where('id', $userId)->where('role', 'care_beneficiary')->firstOrFail();
 
         //$userId = request user->id;
         $questionId = $request->input('question_id');

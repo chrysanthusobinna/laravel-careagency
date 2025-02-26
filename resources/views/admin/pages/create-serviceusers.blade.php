@@ -117,12 +117,12 @@
                                     <div class="mb-3">
                                         <label class="form-label">Role</label>
                                         <select class="form-control" name="role" required>
-                                            <option value="service_user" {{ old('role') == 'service_user' ? 'selected' : '' }}>Service User</option>
+                                            <option value="care_beneficiary" {{ old('role') == 'care_beneficiary' ? 'selected' : '' }}>Service User</option>
                                             <option value="family_member" {{ old('role') == 'family_member' ? 'selected' : '' }}>Family Member</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">First Name</label>
