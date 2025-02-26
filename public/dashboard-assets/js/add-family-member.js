@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    let searchServiceUserRoute = "";  
+            let searchServiceUserRoute = "";  
             // get the route
             $(document).on("click", "[data-bs-target='#addFamilyMemberModal']", function () {
                 searchServiceUserRoute = $(this).data("searchserviceuserroute");  
@@ -67,6 +67,10 @@ $(document).ready(function () {
 
  
     $(document).ready(function () {
+
+        let modalClosedListenerAdded = false; // Track if the event listener has been added
+
+
     // CSRF token setup for AJAX requests
     $.ajaxSetup({
         headers: {
@@ -96,6 +100,14 @@ $(document).ready(function () {
                     // Hide form and show success message
                     formContent.hide();
                     successContainer.removeClass("d-none").show();
+
+
+                    $("#addFamilyMemberModal").on("hidden.bs.modal", function () {
+                        location.reload(); 
+                    });
+        
+                    modalClosedListenerAdded = true; // Prevent duplicate event bindings
+
                 } else {
                     errorContainer.html(`<strong>Error:</strong> ${response.message}`).removeClass("d-none").show();
                     $("#addFamilyMemberModal").modal("show"); // Show modal if error occurs

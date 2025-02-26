@@ -72,11 +72,12 @@
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         
         @if($user->role === 'family_member')
-            <script src="/dashboard-assets/js/add-care-beneficiary-to-family.js"></script>
+        <script src="/dashboard-assets/js/add-care-beneficiary.js"></script>
         @endif
         
         @if($user->role === 'care_beneficiary')
-            <script src="/dashboard-assets/js/add-family-for-care-beneficiary.js"></script>
+            <script src="/dashboard-assets/js/add-family-member.js"></script>
+
         @endif
         <!-- Plugin used-->
 
@@ -221,7 +222,8 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
         <button class="btn btn-outline-secondary"
             data-bs-toggle="modal"
             data-bs-target="#addFamilyMemberModal" 
-            data-searchServiceUserroute="{{ route('admin.family-members.search','family_member') }}">
+            data-searchServiceUserroute="{{ route('admin.family-members.search', ['role' => 'family_member', 'user_id' => $user->id]) }}
+">
             Add Family Member
         </button>
     </div>
@@ -239,15 +241,36 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                     <tr>
                         <th>Family Member</th>
                         <th>Relationship</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($user->familyMembersManagingCareBeneficiary as $family)
+                        @php
+                        $randomColorFamily = $colorClasses[array_rand($colorClasses)];
+                        @endphp
                         <tr>
-                            <td>{{ optional($family->familyMember)->first_name }} {{ optional($family->familyMember)->last_name }}</td>
+                            <td>                           
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="flex-shrink-0">
+                                    @if($family->familyMember->profile_picture == 'default.png')
+                                        <div class="letter-avatar">
+                                            <h6 class="txt-{{ $randomColorFamily }} bg-light-{{ $randomColorFamily }}">{{ $family->familyMember->initials }}</h6>
+                                        </div>
+                                    @else
+                                        <img src="{{ asset('uploads/profile_pictures/' . $family->familyMember->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                    @endif
+                                </div>
+                                <div class="flex-grow-1">
+                                    <a href="{{ route('admin.service-users.show', $family->familyMember->id) }}">
+                                        <h6>{{ $family->familyMember->first_name . " " . $family->familyMember->last_name }}</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            </td>
+
                             <td>{{ $family->relationship_type }}</td>
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-warning btn-sm" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#updateModal"
@@ -285,8 +308,8 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
         <button class="btn btn-outline-secondary"
             data-bs-toggle="modal"
             data-bs-target="#addFamilyMemberModal" 
-            data-searchServiceUserroute="{{ route('admin.family-members.search','care_beneficiary') }}">
-            Add Family Member
+            data-searchServiceUserroute="{{ route('admin.family-members.search', ['role' => 'care_beneficiary', 'user_id' => $user->id]) }}">
+            Add Care Beneficiary
         </button>
     </div>
     <div class="card-body">
@@ -302,15 +325,37 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                     <tr>
                         <th>Care Beneficiary</th>
                         <th>Relationship</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($user->managedCareBeneficiaries as $beneficiary)
+                    @php
+                    $randomColorFamily = $colorClasses[array_rand($colorClasses)];
+                    @endphp
                         <tr>
-                            <td>{{ optional($beneficiary->careBeneficiary)->first_name }} {{ optional($beneficiary->careBeneficiary)->last_name }}</td>
-                            <td>{{ $beneficiary->relationship_type }}</td>
-                            <td>
+                            <td>                           
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="flex-shrink-0">
+                                        @if($beneficiary->careBeneficiary->profile_picture == 'default.png')
+                                            <div class="letter-avatar">
+                                                <h6 class="txt-{{ $randomColorFamily }} bg-light-{{ $randomColorFamily }}">{{ $beneficiary->careBeneficiary->initials }}</h6>
+                                            </div>
+                                        @else
+                                            <img src="{{ asset('uploads/profile_pictures/' . $beneficiary->careBeneficiary->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                        @endif
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <a href="{{ route('admin.service-users.show', $beneficiary->careBeneficiary->id) }}">
+                                            <h6>{{ $beneficiary->careBeneficiary->first_name . " " . $beneficiary->careBeneficiary->last_name }}</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                </td>
+
+
+                             <td>{{ $beneficiary->relationship_type }}</td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-warning btn-sm" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#updateModal"
@@ -413,8 +458,8 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
 
 
 
-@include('admin.layouts.modal-add-family-for-care-beneficiary')
-@include('admin.layouts.modal-add-care-beneficiary-to-family')
+@include('admin.layouts.modal-add-care-beneficiary')
+@include('admin.layouts.modal-add-family-member')
 
 
 

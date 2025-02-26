@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EligibilityQuestion extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;  
 
-    protected $fillable = ['question', 'type', 'options','child_question'];
+    protected $fillable = ['question','more_details', 'type', 'options', 'child_question'];
 
     protected $casts = [
         'options' => 'array',
     ];
+
+    protected $dates = ['deleted_at'];  
 }

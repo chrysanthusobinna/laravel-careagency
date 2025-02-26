@@ -38,6 +38,7 @@ use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
 use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
+use App\Http\Controllers\Admin\AdminEligibilityQuestionController;
 use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
 use App\Http\Controllers\ServiceUsers\ServiceUserEligibilityController;
@@ -170,11 +171,18 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     
     Route::get('/eligibility-requests/list', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request');     
     Route::get('/eligibility-requests/show/{user_id}', [AdminEligibilityController::class, 'show'])->name('admin.eligibility-request.show');
-    
     Route::post('/eligibility-requests/review/{user_id}', [AdminEligibilityController::class, 'submitReview'])->name('admin.eligibility-request.review');
     Route::delete('/eligibility-requests/delete/{user_id}', [AdminEligibilityController::class, 'deleteEligibility'])->name('admin.eligibility-request.delete');
 
 
+
+    Route::get('/eligibility-questions/', [AdminEligibilityQuestionController::class, 'index'])->name('admin.eligibility-questions.index');
+    Route::get('/eligibility-questions/create', [AdminEligibilityQuestionController::class, 'create'])->name('admin.eligibility-questions.create');
+    Route::post('/eligibility-questions/store', [AdminEligibilityQuestionController::class, 'store'])->name('admin.eligibility-questions.store');
+    Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('admin.eligibility-questions.show');
+    Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('admin.eligibility-questions.destroy');
+
+    
     Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
 
 
@@ -183,7 +191,7 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('admin.family-members.unlink');
     Route::post('/family-members/update', [AdminFamilyMembersController::class, 'update'])->name('admin.family-members.update');
 
-    Route::get('/family-members/search/{role}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('admin.family-members.search');
+    Route::get('/family-members/search/{role}/{user_id}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('admin.family-members.search');
     Route::post('/family-members/add', [AdminFamilyMembersController::class, 'addFamilyMember'])->name('admin.family-members.add');
 
     

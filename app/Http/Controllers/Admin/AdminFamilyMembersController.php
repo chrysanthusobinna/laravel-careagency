@@ -56,7 +56,7 @@ class AdminFamilyMembersController extends Controller
 
 
 
-    public function searchServiceUser(Request $request, $role)
+    public function searchServiceUser(Request $request, $role, $user_id)
     {
         if (!in_array($role, ['care_beneficiary', 'family_member'])) {
             return response()->json(['success' => false, 'message' => 'Invalid role provided.'], 400);
@@ -64,7 +64,17 @@ class AdminFamilyMembersController extends Controller
     
         $query = $request->query('query');
     
+        // Get user IDs already linked to the current user
+        $excludedUserIds = FamilyMember::where('family_member_id', $user_id)
+            ->orWhere('care_beneficiary_id', $user_id)
+            ->pluck('family_member_id') // Get all family members linked to this user
+            ->merge(FamilyMember::where('care_beneficiary_id', $user_id)->pluck('care_beneficiary_id')) // Get all care beneficiaries linked to this user
+            ->unique()
+            ->toArray();
+    
+        // Fetch users based on role and exclude already linked users
         $familyMembers = User::where('role', $role)
+            ->whereNotIn('id', $excludedUserIds) // Exclude already linked users
             ->where(function ($q) use ($query) {
                 $q->where('first_name', 'LIKE', "%{$query}%")
                   ->orWhere('last_name', 'LIKE', "%{$query}%")
@@ -75,6 +85,7 @@ class AdminFamilyMembersController extends Controller
     
         return response()->json($familyMembers);
     }
+    
     
     
     public function addFamilyMember(Request $request)

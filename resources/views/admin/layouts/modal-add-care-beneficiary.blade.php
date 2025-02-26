@@ -5,7 +5,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addFamilyMemberModalLabel">Add Family Member</h5>
+                <h5 class="modal-title" id="addFamilyMemberModalLabel">Add Care Beneficiary</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -13,7 +13,7 @@
 
                 <div class="p-3 border rounded shadow-lg mb-4" style="border-color: rgba(0, 0, 0, 0.1);">
                     <span class="text-muted">
-                        Linking a beneficiary to this user as a family member will allow them to manage care for the care beneficiary.
+                        Linking a Care Beneficiary to this  Family Member will allow them to manage care for the Care Beneficiary.
                     </span>
                 </div>
                 
@@ -24,7 +24,7 @@
                     <div class="alert alert-success">
                         <h5>Family Member Linked Successfully!</h5>
                     </div>
-                    <button type="button" class="btn btn-primary mt-2" onclick="location.reload();">Close</button>
+                    <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal">Close</button>
                 </div>
                 
 
@@ -66,10 +66,10 @@
                         <input type="hidden" name="family_member_id"  value="{{ $user->id }}" >
                         <input type="hidden" name="care_beneficiary_id"  id="selected_care_beneficiary_id">
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add Family Member</button>
-                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-secondary">Save</button>
+                        </div>                        
                     </form>
                 </div>
             </div>

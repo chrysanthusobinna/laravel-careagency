@@ -68,6 +68,9 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+
+let modalClosedListenerAdded = false; // Track if the event listener has been added
+
 // CSRF token setup for AJAX requests
 $.ajaxSetup({
 headers: {
@@ -97,6 +100,13 @@ $.post(form.attr("action"), formData)
             // Hide form and show success message
             formContent.hide();
             successContainer.removeClass("d-none").show();
+
+            $("#addFamilyMemberModal").on("hidden.bs.modal", function () {
+                location.reload(); 
+            });
+
+            modalClosedListenerAdded = true; // Prevent duplicate event bindings
+            
         } else {
             errorContainer.html(`<strong>Error:</strong> ${response.message}`).removeClass("d-none").show();
             $("#addFamilyMemberModal").modal("show"); // Show modal if error occurs
