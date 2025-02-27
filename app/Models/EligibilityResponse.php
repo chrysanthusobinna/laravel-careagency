@@ -16,8 +16,9 @@ class EligibilityResponse extends Model
 
     public function question()
     {
-        return $this->belongsTo(EligibilityQuestion::class, 'question_id');
+        return $this->belongsTo(EligibilityQuestion::class, 'question_id')->withTrashed();
     }
+    
 
     public function user()
     {

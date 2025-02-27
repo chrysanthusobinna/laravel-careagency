@@ -97,38 +97,63 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
     <script>
-        $(document).ready(function () {
-            // Show or hide the options section based on type selection
-            $("#questionType").on("change", function () {
-                let selectedType = $(this).val();
-                if (selectedType === "radio" || selectedType === "checkbox") {
-                    $("#optionsSection").removeClass("d-none");
-                } else {
-                    $("#optionsSection").addClass("d-none");
-                    $("#optionsContainer").html(`
-                        <div class="input-group mb-2">
-                            <input required type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
-                            <button type="button" class="btn btn-danger remove-option d-none">Remove</button>
-                        </div>
-                    `);
-                }
-            });
-        
-            // Add new option field
-            $("#addOption").on("click", function () {
-                $("#optionsContainer").append(`
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
-                        <button type="button" class="btn btn-danger remove-option">Remove</button>
-                    </div>
-                `);
-            });
-        
-            // Remove an option field
-            $(document).on("click", ".remove-option", function () {
-                $(this).closest(".input-group").remove();
-            });
-        });
+ $(document).ready(function () {
+    // Show or hide the options section based on type selection
+    $("#questionType").on("change", function () {
+        let selectedType = $(this).val();
+        if (selectedType === "radio" || selectedType === "checkbox") {
+            $("#optionsSection").removeClass("d-none");
+            $("#optionsContainer .option-input").prop("required", true);
+
+            if (selectedType === "radio"){
+                $("#tips").removeClass("d-none");
+            }
+            else
+            {
+                if (!$("#tips").hasClass("d-none")) {
+                    $("#tips").addClass("d-none");
+                } 
+            }
+            
+        } else {
+            $("#optionsSection").addClass("d-none");
+            if (!$("#tips").hasClass("d-none")) {
+                $("#tips").addClass("d-none");
+            }
+
+
+            $("#optionsContainer").html(`
+                <div class="input-group mb-2 option-group">
+                    <input type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
+                    <button type="button" class="btn btn-danger remove-option d-none">Remove</button>
+                </div>
+            `);
+            $("#optionsContainer .option-input").prop("required", false);
+        }
+    });
+
+    // Add new option field
+    $("#addOption").on("click", function () {
+        $("#optionsContainer").append(`
+            <div class="input-group mb-2 option-group">
+                <input type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
+                <button type="button" class="btn btn-outline-secondary remove-option"><i class="fa fa-times"></i></button>
+            </div>
+        `);
+        $(".remove-option").removeClass("d-none");  
+    });
+
+    // Remove an option field
+    $(document).on("click", ".remove-option", function () {
+        $(this).closest(".input-group").remove();
+        if ($("#optionsContainer .option-group").length === 1) {
+            $(".remove-option").addClass("d-none"); // Hide remove button if only one option remains
+        }
+    });
+ 
+
+});
+
         </script>
 
 @endpush
@@ -156,14 +181,14 @@
                 <div class="col-xl-8 mx-auto">
                     @include('partials._dashboard_message')
 
-                    <div class="card common-hover border-start border-2 border-info">
-                        <div class="card-header border-b-info">
-                            <h5>Add New Eligibility Question</h5>
-                        </div>
+                    <form action="{{ route('admin.eligibility-questions.store') }}" method="POST">
+                        @csrf
+                        <div class="card common-hover border-start border-2 border-info">
+                            <div class="card-header border-b-info">
+                                <h5>Add New Eligibility Question</h5>
+                            </div>
                     
-                        <div class="card-body">
-                            <form action="{{ route('admin.eligibility-questions.store') }}" method="POST">
-                                @csrf
+                            <div class="card-body">
                                 <div class="mb-3">
                                     <label class="form-label">Question</label>
                                     <textarea class="form-control" name="question" required></textarea>
@@ -177,33 +202,46 @@
                                 <div class="mb-3">
                                     <label class="form-label">Type</label>
                                     <select class="form-control" name="type" id="questionType" required>
+                                        <option value="textarea">Free Text (Textarea)</option>
                                         <option value="radio">Single Choice (Radio)</option>
                                         <option value="checkbox">Multiple Choice (Checkbox)</option>
-                                        <option value="textarea">Free Text (Textarea)</option>
                                     </select>
                                 </div>
                     
+
+                                <div id="tips"class="p-3 border rounded shadow-sm bg-white d-none mb-4" style="border-color: rgba(0, 0, 0, 0.2);">
+                                    <i class="fa fa-exclamation-circle text-warning me-1"></i>
+                                    <strong>Tips:</strong> Consider adding an "Other" option when using radio buttons. This allows users to either select from the given choices or provide their own response if none of the options apply.
+                                </div>
+                                
+
+                                
                                 <!-- Options Section (For Radio & Checkbox Types) -->
                                 <div id="optionsSection" class="mb-3 d-none">
                                     <label class="form-label">Options</label>
                                     <div id="optionsContainer">
-                                        <div class="input-group mb-2">
-                                            <input required type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
-                                            <button type="button" class="btn btn-danger remove-option d-none">Remove</button>
+                                        <div class="input-group mb-2 option-group">
+                                            <input type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
+                                            <button type="button" class="btn btn-outline-secondary remove-option d-none"> <i class="fa fa-times"></i> </button>
                                         </div>
+                                        
                                     </div>
-                                    <button type="button" class="btn btn-info btn-sm mt-2" id="addOption">Add Option</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm mt-2" id="addOption">
+                                        <i class="fa fa-plus"></i> Add Option
+                                    </button>
+                                    
                                 </div>
-                            </form>
-                        </div>
+                            </div>
                     
-                        <!-- Card Footer with Buttons -->
-                        <div class="card-footer d-flex justify-content-between">
-                            <a href="{{ route('admin.eligibility-questions.index') }}" class="btn btn-outline-primary">Back</a>
-                            <button type="submit" class="btn btn-primary">Save Question</button>
+                            <!-- Card Footer with Buttons -->
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="{{ route('admin.eligibility-questions.index') }}" class="btn btn-outline-secondary">Back</a>
+                                <button type="submit" class="btn btn-primary">Save Question</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     
+
                 </div>
             </div>
         </div>

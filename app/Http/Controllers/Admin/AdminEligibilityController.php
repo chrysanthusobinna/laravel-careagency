@@ -66,21 +66,23 @@ class AdminEligibilityController extends Controller
         }
     
         // Fetch the eligibility request
-        $eligibilityRequest = EligibilityRequest::where('user_id', $user_id)
-            ->with(['user', 'checkedBy', 'submittedBy'])
-            ->first();
+        $eligibilityRequest = EligibilityRequest::where('user_id', $user_id)->with(['user', 'checkedBy', 'submittedBy'])->first();
 
         // Fetch all responses related to this user
-        $responses = EligibilityResponse::where('user_id', $user_id)
-            ->with('question')
-            ->orderBy('updated_at', 'asc')
-            ->get();
+        $responses = EligibilityResponse::where('user_id', $user_id)->with('question')->orderBy('updated_at', 'asc')->get();
 
-        // If no eligibility request or responses exist, return with an error message
-        if (!$eligibilityRequest || $responses->isEmpty()) {
-            return redirect()->route('admin.eligibility-request')
-                ->with('error', 'No eligibility request or responses found for this user.');
+
+        if (!$eligibilityRequest) {
+            return redirect()->route('admin.eligibility-request')->with('error', 'No eligibility request found.');
         }
+        
+        // If the eligibility request exists and there are no responses, hard delete the request
+        if ($eligibilityRequest && $responses->isEmpty()) {
+            $eligibilityRequest->forceDelete();
+        
+            return redirect()->route('admin.eligibility-request')->with('error', 'No eligibility request or responses found for this user.');
+        }
+    
 
         // Check if the form was submitted by someone other than Care Beneficiary
         $familyMemberRelation = null;
@@ -113,8 +115,8 @@ class AdminEligibilityController extends Controller
 
     public function deleteEligibility($user_id)
     {
-        EligibilityResponse::where('user_id', $user_id)->delete(); 
-        EligibilityRequest::where('user_id', $user_id)->delete();  
+        EligibilityResponse::where('user_id', $user_id)->forceDelete();
+        EligibilityRequest::where('user_id', $user_id)->forceDelete();        
     
         return redirect()->route('admin.eligibility-request')->with('success', 'Eligibility request and responses have been deleted.');
     }

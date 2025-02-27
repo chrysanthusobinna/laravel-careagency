@@ -150,7 +150,7 @@
                                                 </td>
                                                 <td>{{ $member->relationship_type }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('serviceuser.family.eligibility.show',$beneficiary->id) }}'">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('serviceuser.eligibility.family.show',$beneficiary->id) }}'">
                                                         Eligibility
                                                     </button>
                                                     

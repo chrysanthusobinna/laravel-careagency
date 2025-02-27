@@ -113,16 +113,15 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
     Route::post('/update-password', [AuthServiceUserController::class, 'updatePassword'])->name('serviceuser.update-password');
 
 
-    // Eligibility For Self 
-    Route::get('/eligibility/self/view', [ServiceUserEligibilityController::class, 'EligibilityForSelf'])->name('serviceuser.eligibility.self');
-    Route::post('/eligibility/self/save', [ServiceUserEligibilityController::class, 'EligibilityForSelfSaveResponse'])->name('serviceuser.eligibility.save');
+    // Eligibility For care beneficiary 
+    Route::get('/eligibility/care-beneficiary/show', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiaryShow'])->name('serviceuser.eligibility.care-beneficiary.show');
+    Route::post('/eligibility/care-beneficiary/save', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiarySave'])->name('serviceuser.eligibility.care-beneficiary.save');
 
 
     //Eligibility For Family
-    Route::get('/eligibility/family/list', [ServiceUserEligibilityController::class, 'EligibilityForFamily'])->name('serviceuser.eligibility.family');
-    Route::get('/eligibility/family/view/{userId}', [ServiceUserEligibilityController::class, 'FamilyForEligibilityView'])->name('serviceuser.family.eligibility.show');
-    Route::post('/eligibility/self/save/{userId}', [ServiceUserEligibilityController::class, 'EligibilityForFamilySaveResponse'])->name('serviceuser.eligibility.family.save');
-
+    Route::get('/eligibility/family/list', [ServiceUserEligibilityController::class, 'EligibilityFamilyList'])->name('serviceuser.eligibility.family');
+    Route::get('/eligibility/family/show/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilyShow'])->name('serviceuser.eligibility.family.show');
+    Route::post('/eligibility/family/save/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilySave'])->name('serviceuser.eligibility.family.save');
 
 
     
@@ -202,15 +201,10 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::post('/care-givers/store', [AdminCareGiversController::class, 'store'])->name('admin.caregivers.store');
 
 
-
-
-
     Route::get('/admin-users/list', [AdminUsersController::class, 'index'])->name('adminusers.index');
     Route::get('/admin-users/show/{id}', [AdminUsersController::class, 'show'])->name('adminusers.show');
     Route::get('/admin-users/create', [AdminUsersController::class, 'create'])->name('adminusers.create');
     Route::post('/admin-users/store', [AdminUsersController::class, 'store'])->name('adminusers.store');
-
-
 
 
     Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');

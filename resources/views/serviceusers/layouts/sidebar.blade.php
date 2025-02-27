@@ -57,7 +57,7 @@
 
                     <li class="sidebar-list">
                         <a class="{{ request()->is('serviceuser/eligibility*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" 
-                            href="{{ $loggedInUser->role === 'care_beneficiary' ? route('serviceuser.eligibility.self') : route('serviceuser.eligibility.family') }}">
+                            href="{{ $loggedInUser->role === 'care_beneficiary' ? route('serviceuser.eligibility.care-beneficiary.show') : route('serviceuser.eligibility.family') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-check"></use>
                             </svg>

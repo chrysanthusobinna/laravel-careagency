@@ -197,7 +197,7 @@ use Illuminate\Support\Str;
                                     @php $response = $responses[$question->id]->answer ?? null; @endphp
 
                                     <!-- Textarea -->
-                                    @if($question->type === 'text')
+                                    @if($question->type === 'textarea')
 
                                     <div class="card-wrapper border rounded-3 checkbox-checked">
                                         <textarea name="answer" placeholder="Enter your response here..." class="form-control">{{ $response }}</textarea>
@@ -207,21 +207,32 @@ use Illuminate\Support\Str;
                                     <!-- Radio -->
                                     @elseif($question->type === 'radio')
                                         <div class="btn-group-vertical w-100" role="group">
+                                            @if(!empty($question->options) && is_array(json_decode($question->options, true)))
                                             @foreach(json_decode($question->options) as $optionIndex => $option)
                                                 @php $uniqueId = 'option_' . $question->id . '_' . $optionIndex; @endphp
                                                 <input class="btn-check" id="{{ $uniqueId }}" type="radio" name="answer" 
-                                                    value="{{ $option }}" @if($response == $option) checked @endif>
+                                                    value="{{ $option }}" @if(isset($response) && $response == $option) checked @endif>
                                                 <label class="btn btn-outline-info mb-2 text-start" for="{{ $uniqueId }}">
                                                     {{ $option }}
                                                 </label>
                                             @endforeach
+                                        @else
+                                            <div class="p-3 border border-danger text-danger rounded bg-white w-100">
+                                                <i class="fa fa-exclamation-triangle me-2 text-danger"></i>
+                                                <span>Error: Question options not found not found for Radio Button.</span>
+                                            </div>
+                                  
+                                        @endif
+                                        
                                         </div>
                                     <!-- Checkbox -->
                                     @elseif($question->type === 'checkbox')
                                         @php 
                                             $selectedOptions = json_decode($response) ?? []; 
                                         @endphp
-                                        <div class="d-flex flex-column align-items-start"> <!-- Align items to the left -->
+                                        <div class="d-flex flex-column align-items-start">  
+                                            @if(!empty($question->options) && is_array(json_decode($question->options, true)))
+
                                             @foreach(json_decode($question->options) as $index => $option)
                                                 @php 
                                                     $uniqueIdx = 'checkbox_' . $question->id . '_' . $index; 
@@ -234,6 +245,13 @@ use Illuminate\Support\Str;
                                                     <label class="form-check-label" for="{{ $uniqueIdx }}"> {{ $option }} </label>
                                                 </div>
                                             @endforeach
+                                            @else
+                                            <div class="p-3 border border-danger text-danger rounded bg-white w-100">
+                                                <i class="fa fa-exclamation-triangle me-2 text-danger"></i>
+                                                <span>Error: Question options not found not found for Checkbox.</span>
+                                            </div>
+                                  
+                                        @endif
                                         </div>
                                     @endif
 
@@ -311,7 +329,7 @@ use Illuminate\Support\Str;
             let formData = form.find("input, textarea").serialize();
             const alertBox = $('#responseAlert');
 
-            $.post("{{ route('serviceuser.eligibility.save') }}", formData, function (response) {
+            $.post("{{ route('serviceuser.eligibility.care-beneficiary.save') }}", formData, function (response) {
  
                 if (response.success) {
                     alertBox.addClass('d-none').text('Form saved successfully!');

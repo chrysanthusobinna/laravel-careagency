@@ -120,7 +120,7 @@
                                     <!-- Action Buttons -->
                                     <div class="text-center mb-3 mt-3">
                                         <!-- Button for Self Request -->
-                                        <a href="{{ route('serviceuser.eligibility.self') }}" class="btn btn-outline-primary btn-lg me-3 mb-3">
+                                        <a href="{{ route('serviceuser.eligibility.care-beneficiary.show') }}" class="btn btn-outline-primary btn-lg me-3 mb-3">
                                             <i class="fa fa-user"></i> Eligibility Request for Myself
                                         </a>
                                         <br/>

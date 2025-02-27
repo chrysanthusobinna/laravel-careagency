@@ -20,8 +20,8 @@ class AdminEligibilityQuestionController extends Controller
     // LIST ELIGIBILITY QUESTIONS.
     public function index()
     {
-        $questions = EligibilityQuestion::latest()->get();
-        return view('admin.pages.eligibility-questions', compact('questions'));
+        $questions = EligibilityQuestion::orderBy('created_at', 'asc')->get();
+        return view('admin.pages.eligibility-questions-list', compact('questions'));
     }
 
     /**
@@ -38,17 +38,25 @@ class AdminEligibilityQuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => 'required|string',
-            'more_details' => 'nullable|string',
+            'question' => 'required|string|max:500',
+            'more_details' => 'nullable|string|max:255',
             'type' => 'required|in:radio,checkbox,textarea',
-            'options' => 'nullable|array|required_if:type,radio|required_if:type,checkbox',
+            'options' => [
+                'nullable',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    if (in_array($request->type, ['radio', 'checkbox']) && empty(array_filter($value))) {
+                        $fail('Options are required when type is radio or checkbox.');
+                    }
+                }
+            ],
         ]);
     
         // Filter out empty options
         $filteredOptions = [];
         if (in_array($request->type, ['radio', 'checkbox']) && !empty($request->options)) {
             $filteredOptions = array_filter($request->options, function ($option) {
-                return !empty(trim($option)); // Remove empty and whitespace-only options
+                return !empty(trim($option));  
             });
         }
     
@@ -70,9 +78,15 @@ class AdminEligibilityQuestionController extends Controller
      */
     public function show($id)
     {
+        // Get the current question
         $question = EligibilityQuestion::findOrFail($id);
-        return view('admin.pages.eligibility-questions-show', compact('question'));
+    
+        // Get the question number based on `created_at` order
+        $questionNumber = EligibilityQuestion::where('created_at', '<', $question->created_at)->count() + 1;
+    
+        return view('admin.pages.eligibility-questions-show', compact('question', 'questionNumber'));
     }
+    
 
     /**
      * Soft delete a question.

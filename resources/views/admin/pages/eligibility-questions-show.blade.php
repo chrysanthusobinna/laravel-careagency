@@ -126,7 +126,7 @@
                     <!-- Question Details Card -->
                     <div class="card common-hover border-start border-2 border-info">
                         <div class="card-header border-b-info">
-                            <h5>Question: {{ $question->question }}</h5>
+                            <h5>Question ({{ $questionNumber }}): {{ $question->question }}</h5>
                         </div>
 
                         <div class="card-body">
@@ -134,27 +134,49 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td class="fw-bold" style="width:20%;">More Details:</td>
+                                        <td class="fw-bold" style="width:40%;">More Details:</td>
                                         <td>{{ $question->more_details ?? 'NULL' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             @endif
 
-                            @if($question->options)
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td class="fw-bold" style="width:20%;">Options:</td>
-                                        <td> <div class="d-grid gap-2">
-                                            @foreach(json_decode($question->options, true) as $option)
-                                                <button type="button" class="btn btn-outline-primary w-100" >{{ $option }}</button>
-                                            @endforeach
-                                        </div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                            @if($question->type === 'textarea')  
+
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold" style="width:40%;">Expected Response:</td>
+                                            <td>Text</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            @elseif(($question->type === 'radio') || ($question->type === 'checkbox'))
+
+                                @if($question->options)
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold" style="width:40%;">Expected Response:</td>
+                                            <td>options</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold" style="width:40%;"> </td>
+                                            <td> <div class="d-grid gap-2">
+                                                @foreach(json_decode($question->options, true) as $option)
+                                                    <button type="button" class="btn btn-outline-primary w-100" >{{ $option }}</button>
+                                                @endforeach
+                                            </div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @endif
+
                             @endif
+
+
                         </div>
 
                         @if($question->child_question)
@@ -165,7 +187,7 @@
                            <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <td class="fw-bold" style="width:20%;">Expected Response:</td>
+                                    <td class="fw-bold" style="width:40%;">Expected Response:</td>
                                     <td>Text</td>
                                 </tr>
                             </tbody>

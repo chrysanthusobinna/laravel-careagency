@@ -141,7 +141,7 @@
                                     @if($familyMemberRelation)
                                         Family Member ({{ $familyMemberRelation->relationship_type  }})
                                     @else
-                                        Self
+                                        (SELF)
                                     @endif
 
                                     {{ $eligibilityRequest->submittedBy->first_name }} 
