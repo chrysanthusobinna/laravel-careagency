@@ -15,7 +15,7 @@ trait UserListTrait
      */
     public function getUsersByRole(string $role)
     {
-        $allowedRoles = ['admin_level_1', 'admin_level_2', 'care_giver', 'service_user'];
+        $allowedRoles = ['admin_level_1', 'admin_level_2', 'care_giver', 'care_beneficiary'];
     
         if (!in_array($role, $allowedRoles)) {
             abort(400, 'Invalid role provided.');

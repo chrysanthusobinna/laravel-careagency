@@ -27,34 +27,37 @@ class AdminServiceUsersController extends Controller
 
     public function index()
     {
-
-        $serviceUsersData = $this->getUsersByRole('service_user');
-
-        $serviceUsers = $serviceUsersData['users'];
-
-        $totalCount = $serviceUsersData['total_count'];
-        $activeCount = $serviceUsersData['active_count'];
+        // Get all care beneficiary and family members
+        $serviceUsers = User::whereIn('role', ['care_beneficiary', 'family_member'])->get();
+    
+        // Count total care beneficiaries and family members
+        $totalCount = $serviceUsers->count();
+    
+        // Count only active users
+        $activeCount = $serviceUsers->where('status', 1)->count();
+    
+        // Count care beneficiaries eligible  
         $eligibleCount = EligibilityRequest::where('status', 'eligible')->count();
-
-        return view('admin.pages.list-serviceusers', compact('serviceUsers','totalCount', 'activeCount', 'eligibleCount'));
+    
+        return view('admin.pages.list-serviceusers', compact('serviceUsers', 'totalCount', 'activeCount', 'eligibleCount'));
     }
     
     public function show(Request $request, $id)
     {
-        // Validate user ID to ensure it's a valid service user
+        // Validate user ID to ensure it's a valid Care Beneficiary or family member
         $validator = Validator::make(
-            ['id' => $id], // Data being validated
+            ['id' => $id], 
             [
                 'id' => [
                     'required',
                     'exists:users,id',
                     Rule::exists('users', 'id')->where(function ($query) {
-                        return $query->where('role', 'service_user');
+                        return $query->whereIn('role', ['care_beneficiary', 'family_member']);
                     }),
                 ],
             ],
             [
-                'id.exists' => 'The selected user is either invalid or not a service user.',
+                'id.exists' => 'The selected user is either invalid or not a Care Beneficiary or Family Member.',
             ]
         );
     
@@ -62,13 +65,17 @@ class AdminServiceUsersController extends Controller
         if ($validator->fails()) {
             return redirect()->route('admin.service-users.index')
                 ->withErrors($validator)
-                ->with('error', 'The selected user is either invalid or not a service user.');
+                ->with('error', 'The selected user is either invalid or not a Care Beneficiary or Family Member.');
         }
     
-        // Fetch the user if validation passes
-        $user = User::findOrFail($id);
+        // Fetch the service user with both relationships
+        $user = User::with(['familyMembersManagingCareBeneficiary.familyMember', 'managedCareBeneficiaries.careBeneficiary'])->findOrFail($id);
+
+        // Pass user & family members to the view
         return view('admin.pages.view-serviceuser', compact('user'));
+
     }
+    
     
 
     public function create()
@@ -79,13 +86,13 @@ class AdminServiceUsersController extends Controller
     public function store(RegisterUserRequest $request)
     {
 
-        $role = 'service_user'; 
+        $role = $request->input('role', 'care_beneficiary'); 
         $password_change_required = 1;
 
         // Call trait method to create the user
         $user = $this->createUser($request->validated(), $role, $password_change_required);
 
-        return redirect()->route('admin.service-users.index')->with('success', 'Service user added successfully! Service users can check their email to verify their account.');
+        return redirect()->route('admin.service-users.index')->with('success', 'Care Beneficiary added successfully! Care Beneficiary can check their email to verify their account.');
 
     }
 

@@ -82,7 +82,7 @@
     <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
         <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
         <li class="breadcrumb-item f-w-400">Dashboard</li>
-        <li class="breadcrumb-item f-w-400">Eligibility Request</li>
+        <li class="breadcrumb-item f-w-400">Eligibility</li>
         <li class="breadcrumb-item f-w-400 active">For Self</li>
     </ol>
 </nav>
@@ -100,7 +100,7 @@ use Illuminate\Support\Str;
             <div class="col-xl-8 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Eligibility Request for {{ $care_beneficary_user->first_name }}</h4>
+                        <h4>Eligibility Request for {{ ucwords($care_beneficiary_user->first_name) }}</h4>
                     </div>
                     <div class="card-body text-center">
                         <div id="responseAlert" class="d-none alert alert-light-danger light alert-dismissible fade show txt-danger border-left-danger mb-5" role="alert">
@@ -122,13 +122,16 @@ use Illuminate\Support\Str;
                                     </p>
                                     <button class="btn btn-outline-primary" onclick="startForm()">Start Eligibility Form</button>
                                 
-                                @elseif($totalResponses > 0 )
-                                    <p class="lead text-secondary fs-4">
-                                        You have partially completed the eligibility form. Please continue completing the remaining questions to proceed with booking your care services.
-                                    </p>
-                                    <button class="btn btn-outline-primary" onclick="startForm()">Continue Eligibility Form</button>
-                                @endif
-                            
+                                    @elseif($totalResponses > 0)
+                                        <p class="lead text-secondary fs-4">
+                                            Your Eligibility Request form has been partially completed, and previous responses have been saved.
+                                            You can continue answering the remaining questions or change any previously provided answers to proceed with booking care services.
+                                        </p>
+                                    
+                                        
+                                        <button class="btn btn-outline-primary" onclick="startForm()">Continue Eligibility Form</button>
+                                    @endif
+                                    
                             @else 
                             
                                 @if($user_eligibility_status == 'eligible')
@@ -149,14 +152,15 @@ use Illuminate\Support\Str;
                                 
                             
                                 @elseif($user_eligibility_status == 'pending')
-                                    <p class="lead fs-4">
-                                        You have successfully completed the eligibility form. Please wait while we review your responses. 
-                                        We will contact you shortly with the next steps.
-                                        <br/>
-                                        <hr/>
-                                        <button class="btn btn-outline-primary" onclick="window.location.href='{{ route('serviceuser.dashboard') }}'">Dashboard</button>
-
-                                    </p>
+                                <p class="lead fs-4">
+                                    The eligibility form for your care services has been successfully completed.
+                                    Whether completed by you or a family member, please wait while we review the responses and provide feedback.
+                                    <br/>
+                                    <hr/>
+                                    <button class="btn btn-outline-primary" onclick="window.location.href='{{ route('serviceuser.dashboard') }}'">Dashboard</button>
+                                </p>
+                                
+                                
                                 @endif
                             
                             @endif
@@ -193,7 +197,7 @@ use Illuminate\Support\Str;
                                     @php $response = $responses[$question->id]->answer ?? null; @endphp
 
                                     <!-- Textarea -->
-                                    @if($question->type === 'text')
+                                    @if($question->type === 'textarea')
 
                                     <div class="card-wrapper border rounded-3 checkbox-checked">
                                         <textarea name="answer" placeholder="Enter your response here..." class="form-control">{{ $response }}</textarea>
@@ -203,21 +207,32 @@ use Illuminate\Support\Str;
                                     <!-- Radio -->
                                     @elseif($question->type === 'radio')
                                         <div class="btn-group-vertical w-100" role="group">
+                                            @if(!empty($question->options) && is_array(json_decode($question->options, true)))
                                             @foreach(json_decode($question->options) as $optionIndex => $option)
                                                 @php $uniqueId = 'option_' . $question->id . '_' . $optionIndex; @endphp
                                                 <input class="btn-check" id="{{ $uniqueId }}" type="radio" name="answer" 
-                                                    value="{{ $option }}" @if($response == $option) checked @endif>
+                                                    value="{{ $option }}" @if(isset($response) && $response == $option) checked @endif>
                                                 <label class="btn btn-outline-info mb-2 text-start" for="{{ $uniqueId }}">
                                                     {{ $option }}
                                                 </label>
                                             @endforeach
+                                        @else
+                                            <div class="p-3 border border-danger text-danger rounded bg-white w-100">
+                                                <i class="fa fa-exclamation-triangle me-2 text-danger"></i>
+                                                <span>Error: Question options not found not found for Radio Button.</span>
+                                            </div>
+                                  
+                                        @endif
+                                        
                                         </div>
                                     <!-- Checkbox -->
                                     @elseif($question->type === 'checkbox')
                                         @php 
                                             $selectedOptions = json_decode($response) ?? []; 
                                         @endphp
-                                        <div class="d-flex flex-column align-items-start"> <!-- Align items to the left -->
+                                        <div class="d-flex flex-column align-items-start">  
+                                            @if(!empty($question->options) && is_array(json_decode($question->options, true)))
+
                                             @foreach(json_decode($question->options) as $index => $option)
                                                 @php 
                                                     $uniqueIdx = 'checkbox_' . $question->id . '_' . $index; 
@@ -230,6 +245,13 @@ use Illuminate\Support\Str;
                                                     <label class="form-check-label" for="{{ $uniqueIdx }}"> {{ $option }} </label>
                                                 </div>
                                             @endforeach
+                                            @else
+                                            <div class="p-3 border border-danger text-danger rounded bg-white w-100">
+                                                <i class="fa fa-exclamation-triangle me-2 text-danger"></i>
+                                                <span>Error: Question options not found not found for Checkbox.</span>
+                                            </div>
+                                  
+                                        @endif
                                         </div>
                                     @endif
 
@@ -307,7 +329,7 @@ use Illuminate\Support\Str;
             let formData = form.find("input, textarea").serialize();
             const alertBox = $('#responseAlert');
 
-            $.post("{{ route('serviceuser.eligibility.save') }}", formData, function (response) {
+            $.post("{{ route('serviceuser.eligibility.care-beneficiary.save') }}", formData, function (response) {
  
                 if (response.success) {
                     alertBox.addClass('d-none').text('Form saved successfully!');

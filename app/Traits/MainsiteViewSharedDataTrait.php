@@ -16,7 +16,7 @@ trait MainsiteViewSharedDataTrait
             // Determine the dashboard route based on role
             if (in_array($loggedInUser->role, ['admin_level_1', 'admin_level_2'])) {
                 $dashboardRoute = route('admin.dashboard');
-            } elseif ($loggedInUser->role === 'service_user') {
+            } elseif (in_array($loggedInUser->role, ['care_beneficiary', 'family_member'])) {
                 $dashboardRoute = route('serviceuser.dashboard');
             } elseif ($loggedInUser->role === 'care_giver') {
                 $dashboardRoute = route('caregiver.dashboard');

@@ -47,6 +47,9 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="/mainsite-assets/images/favicon.png" type="image/x-icon">
         <link rel="icon" href="/mainsite-assets/images/favicon.png" type="image/x-icon">
+
+        @stack('styles')
+
     </head>    
 
 <body>

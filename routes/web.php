@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\AuthAdminProfileController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
 use App\Http\Controllers\Admin\AdminServiceUsersController;
+use App\Http\Controllers\Admin\AdminFamilyMembersController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
 use App\Http\Controllers\CareGivers\AuthCareGiverController;
 use App\Http\Controllers\CareGivers\CareGiverChatController;
@@ -37,9 +38,11 @@ use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
 use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
+use App\Http\Controllers\Admin\AdminEligibilityQuestionController;
 use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
 use App\Http\Controllers\ServiceUsers\ServiceUserEligibilityController;
+use App\Http\Controllers\ServiceUsers\ServiceUserFamilyMemberController;
 use App\Http\Controllers\ServiceUsers\ServiceUserKnowledgeBaseController;
 
 // MAIN SITE ROUTES
@@ -103,17 +106,32 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
     Route::get('/chat', [ServiceUserChatController::class, 'index'])->name('serviceuser.chat');
     Route::get('/knowledge-base', [ServiceUserKnowledgeBaseController::class, 'index'])->name('serviceuser.knowledge-base');
     Route::get('/auth-profile', [AuthServiceUserController::class, 'show'])->name('serviceuser.auth-profile.show');
+    Route::get('/edit-profile', [AuthServiceUserController::class, 'editProfile'])->name('serviceuser.auth-profile.edit');
+    Route::post('/update-profile', [AuthServiceUserController::class, 'updateProfile'])->name('serviceuser.auth-profile.update');
 
     Route::get('/change-password', [AuthServiceUserController::class, 'showChangePasswordForm'])->name('serviceuser.change-password');
     Route::post('/update-password', [AuthServiceUserController::class, 'updatePassword'])->name('serviceuser.update-password');
 
 
-    Route::get('/eligibility', [ServiceUserEligibilityController::class, 'index'])->name('serviceuser.eligibility.index');
-    Route::get('/eligibility/request/self', [ServiceUserEligibilityController::class, 'requestForSelf'])->name('serviceuser.eligibility.self');
-    Route::get('/eligibility/request/family', [ServiceUserEligibilityController::class, 'requestForFamily'])->name('serviceuser.eligibility.family');
+    // Eligibility For care beneficiary 
+    Route::get('/eligibility/care-beneficiary/show', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiaryShow'])->name('serviceuser.eligibility.care-beneficiary.show');
+    Route::post('/eligibility/care-beneficiary/save', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiarySave'])->name('serviceuser.eligibility.care-beneficiary.save');
 
-    Route::post('/eligibility-save', [ServiceUserEligibilityController::class, 'saveResponse'])->name('serviceuser.eligibility.save');
 
+    //Eligibility For Family
+    Route::get('/eligibility/family/list', [ServiceUserEligibilityController::class, 'EligibilityFamilyList'])->name('serviceuser.eligibility.family');
+    Route::get('/eligibility/family/show/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilyShow'])->name('serviceuser.eligibility.family.show');
+    Route::post('/eligibility/family/save/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilySave'])->name('serviceuser.eligibility.family.save');
+
+
+    
+    Route::get('/family-members', [ServiceUserFamilyMemberController::class, 'index'])->name('serviceuser.family-members');
+    Route::get('/family-members/add', [ServiceUserFamilyMemberController::class, 'showAddFamilyMemberForm'])->name('serviceuser.family-members.add');
+    Route::post('/family-members/store', [ServiceUserFamilyMemberController::class, 'storeFamilyMember'])->name('serviceuser.family-members.store');
+    Route::get('/family-members/profile/{id}', [ServiceUserFamilyMemberController::class, 'showFamilyMemberProfile'])->name('serviceuser.family-member.show');
+    Route::get('/family-members/edit/{id}', [ServiceUserFamilyMemberController::class, 'editFamilyMember'])->name('serviceuser.family-member.edit');
+    Route::post('/family-members/update/{id}', [ServiceUserFamilyMemberController::class, 'updateFamilyMember'])->name('serviceuser.family-member.update');
+    Route::get('/family-members/unlink/{id}', [ServiceUserFamilyMemberController::class, 'unlinkFamilyMember'])->name('serviceuser.family-member.unlink');
 
 });
 
@@ -126,6 +144,9 @@ Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->group(functi
     Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('caregiver.knowledge-base');
     Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('caregiver.auth-profile.show');
     
+    Route::get('/edit-profile', [AuthCareGiverController::class, 'editProfile'])->name('caregiver.auth-profile.edit');
+    Route::post('/update-profile', [AuthCareGiverController::class, 'updateProfile'])->name('caregiver.auth-profile.update');
+
     Route::get('/change-password', [AuthCareGiverController::class, 'showChangePasswordForm'])->name('caregiver.change-password');
     Route::post('/update-password', [AuthCareGiverController::class, 'updatePassword'])->name('caregiver.update-password');
 
@@ -149,22 +170,35 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     
     Route::get('/eligibility-requests/list', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request');     
     Route::get('/eligibility-requests/show/{user_id}', [AdminEligibilityController::class, 'show'])->name('admin.eligibility-request.show');
-    
     Route::post('/eligibility-requests/review/{user_id}', [AdminEligibilityController::class, 'submitReview'])->name('admin.eligibility-request.review');
     Route::delete('/eligibility-requests/delete/{user_id}', [AdminEligibilityController::class, 'deleteEligibility'])->name('admin.eligibility-request.delete');
 
 
+
+    Route::get('/eligibility-questions/', [AdminEligibilityQuestionController::class, 'index'])->name('admin.eligibility-questions.index');
+    Route::get('/eligibility-questions/create', [AdminEligibilityQuestionController::class, 'create'])->name('admin.eligibility-questions.create');
+    Route::post('/eligibility-questions/store', [AdminEligibilityQuestionController::class, 'store'])->name('admin.eligibility-questions.store');
+    Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('admin.eligibility-questions.show');
+    Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('admin.eligibility-questions.destroy');
+
+    
     Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
 
 
+
+    Route::get('/family-members', [AdminFamilyMembersController::class, 'index'])->name('admin.family-members.index');
+    Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('admin.family-members.unlink');
+    Route::post('/family-members/update', [AdminFamilyMembersController::class, 'update'])->name('admin.family-members.update');
+
+    Route::get('/family-members/search/{role}/{user_id}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('admin.family-members.search');
+    Route::post('/family-members/add', [AdminFamilyMembersController::class, 'addFamilyMember'])->name('admin.family-members.add');
+
+    
 
     Route::get('/care-givers/list', [AdminCareGiversController::class, 'index'])->name('admin.caregivers.index');
     Route::get('/care-givers/show/{id}', [AdminCareGiversController::class, 'show'])->name('admin.caregivers.show');
     Route::get('/care-givers/create', [AdminCareGiversController::class, 'create'])->name('admin.caregivers.create');
     Route::post('/care-givers/store', [AdminCareGiversController::class, 'store'])->name('admin.caregivers.store');
-
-
-
 
 
     Route::get('/admin-users/list', [AdminUsersController::class, 'index'])->name('adminusers.index');
@@ -173,9 +207,9 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::post('/admin-users/store', [AdminUsersController::class, 'store'])->name('adminusers.store');
 
 
-
-
     Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');
+    Route::get('/edit-profile', [AuthAdminProfileController::class, 'editProfile'])->name('admin.auth-profile.edit');
+    Route::post('/update-profile', [AuthAdminProfileController::class, 'updateProfile'])->name('admin.auth-profile.update');
     Route::get('/change-password', [AuthAdminProfileController::class, 'showChangePasswordForm'])->name('admin.change-password');
     Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('admin.update-password');
 

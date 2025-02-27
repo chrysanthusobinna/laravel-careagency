@@ -81,7 +81,6 @@
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Admin Panel</li>
             <li class="breadcrumb-item f-w-400">Care Giver</li>
-            <li class="breadcrumb-item f-w-400 active">View Profile</li>
         </ol>
     </nav>
 @endsection
@@ -94,10 +93,13 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
 @section('content')
 <div class="page-body">
     <div class="container-fluid">
+
         <div class="edit-profile">
-            <div class="row d-flex align-items-stretch">
-                <div class="col-xl-4 d-flex">
-                    <div class="card flex-fill">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    @include('partials._dashboard_message')
+                    
+                    <div class="card w-100 border-top border-warning border-3">
                         <div class="card-header">
                             <h4 class="card-title mb-0">Care Giver Profile</h4>
                         </div>
@@ -114,49 +116,27 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                         @endif
                                         <div class="flex-grow-1">
                                             <h4 class="mb-1">{{ $user->first_name }} {{ $user->last_name }}</h4>
-                                            <p>{{  $user->formatted_role }}</p>
+                                            <span class="badge bg-warning">{{ $user->formatted_role }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $user->phone_number }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Care Giver Details Form -->
-                <div class="col-xl-8 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-header">
-                            <h4 class="card-title mb-0">Care Giver Details</h4>
-                        </div>
-                        <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <th>First Name</th>
-                                            <td>{{ $user->first_name }}</td>
+                                            <td>{{ ucwords($user->first_name) }}</td>
                                         </tr>
                                         <tr>
                                             <th>Middle Name</th>
-                                            <td>{{ $user->middle_name ?? 'N/A' }}</td>
+                                            <td>{{ ucwords($user->middle_name) ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Name</th>
-                                            <td>{{ $user->last_name }}</td>
-                                        </tr>
+                                            <td>{{ ucwords($user->last_name) }}</td>
+                                        </tr>                                        
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $user->address }}</td>
@@ -177,8 +157,10 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer text-end">
-                            <a href="{{ route('admin.caregivers.index') }}" class="btn btn-secondary">Back</a>
+                        <div class="card-footer d-flex justify-content-between">
+                            <button class="btn btn-outline-warning" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
+                            <button class="btn btn-warning" onclick="window.history.back()">Back</button>
+
                         </div>
                     </div>
                 </div>

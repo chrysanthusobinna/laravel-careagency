@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\ServiceUsers;
 
 use App\Models\User;
+use App\Models\FamilyMember;
 use Illuminate\Http\Request;
+use App\Models\EligibilityRequest;
 use App\Models\EligibilityQuestion;
 use App\Models\EligibilityResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\EligibilityRequest;
 use App\Traits\AuthUserViewSharedDataTrait;
+use App\Http\Requests\EligibilityResponseRequest;
 
 class ServiceUserEligibilityController extends Controller
 {
@@ -17,60 +19,146 @@ class ServiceUserEligibilityController extends Controller
 
     public function __construct()
     {
-        // Call the shareViewData method 
         $this->shareViewData();
     }
 
-    
-    // Show the eligibility page
-    public function index()
+
+
+    public function eligibilityCareBeneficiaryShow()
     {
-        return view('serviceusers.pages.eligibility');
+        $userId = Auth::id();
+        $care_beneficiary_user = User::findOrFail($userId);
+    
+        $data = $this->handleEligibility($care_beneficiary_user);
+    
+        if (isset($data['redirect'])) {
+            return redirect()->to($data['redirect'])->with('error', $data['error']);
+        }
+    
+        return view('serviceusers.pages.eligibility-carebeneficiary-show', $data);
+    }
+    
+
+    // ELIGIBILITY FOR CARE BENEFICIARY SAVE RESPONSE
+
+    public function eligibilityCareBeneficiarySave(EligibilityResponseRequest $request)
+    {
+        $userId = Auth::id();
+        return $this->saveEligibilityResponse($request, $userId);
+    }
+    
+    
+
+    // Handle eligibility request for family member
+    public function EligibilityFamilyList()
+    {
+        $user = Auth::user();
+        $familyMembers = $user->managedCareBeneficiaries()->with('careBeneficiary')->get();
+
+        return view('serviceusers.pages.eligibility-family-list', compact('familyMembers'));
     }
 
-    // Handle eligibility request for self
-    public function requestForSelf()
+
+    
+    public function eligibilityFamilyShow(Request $request, $userId)
     {
+        $user = Auth::user();
+    
+        // Check if the authenticated user is a family member of the requested user ID
+        $familyMember = FamilyMember::where('family_member_id', $user->id)->where('care_beneficiary_id', $userId)->first();
+    
+        if (!$familyMember) {
+            return redirect()->route('serviceuser.dashboard')->with('error', 'You are not authorized to access this page.');
+        }
+    
+        $care_beneficiary_user = User::where('id', $userId)->where('role', 'care_beneficiary')->firstOrFail();
+        $data = $this->handleEligibility($care_beneficiary_user);
+    
+        if (isset($data['redirect'])) {
+            return redirect()->to($data['redirect'])->with('error', $data['error']);
+        }
+    
+        return view('serviceusers.pages.eligibility-family-show', $data);
+    }
+    
 
-        
-        $userId = Auth::id();
-        $care_beneficary_user = User::find($userId);
-        $user_eligibility_status = $care_beneficary_user->eligibility?->status;
 
+    // Eligibility for Family Member
+    public function eligibilityFamilySave(EligibilityResponseRequest $request, $userId)
+    {
+        $user = Auth::user();
+
+        // Check if the authenticated user is a family member of the requested user ID
+        $familyMember = FamilyMember::where('family_member_id', $user->id)->where('care_beneficiary_id', $userId)->first();
+
+        if (!$familyMember) {
+            return redirect()->route('serviceuser.dashboard')
+                ->with('error', 'You are not authorized to access this page.');
+        }
+
+        return $this->saveEligibilityResponse($request, $userId);
+    }
+
+
+
+
+
+    // SHOW ELIGIBILITY RESPONSES (USED FOR BOTH FAMILY & CARE BENEFICIARY)
+
+    private function handleEligibility(User $care_beneficiary_user)
+    {
+        $userId = $care_beneficiary_user->id;
+        $user_eligibility_status = $care_beneficiary_user->eligibility?->status;
+    
+        // Get all trashed question IDs
+        $trashedQuestions = EligibilityQuestion::onlyTrashed()->pluck('id')->toArray();
+    
+        // Get all active questions
         $questions = EligibilityQuestion::all();
         $totalQuestions = $questions->count();
-        $responses = EligibilityResponse::where('user_id', $userId)
-            ->where('completed_by_user', $userId)
-            ->get()->keyBy('question_id');
-                    
-        return view('serviceusers.pages.eligibility-self', compact('care_beneficary_user','user_eligibility_status','questions', 'responses', 'totalQuestions'));
+    
+        // Get user responses
+        $responses = EligibilityResponse::where('user_id', $userId)->get()->keyBy('question_id');
+    
+        // If eligibility status is NOT NULL and responses are EMPTY, delete the eligibility request
+        if ($user_eligibility_status !== null && $responses->isEmpty()) {
+            $care_beneficiary_user->eligibility->forceDelete();
+            return ['redirect' => route('serviceusers.eligibility-self'), 'error' => 'You need to complete the eligibility request.'];
+        }
+    
+        // Only check for trashed questions if responses exist
+        if (!$responses->isEmpty()) {
+            foreach ($responses as $questionId => $response) {
+                if (in_array($questionId, $trashedQuestions)) {
+                    $response->forceDelete();
+                    unset($responses[$questionId]);
+                }
+            }
+        }
+    
+        // Return the collected data
+        return [
+            'care_beneficiary_user' => $care_beneficiary_user,
+            'user_eligibility_status' => $user_eligibility_status,
+            'questions' => $questions,
+            'responses' => $responses,
+            'totalQuestions' => $totalQuestions
+        ];
     }
+    
 
 
-    public function saveResponse(Request $request)
+
+ 
+    // SAVE ELIGIBILITY RESPONSES (USED FOR BOTH FAMILY & CARE BENEFICIARY)
+    private function saveEligibilityResponse(EligibilityResponseRequest $request, $userId)
     {
-        $userId = Auth::id();
         $questionId = $request->input('question_id');
-    
-        // Validate that either 'answer' or 'child_answer' is provided
-        $request->validate([
-            'question_id' => 'required|exists:eligibility_questions,id',
-            'answer' => 'nullable',
-            'answer.*' => 'string', 
-            'child_answer' => 'nullable|string',
-        ], [
-            'question_id.required' => 'Question ID is required.',
-            'question_id.exists' => 'Invalid question ID.',
-            'answer.required_without' => 'Either an answer or a child answer is required.',
-            'child_answer.required_without' => 'Either a child answer or an answer is required.',
-        ]);
 
-    
         // Ensure at least one of the fields is present
         $answer = $request->input('answer');
         $childAnswer = $request->input('child_answer');
 
-        // Validate response presence
         if (empty($answer) && empty($childAnswer)) {
             return response()->json(['success' => false, 'message' => 'You need to provide a response.'], 422);
         }
@@ -80,14 +168,13 @@ class ServiceUserEligibilityController extends Controller
             return response()->json(['success' => false, 'message' => 'Please provide more details when selecting "Others".'], 422);
         }
 
-        $answer = is_array($request->input('answer')) ? json_encode($request->input('answer')) : $request->input('answer');
-        $childAnswer = $request->input('child_answer');
-    
+        // Convert multiple answers to JSON format
+        $answer = is_array($answer) ? json_encode($answer) : $answer;
+
         // Save or update the eligibility response
         EligibilityResponse::updateOrCreate(
             [
                 'user_id' => $userId,
-                'completed_by_user' => $userId,
                 'question_id' => $questionId
             ],
             [
@@ -95,13 +182,12 @@ class ServiceUserEligibilityController extends Controller
                 'child_answer' => $childAnswer,
             ]
         );
-       // Calculate total questions and user responses
-       $totalQuestions = EligibilityQuestion::count();
-       $totalResponses = EligibilityResponse::where('user_id', $userId)
-           ->where('completed_by_user', $userId)
-           ->count();
-   
-        // If the user has completed all questions, create or update the eligibility record
+
+        // Check if all questions are answered
+        $totalQuestions = EligibilityQuestion::count();
+        $totalResponses = EligibilityResponse::where('user_id', $userId)->count();
+
+        // If all questions are answered, update or create an eligibility request
         if ($totalQuestions > 0 && $totalQuestions === $totalResponses) {
             EligibilityRequest::updateOrCreate(
                 ['user_id' => $userId],
@@ -109,20 +195,16 @@ class ServiceUserEligibilityController extends Controller
                     'status' => 'pending',
                     'note' => null,
                     'eligibility_checked_by' => null,
-                    'submitted_by' => $userId,  
+                    'submitted_by' => Auth::id(),  
                 ]
             );
         }
 
-        
         return response()->json(['success' => true, 'message' => 'Response saved successfully.']);
     }
-    
-    
 
-    // Handle eligibility request for family member
-    public function requestForFamily()
-    {
-        return view('serviceusers.pages.eligibility-family');
-    }
+ 
+
+
 }
+ 

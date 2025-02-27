@@ -221,6 +221,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Role</th>
                                             <th>Registered</th>
                                         </tr>
                                     </thead>
@@ -250,6 +251,7 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $user->email }}</td>
+                                                <td><span class="badge bg-primary">{{ strtoupper($user->formatted_role) }}</span></td>
                                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach

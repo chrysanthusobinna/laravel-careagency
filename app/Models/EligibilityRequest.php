@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EligibilityRequest extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -17,7 +18,8 @@ class EligibilityRequest extends Model
         'eligibility_checked_by',
     ];
 
-    // Relationship to the service user
+    protected $dates = ['deleted_at'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,7 +30,6 @@ class EligibilityRequest extends Model
         return $this->belongsTo(User::class, 'submitted_by');
     }
 
-    // Relationship to the admin who checked the eligibility
     public function checkedBy()
     {
         return $this->belongsTo(User::class, 'eligibility_checked_by');

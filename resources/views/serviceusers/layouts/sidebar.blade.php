@@ -56,7 +56,8 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('serviceuser.eligibility.index', 'serviceuser.eligibility.self', 'serviceuser.eligibility.family') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.eligibility.index') }}">
+                        <a class="{{ request()->is('serviceuser/eligibility*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" 
+                            href="{{ $loggedInUser->role === 'care_beneficiary' ? route('serviceuser.eligibility.care-beneficiary.show') : route('serviceuser.eligibility.family') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-check"></use>
                             </svg>
@@ -67,7 +68,21 @@
                         </a>
                     </li>
                     
-                    
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('serviceuser.family-members') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.family-members') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-file"></use>
+                            </svg>
+                            <span>Family</span>
+                        </a>
+                    </li>
+
+
+
                     
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('serviceuser.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('serviceuser.knowledge-base') }}">

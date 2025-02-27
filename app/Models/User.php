@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(FamilyMember::class, 'family_member_id');
     }
 
-    public function familyMembersManagingThisUser()
+    public function familyMembersManagingCareBeneficiary()
     {
         // This user is the care beneficiary
         return $this->hasMany(FamilyMember::class, 'care_beneficiary_id');

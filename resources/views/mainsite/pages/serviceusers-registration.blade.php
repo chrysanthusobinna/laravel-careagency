@@ -4,13 +4,49 @@
 
 @section('header-class', 'header-style-one')
 
+@push('styles')
+<style>
+    .custom-radio-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .custom-radio {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #343a40;  
+        background-color: white;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        appearance: none;  
+        border-radius: 0;  
+    }
+
+    .custom-radio:checked {
+        background-color: #343a40;  
+        border-color: #343a40;
+        position: relative;
+    }
+
+    .custom-radio:checked::after {
+        font-size: 14px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+@endpush
+
 
 @push('scripts')
 	<script>
 		$(document).ready(function() {
 			$('.toggle-all-passwords').click(function() {
-				let passwordFields = $('.password-field'); // Select all password fields
-				let icon = $(this).find('i'); // Select the icon
+				let passwordFields = $('.password-field');  
+				let icon = $(this).find('i');  
 				let isPasswordVisible = passwordFields.attr('type') === 'text';
 
 				// Toggle all password fields
@@ -80,6 +116,23 @@
                         <form method="post" action="{{ route('mainsite.register.submit') }}" id="registration-form">
                             @csrf
                             <div class="row">
+                                <!-- Registration Type -->
+                                <div class="col-lg-12 rounded shadow-lg p-3 mb-4 bg-white">
+                                    <label class="text-secondary mb-2">Are you registering to receive care for yourself or for a family member?</label>
+                                    <div class="form-check form-check-inline custom-radio-container">
+                                        <input class="form-check-input custom-radio" type="radio" name="role" id="self" value="care_beneficiary" {{ old('role') == 'care_beneficiary' ? 'checked' : '' }} required>
+                                        <label class="form-check-label" for="self">I'm registering for myself</label>
+                                    </div>
+                                    <div class="form-check form-check-inline custom-radio-container">
+                                        <input class="form-check-input custom-radio" type="radio" name="role" id="family" value="family_member" {{ old('role') == 'family_member' ? 'checked' : '' }} required>
+                                        <label class="form-check-label" for="family">I'm registering for a family member</label>
+                                    </div>
+                                </div>
+                                                    
+                            
+                                <hr/>
+                                <p class="text-secondary fs-5 fw-bold mt-2">Please provide your own details below.</p>
+
                                 <div class="form-group col-lg-12">
                                     <label for="first_name" class="text-secondary">First Name</label>
                                     <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name') }}" required>
@@ -125,7 +178,7 @@
                                         @include('partials._select_country')
                                     </select>
                                 </div>
-                        
+                            
                                 <!-- Password Fields -->
                                 <div class="form-group col-lg-6">
                                     <label for="password" class="text-secondary">Password</label>
@@ -135,7 +188,7 @@
                                     <label for="password_confirmation" class="text-secondary">Confirm Password</label>
                                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control password-field" required>
                                 </div>
-
+                            
                                 <!-- Show/Hide Password Button -->
                                 <div class="form-group col-lg-12">
                                     <button class="btn btn-outline-secondary toggle-all-passwords btn-block" style="width:100%" type="button">
@@ -147,23 +200,24 @@
                                     {!! NoCaptcha::display() !!}
                                     {!! NoCaptcha::renderJs() !!}
                                 </div>
-
+                            
                                 <!-- Terms and Privacy Agreement -->
                                 <div class="form-group col-lg-12 text-center mb-3">
                                     <p class="text-muted" style="font-size: 14px;">
                                         By clicking the "Register Now" button, you confirm that you have read and agree to our
-                                        <a href="{{ route('mainsite.terms.serviceuser') }}" target="_balnk"   class="text-secondary" style="text-decoration: underline;">Terms and Conditions</a>
+                                        <a href="{{ route('mainsite.terms.serviceuser') }}" target="_blank" class="text-secondary" style="text-decoration: underline;">Terms and Conditions</a>
                                         and our
-                                        <a href="{{ route('mainsite.privacy') }}" target="_balnk"  class="text-secondary" style="text-decoration: underline;">Privacy Policy</a>.
+                                        <a href="{{ route('mainsite.privacy') }}" target="_blank" class="text-secondary" style="text-decoration: underline;">Privacy Policy</a>.
                                     </p>
                                 </div>
-
+                            
                                 <div class="form-group col-lg-12">
                                     <button style="width:100%" class="theme-btn btn-style-two btn-secondary" type="submit">
                                         <span class="btn-title">Register Now</span>
                                     </button>
                                 </div>
                             </div>
+                            
                         </form>
                         
                                                 

@@ -30,7 +30,8 @@ class RegisterUserRequest extends FormRequest
             'post_code' => 'required|string|max:20',
             'county' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed', // Enforces strong password and confirmation
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:care_beneficiary,family_member', 
         ];
     }
 

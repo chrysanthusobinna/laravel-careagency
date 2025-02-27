@@ -28,7 +28,7 @@ class UserHelper
             'admin_level_1' => 'Admin',
             'admin_level_2' => 'Admin',
             'care_giver' => 'Care Giver',
-            'service_user' => 'Service User',
+            'care_beneficiary' => 'Care Beneficiary',
         ];
 
         return $roleMapping[$role] ?? ucfirst(str_replace('_', ' ', $role));

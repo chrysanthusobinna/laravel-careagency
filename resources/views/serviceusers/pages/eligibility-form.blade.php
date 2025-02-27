@@ -97,7 +97,7 @@
         let form = $(".question-step[data-step='" + step + "']");
         let formData = form.find("input, textarea").serialize();
         
-        $.post("{{ route('serviceuser.eligibility.save') }}", formData, function (response) {
+        $.post("{{ route('serviceuser.eligibility.care-beneficiary.save') }}", formData, function (response) {
             if (response.success) {
                 form.hide();
                 step++;
@@ -167,7 +167,7 @@
                                     <input type="hidden" name="question_id" value="{{ $question->id }}">
                                     @php $response = $responses[$question->id]->answer ?? null; @endphp
                     
-                                    @if($question->type === 'text')
+                                    @if($question->type === 'textarea')
                                         <textarea name="answer" class="form-control">{{ $response }}</textarea>
                     
                                     @elseif($question->type === 'radio')
