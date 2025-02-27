@@ -154,20 +154,43 @@ class ServiceUserEligibilityController extends Controller
     private function saveEligibilityResponse(EligibilityResponseRequest $request, $userId)
     {
         $questionId = $request->input('question_id');
-
-        // Ensure at least one of the fields is present
         $answer = $request->input('answer');
+        $answer_other = $request->input('answer_other');
         $childAnswer = $request->input('child_answer');
-
-        if (empty($answer) && empty($childAnswer)) {
-            return response()->json(['success' => false, 'message' => 'You need to provide a response.'], 422);
+        
+        // Fetch the question record to get child_question_required
+        $question = EligibilityQuestion::find($questionId);
+        
+        if (!$question) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid question ID.'
+            ], 400);
         }
+        
+        // Check if answer is "others" and ensure answer_other is provided
 
-        // Check if answer is "others" and child_answer is empty
-        if (!is_array($answer) && strtolower($answer) === 'others' && empty($childAnswer)) {
-            return response()->json(['success' => false, 'message' => 'Please provide more details when selecting "Others".'], 422);
+        if($question->others ==1 ){
+            if (strtolower(trim($answer)) === 'others') {
+                if (empty($answer_other)) {
+                    return response()->json([
+                        'success' => false, 
+                        'message' => 'Please provide more details when selecting "Others".'
+                    ], 422);
+                }
+                $answer = $answer_other;
+            }
         }
-
+        
+        // Validate child_answer if child_question_required is 1
+        if ($question->child_question_required && empty($childAnswer)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please provide an answer for the required second question.'
+            ], 422);
+        }
+        
+        
         // Convert multiple answers to JSON format
         $answer = is_array($answer) ? json_encode($answer) : $answer;
 

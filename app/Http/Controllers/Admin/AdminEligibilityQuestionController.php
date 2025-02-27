@@ -50,6 +50,9 @@ class AdminEligibilityQuestionController extends Controller
                     }
                 }
             ],
+            'child_question' => 'nullable|string|max:500',
+            'child_question_required' => 'nullable|boolean',
+            'option_others' => 'nullable|boolean',
         ]);
     
         // Filter out empty options
@@ -63,15 +66,20 @@ class AdminEligibilityQuestionController extends Controller
         // Encode options only if there are valid options
         $options = !empty($filteredOptions) ? json_encode(array_values($filteredOptions)) : null;
     
+        // Create the Eligibility Question
         EligibilityQuestion::create([
             'question' => $request->question,
             'more_details' => $request->more_details,
             'type' => $request->type,
             'options' => $options,
+            'child_question' => $request->child_question, 
+            'child_question_required' => $request->has('child_question_required') ? 1 : 0, 
+            'option_others' => $request->has('option_others') ? 1 : 0,
         ]);
     
         return redirect()->route('admin.eligibility-questions.index')->with('success', 'Question added successfully.');
     }
+    
     
     /**
      * Display a single eligibility question.

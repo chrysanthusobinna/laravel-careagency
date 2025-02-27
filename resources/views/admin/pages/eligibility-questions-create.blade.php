@@ -107,11 +107,13 @@
 
             if (selectedType === "radio"){
                 $("#tips").removeClass("d-none");
+                $("#enable_others").removeClass("d-none");
             }
             else
             {
                 if (!$("#tips").hasClass("d-none")) {
                     $("#tips").addClass("d-none");
+                    $("#enable_others").addClass("d-none");
                 } 
             }
             
@@ -184,21 +186,25 @@
                     <form action="{{ route('admin.eligibility-questions.store') }}" method="POST">
                         @csrf
                         <div class="card common-hover border-start border-2 border-info">
+                            
                             <div class="card-header border-b-info">
                                 <h5>Add New Eligibility Question</h5>
                             </div>
-                    
+
                             <div class="card-body">
+                                <!-- Question -->
                                 <div class="mb-3">
                                     <label class="form-label">Question</label>
                                     <textarea class="form-control" name="question" required></textarea>
                                 </div>
-                    
+
+                                <!-- More Details -->
                                 <div class="mb-3">
                                     <label class="form-label">More Details</label>
                                     <input type="text" class="form-control" name="more_details">
                                 </div>
-                    
+
+                                <!-- Question Type -->
                                 <div class="mb-3">
                                     <label class="form-label">Type</label>
                                     <select class="form-control" name="type" id="questionType" required>
@@ -207,32 +213,62 @@
                                         <option value="checkbox">Multiple Choice (Checkbox)</option>
                                     </select>
                                 </div>
-                    
 
-                                <div id="tips"class="p-3 border rounded shadow-sm bg-white d-none mb-4" style="border-color: rgba(0, 0, 0, 0.2);">
-                                    <i class="fa fa-exclamation-circle text-warning me-1"></i>
-                                    <strong>Tips:</strong> Consider adding an "Other" option when using radio buttons. This allows users to either select from the given choices or provide their own response if none of the options apply.
-                                </div>
-                                
 
-                                
                                 <!-- Options Section (For Radio & Checkbox Types) -->
                                 <div id="optionsSection" class="mb-3 d-none">
                                     <label class="form-label">Options</label>
                                     <div id="optionsContainer">
                                         <div class="input-group mb-2 option-group">
                                             <input type="text" class="form-control option-input" name="options[]" placeholder="Enter an option">
-                                            <button type="button" class="btn btn-outline-secondary remove-option d-none"> <i class="fa fa-times"></i> </button>
+                                            <button type="button" class="btn btn-outline-secondary remove-option d-none"> 
+                                                <i class="fa fa-times"></i> 
+                                            </button>
                                         </div>
-                                        
                                     </div>
                                     <button type="button" class="btn btn-outline-info btn-sm mt-2" id="addOption">
                                         <i class="fa fa-plus"></i> Add Option
                                     </button>
-                                    
+                                </div>
+
+
+
+                                <!-- Tip Section -->
+                                <div id="tips" class="p-3 border rounded shadow-sm bg-white d-none mb-4" style="border-color: rgba(0, 0, 0, 0.2);">
+                                    <i class="fa fa-exclamation-circle text-warning me-1"></i>
+                                    <strong>Tips:</strong>  Consider checking the "Other" checkbox if you want service users to provide their own response when none of the available options apply.
+                                </div>
+
+
+                                <!-- Enable "Others" Option -->
+                                <div id="enable_others" class="d-none form-check checkbox checkbox-primary mb-3">
+                                    <input class="form-check-input" id="checkbox-option-others" type="checkbox" name="option_others" value="1">
+                                    <label class="form-check-label" for="checkbox-option-others">
+                                        Enable "Others" Option
+                                    </label>
                                 </div>
                             </div>
-                    
+
+                            <div class="card-header border-b-info">
+                                <h5>Child Question</h5>
+                            </div>         
+
+                            <div class="card-body">
+                                <!-- Child Question Textarea -->
+                                <div class="mb-3">
+                                    <label class="form-label">Child Question</label>
+                                    <textarea class="form-control" name="child_question" placeholder="Enter the follow-up question here..."></textarea>
+                                </div>
+
+                                <!-- Child Question Required -->
+                                <div class="form-check checkbox checkbox-primary mb-3">
+                                    <input class="form-check-input" id="checkbox-child-question-required" type="checkbox" name="child_question_required" value="1">
+                                    <label class="form-check-label" for="checkbox-child-question-required">
+                                        Require Child Question
+                                    </label>
+                                </div>                   
+                            </div>
+
                             <!-- Card Footer with Buttons -->
                             <div class="card-footer d-flex justify-content-between">
                                 <a href="{{ route('admin.eligibility-questions.index') }}" class="btn btn-outline-secondary">Back</a>
@@ -240,14 +276,9 @@
                             </div>
                         </div>
                     </form>
-                    
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
- 
-
 @endsection

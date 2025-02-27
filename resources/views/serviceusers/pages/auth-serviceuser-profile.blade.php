@@ -131,7 +131,14 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                             <th>Last Name</th>
                                             <td>{{ ucwords($loggedInUser->last_name) }}</td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <th>Email Address</th>
+                                            <td>{{ strtolower($loggedInUser->email) }}</td>
+                                        </tr>                                          
+                                        <tr>
+                                            <th>Phone Number</th>
+                                            <td>{{ $loggedInUser->phone_number }}</td>
+                                        </tr>                                         
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $loggedInUser->address }}</td>

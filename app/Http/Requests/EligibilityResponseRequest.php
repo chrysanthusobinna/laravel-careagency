@@ -15,7 +15,7 @@ class EligibilityResponseRequest extends FormRequest
     {
         return [
             'question_id' => 'required|exists:eligibility_questions,id',
-            'answer' => 'nullable',
+            'answer' => 'required',
             'answer.*' => 'string',
             'child_answer' => 'nullable|string',
         ];
