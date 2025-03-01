@@ -164,12 +164,27 @@
                                         </tr>
                                         <tr>
                                             <td class="fw-bold" style="width:40%;"> </td>
-                                            <td> <div class="d-grid gap-2">
-                                                @foreach(json_decode($question->options, true) as $option)
-                                                    <button type="button" class="btn btn-outline-primary w-100" >{{ $option }}</button>
-                                                @endforeach
-                                            </div></td>
+                                            <td>
+                                                <div class="d-grid gap-2">
+                                                    @foreach(json_decode($question->options, true) as $option)
+                                                        <button type="button" class="btn btn-outline-primary w-100" >{{ $option }}</button>
+                                                    @endforeach
+                                                </div>
+                                            </td>
                                         </tr>
+                                        @if($question->option_others === 1)
+                                        <tr>
+                                            <td class="fw-bold" style="width:40%;">Other Options <span class="badge bg-success">Enabled</span></td>
+                                            <td>
+                                                <div class="d-grid gap-2">
+                                                    <button type="button" class="btn btn-outline-primary w-100" >Others</button>
+                                                </div>
+                                                
+                                                <br>  Expected response: Radio Button or Text Area 
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    
                                     </tbody>
                                 </table>
                                 @endif
@@ -190,6 +205,17 @@
                                     <td class="fw-bold" style="width:40%;">Expected Response:</td>
                                     <td>Text</td>
                                 </tr>
+                                <tr>
+                                    <td class="fw-bold" style="width:40%;">Child Question Requirement</td>
+                                    <td>
+                                        @if($question->child_question_required)
+                                            <span class="badge bg-danger">Required</span>
+                                        @else
+                                            <span class="badge bg-secondary">Not Required</span>
+                                        @endif
+                                    </td>
+                                </tr>                                
+
                             </tbody>
                         </table>
 

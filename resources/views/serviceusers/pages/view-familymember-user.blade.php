@@ -121,16 +121,24 @@ $member = $familyMember->careBeneficiary;
                                             <tbody>
                                                 <tr>
                                                     <th>First Name</th>
-                                                    <td>{{ $member->first_name }}</td>
+                                                    <td>{{ ucwords($member->first_name) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Middle Name</th>
-                                                    <td>{{ $member->middle_name ?? 'N/A' }}</td>
+                                                    <td>{{ ucwords($member->middle_name) ?? 'N/A' }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Last Name</th>
-                                                    <td>{{ $member->last_name }}</td>
-                                                </tr>
+                                                    <td>{{ ucwords($member->last_name) }}</td>
+                                                </tr>  
+                                                <tr>
+                                                    <th>Email Address</th>
+                                                    <td>{{ strtolower($member->email) }}</td>
+                                                </tr>                                          
+                                                <tr>
+                                                    <th>Phone Number</th>
+                                                    <td>{{ $member->phone_number }}</td>
+                                                </tr>                                                 
                                                 <tr>
                                                     <th>Address</th>
                                                     <td>{{ $member->address }}</td>

@@ -199,7 +199,6 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                             <th>Phone Number</th>
                                             <td>{{ $user->phone_number }}</td>
                                         </tr>                                         
-
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $user->address }}</td>
