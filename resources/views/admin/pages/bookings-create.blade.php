@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Care Giver Profile')
+@section('title', 'Admin -  Care Booking')
 
 
 @push('styles')
@@ -69,109 +69,79 @@
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         <!-- Plugin used-->
 
-    
-        </script>
 @endpush
 
-
 @section('page-header')
-    <h4 class="f-w-700">View Care Giver Profile</h4>
+    <h4 class="f-w-700">Care Booking</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400">Care Giver</li>
+            <li class="breadcrumb-item f-w-400">Care Booking</li>
         </ol>
     </nav>
 @endsection
 
- 
 @php
 $randomColor = $colorClasses[array_rand($colorClasses)];
 @endphp
 
+
 @section('content')
 <div class="page-body">
     <div class="container-fluid">
-
         <div class="edit-profile">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
                     @include('partials._dashboard_message')
-                    
-                    <div class="card w-100 border-top border-warning border-3">
-                        <div class="card-header">
-                            <h4 class="card-title mb-0">Care Giver Profile</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row mb-2">
+                    <form action="{{ route('admin.bookings.store', ['userId' => $careBeneficiary->id]) }}" method="POST">
+                        @csrf
+                        <div class="card shadow-lg">
+                            <div class="card-header">
+                                <h2 class="mb-0">Care Booking</h2>
+                            </div>
+                            <div class="card-body">
                                 <div class="profile-title">
                                     <div class="d-flex">
-                                        @if($user->profile_picture == 'default.png')
+                                        @if($careBeneficiary->profile_picture == 'default.png')
                                             <div class="letter-avatar">
-                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
+                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $careBeneficiary->initials }}</h6>
                                             </div>
                                         @else
-                                            <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}">
+                                            <img class="img-70 rounded-circle" alt="Profile Picture" src="{{ asset('uploads/profile_pictures/' . $careBeneficiary->profile_picture) }}">
                                         @endif
                                         <div class="flex-grow-1">
-                                            <h4 class="mb-1">{{ $user->first_name }} {{ $user->last_name }}</h4>
-                                            <span class="badge bg-warning">{{ $user->formatted_role }}</span>
+                                            <h4 class="mb-1">{{ $careBeneficiary->first_name }} {{ $careBeneficiary->last_name }}</h4>
+                                            <span class="badge bg-info">{{ $careBeneficiary->formatted_role }}</span>
                                         </div>
                                     </div>
                                 </div>
+                                <hr/>
+                                <div class="mb-3">
+                                    <label for="start_date" class="form-label">Start Date:</label>
+                                    <input type="date" id="start_date" name="start_date" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="end_date" class="form-label">End Date:</label>
+                                    <input type="date" id="end_date" name="end_date" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="number_of_carers" class="form-label">Number of Carers:</label>
+                                    <select id="number_of_carers" name="number_of_carers" class="form-select" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
                             </div>
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th>First Name</th>
-                                            <td>{{ ucwords($user->first_name) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Middle Name</th>
-                                            <td>{{ $user->middle_name ? ucwords($user->middle_name) : 'N/A' }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Last Name</th>
-                                            <td>{{ ucwords($user->last_name) }}</td>
-                                        </tr>  
-                                        <tr>
-                                            <th>Email</th>
-                                            <td>{{ $user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Phone Number</th>
-                                            <td>{{ $user->phone_number ?? 'N/A' }}</td>
-                                        </tr>                                     
-                                        <tr>
-                                            <th>Address</th>
-                                            <td>{{ $user->address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>City</th>
-                                            <td>{{ $user->city }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Postal Code</th>
-                                            <td>{{ $user->post_code }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Country</th>
-                                            <td>{{ $user->country }}</td>
-                                        </tr>
-                                    </tbody>
-                                    
-                                </table>
+                            <div class="card-footer d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">Back</button>
+                                <button type="submit" class="btn btn-secondary">Submit Booking</button>
                             </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <button class="btn btn-outline-warning" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
-                            <button class="btn btn-warning" onclick="window.history.back()">Back</button>
-
-                        </div>
-                    </div>
+                    </form>
+                    
+                
                 </div>
             </div>
         </div>

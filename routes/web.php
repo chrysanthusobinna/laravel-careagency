@@ -18,6 +18,7 @@ use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\MainSite\ContactController;
+use App\Http\Controllers\Admin\AdminBookingController;
 use App\Http\Controllers\EligibilityResponseController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
@@ -34,11 +35,13 @@ use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
 use App\Http\Controllers\CareGivers\AuthCareGiverController;
 use App\Http\Controllers\CareGivers\CareGiverChatController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
+use App\Http\Controllers\CareGivers\CareGiversBookingController;
 use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
 use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
 use App\Http\Controllers\Admin\AdminEligibilityQuestionController;
+use App\Http\Controllers\ServiceUsers\ServiceUsersBookingController;
 use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
 use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
 use App\Http\Controllers\ServiceUsers\ServiceUserEligibilityController;
@@ -133,6 +136,17 @@ Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(fu
     Route::post('/family-members/update/{id}', [ServiceUserFamilyMemberController::class, 'updateFamilyMember'])->name('serviceuser.family-member.update');
     Route::get('/family-members/unlink/{id}', [ServiceUserFamilyMemberController::class, 'unlinkFamilyMember'])->name('serviceuser.family-member.unlink');
 
+
+
+    // Service User Routes
+    Route::get('/bookings/', [ServiceUsersBookingController::class, 'index'])->name('serviceusers.bookings.index');
+    Route::get('/bookings/create', [ServiceUsersBookingController::class, 'create'])->name('serviceusers.bookings.create');
+    Route::post('/bookings/store', [ServiceUsersBookingController::class, 'store'])->name('serviceusers.bookings.store');
+    Route::get('/bookings/show/{id}', [ServiceUsersBookingController::class, 'show'])->name('serviceusers.bookings.show');
+    Route::post('/bookings/{id}/select-carers', [ServiceUsersBookingController::class, 'selectCarers'])->name('serviceusers.bookings.selectCarers');
+
+    Route::get('/care-givers/show/{id}', [ServiceUsersBookingController::class, 'showCareGiver'])->name('serviceusers.caregivers.show');
+
 });
 
 
@@ -149,6 +163,16 @@ Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->group(functi
 
     Route::get('/change-password', [AuthCareGiverController::class, 'showChangePasswordForm'])->name('caregiver.change-password');
     Route::post('/update-password', [AuthCareGiverController::class, 'updatePassword'])->name('caregiver.update-password');
+
+
+
+    Route::get('/bookings/', [CareGiversBookingController::class, 'index'])->name('caregivers.bookings.index');
+    Route::get('/bookings/show/{id}', [CareGiversBookingController::class, 'show'])->name('caregivers.bookings.show');
+
+    Route::get('/bookings/{id}', [CareGiversBookingController::class, 'show'])->name('caregivers.bookings.show');
+    Route::put('/bookings/assignment/{id}/accept', [CareGiversBookingController::class, 'acceptResponse'])->name('caregivers.bookings.acceptResponse');
+    Route::put('/bookings/assignment/{id}/cancel', [CareGiversBookingController::class, 'cancelResponse'])->name('caregivers.bookings.cancelResponse');
+
 
 });
 
@@ -181,10 +205,6 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('admin.eligibility-questions.show');
     Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('admin.eligibility-questions.destroy');
 
-    
-    Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
-
-
 
     Route::get('/family-members', [AdminFamilyMembersController::class, 'index'])->name('admin.family-members.index');
     Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('admin.family-members.unlink');
@@ -214,6 +234,25 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('admin.update-password');
 
     Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('admin.knowledge-base');
+
+
+
+    // booking Routes
+    Route::get('/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings.index');
+    Route::get('/bookings/create/user_id/{userId}', [AdminBookingController::class, 'create'])->name('admin.bookings.create');
+    Route::post('/bookings/store/user_id/{userId}', [AdminBookingController::class, 'store'])->name('admin.bookings.store');
+    Route::get('/bookings/show/{id}', [AdminBookingController::class, 'show'])->name('admin.bookings.show');
+    Route::get('/bookings/{id}/assign-carers', [AdminBookingController::class, 'assignCarers'])->name('admin.bookings.assign');
+    Route::post('/bookings/{id}/assign-carers', [AdminBookingController::class, 'storeAssignedCarers'])->name('admin.bookings.storeAssignedCarers');
+    Route::post('/bookings/{id}/approve', [AdminBookingController::class, 'approveBooking'])->name('admin.bookings.approve');
+
+    Route::get('/bookings/{id}/edit', [AdminBookingController::class, 'edit'])->name('admin.bookings.edit');
+    Route::put('/bookings/{id}/update', [AdminBookingController::class, 'update'])->name('admin.bookings.update');
+
+    Route::delete('/bookings/{bookingId}/carers/{id}/remove', [AdminBookingController::class, 'removeAssignedCarer'])->name('admin.bookings.removeCarer');
+    Route::put('/bookings/assignments/{id}/update', [AdminBookingController::class, 'updateAssignedCarer'])->name('admin.bookings.updateAssignment');
+    Route::post('/bookings/{id}/cancel', [AdminBookingController::class, 'cancelBooking'])->name('admin.bookings.cancel');
+
 
 });
 

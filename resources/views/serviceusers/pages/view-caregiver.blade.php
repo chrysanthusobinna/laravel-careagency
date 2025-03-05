@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('serviceusers.layouts.app')
 
-@section('title', 'Admin - Care Giver Profile')
+@section('title', 'Serviceuser - Care Giver Profile')
 
 
 @push('styles')
@@ -68,24 +68,20 @@
         <script src="/dashboard-assets/js/script1.js"></script>
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         <!-- Plugin used-->
-
-    
-        </script>
 @endpush
 
 
 @section('page-header')
-    <h4 class="f-w-700">View Care Giver Profile</h4>
-    <nav>
-        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400">Care Giver</li>
-        </ol>
-    </nav>
+<h4 class="f-w-700">Care Giver Profile</h4>
+<nav>
+    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Dashboard</li>
+        <li class="breadcrumb-item f-w-400 active">Care Giver Profile</li>
+    </ol>
+</nav>
 @endsection
 
- 
 @php
 $randomColor = $colorClasses[array_rand($colorClasses)];
 @endphp
@@ -131,20 +127,12 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                         </tr>
                                         <tr>
                                             <th>Middle Name</th>
-                                            <td>{{ $user->middle_name ? ucwords($user->middle_name) : 'N/A' }}</td>
+                                            <td>{{ ucwords($user->middle_name) ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Name</th>
                                             <td>{{ ucwords($user->last_name) }}</td>
-                                        </tr>  
-                                        <tr>
-                                            <th>Email</th>
-                                            <td>{{ $user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Phone Number</th>
-                                            <td>{{ $user->phone_number ?? 'N/A' }}</td>
-                                        </tr>                                     
+                                        </tr>                                        
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $user->address }}</td>
@@ -162,7 +150,6 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                             <td>{{ $user->country }}</td>
                                         </tr>
                                     </tbody>
-                                    
                                 </table>
                             </div>
                         </div>

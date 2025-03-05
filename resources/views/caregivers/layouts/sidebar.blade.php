@@ -44,6 +44,20 @@
                     </li>
 
                     <li class="sidebar-list">
+                        <a class="{{ request()->routeIs('caregivers.bookings.index') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregivers.bookings.index') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-bookmark"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-bookmark"></use>
+                            </svg>
+                            <span>Bookings</span>
+                        </a>
+                    </li>
+                    
+
+
+                    <li class="sidebar-list">
                         <a class="{{ request()->routeIs('caregiver.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.chat') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
