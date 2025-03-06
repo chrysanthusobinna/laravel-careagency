@@ -181,12 +181,15 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
     Route::get('/care-beneficiary/unlink/{id}', [FamilyMemberController::class, 'unlinkFamilyMember'])->name('care-beneficiary.unlink');
 
 
-    // BOOKINGS
-    Route::get('/bookings/', [FamilyMemberBookingController::class, 'index'])->name('bookings.index');
-    Route::get('/bookings/create', [FamilyMemberBookingController::class, 'create'])->name('bookings.create');
-    Route::post('/bookings/store', [FamilyMemberBookingController::class, 'store'])->name('bookings.store');
-    Route::get('/bookings/show/{id}', [FamilyMemberBookingController::class, 'show'])->name('bookings.show');
-    Route::post('/bookings/{id}/select-carers', [FamilyMemberBookingController::class, 'selectCarers'])->name('bookings.selectCarers');
+    // BOOKINGS 
+    Route::get('/bookings/family-member/list', [FamilyMemberBookingController::class, 'BookingFamilyList'])->name('bookings.family-member.list');
+
+    Route::get('/bookings/care-beneficiary/{userId}', [FamilyMemberBookingController::class, 'index'])->name('bookings.care-beneficiary.index');
+    Route::get('/bookings/care-beneficiary/{userId}/create', [FamilyMemberBookingController::class, 'create'])->name('bookings.care-beneficiary.create');
+    Route::post('/bookings/care-beneficiary/{userId}/store', [FamilyMemberBookingController::class, 'store'])->name('bookings.care-beneficiary.store');
+    Route::get('/bookings/care-beneficiary/{userId}/show/{id}', [FamilyMemberBookingController::class, 'show'])->name('bookings.care-beneficiary.show');
+    Route::post('/bookings/care-beneficiary/{userId}/select-carers/{id}', [FamilyMemberBookingController::class, 'selectCarers'])->name('bookings.care-beneficiary.selectCarers');
+
 
     // SHOW CARE GIVER
     Route::get('/care-givers/show/{id}', [FamilyMemberBookingController::class, 'showCareGiver'])->name('caregivers.show');
@@ -272,6 +275,7 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
     Route::post('/eligibility-questions/store', [AdminEligibilityQuestionController::class, 'store'])->name('eligibility-questions.store');
     Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('eligibility-questions.show');
     Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('eligibility-questions.destroy');
+
 
     // FAMILY MANAGE
     Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('family-members.unlink');

@@ -56,6 +56,19 @@
                     </li>
 
                     <li class="sidebar-list">
+                        <a class="{{ request()->is('carebeneficiary/booking*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('carebeneficiary.bookings.index') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-bookmark"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-bookmark"></use>
+                            </svg>
+                            <span>Care Bookings</span>
+                        </a>
+                    </li>
+
+
+                    <li class="sidebar-list">
                         <a class="{{ request()->is('carebeneficiary/eligibility*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" 
                             href="{{ route('carebeneficiary.eligibility.care-beneficiary.show') }}">
                             <svg class="stroke-icon">

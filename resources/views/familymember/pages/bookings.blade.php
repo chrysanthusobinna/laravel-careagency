@@ -130,7 +130,7 @@
         <div class="container my-4">
             <div class="p-4 text-center bg-white border rounded shadow-sm" style="border-color: rgba(0, 0, 0, 0.1);">
                 <p class="mb-2 text-muted fs-5">No bookings yet.</p>
-                <a href="{{ route('familymember.bookings.create') }}" class="btn btn-primary btn-sm">Click here to create a new booking</a>
+                <a href="{{ route('familymember.bookings.care-beneficiary.create', ['userId' => $careBeneficiary->id]) }}" class="btn btn-primary btn-sm">Click here to create a new booking</a>
             </div>
         </div>
         @else
@@ -157,9 +157,10 @@
                                         @foreach($bookings as $booking)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('familymember.bookings.show', $booking->id) }}" class=" ">
-                                                {{ $booking->reference_number }}
+                                                <a href="{{ route('familymember.bookings.care-beneficiary.show', ['userId' => $booking->care_beneficiary_id, 'id' => $booking->id]) }}" class="">
+                                                    {{ $booking->reference_number }}
                                                 </a>
+                                                
                                             </td>
                                             <td>{{ $booking->created_at->diffForHumans() }}</td>
                                             <td>

@@ -97,7 +97,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
             <div class="row">
                 <div class="col-xl-8 mx-auto">
                     @include('partials._dashboard_message')
-                    <form action="{{ route('familymember.bookings.store', ['userId' => $careBeneficiary->id]) }}" method="POST">
+                    <form action="{{ route('familymember.bookings.care-beneficiary.store', ['userId' => $careBeneficiary->id]) }}" method="POST">
                         @csrf
                         <div class="card shadow-lg">
                             <div class="card-header">

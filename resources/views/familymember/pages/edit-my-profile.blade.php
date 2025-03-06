@@ -1,6 +1,6 @@
 @extends('familymember.layouts.app')
 
-@section('title', 'Family Member -Edit My Profile')
+@section('title', 'Family Member - Edit My Profile')
 
 
 @push('styles')

@@ -118,8 +118,8 @@
                                 <table class="table display mt-3" id="recent-orders" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Relationship</th>
+                                            <th>Name</th>
+                                            <th>Relationship</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -130,7 +130,7 @@
                                                 $beneficiary = $member->careBeneficiary;
                                             @endphp
                                             <tr>
-                                                <td class="text-center">
+                                                <td>
                                                     <div class="d-flex align-items-center gap-2">
                                                         <div class="flex-shrink-0">
                                                             @if($beneficiary->profile_picture == 'default.png')
@@ -148,10 +148,10 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td   class="text-center">{{ $member->relationship_type }}</td>
+                                                <td>{{ $member->relationship_type }}</td>
                                                 <td  class="text-center">
-                                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('familymember.eligibility.care-beneficiary.show',$beneficiary->id) }}'">
-                                                        Eligibility
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('familymember.bookings.care-beneficiary.index',$beneficiary->id) }}'">
+                                                        Care Booking
                                                     </button>
                                                     
                                                 </td>

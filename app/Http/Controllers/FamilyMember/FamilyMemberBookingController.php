@@ -24,22 +24,47 @@ class FamilyMemberBookingController extends Controller
         $this->shareViewData();
     }
     
-
-    // Show a list of all bookings for the logged-in service user
-    public function index()
+    // Handle eligibility request for family member
+    public function BookingFamilyList()
     {
-        $bookings = Booking::where('care_beneficiary_id', Auth::id())->get();
-        return view('familymember.pages.bookings', compact('bookings'));
+        $user = Auth::user();
+        $familyMembers = $user->managedCareBeneficiaries()->with('careBeneficiary')->get();
+
+        return view('familymember.pages.bookings-family-list', compact('familyMembers'));
     }
 
-    // Show details of a specific booking
-    public function show($bookingId)
+        
+
+    // Show a list of all bookings  
+    public function index($userId)
     {
-        $booking = Booking::where('care_beneficiary_id', Auth::id())
+        $careBeneficiary = User::find($userId);
+    
+        if (!$careBeneficiary || $careBeneficiary->role !== 'care_beneficiary') {
+            return redirect()->route('carebeneficiary.list')->with('error', 'Invalid user or not a care beneficiary.');
+        }
+    
+        $bookings = Booking::where('care_beneficiary_id', $userId)->get();
+    
+        return view('familymember.pages.bookings', compact('bookings', 'careBeneficiary'));
+    }
+    
+    
+    
+
+    // Show details of a specific booking
+    public function show(Request $request, $userId, $bookingId)
+    {
+        $careBeneficiary = User::find($userId);
+    
+        if (!$careBeneficiary || $careBeneficiary->role !== 'care_beneficiary') {
+            return redirect()->route('carebeneficiary.list')->with('error', 'Invalid user or not a care beneficiary.');
+        }
+    
+        $booking = Booking::where('care_beneficiary_id', $userId)
             ->where('id', $bookingId)
             ->firstOrFail();
     
-        // Get carers assigned to this booking
         $assignedCarers = [];
         $approvedCarers = [];
     
@@ -54,7 +79,8 @@ class FamilyMemberBookingController extends Controller
                 ->get();
         }
     
-        return view('familymember.pages.bookings-show', compact('booking', 'assignedCarers', 'approvedCarers'));
+        // Pass the care beneficiary and other data to the view
+        return view('familymember.pages.bookings-show', compact('booking', 'assignedCarers', 'approvedCarers', 'careBeneficiary'));
     }
     
 
@@ -91,17 +117,27 @@ class FamilyMemberBookingController extends Controller
     }
     
     
-    public function selectCarers(Request $request, $bookingId)
+    public function selectCarers(Request $request, $userId, $bookingId)
     {
-        $booking = Booking::where('care_beneficiary_id', Auth::id())
+        // Fetch the care beneficiary by userId
+        $careBeneficiary = User::find($userId);
+    
+        // Check if the care beneficiary exists and has the 'care_beneficiary' role
+        if (!$careBeneficiary || $careBeneficiary->role !== 'care_beneficiary') {
+            return redirect()->route('carebeneficiary.list')->with('error', 'Invalid user or not a care beneficiary.');
+        }
+    
+        // Ensure the booking belongs to the care beneficiary
+        $booking = Booking::where('care_beneficiary_id', $userId)
             ->where('id', $bookingId)
             ->firstOrFail();
     
+        // Check if the booking is in the correct stage for carer selection
         if ($booking->status !== 'carers_assigned') {
             return redirect()->back()->with('error', 'Carer selection is not available at this stage.');
         }
     
-        // Get selected carer IDs
+        // Get selected carer IDs from the request
         $selectedCarers = $request->carer_ids ?? [];
         $selectedCarersCount = count($selectedCarers);
     
@@ -115,52 +151,64 @@ class FamilyMemberBookingController extends Controller
             ->whereNotIn('carer_id', $selectedCarers)
             ->update(['service_user_response' => 'pending', 'caregiver_user_response' => 'pending']);
     
-        // Update booking status and selected carers count
+        // Update the booking status and the number of selected carers
         $booking->update([
             'status' => 'carers_selected',
-            'number_of_carers' => $selectedCarersCount,  
+            'number_of_carers' => $selectedCarersCount,
         ]);
     
-        return redirect()->route('familymember.bookings.show', $booking->id)
+        // Redirect to the booking show page with the correct parameters
+        return redirect()->route('familymember.bookings.care-beneficiary.show', ['userId' => $userId, 'id' => $booking->id])
             ->with('success', 'Carers selected successfully. The new number of selected carers has been updated.');
     }
     
     
     
-    // Create a booking form
-    public function create()
+    public function create($userId)
     {
-        $careBeneficiary = Auth::user(); // Get the authenticated user
-
+        $careBeneficiary = User::find($userId);
+    
+        if (!$careBeneficiary || $careBeneficiary->role !== 'care_beneficiary') {
+            return redirect()->route('carebeneficiary.list')->with('error', 'Invalid user or not a care beneficiary.');
+        }
+    
         return view('familymember.pages.bookings-create', compact('careBeneficiary'));
     }
-
+    
 
     // Store the booking request
-    public function store(Request $request)
+    public function store(Request $request, $userId)
     {
+        $careBeneficiary = User::find($userId);
+    
+        if (!$careBeneficiary || $careBeneficiary->role !== 'care_beneficiary') {
+            return redirect()->route('carebeneficiary.list')->with('error', 'Invalid user or not a care beneficiary.');
+        }
+    
         $request->validate([
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
             'number_of_carers' => 'required|integer|min:1',
         ]);
-
-        // Generate a unique 6-digit  
+    
+        // Generate a unique 6-digit reference number
         do {
             $referenceNumber = '#' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
         } while (Booking::where('reference_number', $referenceNumber)->exists());
-
+    
         Booking::create([
             'reference_number' => $referenceNumber,
-            'care_beneficiary_id' => Auth::id(),
+            'care_beneficiary_id' => $careBeneficiary->id, // Using the valid care beneficiary ID
             'booked_by_id' => Auth::id(),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'number_of_carers' => $request->number_of_carers,
             'status' => 'pending',
         ]);
-
-        return redirect()->route('familymember.bookings.index')->with('success', 'Booking submitted successfully.');
+    
+        return redirect()->route('familymember.bookings.care-beneficiary.index', ['userId' => $careBeneficiary->id])
+                         ->with('success', 'Booking submitted successfully.');
     }
+    
 
 }

@@ -267,7 +267,7 @@
                             <h4 class="mb-0">Assigned Carers</h4>
                         </div>
                         <div class="card-body">
-                            <form id="caregiverSelectionForm" action="{{ route('familymember.bookings.selectCarers', $booking->id) }}" method="POST">
+                            <form id="caregiverSelectionForm" action="{{ route('familymember.bookings.care-beneficiary.selectCarers', ['userId' => $careBeneficiary->id, 'id' => $booking->id]) }}" method="POST">
                                 @csrf
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
@@ -395,7 +395,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="{{ route('familymember.bookings.index') }}" class="btn btn-outline-secondary">Back</a>
+                            <a href="{{ route('familymember.bookings.care-beneficiary.index', ['userId' => $careBeneficiary->id]) }}" class="btn btn-outline-secondary">Back</a>
                             <button type="button" class="btn btn-secondary">Cancel Booking</button>
                         </div>
                         

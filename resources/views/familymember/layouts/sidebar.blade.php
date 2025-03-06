@@ -43,6 +43,7 @@
                         </a>
                     </li>
 
+
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('familymember.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.chat') }}">
                             <svg class="stroke-icon">
@@ -54,6 +55,20 @@
                             <span>Chat</span>
                         </a>
                     </li>
+
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->is('familymember/bookings*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.bookings.family-member.list') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-bookmark"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-bookmark"></use>
+                            </svg>
+                            <span>Care Bookings</span>
+                        </a>
+                    </li>
+
 
                     <li class="sidebar-list">
                         <a class="{{ request()->is('familymember/eligibility*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" 
