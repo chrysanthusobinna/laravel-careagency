@@ -75,23 +75,30 @@ class LoginController extends Controller
             // Authenticate user only after all checks pass
             Auth::login($user);
     
+            // login success message
+            $loginMessage = 'Welcome, you have logged in successfully.';
+
             // Redirect based on user role
             switch ($user->role) {
                 case 'admin_level_1':
                 case 'admin_level_2':
-                    return redirect()->route('admin.dashboard')->with('success', 'Welcome to the Admin Dashboard!');
-    
+                    return redirect()->route('admin.dashboard')->with('success', $loginMessage);
+
                 case 'care_giver':
-                    return redirect()->route('caregiver.dashboard')->with('success', 'Welcome to the Caregiver Dashboard!');
-    
+                    return redirect()->route('caregiver.dashboard')->with('success', $loginMessage);
+
                 case 'care_beneficiary':
-				case 'family_member':
-                    return redirect()->route('serviceuser.dashboard')->with('success', 'Welcome to your Service User Dashboard!');
-    
+                    return redirect()->route('carebeneficiary.dashboard')->with('success', $loginMessage);
+
+                case 'family_member':
+                    return redirect()->route('familymember.dashboard')->with('success', $loginMessage);
+
                 default:
                     Auth::logout();
                     return back()->withErrors(['email' => 'Unauthorized access.'])->withInput();
             }
+
+
         }
     
         // If authentication fails

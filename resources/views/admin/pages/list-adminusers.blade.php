@@ -207,8 +207,8 @@
                                                             @endif
                                                         </div>
                                                         <div class="flex-grow-1">
-                                                            <a href="{{ route('adminusers.show', $user->id) }}">
-                                                                <h6>{{ $user->first_name . " " . $user->last_name }}</h6>
+                                                            <a href="{{ route('admin.users.show', $user->id) }}">
+                                                                <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
                                                             </a>
                                                         </div>
                                                     </div>

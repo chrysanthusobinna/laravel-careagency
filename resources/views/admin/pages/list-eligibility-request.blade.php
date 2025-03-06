@@ -237,7 +237,8 @@
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <a href="{{ route('admin.eligibility-request.show', $request->user_id) }}">
-                                                                <h6>{{ $request->user->first_name . " " . $request->user->last_name }}</h6>
+                                                                <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
+
                                                             </a>
                                                         </div>
                                                     </div>

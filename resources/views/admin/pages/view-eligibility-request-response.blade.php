@@ -136,29 +136,36 @@
                         <tr>
                             <td class="fw-bold">Submitted by:</td>
                             <td>
-                                <a href="{{ route('admin.service-users.show', $eligibilityRequest->submittedBy->id) }}" >
-                                    
-                                    @if($familyMemberRelation)
-                                        Family Member ({{ $familyMemberRelation->relationship_type  }})
-                                    @else
-                                        (SELF)
-                                    @endif
-
-                                    {{ $eligibilityRequest->submittedBy->first_name }} 
-                                    {{ $eligibilityRequest->submittedBy->middle_name }} 
-                                    {{ $eligibilityRequest->submittedBy->last_name }}
-                                </a>
-                                | <small class="text-muted">Submitted At {{ $eligibilityRequest->created_at->format('d M Y, h:i A') }}</small> 
+                                @if($eligibilityRequest->submittedBy->role == 'care_beneficiary')
+                                    <!-- If the user is a Care Beneficiary -->
+                                    (SELF) 
+                                    <a href="{{ route('admin.care-beneficiary.show', $eligibilityRequest->submittedBy->id) }}">
+                                        {{ $eligibilityRequest->submittedBy->first_name }} 
+                                        {{ $eligibilityRequest->submittedBy->middle_name ? $eligibilityRequest->submittedBy->middle_name . ' ' : '' }}
+                                        {{ $eligibilityRequest->submittedBy->last_name }}
+                                    </a>
+                                    | <small class="text-muted">Submitted At {{ $eligibilityRequest->created_at->format('d M Y, h:i A') }}</small>
+                                @elseif($eligibilityRequest->submittedBy->role == 'family_member')
+                                    <!-- If the user is a Family Member -->
+                                    Family Member ({{ $familyMemberRelation->relationship_type ?? 'N/A' }})  
+                                    <a href="{{ route('admin.service-users.show', $eligibilityRequest->submittedBy->id) }}">
+                                        {{ $eligibilityRequest->submittedBy->first_name }} 
+                                        {{ $eligibilityRequest->submittedBy->middle_name ? $eligibilityRequest->submittedBy->middle_name . ' ' : '' }}
+                                        {{ $eligibilityRequest->submittedBy->last_name }}
+                                    </a>
+                                    | <small class="text-muted">Submitted At {{ $eligibilityRequest->created_at->format('d M Y, h:i A') }}</small>
+                                @else
+                                    <!-- If role is neither care beneficiary nor family member -->
+                                    <span class="text-muted">Role not recognized</span>
+                                @endif
                             </td>
                         </tr>
-                
- 
-                
+         
                         @if($eligibilityRequest->checkedBy)
                             <tr>
                                 <td class="fw-bold">Reviewed by:</td>
                                 <td class="text-success">
-                                    <a href="{{ route('adminusers.show', $eligibilityRequest->checkedBy->id) }}" >
+                                    <a href="{{ route('admin.users.show', $eligibilityRequest->checkedBy->id) }}" >
                                         {{ $eligibilityRequest->checkedBy->first_name }} 
                                         {{ $eligibilityRequest->checkedBy->middle_name }} 
                                         {{ $eligibilityRequest->checkedBy->last_name }}

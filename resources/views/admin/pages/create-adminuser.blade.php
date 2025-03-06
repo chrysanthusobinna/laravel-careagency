@@ -90,7 +90,7 @@
         <div class="edit-profile">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <form class="card" method="POST" action="{{ route('adminusers.store') }}">
+                    <form class="card" method="POST" action="{{ route('admin.users.store') }}">
                         @csrf
                         <div class="card-header">
                             <h4 class="card-title mb-0">Add New Admin User</h4>

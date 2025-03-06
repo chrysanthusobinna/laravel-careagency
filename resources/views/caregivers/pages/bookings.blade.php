@@ -156,7 +156,7 @@
                                         @foreach($bookings as $assignment)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('caregivers.bookings.show', $assignment->booking->id) }}" class=" ">
+                                                <a href="{{ route('caregiver.bookings.show', $assignment->booking->id) }}" class=" ">
                                                     {{ $assignment->booking->reference_number }}
                                                 </a>
                                             </td>

@@ -217,7 +217,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                             
                             @else
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('caregivers.bookings.index') }}" class="btn btn-outline-secondary">Back</a>
+                                <a href="{{ route('caregiver.bookings.index') }}" class="btn btn-outline-secondary">Back</a>
                         
                                 @if(!in_array($status, ['Completed', 'Cancelled']))
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelCaregiverResponseModal">
@@ -261,7 +261,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
             </div>
             <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, Go Back</button>
-                <form id="acceptCaregiverResponseForm" action="{{ route('caregivers.bookings.acceptResponse', $assignment->id) }}" method="POST">
+                <form id="acceptCaregiverResponseForm" action="{{ route('caregiver.bookings.acceptResponse', $assignment->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-success">Yes, Accept</button>
@@ -287,7 +287,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
             </div>
             <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, Keep Response</button>
-                <form id="cancelCaregiverResponseForm" action="{{ route('caregivers.bookings.cancelResponse', $assignment->id) }}" method="POST">
+                <form id="cancelCaregiverResponseForm" action="{{ route('caregiver.bookings.cancelResponse', $assignment->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-danger">Yes, Cancel</button>

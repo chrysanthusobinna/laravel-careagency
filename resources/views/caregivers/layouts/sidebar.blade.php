@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('caregivers.bookings.index') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregivers.bookings.index') }}">
+                        <a class="{{ request()->routeIs('caregiver.bookings.index') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.bookings.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-bookmark"></use>
                             </svg>
@@ -83,7 +83,7 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('caregiver.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('caregiver.auth-profile.show') }}">
+                        <a class="{{ request()->is('caregiver/auth-profile*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.auth-profile.show') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
                             </svg>

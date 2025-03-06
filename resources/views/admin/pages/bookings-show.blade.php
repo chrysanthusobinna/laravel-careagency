@@ -209,7 +209,7 @@
                                              src="{{ asset('uploads/profile_pictures/' . $booking->careBeneficiary->profile_picture) }}">
                                     @endif
                                     <div class="flex-grow-1">
-                                        <a href="{{ route('admin.service-users.show', $booking->careBeneficiary->id) }}">
+                                        <a href="{{ route('admin.care-beneficiary.show', $booking->careBeneficiary->id) }}">
                                             <h4 class="mb-1">{{ $booking->careBeneficiary->first_name }} {{ $booking->careBeneficiary->last_name }}</h4>
                                         </a>
                                         

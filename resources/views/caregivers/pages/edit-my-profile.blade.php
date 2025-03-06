@@ -75,7 +75,7 @@
 <h4 class="f-w-700">Edit My Profile</h4>
 <nav>
     <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ route('serviceuser.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item"><a href="{{ route('carebeneficiary.dashboard') }}"><i data-feather="home"></i></a></li>
         <li class="breadcrumb-item f-w-400">Dashboard</li>
         <li class="breadcrumb-item f-w-400 active">Edit My Profile</li>
     </ol>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <button class="btn btn-outline-secondary" type="button" onclick="window.location='{{ route('serviceuser.auth-profile.show') }}'">Back to Profile</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="window.location='{{ route('caregiver.auth-profile.show') }}'">Back to Profile</button>
                             <button class="btn btn-primary" type="submit">Update My Profile</button>
                         </div>
                     </form>
