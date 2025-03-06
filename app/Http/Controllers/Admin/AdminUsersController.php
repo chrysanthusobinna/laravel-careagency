@@ -57,7 +57,7 @@ class AdminUsersController extends Controller
     
         // Handle validation failure
         if ($validator->fails()) {
-            return redirect()->route('admin.adminusers.index')
+            return redirect()->route('admin.admin.users.index')
                 ->withErrors($validator)
                 ->with('error', 'The selected user is either invalid or does not have admin privileges.');
         }
@@ -86,6 +86,6 @@ class AdminUsersController extends Controller
         // Call trait method to create the user
         $user = $this->createUser($request->validated(), $role, $password_change_required);
 
-        return redirect()->route('adminusers.index')->with('success', 'Admin user added successfully!');
+        return redirect()->route('admin.users.index')->with('success', 'Admin user added successfully!');
     }
 }

@@ -43,6 +43,20 @@
                         </a>
                     </li>
 
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->is('admin/booking*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.bookings.index') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-bookmark"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-bookmark"></use>
+                            </svg>
+                            <span>Care Bookings</span>
+                        </a>
+                    </li>
+                    
+
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('admin.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.chat') }}">
                             <svg class="stroke-icon">
@@ -56,25 +70,50 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('admin.service-users.index') || request()->routeIs('admin.service-users.create') ? 'active' : '' }} sidebar-link sidebar-title" href="#">
+                        <a class="{{ request()->is('admin/eligibility-requests*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.eligibility-request') }}">
+                            <!-- Stroke version of the question mark icon -->
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-question"></use>
+                            </svg>
+                            <!-- Fill version of the question mark icon -->
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-question"></use>
+                            </svg>
+                            <span>Eligibility Request</span>
+                        </a>
+                    </li>
+
+ 
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->is('admin/care-beneficiary*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.care-beneficiary.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
                             </svg>
                             <svg class="fill-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#fill-user"></use>
                             </svg>
-                            <span>Service Users</span>
+                            <span>Care Beneficiaries</span>
                         </a>
-                        <ul class="sidebar-submenu">
-                            <li><a class="{{ request()->routeIs('admin.service-users.create') ? 'active' : '' }}" href="{{ route('admin.service-users.create') }}">Add New</a></li>
-                            <li><a class="{{ request()->routeIs('admin.service-users.index') ? 'active' : '' }}" href="{{ route('admin.service-users.index') }}">View List</a></li>
-                            <li><a class="{{ request()->routeIs('admin.eligibility-request') ? 'active' : '' }}" href="{{ route('admin.eligibility-request') }}">Eligibility Request</a></li>
-                            <li><a class="{{ request()->routeIs('admin.care-booking-request') ? 'active' : '' }}" href="{{ route('admin.care-booking-request') }}">Care Booking Request</a></li>
-                        </ul>
                     </li>
 
+
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="#">
+                        <a class="{{ request()->is('admin/familymember*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.familymember.index') }}">
+                            <svg class="stroke-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="/dashboard-assets/svg/icon-sprite.svg#fill-user"></use>
+                            </svg>
+                            <span>Family Members</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="sidebar-list">
+                        <a class="{{ request()->is('admin/care-givers*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.caregivers.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
                             </svg>
@@ -83,27 +122,22 @@
                             </svg>
                             <span>Care Givers</span>
                         </a>
-                        <ul class="sidebar-submenu">
-                            <li><a class="{{ request()->routeIs('admin.caregivers.create') ? 'active' : '' }}" href="{{ route('admin.caregivers.create') }}">Add New</a></li>
-                            <li><a class="{{ request()->routeIs('admin.caregivers.index') ? 'active' : '' }}" href="{{ route('admin.caregivers.index') }}">View List</a></li>
-                        </ul>
                     </li>
 
+
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="#">
+                        <a class="{{ request()->is('admin/users*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.users.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-user"></use>
                             </svg>
                             <svg class="fill-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#fill-user"></use>
                             </svg>
-                            <span>Admin</span>
+                            <span>Admins</span>
                         </a>
-                        <ul class="sidebar-submenu">
-                            <li><a class="{{ request()->routeIs('adminusers.create') ? 'active' : '' }}" href="{{ route('adminusers.create') }}">Add New</a></li>
-                            <li><a class="{{ request()->routeIs('adminusers.index') ? 'active' : '' }}" href="{{ route('adminusers.index') }}">View List</a></li>
-                        </ul>
                     </li>
+
+
 
                     <li class="sidebar-list">
                         <a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}">
@@ -118,7 +152,7 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('admin.auth-profile.show') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
+                        <a class="{{ request()->is('admin/auth-profile*') ? 'active' : '' }}   sidebar-link sidebar-title link-nav" href="{{ route('admin.auth-profile.show') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-editors"></use>
                             </svg>

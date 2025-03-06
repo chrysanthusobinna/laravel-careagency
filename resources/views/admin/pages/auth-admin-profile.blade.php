@@ -117,7 +117,6 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                     </div>
                                 </div>
                             </div>
-
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -132,7 +131,17 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                         <tr>
                                             <th>Last Name</th>
                                             <td>{{ ucwords($loggedInUser->last_name) }}</td>
-                                        </tr>                                        
+                                        </tr>
+                                        <!-- Add Email Row -->
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>{{ $loggedInUser->email }}</td>
+                                        </tr>
+                                        <!-- Add Phone Number Row -->
+                                        <tr>
+                                            <th>Phone Number</th>
+                                            <td>{{ $loggedInUser->phone_number }}</td>
+                                        </tr>
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $loggedInUser->address }}</td>
@@ -152,6 +161,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                     </tbody>
                                 </table>
                             </div>
+                            
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">Dashboard</a>

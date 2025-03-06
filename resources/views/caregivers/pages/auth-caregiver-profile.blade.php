@@ -132,7 +132,15 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                         <tr>
                                             <th>Last Name</th>
                                             <td>{{ ucwords($loggedInUser->last_name) }}</td>
-                                        </tr>                                        
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>{{ $loggedInUser->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone Number</th>
+                                            <td>{{ $loggedInUser->phone_number ?? 'N/A' }}</td>
+                                        </tr>
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $loggedInUser->address }}</td>
@@ -146,11 +154,16 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                             <td>{{ $loggedInUser->post_code }}</td>
                                         </tr>
                                         <tr>
+                                            <th>County</th>
+                                            <td>{{ $loggedInUser->county ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
                                             <th>Country</th>
                                             <td>{{ $loggedInUser->country }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">

@@ -119,6 +119,20 @@
     <div class="container-fluid dashboard-3">
         <div class="row">
 
+
+            <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                     <a href="{{ route('admin.caregivers.create') }}" class="btn btn-outline-primary">
+                        <i class="fa fa-plus"></i> Add New
+                    </a>
+                    
+                     <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                        <i class="fa fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+            </div>
+
+
             <div class="col-xl-6 col-sm-6">
                 <div class="card pb-5">
                     <div class="card-header card-no-border pb-0">
@@ -209,7 +223,7 @@
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <a href="{{ route('admin.caregivers.show', $user->id) }}">
-                                                                <h6>{{ $user->first_name . " " . $user->last_name }}</h6>
+                                                                <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
                                                             </a>
                                                         </div>
                                                     </div>

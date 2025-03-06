@@ -17,7 +17,7 @@ trait MainsiteViewSharedDataTrait
             if (in_array($loggedInUser->role, ['admin_level_1', 'admin_level_2'])) {
                 $dashboardRoute = route('admin.dashboard');
             } elseif (in_array($loggedInUser->role, ['care_beneficiary', 'family_member'])) {
-                $dashboardRoute = route('serviceuser.dashboard');
+                $dashboardRoute = route('carebeneficiary.dashboard');
             } elseif ($loggedInUser->role === 'care_giver') {
                 $dashboardRoute = route('caregiver.dashboard');
             } else {

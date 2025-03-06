@@ -131,12 +131,20 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                         </tr>
                                         <tr>
                                             <th>Middle Name</th>
-                                            <td>{{ ucwords($user->middle_name) ?? 'N/A' }}</td>
+                                            <td>{{ $user->middle_name ? ucwords($user->middle_name) : 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Name</th>
                                             <td>{{ ucwords($user->last_name) }}</td>
-                                        </tr>                                        
+                                        </tr>  
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>{{ $user->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone Number</th>
+                                            <td>{{ $user->phone_number ?? 'N/A' }}</td>
+                                        </tr>                                     
                                         <tr>
                                             <th>Address</th>
                                             <td>{{ $user->address }}</td>
@@ -154,6 +162,7 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                             <td>{{ $user->country }}</td>
                                         </tr>
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>

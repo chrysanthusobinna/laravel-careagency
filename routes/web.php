@@ -8,16 +8,17 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Middleware\BlockBotsMiddleware;
 use App\Http\Middleware\CareGiverMiddleware;
 use App\Http\Middleware\AdminLevel2Middleware;
-use App\Http\Middleware\ServiceUserMiddleware;
-use App\Http\Controllers\EligibilityController;
+use App\Http\Middleware\FamilyMemberMiddleware;
 use App\Http\Controllers\MainSite\HomeController;
 use App\Http\Controllers\MainSite\AboutController;
 use App\Http\Controllers\MainSite\LoginController;
+use App\Http\Middleware\CareBeneficiaryMiddleware;
 use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\MainSite\CarersController;
 use App\Http\Controllers\MainSite\FamilyController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\MainSite\ContactController;
+use App\Http\Controllers\Admin\AdminBookingController;
 use App\Http\Controllers\EligibilityResponseController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\MainSite\SetPasswordController;
@@ -28,22 +29,32 @@ use App\Http\Controllers\Admin\AdminEligibilityController;
 use App\Http\Controllers\Admin\AuthAdminProfileController;
 use App\Http\Controllers\MainSite\HelpAndAdviceController;
 use App\Http\Controllers\MainSite\PrivacyPolicyController;
-use App\Http\Controllers\Admin\AdminServiceUsersController;
+use App\Http\Controllers\Admin\AdminFamilyMemberController;
 use App\Http\Controllers\Admin\AdminFamilyMembersController;
 use App\Http\Controllers\Admin\AdminKnowledgeBaseController;
 use App\Http\Controllers\CareGivers\AuthCareGiverController;
 use App\Http\Controllers\CareGivers\CareGiverChatController;
 use App\Http\Controllers\MainSite\TermsConditionsController;
-use App\Http\Controllers\ServiceUsers\AuthServiceUserController;
-use App\Http\Controllers\ServiceUsers\ServiceUserChatController;
+use App\Http\Controllers\FamilyMember\FamilyMemberController;
+use App\Http\Controllers\Admin\AdminCareBeneficiaryController;
+use App\Http\Controllers\CareGivers\CareGiversBookingController;
 use App\Http\Controllers\CareGivers\CareGiverDashboardController;
+use App\Http\Controllers\FamilyMember\AuthFamilyMemberController;
+use App\Http\Controllers\FamilyMember\FamilyMemberChatController;
 use App\Http\Controllers\MainSite\ServiceUsersRegisterController;
 use App\Http\Controllers\Admin\AdminEligibilityQuestionController;
+use App\Http\Controllers\FamilyMember\FamilyMemberBookingController;
 use App\Http\Controllers\CareGivers\CareGiverKnowledgeBaseController;
-use App\Http\Controllers\ServiceUsers\ServiceUserDashboardController;
-use App\Http\Controllers\ServiceUsers\ServiceUserEligibilityController;
-use App\Http\Controllers\ServiceUsers\ServiceUserFamilyMemberController;
-use App\Http\Controllers\ServiceUsers\ServiceUserKnowledgeBaseController;
+use App\Http\Controllers\FamilyMember\FamilyMemberDashboardController;
+use App\Http\Controllers\CareBeneficiary\AuthCareBeneficiaryController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryChatController;
+use App\Http\Controllers\FamilyMember\FamilyMemberEligibilityController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryBookingController;
+use App\Http\Controllers\FamilyMember\FamilyMemberKnowledgeBaseController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryDashboardController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryEligibilityController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryFamilyMemberController;
+use App\Http\Controllers\CareBeneficiary\CareBeneficiaryKnowledgeBaseController;
 
 // MAIN SITE ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('mainsite.home');
@@ -99,121 +110,208 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 
-//SERVICE USERS ROUTES
-Route::prefix('serviceuser')->middleware(ServiceUserMiddleware::class)->group(function () {
+// CAREBENEFICIARY USERS ROUTES
+Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->name('carebeneficiary.')->group(function () {
 
-    Route::get('/dashboard', [ServiceUserDashboardController::class, 'index'])->name('serviceuser.dashboard');
-    Route::get('/chat', [ServiceUserChatController::class, 'index'])->name('serviceuser.chat');
-    Route::get('/knowledge-base', [ServiceUserKnowledgeBaseController::class, 'index'])->name('serviceuser.knowledge-base');
-    Route::get('/auth-profile', [AuthServiceUserController::class, 'show'])->name('serviceuser.auth-profile.show');
-    Route::get('/edit-profile', [AuthServiceUserController::class, 'editProfile'])->name('serviceuser.auth-profile.edit');
-    Route::post('/update-profile', [AuthServiceUserController::class, 'updateProfile'])->name('serviceuser.auth-profile.update');
+    Route::get('/dashboard', [CareBeneficiaryDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/chat', [CareBeneficiaryChatController::class, 'index'])->name('chat');
+    Route::get('/knowledge-base', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
-    Route::get('/change-password', [AuthServiceUserController::class, 'showChangePasswordForm'])->name('serviceuser.change-password');
-    Route::post('/update-password', [AuthServiceUserController::class, 'updatePassword'])->name('serviceuser.update-password');
+    // AUTH USER
+    Route::get('/auth-profile', [AuthCareBeneficiaryController::class, 'show'])->name('auth-profile.show');
+    Route::get('/auth-profile/edit', [AuthCareBeneficiaryController::class, 'editProfile'])->name('auth-profile.edit');
+    Route::post('/update-profile', [AuthCareBeneficiaryController::class, 'updateProfile'])->name('auth-profile.update');
+    Route::get('/change-password', [AuthCareBeneficiaryController::class, 'showChangePasswordForm'])->name('change-password');
+    Route::post('/update-password', [AuthCareBeneficiaryController::class, 'updatePassword'])->name('update-password');
+
+    // FMILY
+    Route::get('/family-member', [CareBeneficiaryFamilyMemberController::class, 'index'])->name('family-member');
+	Route::get('/family-member/profile/{id}', [CareBeneficiaryFamilyMemberController::class, 'showFamilyMemberProfile'])->name('family-member.show');
+    Route::get('/family-member/unlink/{id}', [CareBeneficiaryFamilyMemberController::class, 'unlinkFamilyMember'])->name('family-member.unlink');
+
+    // ELIGIBILITY
+    Route::get('/eligibility/care-beneficiary/show', [CareBeneficiaryEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
+    Route::post('/eligibility/care-beneficiary/save', [CareBeneficiaryEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+ 
+
+    // BOOKINGS
+    Route::get('/bookings/', [CareBeneficiaryBookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/create', [CareBeneficiaryBookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/store', [CareBeneficiaryBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/show/{id}', [CareBeneficiaryBookingController::class, 'show'])->name('bookings.show');
+    Route::post('/bookings/{id}/select-carers', [CareBeneficiaryBookingController::class, 'selectCarers'])->name('bookings.selectCarers');
+
+    Route::get('/care-givers/show/{id}', [CareBeneficiaryBookingController::class, 'showCareGiver'])->name('caregivers.show');
+
+});
 
 
-    // Eligibility For care beneficiary 
-    Route::get('/eligibility/care-beneficiary/show', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiaryShow'])->name('serviceuser.eligibility.care-beneficiary.show');
-    Route::post('/eligibility/care-beneficiary/save', [ServiceUserEligibilityController::class, 'EligibilityCareBeneficiarySave'])->name('serviceuser.eligibility.care-beneficiary.save');
 
 
-    //Eligibility For Family
-    Route::get('/eligibility/family/list', [ServiceUserEligibilityController::class, 'EligibilityFamilyList'])->name('serviceuser.eligibility.family');
-    Route::get('/eligibility/family/show/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilyShow'])->name('serviceuser.eligibility.family.show');
-    Route::post('/eligibility/family/save/{userId}', [ServiceUserEligibilityController::class, 'EligibilityFamilySave'])->name('serviceuser.eligibility.family.save');
 
 
-    
-    Route::get('/family-members', [ServiceUserFamilyMemberController::class, 'index'])->name('serviceuser.family-members');
-    Route::get('/family-members/add', [ServiceUserFamilyMemberController::class, 'showAddFamilyMemberForm'])->name('serviceuser.family-members.add');
-    Route::post('/family-members/store', [ServiceUserFamilyMemberController::class, 'storeFamilyMember'])->name('serviceuser.family-members.store');
-    Route::get('/family-members/profile/{id}', [ServiceUserFamilyMemberController::class, 'showFamilyMemberProfile'])->name('serviceuser.family-member.show');
-    Route::get('/family-members/edit/{id}', [ServiceUserFamilyMemberController::class, 'editFamilyMember'])->name('serviceuser.family-member.edit');
-    Route::post('/family-members/update/{id}', [ServiceUserFamilyMemberController::class, 'updateFamilyMember'])->name('serviceuser.family-member.update');
-    Route::get('/family-members/unlink/{id}', [ServiceUserFamilyMemberController::class, 'unlinkFamilyMember'])->name('serviceuser.family-member.unlink');
+//FAMILY MEMBER USERS ROUTES
+Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('familymember.')->group(function () {
+
+
+    Route::get('/dashboard', [FamilyMemberDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/chat', [FamilyMemberChatController::class, 'index'])->name('chat');
+    Route::get('/knowledge-base', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+
+    // AUTH USER
+    Route::get('/auth-profile', [AuthFamilyMemberController::class, 'show'])->name('auth-profile.show');
+    Route::get('/auth-profile/edit', [AuthFamilyMemberController::class, 'editProfile'])->name('auth-profile.edit');
+    Route::post('/update-profile', [AuthFamilyMemberController::class, 'updateProfile'])->name('auth-profile.update');
+    Route::get('/change-password', [AuthFamilyMemberController::class, 'showChangePasswordForm'])->name('change-password');
+    Route::post('/update-password', [AuthFamilyMemberController::class, 'updatePassword'])->name('update-password');
+
+    // ELIGIBILITY
+    Route::get('/eligibility/care-beneficiary/list', [FamilyMemberEligibilityController::class, 'EligibilityFamilyList'])->name('eligibility.care-beneficiary');
+    Route::get('/eligibility/care-beneficiary/show/{userId}', [FamilyMemberEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
+    Route::post('/eligibility/care-beneficiary/save/{userId}', [FamilyMemberEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+
+
+    // FMILY
+    Route::get('/care-beneficiary', [FamilyMemberController::class, 'index'])->name('care-beneficiary');
+    Route::get('/care-beneficiary/add', [FamilyMemberController::class, 'showAddFamilyMemberForm'])->name('care-beneficiary.add');
+    Route::post('/care-beneficiary/store', [FamilyMemberController::class, 'storeFamilyMember'])->name('care-beneficiary.store');
+    Route::get('/care-beneficiary/profile/{id}', [FamilyMemberController::class, 'showFamilyMemberProfile'])->name('care-beneficiary.show');
+    Route::get('/care-beneficiary/edit/{id}', [FamilyMemberController::class, 'editFamilyMember'])->name('care-beneficiary.edit');
+    Route::post('/care-beneficiary/update/{id}', [FamilyMemberController::class, 'updateFamilyMember'])->name('care-beneficiary.update');
+    Route::get('/care-beneficiary/unlink/{id}', [FamilyMemberController::class, 'unlinkFamilyMember'])->name('care-beneficiary.unlink');
+
+
+    // BOOKINGS 
+    Route::get('/bookings/family-member/list', [FamilyMemberBookingController::class, 'BookingFamilyList'])->name('bookings.family-member.list');
+
+    Route::get('/bookings/care-beneficiary/{userId}', [FamilyMemberBookingController::class, 'index'])->name('bookings.care-beneficiary.index');
+    Route::get('/bookings/care-beneficiary/{userId}/create', [FamilyMemberBookingController::class, 'create'])->name('bookings.care-beneficiary.create');
+    Route::post('/bookings/care-beneficiary/{userId}/store', [FamilyMemberBookingController::class, 'store'])->name('bookings.care-beneficiary.store');
+    Route::get('/bookings/care-beneficiary/{userId}/show/{id}', [FamilyMemberBookingController::class, 'show'])->name('bookings.care-beneficiary.show');
+    Route::post('/bookings/care-beneficiary/{userId}/select-carers/{id}', [FamilyMemberBookingController::class, 'selectCarers'])->name('bookings.care-beneficiary.selectCarers');
+
+
+    // SHOW CARE GIVER
+    Route::get('/care-givers/show/{id}', [FamilyMemberBookingController::class, 'showCareGiver'])->name('caregivers.show');
 
 });
 
 
 // CARE GIVERS ROUTES
-Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->group(function () {
+Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->name('caregiver.')->group(function () {
 
-    Route::get('/dashboard', [CareGiverDashboardController::class, 'index'])->name('caregiver.dashboard');
-    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('caregiver.chat');
-    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('caregiver.knowledge-base');
-    Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('caregiver.auth-profile.show');
-    
-    Route::get('/edit-profile', [AuthCareGiverController::class, 'editProfile'])->name('caregiver.auth-profile.edit');
-    Route::post('/update-profile', [AuthCareGiverController::class, 'updateProfile'])->name('caregiver.auth-profile.update');
+    Route::get('/dashboard', [CareGiverDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('chat');
+    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
-    Route::get('/change-password', [AuthCareGiverController::class, 'showChangePasswordForm'])->name('caregiver.change-password');
-    Route::post('/update-password', [AuthCareGiverController::class, 'updatePassword'])->name('caregiver.update-password');
+    // AUTH USER
+    Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('auth-profile.show');
+    Route::get('/auth-profile/edit', [AuthCareGiverController::class, 'editProfile'])->name('auth-profile.edit');
+    Route::post('/update-profile', [AuthCareGiverController::class, 'updateProfile'])->name('auth-profile.update');
+    Route::get('/change-password', [AuthCareGiverController::class, 'showChangePasswordForm'])->name('change-password');
+    Route::post('/update-password', [AuthCareGiverController::class, 'updatePassword'])->name('update-password');
+
+
+    // BOOKINGS
+    Route::get('/bookings/', [CareGiversBookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/show/{id}', [CareGiversBookingController::class, 'show'])->name('bookings.show');
+    Route::put('/bookings/assignment/{id}/accept', [CareGiversBookingController::class, 'acceptResponse'])->name('bookings.acceptResponse');
+    Route::put('/bookings/assignment/{id}/cancel', [CareGiversBookingController::class, 'cancelResponse'])->name('bookings.cancelResponse');
+
 
 });
 
 
 
 // ADMIN ROUTES
-Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
-
-	Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-
-    Route::get('/chat', [AdminChatController::class, 'index'])->name('admin.chat');
-
-    
-    Route::get('/service-users/list', [AdminServiceUsersController::class, 'index'])->name('admin.service-users.index'); 
-    Route::get('/service-users/create', [AdminServiceUsersController::class, 'create'])->name('admin.service-users.create');
-    Route::post('/service-users/store', [AdminServiceUsersController::class, 'store'])->name('admin.service-users.store');  
-    Route::get('/service-users/show/{id}', [AdminServiceUsersController::class, 'show'])->name('admin.service-users.show'); 
-
-    
-    Route::get('/eligibility-requests/list', [AdminEligibilityController::class, 'index'])->name('admin.eligibility-request');     
-    Route::get('/eligibility-requests/show/{user_id}', [AdminEligibilityController::class, 'show'])->name('admin.eligibility-request.show');
-    Route::post('/eligibility-requests/review/{user_id}', [AdminEligibilityController::class, 'submitReview'])->name('admin.eligibility-request.review');
-    Route::delete('/eligibility-requests/delete/{user_id}', [AdminEligibilityController::class, 'deleteEligibility'])->name('admin.eligibility-request.delete');
+Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->group(function () {
 
 
+	Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/eligibility-questions/', [AdminEligibilityQuestionController::class, 'index'])->name('admin.eligibility-questions.index');
-    Route::get('/eligibility-questions/create', [AdminEligibilityQuestionController::class, 'create'])->name('admin.eligibility-questions.create');
-    Route::post('/eligibility-questions/store', [AdminEligibilityQuestionController::class, 'store'])->name('admin.eligibility-questions.store');
-    Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('admin.eligibility-questions.show');
-    Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('admin.eligibility-questions.destroy');
+    // AUTH USER
+    Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('auth-profile.show');
+    Route::get('/auth-profile/edit', [AuthAdminProfileController::class, 'editProfile'])->name('auth-profile.edit');
+    Route::post('/update-profile', [AuthAdminProfileController::class, 'updateProfile'])->name('auth-profile.update');
+    Route::get('/change-password', [AuthAdminProfileController::class, 'showChangePasswordForm'])->name('change-password');
+    Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('update-password');
+
+
+    Route::get('/chat', [AdminChatController::class, 'index'])->name('chat');
+
+
+    // BENEFICIARY USERS
+    Route::get('/care-beneficiary/list', [AdminCareBeneficiaryController::class, 'index'])->name('care-beneficiary.index'); 
+    Route::get('/care-beneficiary/create', [AdminCareBeneficiaryController::class, 'create'])->name('care-beneficiary.create');
+    Route::post('/care-beneficiary/store', [AdminCareBeneficiaryController::class, 'store'])->name('care-beneficiary.store');  
+    Route::get('/care-beneficiary/show/{id}', [AdminCareBeneficiaryController::class, 'show'])->name('care-beneficiary.show'); 
 
     
-    Route::get('/care-booking-request', [AdminCareBookingController::class, 'index'])->name('admin.care-booking-request'); 
+    // FAMILY MEMBER USERS 
+    Route::get('/familymember/list', [AdminFamilyMemberController::class, 'index'])->name('familymember.index'); 
+    Route::get('/familymember/create', [AdminFamilyMemberController::class, 'create'])->name('familymember.create');
+    Route::post('/familymember/store', [AdminFamilyMemberController::class, 'store'])->name('familymember.store');  
+    Route::get('/familymember/show/{id}', [AdminFamilyMemberController::class, 'show'])->name('familymember.show'); 
 
 
-
-    Route::get('/family-members', [AdminFamilyMembersController::class, 'index'])->name('admin.family-members.index');
-    Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('admin.family-members.unlink');
-    Route::post('/family-members/update', [AdminFamilyMembersController::class, 'update'])->name('admin.family-members.update');
-
-    Route::get('/family-members/search/{role}/{user_id}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('admin.family-members.search');
-    Route::post('/family-members/add', [AdminFamilyMembersController::class, 'addFamilyMember'])->name('admin.family-members.add');
+    // CARE GIVER USERS
+    Route::get('/care-givers/list', [AdminCareGiversController::class, 'index'])->name('caregivers.index');
+    Route::get('/care-givers/show/{id}', [AdminCareGiversController::class, 'show'])->name('caregivers.show');
+    Route::get('/care-givers/create', [AdminCareGiversController::class, 'create'])->name('caregivers.create');
+    Route::post('/care-givers/store', [AdminCareGiversController::class, 'store'])->name('caregivers.store');
 
     
 
-    Route::get('/care-givers/list', [AdminCareGiversController::class, 'index'])->name('admin.caregivers.index');
-    Route::get('/care-givers/show/{id}', [AdminCareGiversController::class, 'show'])->name('admin.caregivers.show');
-    Route::get('/care-givers/create', [AdminCareGiversController::class, 'create'])->name('admin.caregivers.create');
-    Route::post('/care-givers/store', [AdminCareGiversController::class, 'store'])->name('admin.caregivers.store');
+    // ELIGIBILITY RESPONSES
+    Route::get('/eligibility-requests/list', [AdminEligibilityController::class, 'index'])->name('eligibility-request');     
+    Route::get('/eligibility-requests/show/{user_id}', [AdminEligibilityController::class, 'show'])->name('eligibility-request.show');
+    Route::post('/eligibility-requests/review/{user_id}', [AdminEligibilityController::class, 'submitReview'])->name('eligibility-request.review');
+    Route::delete('/eligibility-requests/delete/{user_id}', [AdminEligibilityController::class, 'deleteEligibility'])->name('eligibility-request.delete');
 
 
-    Route::get('/admin-users/list', [AdminUsersController::class, 'index'])->name('adminusers.index');
-    Route::get('/admin-users/show/{id}', [AdminUsersController::class, 'show'])->name('adminusers.show');
-    Route::get('/admin-users/create', [AdminUsersController::class, 'create'])->name('adminusers.create');
-    Route::post('/admin-users/store', [AdminUsersController::class, 'store'])->name('adminusers.store');
+    // ELIGIBILITY QUESTIONS
+    Route::get('/eligibility-questions/', [AdminEligibilityQuestionController::class, 'index'])->name('eligibility-questions.index');
+    Route::get('/eligibility-questions/create', [AdminEligibilityQuestionController::class, 'create'])->name('eligibility-questions.create');
+    Route::post('/eligibility-questions/store', [AdminEligibilityQuestionController::class, 'store'])->name('eligibility-questions.store');
+    Route::get('/eligibility-questions/{id}', [AdminEligibilityQuestionController::class, 'show'])->name('eligibility-questions.show');
+    Route::delete('/eligibility-questions/{id}/delete', [AdminEligibilityQuestionController::class, 'destroy'])->name('eligibility-questions.destroy');
 
 
-    Route::get('/auth-profile', [AuthAdminProfileController::class, 'show'])->name('admin.auth-profile.show');
-    Route::get('/edit-profile', [AuthAdminProfileController::class, 'editProfile'])->name('admin.auth-profile.edit');
-    Route::post('/update-profile', [AuthAdminProfileController::class, 'updateProfile'])->name('admin.auth-profile.update');
-    Route::get('/change-password', [AuthAdminProfileController::class, 'showChangePasswordForm'])->name('admin.change-password');
-    Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('admin.update-password');
+    // FAMILY MANAGE
+    Route::post('/family-members/unlink', [AdminFamilyMembersController::class, 'unlink'])->name('family-members.unlink');
+    Route::post('/family-members/update', [AdminFamilyMembersController::class, 'update'])->name('family-members.update');
+    Route::get('/family-members/search/{role}/{user_id}', [AdminFamilyMembersController::class, 'searchServiceUser'])->name('family-members.search');
+    Route::post('/family-members/add', [AdminFamilyMembersController::class, 'addFamilyMember'])->name('family-members.add');
 
-    Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('admin.knowledge-base');
+    
+
+    // ADMIN USERS
+    Route::get('/users/list', [AdminUsersController::class, 'index'])->name('users.index');
+    Route::get('/users/show/{id}', [AdminUsersController::class, 'show'])->name('users.show');
+    Route::get('/users/create', [AdminUsersController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [AdminUsersController::class, 'store'])->name('users.store');
+
+
+
+    Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+
+
+
+    // BOOKING
+    Route::get('/bookings', [AdminBookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/create/user_id/{userId}', [AdminBookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/store/user_id/{userId}', [AdminBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/show/{id}', [AdminBookingController::class, 'show'])->name('bookings.show');
+    Route::get('/bookings/{id}/assign-carers', [AdminBookingController::class, 'assignCarers'])->name('bookings.assign');
+    Route::post('/bookings/{id}/assign-carers', [AdminBookingController::class, 'storeAssignedCarers'])->name('bookings.storeAssignedCarers');
+    Route::post('/bookings/{id}/approve', [AdminBookingController::class, 'approveBooking'])->name('bookings.approve');
+
+    Route::get('/bookings/{id}/edit', [AdminBookingController::class, 'edit'])->name('bookings.edit');
+    Route::put('/bookings/{id}/update', [AdminBookingController::class, 'update'])->name('bookings.update');
+
+    Route::delete('/bookings/{bookingId}/carers/{id}/remove', [AdminBookingController::class, 'removeAssignedCarer'])->name('bookings.removeCarer');
+    Route::put('/bookings/assignments/{id}/update', [AdminBookingController::class, 'updateAssignedCarer'])->name('bookings.updateAssignment');
+    Route::post('/bookings/{id}/cancel', [AdminBookingController::class, 'cancelBooking'])->name('bookings.cancel');
 
 });
 
