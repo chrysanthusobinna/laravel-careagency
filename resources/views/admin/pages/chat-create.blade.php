@@ -1,7 +1,7 @@
+
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Care Booking Request')
-
+@section('title', 'Admin - Chat')
 
 
 @push('styles')
@@ -36,6 +36,9 @@
     <link id="color" rel="stylesheet" href="/dashboard-assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/responsive.css"> 
+
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.5.0/dist/tagify.css" rel="stylesheet">
+
 @endpush
 
 
@@ -98,21 +101,78 @@
     <!-- Plugin used-->
 
 
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- Tagify JS -->
+     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.5.0/dist/tagify.min.js"></script>
  
+     <script>
+         $(document).ready(function() {
+            var users = @json($users->map(function($user) {
+                return [
+                        'value' => $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name . ' (' . $user->formatted_role . ')',  
+                        'userID' => $user->id  
+                    ];
+            }));
+
+ 
+        // Initialize Tagify
+        var input = document.querySelector("textarea[name=user_id]");
+        var tagify = new Tagify(input, {
+            enforceWhitelist: true,
+            delimiters: null,
+            whitelist: users,
+            callbacks: {
+                add: function(e) {
+                    var selectedUserIds = tagify.value.map(function(tag) {
+                        return tag.userID; 
+                    });
+
+                    $('#selectedUserIds').val(JSON.stringify(selectedUserIds));
+
+                    if (selectedUserIds.length > 1) {
+                        $('#titleField').removeClass('d-none'); 
+                        $('#title').attr('required', true); 
+
+                    } else {
+                        $('#titleField').addClass('d-none');
+                        $('#title').removeAttr('required'); 
+
+                    }
+                },
+                remove: function(e) {
+                    var selectedUserIds = tagify.value.map(function(tag) {
+                        return tag.userID; 
+                    });
+
+                    $('#selectedUserIds').val(JSON.stringify(selectedUserIds));
+
+                    if (selectedUserIds.length <= 1) {
+                        $('#titleField').addClass('d-none'); 
+                        $('#title').removeAttr('required'); 
+
+                    }
+                }
+            }
+        });
+         });
+     </script>
+
+
+
 @endpush
-
-
 @section('page-header')
-    <h4 class="f-w-700">Care Booking Request</h4>
+    <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400 active">Care Booking</li>
+            <li class="breadcrumb-item f-w-400 active">Chat</li>
         </ol>
     </nav>
 @endsection
 
+ 
 
 
 @section('content')
@@ -121,75 +181,49 @@
     <div class="container-fluid dashboard-3">
 
  
-        @include('partials._dashboard_message')
 
- 
         
-        @if($bookings->isEmpty())
-        <div class="container my-4">
-            <div class="p-4 text-center bg-white border rounded shadow-sm" style="border-color: rgba(0, 0, 0, 0.1);">
-                <p class="mb-2 text-muted fs-5">No bookings yet.</p>
+        @if($users->isEmpty())
+            <div class="alert txt-primary border-warning alert-dismissible fade show" role="alert">
+                <i data-feather="clock"></i>
+                <p class="text-danger">No User Found.</p>
             </div>
-        </div>
         @else
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header card-no-border pb-0">
-                            <div class="header-top">
-                                <h4>Care Bookings</h4>
+                <div class="col-xl-8 mx-auto">
+                    @include('partials._dashboard_message')
+
+
+                    
+                    <form action="{{ route('admin.chat.store') }}" method="POST">
+                        @csrf
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Select Participants</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="user_ids">Select Participants</label>
+                                    <textarea name="user_id" id="user_ids" class="form-control" placeholder="Search users..."></textarea>
+                                </div>
+
+
+                                <div class="mt-2 form-group d-none" id="titleField">
+                                    <label for="title">Group Chat Title</label>
+                                    <input type="text" name="title" id="title" class="form-control" placeholder="Enter chat title...">
+                                </div>
+
+
+                            </div>
+            
+                            <input type="hidden" name="selected_user_ids" id="selectedUserIds">
+            
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="" onclick="window.history.back();"  class="btn btn-outline-secondary">Back</a>
+                                <button type="submit" class="btn btn-success">Start Chat</button>
                             </div>
                         </div>
-                        <div class="card-body pt-0 recent-orders px-0">
-                            <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Reference Number</th>
-                                            <th>Booked Time</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                        
-                                        @foreach($bookings as $booking)
-                                        <tr>
-                                            <td>
-                                                <a href="{{ route('admin.bookings.show', $booking->id) }}" class=" ">
-                                                {{ $booking->reference_number }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $booking->created_at->diffForHumans() }}</td>
-                                            <td>
-                                                <span class="badge 
-                                                @if($booking->status == 'approved')
-                                                    bg-success
-                                                @elseif($booking->status == 'pending')
-                                                    bg-warning text-dark
-                                                @elseif($booking->status == 'cancelled')
-                                                    bg-danger
-                                                @elseif($booking->status == 'carers_assigned')
-                                                    bg-primary
-                                                @elseif($booking->status == 'carers_selected')
-                                                    bg-info
-                                                @elseif($booking->status == 'completed')
-                                                    bg-success
-                                                @else
-                                                    bg-secondary
-                                                @endif
-                                            ">
-                                                {{ $booking->formatted_status }}
-                                            </span>
-                                            
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         @endif
@@ -197,4 +231,3 @@
     <!-- Container-fluid Ends-->
 </div>
 @endsection
-

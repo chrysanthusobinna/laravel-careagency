@@ -166,12 +166,35 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <button class="btn btn-outline-warning" onclick="window.location.href='{{ route('admin.dashboard') }}'">Dashboard</button>
-                            <button class="btn btn-warning" onclick="window.history.back()">Back</button>
-
+                        <div class="card-footer">
+                            <form action="{{ route('admin.chat.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="selected_user_ids" value="[{{ $user->id }}]">
+                                <button type="submit" class="w-100 btn-block btn btn-outline-warning">
+                                    <i class="fa fa-comment"></i> Chat with {{ ucwords($user->first_name) }}
+                                </button>
+                            </form>
                         </div>
                     </div>
+
+
+
+                    <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+    
+                             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-warning" data-toggle="modal" data-target="#userSearchModal">
+                                <i class="fa fa-home"></i> Dashboard
+                            </a>
+    
+                            
+                            <button type="button" class="btn btn-outline-warning" onclick="window.location='{{ route('admin.caregivers.index') }}'">
+                                <i class="fa fa-arrow-left"></i> Care Givers List
+                            </button>
+                            
+                        </div>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>

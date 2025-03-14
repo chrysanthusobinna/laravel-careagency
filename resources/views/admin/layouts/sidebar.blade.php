@@ -58,7 +58,7 @@
                     
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('admin.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.chat') }}">
+                        <a class="{{ request()->is('admin/chat*') ? 'active' : '' }}  sidebar-link sidebar-title link-nav" href="{{ route('admin.chat.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                             </svg>
@@ -68,6 +68,7 @@
                             <span>Chat</span>
                         </a>
                     </li>
+
 
                     <li class="sidebar-list">
                         <a class="{{ request()->is('admin/eligibility-requests*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.eligibility-request') }}">

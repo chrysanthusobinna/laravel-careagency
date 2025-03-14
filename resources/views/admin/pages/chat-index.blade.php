@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Care Booking Request')
-
+@section('title', 'Admin - Chat')
 
 
 @push('styles')
@@ -80,7 +79,7 @@
     <script src="/dashboard-assets/js/vector-map/map/jquery-jvectormap-asia-mill.js"></script>
     <!-- calendar js-->
     <script src="/dashboard-assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
-    <script src="/dashboard-assets/js/datatable/datatables/datatable.custom.js"></script>
+    {{-- <script src="/dashboard-assets/js/datatable/datatables/datatable.custom.js"></script> --}}
     <script src="/dashboard-assets/js/datatable/datatables/datatable.custom1.js"></script>
 
     <script src="/dashboard-assets/js/rating/jquery.barrating.js"></script>
@@ -97,93 +96,146 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
+    <script>
+        $('#chat-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
 
- 
 @endpush
 
 
+
 @section('page-header')
-    <h4 class="f-w-700">Care Booking Request</h4>
+    <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400 active">Care Booking</li>
+            <li class="breadcrumb-item f-w-400">Chat</li>
         </ol>
     </nav>
 @endsection
-
-
 
 @section('content')
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid dashboard-3">
-
  
         @include('partials._dashboard_message')
 
- 
-        
-        @if($bookings->isEmpty())
-        <div class="container my-4">
-            <div class="p-4 text-center bg-white border rounded shadow-sm" style="border-color: rgba(0, 0, 0, 0.1);">
-                <p class="mb-2 text-muted fs-5">No bookings yet.</p>
+
+
+        <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+            <div class="card-body d-flex justify-content-between align-items-center">
+
+                 <a href="{{ route('admin.chat.create') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                    <i class="fa fa-plus"></i> New Chat
+                </a>
+
+                
+                <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('admin.dashboard') }}'">
+                    <i class="fa fa-home"></i> Dashboard
+                </button>
+                
             </div>
         </div>
+
+
+        @if($chats->isEmpty())
+            <div class="alert txt-primary border-warning alert-dismissible fade show" role="alert">
+                <i data-feather="clock"></i>
+                <p class="text-danger">No Chat found.</p>
+            </div>
         @else
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h4>Care Bookings</h4>
+                                <h4>Chat</h4>
                             </div>
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="chat-list" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Reference Number</th>
-                                            <th>Booked Time</th>
-                                            <th>Status</th>
+                                            <th>&nbsp; </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                        
-                                        @foreach($bookings as $booking)
+                                        @foreach($chats as $chat)
+                                        @php
+                                        $randomColor = $colorClasses[array_rand($colorClasses)];
+                                        @endphp
                                         <tr>
-                                            <td>
-                                                <a href="{{ route('admin.bookings.show', $booking->id) }}" class=" ">
-                                                {{ $booking->reference_number }}
+                                            <td>                                         
+
+                                        
+
+
+
+
+                                                <a href="{{ route('admin.chat.show', $chat->id) }}">
+                                                    @if($chat->users->count() > 2)
+                                                        <!-- For group chat, show the title -->
+                                           
+
+
+
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <div class="flex-shrink-0">
+                                                                    <div class="letter-avatar">
+                                                                        <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}"><i class="fa fa-users"></i></h6>
+                                                                    </div>
+                                                      
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <a href="{{ route('admin.chat.show', $chat->id) }}">
+                                                                    <h6>{{ $chat->title }}</h6>
+                                                                </a>
+                                                                <em class="text-muted">
+                                                                    @foreach($chat->users as $user)
+                                                                        {{ $user->first_name }} {{ $user->last_name }}{{ !$loop->last ? ',' : '' }}
+                                                                    @endforeach
+                                                                </em>  <!-- Show participants in dull text -->
+                                                            </div>
+                                                        </div>
+
+
+
+                                     
+
+                                                    @else
+                                                        <!-- For one-on-one chat -->
+                                                        @foreach($chat->users as $user)
+                                                            @if($user->id !== Auth::id())
+                                                                <div class="d-flex align-items-center gap-2">
+                                                                    <div class="flex-shrink-0">
+                                                                        @if($user->profile_picture == 'default.png')
+                                                                            <div class="letter-avatar">
+                                                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
+                                                                            </div>
+                                                                        @else
+                                                                            <img src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                                                        @endif
+                                                                    </div>
+                                                                    <div class="flex-grow-1">
+                                                                        <a href="{{ route('admin.chat.show', $chat->id) }}">
+                                                                            <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
                                                 </a>
                                             </td>
-                                            <td>{{ $booking->created_at->diffForHumans() }}</td>
-                                            <td>
-                                                <span class="badge 
-                                                @if($booking->status == 'approved')
-                                                    bg-success
-                                                @elseif($booking->status == 'pending')
-                                                    bg-warning text-dark
-                                                @elseif($booking->status == 'cancelled')
-                                                    bg-danger
-                                                @elseif($booking->status == 'carers_assigned')
-                                                    bg-primary
-                                                @elseif($booking->status == 'carers_selected')
-                                                    bg-info
-                                                @elseif($booking->status == 'completed')
-                                                    bg-success
-                                                @else
-                                                    bg-secondary
-                                                @endif
-                                            ">
-                                                {{ $booking->formatted_status }}
-                                            </span>
-                                            
-                                            </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 

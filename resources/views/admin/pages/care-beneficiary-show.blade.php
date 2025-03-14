@@ -208,7 +208,15 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                                 </table>
                             </div>
                         </div>
-
+                        <div class="card-footer">
+                            <form action="{{ route('admin.chat.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="selected_user_ids" value="[{{ $careBeneficiary->id }}]">
+                                <button type="submit" class="w-100 btn-block btn btn-outline-primary">
+                                    <i class="fa fa-comment"></i> Chat with {{ ucwords($careBeneficiary->first_name) }}
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Family Members Managing This User -->

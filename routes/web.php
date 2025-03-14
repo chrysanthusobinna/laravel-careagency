@@ -237,7 +237,17 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
     Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('update-password');
 
 
-    Route::get('/chat', [AdminChatController::class, 'index'])->name('chat');
+
+    // CHAT
+    Route::get('/chat/list', [AdminChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [AdminChatController::class, 'show'])->name('chat.show');
+    Route::get('/chat/create', [AdminChatController::class, 'CreateChat'])->name('chat.create');
+    Route::post('/chat/store', [AdminChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [AdminChatController::class, 'sendMessage'])->name('message.send');
+    Route::get('/chat/{chatId}/edit', [AdminChatController::class, 'edit'])->name('chat.edit');
+    Route::post('/chat/{chatId}/update', [AdminChatController::class, 'update'])->name('chat.update');
+    Route::delete('/chat/{chatId}/delete', [AdminChatController::class, 'deleteChat'])->name('chat.delete');
+
 
 
     // BENEFICIARY USERS
