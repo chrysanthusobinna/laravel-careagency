@@ -187,9 +187,9 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                             </a>
     
                             
-                            <button type="button" class="btn btn-outline-warning" onclick="window.location='{{ route('admin.caregivers.index') }}'">
-                                <i class="fa fa-arrow-left"></i> Care Givers List
-                            </button>
+                            <button type="button" class="btn btn-outline-warning" onclick="window.history.back()">
+                                <i class="fa fa-arrow-left"></i> Go Back
+                            </button>                            
                             
                         </div>
                     </div>

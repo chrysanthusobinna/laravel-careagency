@@ -1,6 +1,6 @@
 @extends('carebeneficiary.layouts.app')
 
-@section('title', 'Serviceuser - Eligibility Form')
+@section('title', 'Care Beneficiary - Eligibility Form')
 
 
 @push('styles')

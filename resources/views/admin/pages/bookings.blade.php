@@ -97,7 +97,13 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
-
+    <script>
+        $('#booking-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
  
 @endpush
 
@@ -142,7 +148,7 @@
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="booking-list" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Reference Number</th>

@@ -131,7 +131,7 @@
         <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
             <div class="card-body d-flex justify-content-between align-items-center">
 
-                 <a href="{{ route('admin.chat.create') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                 <a href="{{ route('admin.chat.start') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
                     <i class="fa fa-plus"></i> New Chat
                 </a>
 

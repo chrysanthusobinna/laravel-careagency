@@ -28,7 +28,7 @@ class CareBeneficiaryBookingController extends Controller
     // Show a list of all bookings for the logged-in service user
     public function index()
     {
-        $bookings = Booking::where('care_beneficiary_id', Auth::id())->get();
+        $bookings = Booking::where('care_beneficiary_id', Auth::id())->orderBy('created_at', 'desc')->get();
         return view('carebeneficiary.pages.bookings', compact('bookings'));
     }
 
