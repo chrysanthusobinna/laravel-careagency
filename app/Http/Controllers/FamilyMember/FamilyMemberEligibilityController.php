@@ -48,15 +48,40 @@ class FamilyMemberEligibilityController extends Controller
         if (!$familyMember) {
             return redirect()->route('familymember.dashboard')->with('error', 'You are not authorized to access this page.');
         }
-    
+
         $care_beneficiary_user = User::where('id', $userId)->where('role', 'care_beneficiary')->firstOrFail();
-        $data = $this->handleEligibility($care_beneficiary_user);
-    
-        if (isset($data['redirect'])) {
-            return redirect()->to($data['redirect'])->with('error', $data['error']);
+
+
+        // get eligibility 
+        $carebeneficiary_eligibility = $care_beneficiary_user->eligibility;
+
+        // Get all trashed question IDs
+        $trashedQuestions = EligibilityQuestion::onlyTrashed()->pluck('id')->toArray();
+
+        // Get all questions
+        $questions = EligibilityQuestion::all();
+
+        // Get responses
+        $responses = EligibilityResponse::where('user_id', $care_beneficiary_user->id)->get()->keyBy('question_id');
+
+        // If eligibility status is NOT NULL and responses are EMPTY, delete the eligibility request
+        if ($carebeneficiary_eligibility !== null && $responses->isEmpty()) {
+            $carebeneficiary_eligibility->forceDelete();
+            return redirect()->route('familymember.dashboard')->with('error', 'You need to complete the eligibility request.');
         }
     
-        return view('familymember.pages.eligibility-family-show', $data);
+    
+        // Only check for trashed questions if responses exist
+        if (!$responses->isEmpty()) {
+            foreach ($responses as $questionId => $response) {
+                if (in_array($questionId, $trashedQuestions)) {
+                    $response->forceDelete();
+                    unset($responses[$questionId]);
+                }
+            }
+        }
+    
+        return view('familymember.pages.eligibility-show', compact('carebeneficiary_eligibility', 'questions', 'responses','care_beneficiary_user'));
     }
     
 
@@ -74,63 +99,6 @@ class FamilyMemberEligibilityController extends Controller
                 ->with('error', 'You are not authorized to access this page.');
         }
 
-        return $this->saveEligibilityResponse($request, $userId);
-    }
-
-
-
-
-
-    // SHOW ELIGIBILITY RESPONSES (USED FOR BOTH FAMILY & CARE BENEFICIARY)
-
-    private function handleEligibility(User $care_beneficiary_user)
-    {
-        $userId = $care_beneficiary_user->id;
-        $user_eligibility_status = $care_beneficiary_user->eligibility?->status;
-    
-        // Get all trashed question IDs
-        $trashedQuestions = EligibilityQuestion::onlyTrashed()->pluck('id')->toArray();
-    
-        // Get all active questions
-        $questions = EligibilityQuestion::all();
-        $totalQuestions = $questions->count();
-    
-        // Get user responses
-        $responses = EligibilityResponse::where('user_id', $userId)->get()->keyBy('question_id');
-    
-        // If eligibility status is NOT NULL and responses are EMPTY, delete the eligibility request
-        if ($user_eligibility_status !== null && $responses->isEmpty()) {
-            $care_beneficiary_user->eligibility->forceDelete();
-            return ['redirect' => route('familymember.eligibility-self'), 'error' => 'You need to complete the eligibility request.'];
-        }
-    
-        // Only check for trashed questions if responses exist
-        if (!$responses->isEmpty()) {
-            foreach ($responses as $questionId => $response) {
-                if (in_array($questionId, $trashedQuestions)) {
-                    $response->forceDelete();
-                    unset($responses[$questionId]);
-                }
-            }
-        }
-    
-        // Return the collected data
-        return [
-            'care_beneficiary_user' => $care_beneficiary_user,
-            'user_eligibility_status' => $user_eligibility_status,
-            'questions' => $questions,
-            'responses' => $responses,
-            'totalQuestions' => $totalQuestions
-        ];
-    }
-    
-
-
-
- 
-    // SAVE ELIGIBILITY RESPONSES (USED FOR BOTH FAMILY & CARE BENEFICIARY)
-    private function saveEligibilityResponse(EligibilityResponseRequest $request, $userId)
-    {
         $questionId = $request->input('question_id');
         $answer = $request->input('answer');
         $answer_other = $request->input('answer_other');
@@ -203,7 +171,6 @@ class FamilyMemberEligibilityController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Response saved successfully.']);
     }
-
  
 
 

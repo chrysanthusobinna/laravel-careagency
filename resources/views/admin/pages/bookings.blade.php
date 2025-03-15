@@ -195,6 +195,12 @@
                                 
                             </div>
                         </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('admin.dashboard') }}'">
+                                <i class="fa fa-home"></i> Return to Dashboard
+                            </button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

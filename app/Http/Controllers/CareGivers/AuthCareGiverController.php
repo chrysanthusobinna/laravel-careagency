@@ -26,7 +26,7 @@ class AuthCareGiverController extends Controller
     public function show()
     {
 
-        return view('caregiver.pages.auth-caregiver-profile');
+        return view('caregiver.pages.auth-user-profile');
     }
 
 

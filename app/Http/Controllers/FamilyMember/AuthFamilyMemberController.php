@@ -27,7 +27,7 @@ class AuthFamilyMemberController extends Controller
     public function show()
     {
 
-        return view('familymember.pages.auth-familymember-profile');
+        return view('familymember.pages.auth-user-profile');
     }
     
 

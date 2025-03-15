@@ -148,7 +148,7 @@
                                 @elseif($eligibilityRequest->submittedBy->role == 'family_member')
                                     <!-- If the user is a Family Member -->
                                     Family Member ({{ $familyMemberRelation->relationship_type ?? 'N/A' }})  
-                                    <a href="{{ route('admin.service-users.show', $eligibilityRequest->submittedBy->id) }}">
+                                    <a href="{{ route('admin.familymember.show', $eligibilityRequest->submittedBy->id) }}">
                                         {{ $eligibilityRequest->submittedBy->first_name }} 
                                         {{ $eligibilityRequest->submittedBy->middle_name ? $eligibilityRequest->submittedBy->middle_name . ' ' : '' }}
                                         {{ $eligibilityRequest->submittedBy->last_name }}

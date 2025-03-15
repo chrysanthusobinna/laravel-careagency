@@ -137,8 +137,8 @@ Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->
     Route::get('/family-member/unlink/{id}', [CareBeneficiaryFamilyMemberController::class, 'unlinkFamilyMember'])->name('family-member.unlink');
 
     // ELIGIBILITY
-    Route::get('/eligibility/care-beneficiary/show', [CareBeneficiaryEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
-    Route::post('/eligibility/care-beneficiary/save', [CareBeneficiaryEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+    Route::get('/eligibility/show', [CareBeneficiaryEligibilityController::class, 'showEligibilityForm'])->name('eligibility.show');
+    Route::post('/eligibility/save', [CareBeneficiaryEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.save');
  
 
     // BOOKINGS
@@ -182,8 +182,8 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 
     // ELIGIBILITY
     Route::get('/eligibility/care-beneficiary/list', [FamilyMemberEligibilityController::class, 'EligibilityFamilyList'])->name('eligibility.care-beneficiary');
-    Route::get('/eligibility/care-beneficiary/show/{userId}', [FamilyMemberEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
-    Route::post('/eligibility/care-beneficiary/save/{userId}', [FamilyMemberEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+    Route::get('/eligibility/show/{userId}', [FamilyMemberEligibilityController::class, 'showEligibilityForm'])->name('eligibility.show');
+    Route::post('/eligibility/save/{userId}', [FamilyMemberEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.save');
 
 
     // FMILY

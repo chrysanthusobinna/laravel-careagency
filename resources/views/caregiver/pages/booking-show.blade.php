@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Admin -  Care Booking')
+@section('title', 'Care Giver -  Care Booking')
 
 
 @push('styles')
@@ -78,8 +78,8 @@
     <h4 class="f-w-700">Care Booking</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Admin Panel</li>
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Dashboard</li>
             <li class="breadcrumb-item f-w-400">Care Booking</li>
         </ol>
     </nav>
@@ -100,6 +100,20 @@ $randomColor = $colorClasses[array_rand($colorClasses)];
                     @include('partials._dashboard_message')
 
 
+                    <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+    
+                             <a href="{{ route('carebeneficiary.dashboard') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                                <i class="fa fa-home"></i> Dashboard
+                            </a>
+    
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="location.reload();">
+                                <i class="fa fa-refresh"></i> Refresh
+                            </button>                        
+                            
+                        </div>
+                    </div>
  
                     <div class="card shadow-lg">
                         <div class="card-header">

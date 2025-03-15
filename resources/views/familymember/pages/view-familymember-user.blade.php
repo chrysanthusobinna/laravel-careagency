@@ -172,10 +172,10 @@ $member = $familyMember->careBeneficiary;
                                                 <button type="button" class="btn btn-outline-secondary w-100" onclick="window.location='{{ route('familymember.care-beneficiary.unlink', $member->id) }}'">Unlink Family Member</button>
                                             </div>
                                             <div class="col-6 mb-2">
-                                                <button type="button" class="btn btn-outline-secondary w-100">Eligibility</button>
+                                                <button type="button"  onclick="window.location.href='{{ route('familymember.eligibility.show', $member->id) }}'" class="btn btn-outline-secondary w-100">Eligibility</button>
                                             </div>
                                             <div class="col-6 mb-2">
-                                                <button type="button" class="btn btn-outline-secondary w-100">Book Care</button>
+                                                <button type="button" onclick="window.location.href='{{ route('familymember.bookings.care-beneficiary.create', $member->id) }}'" class="btn btn-outline-secondary w-100">Book Care</button>
                                             </div>
                                             <button type="button" class="btn btn-secondary w-100" onclick="history.back()">Back</button>
 
