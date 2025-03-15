@@ -329,10 +329,17 @@
                                 @endforeach
                             </div>
 
-                            <!-- AJAX form to send messages -->
                             <form id="send-message-form" class="msger-inputarea">
                                 @csrf
+                                <!-- Trigger Button -->
+                                <div class="dropdown-form dropdown-toggle" role="main" data-bs-toggle="modal" data-bs-target="#fileUploadModal" aria-expanded="false">
+                                    <i class="icon-plus"></i>
+                                </div>
+
                                 <input class="msger-input two uk-textarea" type="text" name="message" placeholder="Type Message here..." required autocomplete="off">
+                                <div class="open-emoji">
+                                    <div class="second-btn uk-button"></div>
+                                  </div>
                                 <button class="msger-send-btn" type="submit"><i class="fa fa-location-arrow"></i></button>
                             </form>
                         </div>
@@ -443,6 +450,33 @@
     </div>
 </div>
 
+
+
+<!-- Modal for File Upload -->
+<div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fileUploadModalLabel">Upload Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <!-- Image File Input -->
+                    <div class="mb-3">
+                        <label for="imageUpload" class="form-label">Select Image</label>
+                        <input type="file" class="form-control" id="imageUpload" name="image" required accept="image/*">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>            
+        </div>
+    </div>
+</div>
 
 
 @endsection

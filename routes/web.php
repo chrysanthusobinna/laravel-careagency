@@ -114,7 +114,14 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->name('carebeneficiary.')->group(function () {
 
     Route::get('/dashboard', [CareBeneficiaryDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [CareBeneficiaryChatController::class, 'index'])->name('chat');
+ 
+    // CHAT
+    Route::get('/chat/list', [CareBeneficiaryChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [CareBeneficiaryChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [CareBeneficiaryChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [CareBeneficiaryChatController::class, 'sendMessage'])->name('message.send');
+
+
     Route::get('/knowledge-base', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
     // AUTH USER
@@ -155,7 +162,15 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 
 
     Route::get('/dashboard', [FamilyMemberDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [FamilyMemberChatController::class, 'index'])->name('chat');
+
+    // CHAT
+    Route::get('/chat/list', [FamilyMemberChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [FamilyMemberChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [FamilyMemberChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [FamilyMemberChatController::class, 'sendMessage'])->name('message.send');
+
+
+
     Route::get('/knowledge-base', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
     // AUTH USER

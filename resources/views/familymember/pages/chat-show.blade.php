@@ -1,6 +1,6 @@
-@extends('caregiver.layouts.app')
+@extends('familymember.layouts.app')
 
-@section('title', 'Caregiver - Chat')
+@section('title', 'Family Member - Chat')
 
 
 @push('styles')
@@ -127,7 +127,7 @@
             var chatId = '{{ $chat->id }}'; 
 
             $.ajax({
-                url: '{{ route('caregiver.message.send', $chat->id) }}',
+                url: '{{ route('familymember.message.send', $chat->id) }}',
                 method: 'POST',
                 data: {
                     message: message,
@@ -174,7 +174,7 @@
 
                 // Submit the selected users using AJAX or form submission
                 $.ajax({
-                    url: '{{ route('caregiver.chat.store') }}',
+                    url: '{{ route('familymember.chat.store') }}',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -215,7 +215,7 @@
     <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{ route('familymember.dashboard') }}"><i data-feather="home"></i></a></li>
             <li class="breadcrumb-item f-w-400">Dashboard</li>
             <li class="breadcrumb-item f-w-400 active">Chat</li>
         </ol>
@@ -238,12 +238,12 @@
                 <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
                     <div class="card-body d-flex justify-content-between align-items-center">
 
-                         <a href="{{ route('caregiver.dashboard') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                         <a href="{{ route('familymember.dashboard') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
                             <i class="fa fa-home"></i> Dashboard
                         </a>
 
                         
-                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('caregiver.chat.index') }}'">
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('familymember.chat.index') }}'">
                             <i class="fa fa-comment"></i> Chat List
                         </button>
                         
@@ -325,6 +325,7 @@
                                     </div>
                                 @endforeach
                             </div>
+
                             <form id="send-message-form" class="msger-inputarea">
                                 @csrf
                                 <!-- Trigger Button -->
@@ -417,8 +418,7 @@
     </div>
 </div>
 
-
-
+ 
 
 <!-- Modal for File Upload -->
 <div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
@@ -445,6 +445,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 @endsection
 
