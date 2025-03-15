@@ -18,6 +18,6 @@ class CareGiverDashboardController extends Controller
     
     public function index()
     {
-        return view('caregivers.pages.dashboard');
+        return view('caregiver.pages.dashboard');
     }
 }

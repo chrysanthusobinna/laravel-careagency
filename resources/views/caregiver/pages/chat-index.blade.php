@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Admin - Eligibility Request')
+@section('title', 'Dashboard - Chat')
 
 
 @push('styles')
@@ -79,7 +79,7 @@
     <script src="/dashboard-assets/js/vector-map/map/jquery-jvectormap-asia-mill.js"></script>
     <!-- calendar js-->
     <script src="/dashboard-assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
-    <script src="/dashboard-assets/js/datatable/datatables/datatable.custom.js"></script>
+    {{-- <script src="/dashboard-assets/js/datatable/datatables/datatable.custom.js"></script> --}}
     <script src="/dashboard-assets/js/datatable/datatables/datatable.custom1.js"></script>
 
     <script src="/dashboard-assets/js/rating/jquery.barrating.js"></script>
@@ -96,107 +96,41 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
-  
+    <script>
+        $('#chat-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
+
 @endpush
 
 
 
 @section('page-header')
-    <h4 class="f-w-700">Eligibility Request</h4>
+    <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Admin Panel</li>
-            <li class="breadcrumb-item f-w-400">Eligibility Request</li>
-            <li class="breadcrumb-item f-w-400 active">List</li>
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Chat</li>
         </ol>
     </nav>
 @endsection
-
 
 @section('content')
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid dashboard-3">
  
- 
-    
-        <div class="row">
-            <div class="col-xl-4 col-sm-6">
-                <div class="card pb-5">
-                    <div class="card-header card-no-border pb-0">
-                        <div class="header-top daily-revenue-card">
-                            <h4>Total Eligibility Requests</h4>
-                        </div>
-                    </div>
-                    <div class="card-body pb-0 total-sells">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="flex-shrink-0">
-                                <i class="fa fa-check text-white"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="d-flex align-items-center gap-2">
-                                    <h2>{{ $allEligibilityCount }}  </h2>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-sm-6">
-                <div class="card pb-5">
-                    <div class="card-header card-no-border pb-0">
-                        <div class="header-top daily-revenue-card">
-                            <h4>Eligible Service Users</h4>
-                        </div>
-                    </div>
-                    <div class="card-body pb-0 total-sells-2">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="flex-shrink-0">
-                                <i class="fa fa-check text-white"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="d-flex align-items-center gap-2">
-                                    <h2>{{ $eligibleCount }}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-sm-6">
-                <div class="card pb-5">
-                    <div class="card-header card-no-border pb-0">
-                        <div class="header-top daily-revenue-card">
-                            <h4>Pending Eligibility Requests</h4>
-                        </div>
-                    </div>
-                    <div class="card-body pb-0 total-sells-3">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="flex-shrink-0">
-                                <i class="fa fa-check text-white"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="d-flex align-items-center gap-2">
-                                    <h2>{{ $pendingEligibilityCount }}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>        
-
-
-
         @include('partials._dashboard_message')
 
-        
-        @if($eligibilityRequests->isEmpty())
-            <div class="alert txt-danger border-warning alert-dismissible fade show" role="alert">
+
+
+        @if($chats->isEmpty())
+            <div class="alert txt-primary border-warning alert-dismissible fade show" role="alert">
                 <i data-feather="clock"></i>
-                <p class="text-danger">No Eligibility Requests Found.</p>
+                <p class="text-danger">No Chat found.</p>
             </div>
         @else
             <div class="row">
@@ -204,60 +138,102 @@
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h4>Eligibility Requests</h4>
+                                <h4>Chat</h4>
                             </div>
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="chat-list" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Care Beneficiary </th>
-                                            <th>Status</th>
-                                            <th>Time Submitted</th>
+                                            <th>&nbsp; </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                        
-                                        @foreach ($eligibilityRequests as $request)
-                                            @php
-                                                $randomColor = $colorClasses[array_rand($colorClasses)];
-                                            @endphp
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <div class="flex-shrink-0">
-                                                            @if($request->user->profile_picture == 'default.png')
-                                                                <div class="letter-avatar">
-                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $request->user->initials }}</h6>
-                                                                </div>
-                                                            @else
-                                                                <img src="{{ asset('uploads/profile_pictures/' . $request->user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
-                                                            @endif
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <a href="{{ route('admin.eligibility-request.show', $request->user_id) }}">
-                                                                <h6>{{ $request->user->first_name . " " . ($request->user->middle_name ? $request->user->middle_name . " " : '') . $request->user->last_name }}</h6>
+                                        @foreach($chats as $chat)
+                                        @php
+                                        $randomColor = $colorClasses[array_rand($colorClasses)];
+                                        @endphp
+                                        <tr>
+                                            <td>                                         
 
-                                                            </a>
+                                        
+
+
+
+
+                                                <a href="{{ route('caregiver.chat.show', $chat->id) }}">
+                                                    @if($chat->users->count() > 2)
+                                                        <!-- For group chat, show the title -->
+                                           
+
+
+
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <div class="flex-shrink-0">
+                                                                    <div class="letter-avatar">
+                                                                        <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}"><i class="fa fa-users"></i></h6>
+                                                                    </div>
+                                                      
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <a href="{{ route('caregiver.chat.show', $chat->id) }}">
+                                                                    <h6>{{ $chat->title }}</h6>
+                                                                </a>
+                                                                <em class="text-muted">
+                                                                    @foreach($chat->users as $user)
+                                                                        {{ $user->first_name }} {{ $user->last_name }}{{ !$loop->last ? ',' : '' }}
+                                                                    @endforeach
+                                                                </em>  <!-- Show participants in dull text -->
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="badge 
-                                                        {{ $request->status == 'eligible' ? 'bg-success' : 
-                                                           ($request->status == 'not_eligible' ? 'bg-danger' : 'bg-warning') }}">
-                                                        {{ ucfirst($request->status) }}
-                                                    </span>
-                                                </td>                                               
-                                                <td>{{ $request->created_at->diffForHumans() }}</td>
-                                            </tr>
-                                        @endforeach
+
+
+
+                                     
+
+                                                    @else
+                                                        <!-- For one-on-one chat -->
+                                                        @foreach($chat->users as $user)
+                                                            @if($user->id !== Auth::id())
+                                                                <div class="d-flex align-items-center gap-2">
+                                                                    <div class="flex-shrink-0">
+                                                                        @if($user->profile_picture == 'default.png')
+                                                                            <div class="letter-avatar">
+                                                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
+                                                                            </div>
+                                                                        @else
+                                                                            <img src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                                                        @endif
+                                                                    </div>
+                                                                    <div class="flex-grow-1">
+                                                                        <a href="{{ route('caregiver.chat.show', $chat->id) }}">
+                                                                            <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 
                             </div>
                         </div>
+
+                        <div class="card-footer d-flex justify-content-center">
+                            <form action="{{ route('caregiver.dashboard') }}" method="GET">
+                                <!-- Outline Button with FontAwesome Home Icon and Text -->
+                                <button type="submit" class="btn btn-outline-primary">
+                                    <i class="fa fa-home"></i> Return to Dashboard
+                                </button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -266,3 +242,4 @@
     <!-- Container-fluid Ends-->
 </div>
 @endsection
+

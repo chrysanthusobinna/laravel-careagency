@@ -21,6 +21,6 @@ class CareGiverKnowledgeBaseController extends Controller
 
     public function index()
     {
-        return view('caregivers.pages.knowledge-base');
+        return view('caregiver.pages.knowledge-base');
     }
 }

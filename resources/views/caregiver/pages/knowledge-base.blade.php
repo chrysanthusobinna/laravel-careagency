@@ -1,6 +1,6 @@
-@extends('caregivers.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Caregiver Dashboard - Chat')
+@section('title', 'Care Giver Dashboard - Knowledge Base')
 
 
 @push('styles')
@@ -72,15 +72,16 @@
 
 
 @section('page-header')
-    <h4 class="f-w-700">Chat</h4>
-    <nav>
-        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Dashboard</li>
-            <li class="breadcrumb-item f-w-400 active">Chat</li>
-        </ol>
-    </nav>
+<h4 class="f-w-700">Knowledge Base</h4>
+<nav>
+    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Dashboard</li>
+        <li class="breadcrumb-item f-w-400 active">Knowledge Base</li>
+    </ol>
+</nav>
 @endsection
+
 
 @section('content')
 <div class="page-body">
@@ -90,10 +91,10 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Chat</h4>
+                        <h4>Knowledge Base</h4>
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="text-warning">Chat is under development.</h5>
+                        <h5 class="text-warning">The Knowledge Base page is under development.</h5>
                     </div>
                 </div>
             </div>

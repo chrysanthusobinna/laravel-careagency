@@ -1,4 +1,4 @@
-@extends('caregivers.layouts.app')
+@extends('caregiver.layouts.app')
 
 @section('title', 'Care Givers - Care Booking Request')
 

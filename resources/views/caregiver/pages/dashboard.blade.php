@@ -1,6 +1,6 @@
-@extends('caregivers.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Care Giver Dashboard - Knowledge Base')
+@section('title', 'Caregiver - Dashboard')
 
 
 @push('styles')
@@ -70,20 +70,20 @@
         <!-- Plugin used-->
 @endpush
 
-
 @section('page-header')
-<h4 class="f-w-700">Knowledge Base</h4>
-<nav>
-    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
-        <li class="breadcrumb-item f-w-400">Dashboard</li>
-        <li class="breadcrumb-item f-w-400 active">Knowledge Base</li>
-    </ol>
-</nav>
+    <h4 class="f-w-700">Dashboard Overview</h4>
+    <nav>
+        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Caregivers</li>
+            <li class="breadcrumb-item f-w-400 active">Dashboard</li>
+        </ol>
+    </nav>
 @endsection
 
-
 @section('content')
+
+
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid">
@@ -91,10 +91,10 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Knowledge Base</h4>
+                        <h4>Dashboard</h4>
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="text-warning">The Knowledge Base page is under development.</h5>
+                        <h5 class="text-warning">Dashboard is under development.</h5>
                     </div>
                 </div>
             </div>
@@ -102,4 +102,9 @@
     </div>
     <!-- Container-fluid Ends-->
 </div>
-@endsection
+
+
+  
+@endsection  
+
+ 

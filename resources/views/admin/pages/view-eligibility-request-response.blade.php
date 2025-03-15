@@ -126,7 +126,7 @@
                         <tr>
                             <td class="fw-bold">Care Beneficiary:</td>
                             <td>
-                                <a href="{{ route('admin.service-users.show', $eligibilityRequest->user->id) }}" >
+                                <a href="{{ route('admin.care-beneficiary.show', $eligibilityRequest->user->id) }}" >
                                     {{ $eligibilityRequest->user->first_name }} 
                                     {{ $eligibilityRequest->user->middle_name }} 
                                     {{ $eligibilityRequest->user->last_name }}

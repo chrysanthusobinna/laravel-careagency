@@ -58,7 +58,7 @@
 
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('caregiver.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.chat') }}">
+                        <a class="{{ request()->is('caregiver/chat*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.chat.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                             </svg>

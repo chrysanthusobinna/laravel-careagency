@@ -26,7 +26,7 @@ class AuthCareGiverController extends Controller
     public function show()
     {
 
-        return view('caregivers.pages.auth-caregiver-profile');
+        return view('caregiver.pages.auth-caregiver-profile');
     }
 
 
@@ -34,7 +34,7 @@ class AuthCareGiverController extends Controller
 
     public function showChangePasswordForm()
     {
-        return view('caregivers.pages.change-password');
+        return view('caregiver.pages.change-password');
     }
 
 
@@ -69,7 +69,7 @@ class AuthCareGiverController extends Controller
     // SHOW EDIT PROFILE  
     public function editProfile()
     {
-        return view('caregivers.pages.edit-my-profile');
+        return view('caregiver.pages.edit-my-profile');
     }
 
     // UPDATE  PROFILE

@@ -34,8 +34,8 @@
     
         <!-- Mobile Responsive Meta -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
         <!-- Stylesheets -->
         <link href="/mainsite-assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="/mainsite-assets/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css">

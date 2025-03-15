@@ -201,7 +201,16 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->name('caregiver.')->group(function () {
 
     Route::get('/dashboard', [CareGiverDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('chat');
+
+    // CHAT
+    Route::get('/chat/list', [CareGiverChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [CareGiverChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [CareGiverChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [CareGiverChatController::class, 'sendMessage'])->name('message.send');
+
+
+
+
     Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
     // AUTH USER

@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Admin - Chat')
+@section('title', 'Caregiver - Chat')
 
 
 @push('styles')
@@ -127,7 +127,7 @@
             var chatId = '{{ $chat->id }}'; 
 
             $.ajax({
-                url: '{{ route('admin.message.send', $chat->id) }}',
+                url: '{{ route('caregiver.message.send', $chat->id) }}',
                 method: 'POST',
                 data: {
                     message: message,
@@ -174,7 +174,7 @@
 
                 // Submit the selected users using AJAX or form submission
                 $.ajax({
-                    url: '{{ route('admin.chat.store') }}',
+                    url: '{{ route('caregiver.chat.store') }}',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -215,8 +215,8 @@
     <h4 class="f-w-700">Chat</h4>
     <nav>
         <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Admin Panel</li>
+            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item f-w-400">Dashboard</li>
             <li class="breadcrumb-item f-w-400 active">Chat</li>
         </ol>
     </nav>
@@ -238,18 +238,17 @@
                 <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
                     <div class="card-body d-flex justify-content-between align-items-center">
 
-                         <a href="{{ route('admin.chat.create') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
-                            <i class="fa fa-plus"></i> New Chat
+                         <a href="{{ route('caregiver.dashboard') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                            <i class="fa fa-home"></i> Dashboard
                         </a>
 
                         
-                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('admin.chat.index') }}'">
-                            <i class="fa fa-arrow-left"></i> Go Back
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('caregiver.chat.index') }}'">
+                            <i class="fa fa-comment"></i> Chat List
                         </button>
                         
                     </div>
                 </div>
-
  
  
                 
@@ -306,8 +305,6 @@
                                     </svg>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <a class="dropdown-item" href="#ChatPaticpantsModal" data-bs-toggle="modal">Chat Participants</a>
-                                        <a class="dropdown-item" href="{{ route('admin.chat.edit', ['chatId' => $chat->id]) }}">Update Chat</a>
-                                        <a class="dropdown-item" href="#deleteChatModal" data-bs-toggle="modal">Delete Chat</a>
                                     </div>
                                 </div>
                             </div>
@@ -350,38 +347,9 @@
 </div>
  
 
+ 
 
-
-
-<!-- Modal Delete chat-->
-<div class="modal fade" id="deleteChatModal" tabindex="-1" aria-labelledby="deleteChatModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteChatModalLabel">Confirm Deletion</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this chat?</p>
-            </div>
-            <div class="modal-footer d-flex justify-content-between">
-                <!-- Cancel button -->
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-  
-                <form action="{{ route('admin.chat.delete', $chat->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <!-- Delete button -->
-                    <button type="submit" class="btn btn-danger">Delete Chat</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
+ 
 <!-- Modal Structure -->
 <div class="modal fade" id="ChatPaticpantsModal" tabindex="-1" aria-labelledby="ChatPaticpantsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -1,6 +1,6 @@
-@extends('caregivers.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Caregiver Dashboard - Change Password')
+@section('title', 'Serviceuser - Edit My Profile')
 
 
 @push('styles')
@@ -68,37 +68,20 @@
         <script src="/dashboard-assets/js/script1.js"></script>
         <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
         <!-- Plugin used-->
-
-        <script>
-            $(document).ready(function() {
-                $('.toggle-all-passwords').click(function() {
-                    let passwordFields = $('.password-field'); // Get all password fields
-                    let icon = $(this).find('i'); // Get the icon
-                    let isPasswordVisible = passwordFields.attr('type') === 'text';
-        
-                    // Toggle all password fields
-                    passwordFields.attr('type', isPasswordVisible ? 'password' : 'text');
-        
-                    // Change button text and icon based on visibility
-                    $(this).html(isPasswordVisible 
-                        ? '<i class="fa fa-eye"></i> Show Passwords' 
-                        : '<i class="fa fa-eye-slash"></i> Hide Passwords');
-                });
-            });
-        </script>
 @endpush
 
 
 @section('page-header')
-    <h4 class="f-w-700">Change Password</h4>
-    <nav>
-        <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item f-w-400">Dashboard</li>
-            <li class="breadcrumb-item f-w-400 active">Change Password</li>
-        </ol>
-    </nav>
+<h4 class="f-w-700">Edit My Profile</h4>
+<nav>
+    <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
+        <li class="breadcrumb-item"><a href="{{ route('carebeneficiary.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Dashboard</li>
+        <li class="breadcrumb-item f-w-400 active">Edit My Profile</li>
+    </ol>
+</nav>
 @endsection
+
 
 @section('content')
 <div class="page-body">
@@ -106,46 +89,83 @@
         <div class="edit-profile">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <form class="card" method="POST" action="{{ route('caregiver.update-password') }}">
+                    <form class="card" method="POST" action="{{ route('caregiver.auth-profile.update') }}">
                         @csrf
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Change Password</h4>
+                            <h4 class="card-title mb-0">Edit My Profile</h4>
                         </div>
                         <div class="card-body">
                             @include('partials._dashboard_message')
-                    
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Old Password</label>
-                                        <input class="form-control password-field" type="password" name="old_password" required>
+                                        <label class="form-label">First Name</label>
+                                        <input class="form-control" type="text" name="first_name" value="{{ old('first_name', $loggedInUser->first_name) }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Middle Name</label>
+                                        <input class="form-control" type="text" name="middle_name" value="{{ old('middle_name', $loggedInUser->middle_name) }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Last Name</label>
+                                        <input class="form-control" type="text" name="last_name" value="{{ old('last_name', $loggedInUser->last_name) }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input class="form-control" type="email" name="email" value="{{ old('email', $loggedInUser->email) }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input class="form-control" type="text" name="phone_number" value="{{ old('phone_number', $loggedInUser->phone_number) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">New Password</label>
-                                        <input class="form-control password-field" type="password" name="new_password" required>
+                                        <label class="form-label">Address</label>
+                                        <input class="form-control" type="text" name="address" value="{{ old('address', $loggedInUser->address) }}" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Confirm New Password</label>
-                                        <input class="form-control password-field" type="password" name="confirm_password" required>
+                                        <label class="form-label">City</label>
+                                        <input class="form-control" type="text" name="city" value="{{ old('city', $loggedInUser->city) }}" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-outline-primary toggle-all-passwords btn-block" style="width:100%" type="button">
-                                        <i class="fa fa-eye"></i> Show Passwords
-                                    </button>
-                                </div>                                
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Post Code</label>
+                                        <input class="form-control" type="text" name="post_code" value="{{ old('post_code', $loggedInUser->post_code) }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">County</label>
+                                        <input class="form-control" type="text" name="county" value="{{ old('county', $loggedInUser->county) }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Country</label>
+                                        <select class="form-control btn-square" name="country" required>
+                                            @include('partials._select_country', ['selectedCountry' => old('country', $loggedInUser->country)])
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                    
                         </div>
-                        <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit">Update Password</button>
+                        <div class="card-footer d-flex justify-content-between">
+                            <button class="btn btn-outline-secondary" type="button" onclick="window.location='{{ route('caregiver.auth-profile.show') }}'">Back to Profile</button>
+                            <button class="btn btn-primary" type="submit">Update My Profile</button>
                         </div>
-                    </form>  
-                       
+                    </form>
                 </div>
             </div>
         </div>
