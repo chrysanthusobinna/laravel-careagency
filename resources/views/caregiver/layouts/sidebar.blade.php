@@ -71,7 +71,7 @@
 
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('caregiver.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.knowledge-base') }}">
+                        <a class="{{ request()->is('caregiver/knowledgebase*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('caregiver.knowledgebase.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                             </svg>

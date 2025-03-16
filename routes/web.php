@@ -122,7 +122,9 @@ Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->
     Route::post('/chat/{chatId}/send', [CareBeneficiaryChatController::class, 'sendMessage'])->name('message.send');
 
 
-    Route::get('/knowledge-base', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [CareBeneficiaryKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
 
     // AUTH USER
     Route::get('/auth-profile', [AuthCareBeneficiaryController::class, 'show'])->name('auth-profile.show');
@@ -169,9 +171,11 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
     Route::post('/chat/store', [FamilyMemberChatController::class, 'storeChat'])->name('chat.store');
     Route::post('/chat/{chatId}/send', [FamilyMemberChatController::class, 'sendMessage'])->name('message.send');
 
+    
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [FamilyMemberKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
 
-
-    Route::get('/knowledge-base', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledge-base');
 
     // AUTH USER
     Route::get('/auth-profile', [AuthFamilyMemberController::class, 'show'])->name('auth-profile.show');
@@ -225,8 +229,11 @@ Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->name('caregi
 
 
 
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [CareGiverKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
 
-    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+
 
     // AUTH USER
     Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('auth-profile.show');
@@ -327,7 +334,15 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
 
 
 
-    Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [AdminKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/create', [AdminKnowledgeBaseController::class, 'create'])->name('knowledgebase.create');
+    Route::post('/knowledgebase/store', [AdminKnowledgeBaseController::class, 'store'])->name('knowledgebase.store');
+    Route::get('/knowledgebase/{id}/edit', [AdminKnowledgeBaseController::class, 'edit'])->name('knowledgebase.edit');
+    Route::put('/knowledgebase/{id}/update', [AdminKnowledgeBaseController::class, 'update'])->name('knowledgebase.update');
+    Route::delete('/knowledgebase/{id}/delete', [AdminKnowledgeBaseController::class, 'destroy'])->name('knowledgebase.destroy');
+    Route::get('/knowledgebase/{id}/show', [AdminKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
+    Route::delete('/knowledgebase/{id}/delete-attachment', [AdminKnowledgeBaseController::class, 'deleteAttachment'])->name('knowledgebase.deleteAttachment');
 
 
 

@@ -71,6 +71,12 @@ class User extends Authenticatable
         return $this->hasOne(EligibilityRequest::class, 'user_id');
     }
 
+        // A user can have many KnowledgeBasePosts
+    public function knowledgeBasePosts()
+    {
+        return $this->hasMany(KnowledgeBasePost::class, 'author_user_id');
+    }
+
      // Accessor for Initials
      public function getInitialsAttribute()
      {

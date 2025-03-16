@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CareGivers;
 
 use Illuminate\Http\Request;
+use App\Models\KnowledgeBasePost;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
@@ -17,10 +18,19 @@ class CareGiverKnowledgeBaseController extends Controller
         $this->shareViewData();
     }
 
-    // Show the Knowledge Base page.
-
+    // SHOW ALL KNOWLEDGE BASE POSTS
     public function index()
     {
-        return view('caregiver.pages.knowledge-base');
+        $posts = KnowledgeBasePost::where('category', 'care_giver')->orderBy('created_at', 'desc')->get();
+        return view('caregiver.pages.knowledgebase-list', compact('posts'));
     }
+    
+
+    // View a specific post
+    public function show($id)
+    {
+        $post = KnowledgeBasePost::where('category', 'care_giver')->findOrFail($id);
+        return view('caregiver.pages.knowledgebase-show', compact('post'));
+    }
+    
 }

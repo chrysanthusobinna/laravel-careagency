@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('caregiver.layouts.app')
 
-@section('title', 'Admin - Knowledge Base')
+@section('title', 'Care Giver - Knowledge Base')
 
 
 @push('styles')
@@ -75,8 +75,8 @@
 <h4 class="f-w-700">Knowledge Base</h4>
 <nav>
     <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
-        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i data-feather="home"></i></a></li>
-        <li class="breadcrumb-item f-w-400">Admin Panel</li>
+        <li class="breadcrumb-item"><a href="{{ route('caregiver.dashboard') }}"><i data-feather="home"></i></a></li>
+        <li class="breadcrumb-item f-w-400">Dashboard</li>
         <li class="breadcrumb-item f-w-400 active">Knowledge Base</li>
     </ol>
 </nav>
@@ -89,17 +89,60 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-sm-12">
-                <div class="card">
+ 
+                
+                <div class="card border-primary border-3">
                     <div class="card-header">
-                        <h4>Knowledge Base</h4>
+                        <h4>{{ $post->title }}</h4>
+                    </div>                    
+                    <div class="card-body">
+                        
+                        <!-- Display Media Attachment -->
+                        @if($post->media_attachment)
+                            @if($post->media_file_type === 'image')
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset('storage/blog-images/'.$post->media_attachment) }}" alt="Blog Image" class="img-fluid">
+                                </div>
+                            
+                            @elseif($post->media_file_type === 'video')
+                                <video controls class="w-100">
+                                    <source src="{{ asset('storage/blog-videos/'.$post->media_attachment) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            @endif
+          
+                        @endif
+
+                        <div class="mt-3">
+                            {!! $post->content !!}
+                        </div>                    
+                  
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="text-warning">The Knowledge Base page is under development.</h5>
+                
+                    <!-- Card Footer with Back and Dashboard buttons -->
+                    <div class="card-footer d-flex justify-content-between">
+
+                        <!-- Dashboard Button -->
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('caregiver.dashboard') }}'">
+                            <i class="fa fa-home"></i> Dashboard
+                        </button>
+
+                        <!-- Back Button -->
+                        <button type="button" class="btn btn-outline-secondary" onclick="history.back()">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                        
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
     <!-- Container-fluid Ends-->
 </div>
+
+ 
+
+
+
 @endsection

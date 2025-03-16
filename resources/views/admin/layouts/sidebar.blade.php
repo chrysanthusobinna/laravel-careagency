@@ -141,7 +141,7 @@
 
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('admin.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledge-base') }}">
+                        <a class="{{ request()->is('admin/knowledgebase*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('admin.knowledgebase.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                             </svg>

@@ -1,6 +1,6 @@
 @extends('caregiver.layouts.app')
 
-@section('title', 'Serviceuser - Edit My Profile')
+@section('title', 'Care Giver - Edit My Profile')
 
 
 @push('styles')
