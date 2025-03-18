@@ -122,11 +122,10 @@
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid dashboard-3">
- 
+
         @include('partials._dashboard_message')
 
-
-
+ 
         @if($chats->isEmpty())
             <div class="alert txt-primary border-warning alert-dismissible fade show" role="alert">
                 <i data-feather="clock"></i>
@@ -147,99 +146,86 @@
                                     <thead>
                                         <tr>
                                             <th>&nbsp; </th>
+                                            <th>&nbsp; </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($chats as $chat)
-                                        @php
-                                        $randomColor = $colorClasses[array_rand($colorClasses)];
-                                        @endphp
-                                        <tr>
-                                            <td>                                         
-
-                                        
-
-
-
-
-                                                <a href="{{ route('caregiver.chat.show', $chat->id) }}">
-                                                    @if($chat->users->count() > 2)
-                                                        <!-- For group chat, show the title -->
-                                           
-
-
-
-                                                        <div class="d-flex align-items-center gap-2">
-                                                            <div class="flex-shrink-0">
+                                            @php
+                                                $randomColor = $colorClasses[array_rand($colorClasses)];
+                                                $isGroupChat = $chat->users->count() > 2;
+                                                $unseenMessages = 0;
+                                                foreach ($chat->chatParticipants as $chatParticipant) {
+                                                    if ($chatParticipant->user->id == Auth::id()) {
+                                                        $unseenMessages = $chatParticipant->unseen_messages;
+                                                    }
+                                                }
+                                            @endphp
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('caregiver.chat.show', $chat->id) }}">
+                                                        @if($isGroupChat)
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <div class="flex-shrink-0">
                                                                     <div class="letter-avatar">
                                                                         <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}"><i class="fa fa-users"></i></h6>
                                                                     </div>
-                                                      
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <a href="{{ route('caregiver.chat.show', $chat->id) }}">
-                                                                    <h6>{{ $chat->title }}</h6>
-                                                                </a>
-                                                                <em class="text-muted">
-                                                                    @foreach($chat->users as $user)
-                                                                        {{ $user->first_name }} {{ $user->last_name }}{{ !$loop->last ? ',' : '' }}
-                                                                    @endforeach
-                                                                </em>  <!-- Show participants in dull text -->
-                                                            </div>
-                                                        </div>
-
-
-
-                                     
-
-                                                    @else
-                                                        <!-- For one-on-one chat -->
-                                                        @foreach($chat->users as $user)
-                                                            @if($user->id !== Auth::id())
-                                                                <div class="d-flex align-items-center gap-2">
-                                                                    <div class="flex-shrink-0">
-                                                                        @if($user->profile_picture == 'default.png')
-                                                                            <div class="letter-avatar">
-                                                                                <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $user->initials }}</h6>
-                                                                            </div>
-                                                                        @else
-                                                                            <img src="{{ asset('uploads/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <a href="{{ route('caregiver.chat.show', $chat->id) }}">
-                                                                            <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
-                                                                        </a>
-                                                                    </div>
                                                                 </div>
-                                                            @endif
-                                                        @endforeach
+                                                                <div class="flex-grow-1">
+                                                                    <h6>{{ $chat->title }}</h6>
+                                                                    <em class="text-muted">
+                                                                        @foreach($chat->chatParticipants as $chatParticipant)
+                                                                            {{ $chatParticipant->user->first_name }} {{ $chatParticipant->user->last_name }}{{ !$loop->last ? ',' : '' }}
+                                                                        @endforeach
+                                                                    </em>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                @foreach($chat->chatParticipants as $chatParticipant)
+                                                                    @if($chatParticipant->user->id !== Auth::id())
+                                                                        <div class="flex-shrink-0">
+                                                                            @if($chatParticipant->user->profile_picture == 'default.png')
+                                                                                <div class="letter-avatar">
+                                                                                    <h6 class="txt-{{ $randomColor }} bg-light-{{ $randomColor }}">{{ $chatParticipant->user->initials }}</h6>
+                                                                                </div>
+                                                                            @else
+                                                                                <img src="{{ asset('uploads/profile_pictures/' . $chatParticipant->user->profile_picture) }}" alt="Profile Picture" class="img-fluid rounded-circle" width="40">
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="flex-grow-1">
+                                                                            <h6>{{ $chatParticipant->user->first_name . " " . ($chatParticipant->user->middle_name ? $chatParticipant->user->middle_name . " " : '') . $chatParticipant->user->last_name }}</h6>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+                                                    </a>
+                                                </td>
+                                                <td class="text-end">
+                                                    @if($unseenMessages > 0)
+                                                        <span class="badge badge-pill badge-primary">{{ $unseenMessages }} Unread</span>
                                                     @endif
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
-                                
                             </div>
                         </div>
 
                         <div class="card-footer d-flex justify-content-center">
-                            <form action="{{ route('caregiver.dashboard') }}" method="GET">
-                                <!-- Outline Button with FontAwesome Home Icon and Text -->
-                                <button type="submit" class="btn btn-outline-primary">
-                                    <i class="fa fa-home"></i> Return to Dashboard
-                                </button>
-                            </form>
+                            <button onclick="window.location='{{ route('caregiver.dashboard') }}'" type="button" class="btn btn-outline-primary">
+                                <i class="fa fa-home"></i> Return to Dashboard
+                            </button>
                         </div>
                         
                     </div>
                 </div>
             </div>
         @endif
+
     </div>
     <!-- Container-fluid Ends-->
 </div>
 @endsection
-

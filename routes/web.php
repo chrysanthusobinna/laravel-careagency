@@ -120,6 +120,8 @@ Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->
     Route::get('/chat/show/{chatId}', [CareBeneficiaryChatController::class, 'show'])->name('chat.show');
     Route::post('/chat/store', [CareBeneficiaryChatController::class, 'storeChat'])->name('chat.store');
     Route::post('/chat/{chatId}/send', [CareBeneficiaryChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [CareBeneficiaryChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+    Route::post('/chat/update-unseen-messages/{chatId}', [CareBeneficiaryChatController::class, 'updateUnseenMessages'])->name('chat.update-unseen-messages');
 
 
     // KNOWLEDGE BASE
@@ -170,6 +172,7 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
     Route::get('/chat/show/{chatId}', [FamilyMemberChatController::class, 'show'])->name('chat.show');
     Route::post('/chat/store', [FamilyMemberChatController::class, 'storeChat'])->name('chat.store');
     Route::post('/chat/{chatId}/send', [FamilyMemberChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [FamilyMemberChatController::class, 'sendAttachment'])->name('chat.attachment.send');
 
     
     // KNOWLEDGE BASE
@@ -226,6 +229,7 @@ Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->name('caregi
     Route::get('/chat/show/{chatId}', [CareGiverChatController::class, 'show'])->name('chat.show');
     Route::post('/chat/store', [CareGiverChatController::class, 'storeChat'])->name('chat.store');
     Route::post('/chat/{chatId}/send', [CareGiverChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [CareGiverChatController::class, 'sendAttachment'])->name('chat.attachment.send');
 
 
 
@@ -278,6 +282,8 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
     Route::get('/chat/{chatId}/edit', [AdminChatController::class, 'edit'])->name('chat.edit');
     Route::post('/chat/{chatId}/update', [AdminChatController::class, 'update'])->name('chat.update');
     Route::delete('/chat/{chatId}/delete', [AdminChatController::class, 'deleteChat'])->name('chat.delete');
+    Route::post('/chat/{chatId}/attachment', [AdminChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+    Route::post('/chat/update-unseen-messages/{chatId}', [AdminChatController::class, 'updateUnseenMessages'])->name('chat.update-unseen-messages');
 
 
 

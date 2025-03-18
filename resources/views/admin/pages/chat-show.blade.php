@@ -32,9 +32,10 @@
     <link id="color" rel="stylesheet" href="/dashboard-assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="/dashboard-assets/css/responsive.css">
-	
+ 
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
-    
 @endpush
 
 
@@ -70,62 +71,157 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
  
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
-      
         var pusher = new Pusher('ed7a3a867a73393c5b43', {
-          cluster: 'eu'
+            cluster: 'eu'
         });
-      
+    
         var channel = pusher.subscribe('chat.{{ $chat->id }}');
+        
+        // Function to append message or attachment
+        function appendMessageOrAttachment(data, type) {
+            if (data.sender) {
+                var senderId = data.sender_id;
+                var senderName = data.sender.first_name;
+                var createdAt = data.created_at;
+                var chatMessages = document.querySelector('.msger-chat');
+    
+                // Create the message bubble for the new message
+                var newMessage = document.createElement('div');
+                newMessage.classList.add('msg');
+                newMessage.classList.add(senderId === {{ Auth::id() }} ? 'right-msg' : 'left-msg');
+    
+                var msgBubble = document.createElement('div');
+                msgBubble.classList.add('msg-bubble');
+    
+                var msgInfo = document.createElement('div');
+                msgInfo.classList.add('msg-info');
+    
+                var msgInfoName = document.createElement('div');
+                msgInfoName.classList.add('msg-info-name');
+                msgInfoName.textContent = senderName;
+    
+                var msgInfoTime = document.createElement('div');
+                msgInfoTime.classList.add('msg-info-time');
+                msgInfoTime.textContent = createdAt;
+    
+                msgInfo.appendChild(msgInfoName);
+                msgInfo.appendChild(msgInfoTime);
+                msgBubble.appendChild(msgInfo);
+    
+                // Check if the event type is 'message' or 'attachment'
+                if (type === 'message') {
+                    var messageContent = data.message;
+                    var msgText = document.createElement('div');
+                    msgText.classList.add('msg-text');
+                    msgText.textContent = messageContent;
+                    msgBubble.appendChild(msgText);
+                } else if (type === 'attachment') {
+                    var attachment = data.attachment;
+                    var attachmentElement;
+                    var fileExtension = attachment.split('.').pop().toLowerCase();
+    
+                    // Handle image attachments
+                    if (['png', 'jpeg', 'jpg'].includes(fileExtension)) {
+                        attachmentElement = document.createElement('img');
+                        attachmentElement.src = '{{ asset('storage/') }}/' + attachment;
+                        attachmentElement.classList.add('img-fluid', 'w-50', 'mx-auto', 'd-block');
+    
+                        // Create Download Button for Image
+                        var downloadBtn = document.createElement('a');
+                        downloadBtn.href = '{{ asset('storage/') }}/' + attachment;
+                        downloadBtn.classList.add('w-100', 'btn-sm', 'btn-block', 'btn', 'btn-square', 'mx-auto', 'mt-2');
+                        downloadBtn.style = "background-color: #f0f8ff; color: #333; border: 1px solid #ddd; padding: 10px 20px;";
+                        downloadBtn.setAttribute('download', '');
+                        downloadBtn.innerHTML = `<i class="fa fa-download"></i> Download Image`;
+    
+                        msgBubble.appendChild(attachmentElement);
+                        msgBubble.appendChild(downloadBtn);
+                    } 
+                    // Handle video attachments
+                    else if (fileExtension === 'mp4') {
+                        attachmentElement = document.createElement('video');
+                        attachmentElement.controls = true;
+                        var source = document.createElement('source');
+                        source.src = '{{ asset('storage/') }}/' + attachment;
+                        source.type = 'video/mp4';
+                        attachmentElement.appendChild(source);
+    
+                        // Create Download Button for Video
+                        var downloadBtn = document.createElement('a');
+                        downloadBtn.href = '{{ asset('storage/') }}/' + attachment;
+                        downloadBtn.classList.add('w-100', 'btn-sm', 'btn-block', 'btn', 'btn-square', 'mx-auto', 'mt-2');
+                        downloadBtn.style = "background-color: #f0f8ff; color: #333; border: 1px solid #ddd; padding: 10px 20px;";
+                        downloadBtn.setAttribute('download', '');
+                        downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download Video`;
+    
+                        msgBubble.appendChild(attachmentElement);
+                        msgBubble.appendChild(downloadBtn);
+                    }
+                }
+    
+                newMessage.appendChild(msgBubble);
+                chatMessages.appendChild(newMessage);
+    
+                // Scroll to the latest message
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            } else {
+                //console.error("Sender data is missing in the event.");
+            }
+        }
+
+
+
+        // Function to update unseen messages
+        function updateUnseenMessages() {
+            $.ajax({
+                url: '/admin/chat/update-unseen-messages/{{ $chat->id }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(response) {
+                     // Handle success 
+                },
+                error: function(error) {
+                    // Handle error 
+                    console.error('Error updating unseen messages:', error);
+                }
+            });
+        }
+
+
+        // Bind events
         channel.bind('message.sent', function(data) {
-          if (data.sender) {
-            var message = data.message;
-            var senderId = data.sender_id;
-            var senderName = data.sender.first_name;
-            var messageContent = data.message;
-            var createdAt = data.created_at;
-      
-            var chatMessages = document.querySelector('.msger-chat');
-      
-            var newMessage = `
-              <div class="msg ${senderId === {{ Auth::id() }} ? 'right-msg' : 'left-msg'}">
-                <div class="msg-bubble">
-                  <div class="msg-info">
-                    <div class="msg-info-name">${senderName}</div>
-                    <div class="msg-info-time">${createdAt}</div>
-                  </div>
-                  <div class="msg-text">${messageContent}</div>
-                </div>
-              </div>
-            `;
-      
-            chatMessages.innerHTML += newMessage;
-      
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-          } else {
-            console.error("Sender data is missing in the event.");
-          }
-        });
-      </script>
-      
-      <script>
-        $(document).ready(function() {
-            var chatMessages = $('.msger-chat');
-            chatMessages.scrollTop(chatMessages[0].scrollHeight);
+            appendMessageOrAttachment(data, 'message');
+            updateUnseenMessages();
         });
 
-      </script>
+        channel.bind('attachment.sent', function(data) {
+            appendMessageOrAttachment(data, 'attachment');
+            updateUnseenMessages();
+        });
 
+        
+        
+    </script>
+    
 
     <script>
         $('#send-message-form').on('submit', function(e) {
             e.preventDefault(); 
+            
 
             var message = $('input[name="message"]').val(); 
             var chatId = '{{ $chat->id }}'; 
-
+            $('input[name="message"]').val('');
+            
             $.ajax({
                 url: '{{ route('admin.message.send', $chat->id) }}',
                 method: 'POST',
@@ -138,7 +234,12 @@
                     $('input[name="message"]').val('');
                 },
                 error: function(error) {
-                    alert('There was an error sending the message.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'There was an error sending the message.',
+                        confirmButtonText: 'Try Again'
+                        });
                 }
             });
         });
@@ -146,67 +247,48 @@
 
 
     <script>
-        $(document).ready(function() {
-            // Filter users based on the search input
-            $('#searchInput').on('keyup', function() {
-                var query = $(this).val().toLowerCase();
-                $('.user-item').each(function() {
-                    var name = $(this).text().toLowerCase();
-                    if (name.indexOf(query) !== -1) {
-                        $(this).show();  // Show matching users
-                    } else {
-                        $(this).hide();  // Hide non-matching users
-                    }
-                });
-            });
-
-            // Handle the form submission to start the chat
-            $('#startChatButton').on('click', function() {
-                var selectedUsers = [];
-                $('input[name="user_ids[]"]:checked').each(function() {
-                    selectedUsers.push($(this).val());
-                });
-
-                if (selectedUsers.length === 0) {
-                    alert("Please select at least one user to start the chat.");
-                    return;
+        $('#send-attachment-form').on('submit', function(e) {
+            e.preventDefault();
+            $('#fileUploadModal').modal('hide');
+            
+            var formData = new FormData(this); // Collect all form data including the file
+            
+            var chatId = '{{ $chat->id }}'; 
+            formData.append('chat_id', chatId); 
+            
+            $.ajax({
+                url: '{{ route('admin.chat.attachment.send', $chat->id) }}',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false, 
+                success: function(response) {
+                    $('#send-attachment-form')[0].reset();
+                    //console.log(response);
+                    
+                },
+                error: function(error) {
+                    
+                    $('#send-attachment-form')[0].reset();
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'There was an error sending the attachment.',
+                        confirmButtonText: 'Try Again'
+                        });
                 }
-
-                // Submit the selected users using AJAX or form submission
-                $.ajax({
-                    url: '{{ route('admin.chat.store') }}',
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        user_ids: selectedUsers
-                    },
-                    success: function(response) {
-                        // Redirect to the new chat page or handle response
-                        window.location.href = response.redirect_url;
-                    },
-                    error: function() {
-                        alert("Failed to create chat. Please try again.");
-                    }
-                });
             });
         });
-
     </script>
 
 
-<script>
+    <script>
     $(document).ready(function() {
-        // Initially hide the table content
-        $('#chatParticipants').hide();  
-         
-        // Click event for toggling visibility
-        $('#toggleButton').click(function() {
-            $('#chatParticipants').slideToggle(); 
-            $('#expandIcon').toggleClass('fa-plus fa-minus');
-        });
+        var chatMessages = $('.msger-chat');
+        chatMessages.scrollTop(chatMessages[0].scrollHeight);
     });
-</script>
 
+  </script>
 
 @endpush
 
@@ -250,8 +332,6 @@
                     </div>
                 </div>
 
- 
- 
                 
                 <div class="card right-sidebar-chat">
                     <div class="right-sidebar-title">
@@ -317,16 +397,41 @@
                         <div class="msger">
                             <div class="msger-chat">
                                 @foreach ($chat->messages as $message)
-                                    <div class="msg @if($message->sender_id == Auth::id()) right-msg @else left-msg @endif">
-                                        <div class="msg-bubble">
-                                            <div class="msg-info">
-                                                <div class="msg-info-name">{{ $message->sender->first_name }}</div>
-                                                <div class="msg-info-time">{{ $message->created_at->format('h:i A d M, Y') }}</div>
-                                            </div>
-                                            <div class="msg-text">{{ $message->message }}</div>
+                                <div class="msg @if($message->sender_id == Auth::id()) right-msg @else left-msg @endif">
+                                    <div class="msg-bubble">
+                                        <div class="msg-info">
+                                            <div class="msg-info-name">{{ $message->sender->first_name }}</div>
+                                            <div class="msg-info-time">{{ $message->created_at->format('h:i A d M, Y') }}</div>
                                         </div>
+                                        
+                                        <!-- Check if message is not null and attachment is null -->
+                                        @if($message->message && !$message->attachment)
+                                            <div class="msg-text">{{ $message->message }}</div>
+                                        @elseif(!$message->message && $message->attachment)
+                                            <!-- If message is null and attachment exists, display the image or video attachment -->
+                                            @if (in_array(pathinfo($message->attachment, PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg']))
+                                                <img src="{{ asset('storage/' . $message->attachment) }}" alt="attachment" class="img-fluid w-50 mx-auto d-block" />
+                                                <!-- Add Download Button -->
+                                                <a href="{{ asset('storage/' . $message->attachment) }}" class="w-100 btn-sm btn-block btn btn-square mx-auto mt-2" style="background-color: #f0f8ff; color: #333; border: 1px solid #ddd; padding: 10px 20px;" download>
+                                                    <i class="fa fa-download"></i> Download Image
+                                                </a>
+                                                
+                                            @elseif(pathinfo($message->attachment, PATHINFO_EXTENSION) == 'mp4')
+                                                <video controls class="w-100">
+                                                    <source src="{{ asset('storage/' . $message->attachment) }}" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                                <!-- Add Download Button for Video -->
+                                                <a href="{{ asset('storage/' . $message->attachment) }}"  class="w-100 btn-sm btn-block btn btn-square mx-auto mt-2" style="background-color: #f0f8ff; color: #333; border: 1px solid #ddd; padding: 10px 20px;" download>
+                                                    <i class="fas fa-download"></i> Download Video
+                                                </a>
+                                            @endif
+                                        @endif
                                     </div>
-                                @endforeach
+                                </div>
+                            @endforeach
+                            
+                            
                             </div>
 
                             <form id="send-message-form" class="msger-inputarea">
@@ -452,31 +557,37 @@
 
 
 
+ 
+
+
+
 <!-- Modal for File Upload -->
 <div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="fileUploadModalLabel">Upload Image</h5>
+                <h5 class="modal-title" id="fileUploadModalLabel">Send Photo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <form id="send-attachment-form" enctype="multipart/form-data">
                     <!-- Image File Input -->
                     <div class="mb-3">
-                        <label for="imageUpload" class="form-label">Select Image</label>
-                        <input type="file" class="form-control" id="imageUpload" name="image" required accept="image/*">
+                        <label for="imageUpload" class="form-label">Select Photo</label>
+                        <input type="file" class="form-control" id="imageUpload" name="attachment" required accept="image/*">
                     </div>
+                    @csrf
                 </form>
             </div>
             <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Upload</button>
+                <button type="submit" class="btn btn-primary" form="send-attachment-form">Send</button>
+
             </div>            
         </div>
     </div>
 </div>
+
 
 
 @endsection

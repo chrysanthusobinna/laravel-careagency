@@ -22,4 +22,9 @@ class Chat extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function chatParticipants()
+    {
+        return $this->hasMany(ChatParticipant::class);
+    }
 }

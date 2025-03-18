@@ -10,7 +10,7 @@ class ChatParticipant extends Model
 {
     use HasFactory, SoftDeletes; 
 
-    protected $fillable = ['chat_id', 'user_id'];
+    protected $fillable = ['chat_id', 'user_id', 'unseen_messages '];
 
     protected $dates = ['deleted_at']; 
 
