@@ -41,7 +41,7 @@
 <!--END Banner Section Two -->
 
 
-{{-- 
+
 
 <!-- About Section -->
 <section class="about-section-one">
@@ -431,10 +431,8 @@
             </div>
         </div>
     </div>
-</section> --}}
+</section>
 
-
-<h1>YOU ARE ON THE DEV SITE</h1>
     
     
 @endsection
