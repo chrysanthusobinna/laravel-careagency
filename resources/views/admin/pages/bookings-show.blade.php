@@ -117,6 +117,24 @@
                 <div class="col-xl-10 mx-auto">
                     @include('partials._dashboard_message')
 
+
+                    
+                <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                         <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-primary" data-toggle="modal" data-target="#userSearchModal">
+                            <i class="fa fa-home"></i> Dashboard
+                        </a>
+
+                        
+                        <button type="button" class="btn btn-outline-primary" onclick="location.reload();">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>                        
+                        
+                    </div>
+                </div>
+
+
                     <div class="card shadow-lg">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h2 class="mb-0">{{ $booking->reference_number }} - Care Booking</h2>

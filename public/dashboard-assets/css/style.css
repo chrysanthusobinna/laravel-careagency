@@ -21773,7 +21773,7 @@ p.data-attributes svg {
   padding: 10px;
   background: -webkit-gradient(linear, left bottom, left top, from(#F5F6FA), to(#F5F6FA)), -webkit-gradient(linear, left bottom, left top, from(#FFFFFF), to(#FFFFFF));
   background: linear-gradient(0deg, #F5F6FA, #F5F6FA), linear-gradient(0deg, #FFFFFF, #FFFFFF);
-  height: 620px;
+  height: 500px;
 }
 .msger-chat::-webkit-scrollbar {
   width: 6px;

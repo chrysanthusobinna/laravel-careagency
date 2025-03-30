@@ -114,8 +114,19 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->name('carebeneficiary.')->group(function () {
 
     Route::get('/dashboard', [CareBeneficiaryDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [CareBeneficiaryChatController::class, 'index'])->name('chat');
-    Route::get('/knowledge-base', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+ 
+    // CHAT
+    Route::get('/chat/list', [CareBeneficiaryChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [CareBeneficiaryChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [CareBeneficiaryChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [CareBeneficiaryChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [CareBeneficiaryChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+    Route::post('/chat/update-unseen-messages/{chatId}', [CareBeneficiaryChatController::class, 'updateUnseenMessages'])->name('chat.update-unseen-messages');
+
+
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [CareBeneficiaryKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [CareBeneficiaryKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
 
     // AUTH USER
     Route::get('/auth-profile', [AuthCareBeneficiaryController::class, 'show'])->name('auth-profile.show');
@@ -130,8 +141,8 @@ Route::prefix('carebeneficiary')->middleware(CareBeneficiaryMiddleware::class)->
     Route::get('/family-member/unlink/{id}', [CareBeneficiaryFamilyMemberController::class, 'unlinkFamilyMember'])->name('family-member.unlink');
 
     // ELIGIBILITY
-    Route::get('/eligibility/care-beneficiary/show', [CareBeneficiaryEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
-    Route::post('/eligibility/care-beneficiary/save', [CareBeneficiaryEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+    Route::get('/eligibility/show', [CareBeneficiaryEligibilityController::class, 'showEligibilityForm'])->name('eligibility.show');
+    Route::post('/eligibility/save', [CareBeneficiaryEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.save');
  
 
     // BOOKINGS
@@ -155,8 +166,19 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 
 
     Route::get('/dashboard', [FamilyMemberDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [FamilyMemberChatController::class, 'index'])->name('chat');
-    Route::get('/knowledge-base', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+
+    // CHAT
+    Route::get('/chat/list', [FamilyMemberChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [FamilyMemberChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [FamilyMemberChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [FamilyMemberChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [FamilyMemberChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+
+    
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [FamilyMemberKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [FamilyMemberKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
+
 
     // AUTH USER
     Route::get('/auth-profile', [AuthFamilyMemberController::class, 'show'])->name('auth-profile.show');
@@ -167,8 +189,8 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 
     // ELIGIBILITY
     Route::get('/eligibility/care-beneficiary/list', [FamilyMemberEligibilityController::class, 'EligibilityFamilyList'])->name('eligibility.care-beneficiary');
-    Route::get('/eligibility/care-beneficiary/show/{userId}', [FamilyMemberEligibilityController::class, 'showEligibilityForm'])->name('eligibility.care-beneficiary.show');
-    Route::post('/eligibility/care-beneficiary/save/{userId}', [FamilyMemberEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.care-beneficiary.save');
+    Route::get('/eligibility/show/{userId}', [FamilyMemberEligibilityController::class, 'showEligibilityForm'])->name('eligibility.show');
+    Route::post('/eligibility/save/{userId}', [FamilyMemberEligibilityController::class, 'saveEligibilityFormResponse'])->name('eligibility.save');
 
 
     // FMILY
@@ -201,8 +223,21 @@ Route::prefix('familymember')->middleware(FamilyMemberMiddleware::class)->name('
 Route::prefix('caregiver')->middleware(CareGiverMiddleware::class)->name('caregiver.')->group(function () {
 
     Route::get('/dashboard', [CareGiverDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/chat', [CareGiverChatController::class, 'index'])->name('chat');
-    Route::get('/knowledge-base', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+
+    // CHAT
+    Route::get('/chat/list', [CareGiverChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [CareGiverChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/store', [CareGiverChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [CareGiverChatController::class, 'sendMessage'])->name('message.send');
+    Route::post('/chat/{chatId}/attachment', [CareGiverChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+
+
+
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [CareGiverKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/{id}/show', [CareGiverKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
+
+
 
     // AUTH USER
     Route::get('/auth-profile', [AuthCareGiverController::class, 'show'])->name('auth-profile.show');
@@ -237,7 +272,19 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
     Route::post('/update-password', [AuthAdminProfileController::class, 'updatePassword'])->name('update-password');
 
 
-    Route::get('/chat', [AdminChatController::class, 'index'])->name('chat');
+
+    // CHAT
+    Route::get('/chat/list', [AdminChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/show/{chatId}', [AdminChatController::class, 'show'])->name('chat.show');
+    Route::get('/chat/create', [AdminChatController::class, 'CreateChat'])->name('chat.create');
+    Route::post('/chat/store', [AdminChatController::class, 'storeChat'])->name('chat.store');
+    Route::post('/chat/{chatId}/send', [AdminChatController::class, 'sendMessage'])->name('message.send');
+    Route::get('/chat/{chatId}/edit', [AdminChatController::class, 'edit'])->name('chat.edit');
+    Route::post('/chat/{chatId}/update', [AdminChatController::class, 'update'])->name('chat.update');
+    Route::delete('/chat/{chatId}/delete', [AdminChatController::class, 'deleteChat'])->name('chat.delete');
+    Route::post('/chat/{chatId}/attachment', [AdminChatController::class, 'sendAttachment'])->name('chat.attachment.send');
+    Route::post('/chat/update-unseen-messages/{chatId}', [AdminChatController::class, 'updateUnseenMessages'])->name('chat.update-unseen-messages');
+
 
 
     // BENEFICIARY USERS
@@ -293,7 +340,15 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
 
 
 
-    Route::get('/knowledge-base', [AdminKnowledgeBaseController::class, 'index'])->name('knowledge-base');
+    // KNOWLEDGE BASE
+    Route::get('/knowledgebase/list', [AdminKnowledgeBaseController::class, 'index'])->name('knowledgebase.index');
+    Route::get('/knowledgebase/create', [AdminKnowledgeBaseController::class, 'create'])->name('knowledgebase.create');
+    Route::post('/knowledgebase/store', [AdminKnowledgeBaseController::class, 'store'])->name('knowledgebase.store');
+    Route::get('/knowledgebase/{id}/edit', [AdminKnowledgeBaseController::class, 'edit'])->name('knowledgebase.edit');
+    Route::put('/knowledgebase/{id}/update', [AdminKnowledgeBaseController::class, 'update'])->name('knowledgebase.update');
+    Route::delete('/knowledgebase/{id}/delete', [AdminKnowledgeBaseController::class, 'destroy'])->name('knowledgebase.destroy');
+    Route::get('/knowledgebase/{id}/show', [AdminKnowledgeBaseController::class, 'show'])->name('knowledgebase.show');
+    Route::delete('/knowledgebase/{id}/delete-attachment', [AdminKnowledgeBaseController::class, 'deleteAttachment'])->name('knowledgebase.deleteAttachment');
 
 
 

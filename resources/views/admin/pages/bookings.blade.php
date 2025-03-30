@@ -97,7 +97,13 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
-
+    <script>
+        $('#booking-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
  
 @endpush
 
@@ -123,8 +129,7 @@
  
         @include('partials._dashboard_message')
 
-
-
+ 
         
         @if($bookings->isEmpty())
         <div class="container my-4">
@@ -143,7 +148,7 @@
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="booking-list" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Reference Number</th>
@@ -190,6 +195,12 @@
                                 
                             </div>
                         </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary" onclick="window.location='{{ route('admin.dashboard') }}'">
+                                <i class="fa fa-home"></i> Return to Dashboard
+                            </button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

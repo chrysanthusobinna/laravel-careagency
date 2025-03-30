@@ -31,7 +31,7 @@ class CareGiversBookingController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('caregivers.pages.bookings', compact('bookings'));
+        return view('caregiver.pages.bookings', compact('bookings'));
     }
 
  
@@ -44,7 +44,7 @@ class CareGiversBookingController extends Controller
             ->with('booking.careBeneficiary')
             ->firstOrFail();
 
-        return view('caregivers.pages.booking-show', compact('assignment'));
+        return view('caregiver.pages.booking-show', compact('assignment'));
     }
 
 

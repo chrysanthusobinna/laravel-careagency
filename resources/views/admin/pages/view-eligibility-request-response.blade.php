@@ -126,7 +126,7 @@
                         <tr>
                             <td class="fw-bold">Care Beneficiary:</td>
                             <td>
-                                <a href="{{ route('admin.service-users.show', $eligibilityRequest->user->id) }}" >
+                                <a href="{{ route('admin.care-beneficiary.show', $eligibilityRequest->user->id) }}" >
                                     {{ $eligibilityRequest->user->first_name }} 
                                     {{ $eligibilityRequest->user->middle_name }} 
                                     {{ $eligibilityRequest->user->last_name }}
@@ -148,7 +148,7 @@
                                 @elseif($eligibilityRequest->submittedBy->role == 'family_member')
                                     <!-- If the user is a Family Member -->
                                     Family Member ({{ $familyMemberRelation->relationship_type ?? 'N/A' }})  
-                                    <a href="{{ route('admin.service-users.show', $eligibilityRequest->submittedBy->id) }}">
+                                    <a href="{{ route('admin.familymember.show', $eligibilityRequest->submittedBy->id) }}">
                                         {{ $eligibilityRequest->submittedBy->first_name }} 
                                         {{ $eligibilityRequest->submittedBy->middle_name ? $eligibilityRequest->submittedBy->middle_name . ' ' : '' }}
                                         {{ $eligibilityRequest->submittedBy->last_name }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FamilyMember;
 
 use Illuminate\Http\Request;
+use App\Models\KnowledgeBasePost;
 use App\Http\Controllers\Controller;
 use App\Traits\AuthUserViewSharedDataTrait;
 
@@ -17,10 +18,18 @@ class FamilyMemberKnowledgeBaseController extends Controller
         $this->shareViewData();
     }
 
-    // Show the Knowledge Base page.
-
+    // SHOW ALL KNOWLEDGE BASE POSTS
     public function index()
     {
-        return view('familymember.pages.knowledge-base');
+        $posts = KnowledgeBasePost::where('category', 'family_member')->orderBy('created_at', 'desc')->get();
+        return view('familymember.pages.knowledgebase-list', compact('posts'));
+    }
+    
+
+    // View a specific post
+    public function show($id)
+    {
+        $post = KnowledgeBasePost::where('category', 'family_member')->findOrFail($id);
+        return view('familymember.pages.knowledgebase-show', compact('post'));
     }
 }

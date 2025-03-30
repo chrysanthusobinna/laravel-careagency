@@ -45,7 +45,7 @@
 
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('familymember.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.chat') }}">
+                        <a class="{{ request()->is('familymember/chat*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.chat.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                             </svg>
@@ -101,7 +101,7 @@
 
                     
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('familymember.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.knowledge-base') }}">
+                        <a class="{{ request()->is('familymember/knowledgebase*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('familymember.knowledgebase.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                             </svg>

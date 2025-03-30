@@ -96,6 +96,16 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
+
+ 
+    <script>
+        $('#eligibility-request-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
+   
   
 @endpush
 
@@ -209,7 +219,7 @@
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="eligibility-request-list" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Care Beneficiary </th>
@@ -237,7 +247,7 @@
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <a href="{{ route('admin.eligibility-request.show', $request->user_id) }}">
-                                                                <h6>{{ $user->first_name . " " . ($user->middle_name ? $user->middle_name . " " : '') . $user->last_name }}</h6>
+                                                                <h6>{{ $request->user->first_name . " " . ($request->user->middle_name ? $request->user->middle_name . " " : '') . $request->user->last_name }}</h6>
 
                                                             </a>
                                                         </div>

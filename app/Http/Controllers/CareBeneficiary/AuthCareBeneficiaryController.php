@@ -26,8 +26,7 @@ class AuthCareBeneficiaryController extends Controller
     // Show the profile of the authenticated servcie  user.
     public function show()
     {
-
-        return view('carebeneficiary.pages.auth-serviceuser-profile');
+        return view('carebeneficiary.pages.auth-user-profile');
     }
     
 

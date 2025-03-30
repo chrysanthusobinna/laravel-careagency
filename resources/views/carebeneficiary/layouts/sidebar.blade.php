@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('carebeneficiary.chat') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('carebeneficiary.chat') }}">
+                        <a class="{{ request()->is('carebeneficiary/chat*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('carebeneficiary.chat.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-chat"></use>
                             </svg>
@@ -70,7 +70,7 @@
 
                     <li class="sidebar-list">
                         <a class="{{ request()->is('carebeneficiary/eligibility*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" 
-                            href="{{ route('carebeneficiary.eligibility.care-beneficiary.show') }}">
+                            href="{{ route('carebeneficiary.eligibility.show') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-check"></use>
                             </svg>
@@ -80,6 +80,7 @@
                             <span>Eligibility</span>
                         </a>
                     </li>
+                   
                     
 
                     <li class="sidebar-list">
@@ -97,10 +98,9 @@
                     </li>
 
 
-
                     
                     <li class="sidebar-list">
-                        <a class="{{ request()->routeIs('carebeneficiary.knowledge-base') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('carebeneficiary.knowledge-base') }}">
+                        <a class="{{ request()->is('carebeneficiary/knowledgebase*') ? 'active' : '' }} sidebar-link sidebar-title link-nav" href="{{ route('carebeneficiary.knowledgebase.index') }}">
                             <svg class="stroke-icon">
                                 <use href="/dashboard-assets/svg/icon-sprite.svg#stroke-file"></use>
                             </svg>

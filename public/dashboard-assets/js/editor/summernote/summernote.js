@@ -73,7 +73,7 @@ var renderer = {
 var editor = renderer.create('<div class="note-editor note-frame"/>');
 var toolbar = renderer.create('<div class="note-toolbar-wrapper"><div class="note-toolbar card-header" role="toolbar"></div></div>');
 var editingArea = renderer.create('<div class="note-editing-area"/>');
-var codable = renderer.create('<textarea class="note-codable" role="textbox" aria-multiline="true"/>');
+var codable = renderer.create('<textarea name="content" class="note-codable" role="textbox" aria-multiline="true"/>');
 var editable = renderer.create('<div class="note-editable card-block" contentEditable="true" role="textbox" aria-multiline="true"/>');
 var statusbar = renderer.create([
     '<output class="note-status-output" aria-live="polite"/>',
@@ -7112,8 +7112,7 @@ $$1.summernote = $$1.extend($$1.summernote, {
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']]
+            ['view', ['help']]
         ],
         // popover
         popatmouse: true,

@@ -96,7 +96,13 @@
     <script src="/dashboard-assets/js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
 
-
+    <script>
+        $('#booking-list').DataTable({
+            "searching": true,
+            "pageLength": 10,
+            "order": [],
+        });
+    </script>
  
 @endpush
 
@@ -122,20 +128,41 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid dashboard-3">
 
- 
-        @include('partials._dashboard_message')
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+                @include('partials._dashboard_message')
+
+                <div class="card" style="background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                
+                        <a href="{{ route('carebeneficiary.bookings.create') }}" class="btn btn-outline-primary">
+                            <i class="fa fa-plus"></i> Book Care
+                        </a>
+                
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location='{{ route('admin.dashboard') }}'">
+                            <i class="fa fa-home"></i> Dashboard
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
 
         
         @if($bookings->isEmpty())
-        <div class="container my-4">
-            <div class="p-4 text-center bg-white border rounded shadow-sm" style="border-color: rgba(0, 0, 0, 0.1);">
-                <p class="mb-2 text-muted fs-5">No bookings yet.</p>
-                <a href="{{ route('carebeneficiary.bookings.create') }}" class="btn btn-primary btn-sm">Click here to create a new booking</a>
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+                <div class="container my-4">
+                    <div class="p-4 text-center bg-white border rounded shadow-sm" style="border-color: rgba(0, 0, 0, 0.1);">
+                        <p class="mb-2 text-muted fs-5">No bookings yet.</p>
+                        <a href="{{ route('carebeneficiary.bookings.create') }}" class="btn btn-primary btn-sm">Click here to create a new booking</a>
+                    </div>
+                </div>
             </div>
         </div>
         @else
             <div class="row">
-                <div class="col-12">
+                <div class="col-xl-8 mx-auto">
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
@@ -144,7 +171,7 @@
                         </div>
                         <div class="card-body pt-0 recent-orders px-0">
                             <div class="table-responsive theme-scrollbar">
-                                <table class="table display" id="recent-orders" style="width:100%">
+                                <table class="table display" id="booking-list" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Reference Number</th>
