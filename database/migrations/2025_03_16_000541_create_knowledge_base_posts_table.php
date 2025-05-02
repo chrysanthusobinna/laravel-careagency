@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');  
             $table->text('content'); 
             
-            // Enum field for category
             $table->enum('category', ['admin', 'care_giver', 'care_beneficiary', 'family_member']);
             
             $table->foreignId('author_user_id')->constrained('users')->onDelete('cascade'); 
