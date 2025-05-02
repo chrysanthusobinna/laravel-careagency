@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        
+        <meta name="robots" content="noindex, nofollow">
+
         <!-- Dynamic Page Title -->
         <title>@yield('title', config('app.name') . ' - Connecting People with Compassionate Carers')</title>
     

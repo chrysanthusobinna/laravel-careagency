@@ -32,10 +32,35 @@ class AdminUserSeeder extends Seeder
             'profile_picture' => 'default.png',
             'activation_token' => Str::random(40),
             'two_factor_auth' => 0, 
-            'email' => 'chrysanthusobinna@gmail.com',
+            'email' => 'chrysanthusobinnaxx@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ]);
+
+
+        User::create([
+            'role' => 'admin_level_1', 
+            'status' => '1', 
+            'notice' => null,
+            'first_name' => 'Tina',
+            'middle_name' => null,
+            'last_name' => 'Ossai',
+            'phone_number' => '07588881958',
+            'address' => '19 - 21 Albion Place',
+            'city' => 'Maidstone',
+            'post_code' => 'ME14 5EG',
+            'county' => 'Kent',
+            'country' => 'United Kingdom',
+            'profile_picture' => 'default.png',
+            'activation_token' => Str::random(40),
+            'two_factor_auth' => 0, 
+            'email' => 'tinaossai11@yahoo.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('Winner4life'),
+            'remember_token' => Str::random(10),
+        ]);        
+
+
     }
 }
