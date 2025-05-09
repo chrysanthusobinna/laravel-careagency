@@ -433,8 +433,6 @@
     </div>
 </section>  
 
-
-<h1>YOU ARE ON THE DEV SITE</h1>
-    
+ 
     
 @endsection
