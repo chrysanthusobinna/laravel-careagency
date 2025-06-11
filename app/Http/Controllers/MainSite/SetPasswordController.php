@@ -49,7 +49,11 @@ class SetPasswordController extends Controller
             ]
         );
 
-        Mail::to($request->email)->send(new PasswordResetMail($request->email, $token));
+        try {
+            Mail::to($request->email)->send(new PasswordResetMail($request->email, $token));
+        } catch (\Exception $e) {
+            return back()->withErrors(['email' => 'Failed to send reset email. Please try again later.']);
+        }
 
         return redirect()->route('mainsite.set-password')->with('success', 'A password reset link has been sent to your email.');
     }
